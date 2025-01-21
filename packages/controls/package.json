@@ -1,0 +1,8 @@
+{
+  "name": "@ar-framework/controls",
+  "packageManager": "yarn@4.6.0",
+  "dependencies": {
+    "@ar-framework/ui": "1.0.0",
+    "@ar-framework/utils": "1.0.0"
+  }
+}

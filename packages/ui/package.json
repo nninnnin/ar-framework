@@ -1,0 +1,8 @@
+{
+  "name": "@ar-framework/ui",
+  "packageManager": "yarn@4.6.0",
+  "dependencies": {
+    "lit": "^3.2.1",
+    "@ar-framework/styles": "1.0.0"
+  }
+}
