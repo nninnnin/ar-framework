@@ -10,7 +10,8 @@
   "license": "ISC",
   "packageManager": "yarn@4.6.0",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "web"
   ],
   "dependencies": {
     "lit": "^3.2.1"
