@@ -10,12 +10,17 @@
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
-    "@types/next": "^9.0.0",
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.48.0",
+    "lodash": "^4.17.21",
     "next": "^15.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.26.3",
+    "@emotion/babel-plugin": "^11.13.5",
+    "@types/lodash": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

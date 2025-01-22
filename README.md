@@ -8,3 +8,9 @@ yarn berry 의 vscode 설정에 필요합니다.
 - 타입스크립트 파일을 선택한 상태에서 `ctrl+shift+p` 를 누릅니다.
 - "Select TypeScript Version" 를 선택합니다.
 - "Use Workspace Version" 를 선택합니다.
+
+---
+
+### Credentials\*\*
+
+supabase 패스워드 `9266` (프로덕션 변경시 필수적으로 변경\*)
