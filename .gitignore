@@ -8,4 +8,4 @@
 !.yarn/sdks
 !.yarn/versions
 
-web/.next/cache/*
+web/.next
