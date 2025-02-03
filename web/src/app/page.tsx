@@ -1,25 +1,10 @@
 "use client";
 
 import { css } from "@emotion/react";
-import { useOverlay } from "@toss/use-overlay";
 
-import GroupItem from "@/components/home/GroupItem";
-import Overlay from "@/components/common/Overlay";
-import GroupCreationDialog from "@/components/home/GroupCreationDialog";
+import GroupSection from "@/components/home/GroupSection";
 
 export default function Home() {
-  const overlay = useOverlay();
-
-  const handleCreateGroupClick = () => {
-    overlay.open(({ isOpen, close }) => {
-      return (
-        <Overlay isOpen={isOpen}>
-          <GroupCreationDialog close={close} />
-        </Overlay>
-      );
-    });
-  };
-
   return (
     <div
       css={css`
@@ -28,14 +13,7 @@ export default function Home() {
         display: flex;
       `}
     >
-      <div
-        css={css`
-          background-color: violet;
-          padding: 1em;
-        `}
-      >
-        <GroupItem onClick={handleCreateGroupClick}>그룹 만들기</GroupItem>
-      </div>
+      <GroupSection />
 
       <div
         css={css`

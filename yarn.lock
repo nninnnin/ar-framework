@@ -670,14 +670,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rebel9/memex-fetcher@npm:^1.4.2":
-  version: 1.4.2
-  resolution: "@rebel9/memex-fetcher@npm:1.4.2"
+"@rebel9/memex-fetcher@npm:^1.4.3":
+  version: 1.4.3
+  resolution: "@rebel9/memex-fetcher@npm:1.4.3"
   dependencies:
     debug: "npm:^4.3.4"
     fxjs: "npm:^0.21.3"
     supports-color: "npm:^8.1.1"
-  checksum: 10c0/a6a89b91e592648014d0a156976fe6a39d231f75496577082f0067f58ad312ef1b6f78d145124f0c21790f12a68e59242662d7aea7add5573a83e59585e91e78
+  checksum: 10c0/f6cffd93b261807d5dcffab6edc43e850d2306aa0befd77f3693ae8b2647e00e4e61343cbb24a61765809cd4baa037c697aa78f25c3cbc363dc8282c9918e873
   languageName: node
   linkType: hard
 
@@ -1609,7 +1609,7 @@ __metadata:
     "@babel/preset-react": "npm:^7.26.3"
     "@emotion/babel-plugin": "npm:^11.13.5"
     "@emotion/react": "npm:^11.14.0"
-    "@rebel9/memex-fetcher": "npm:^1.4.2"
+    "@rebel9/memex-fetcher": "npm:^1.4.3"
     "@supabase/ssr": "npm:^0.5.2"
     "@supabase/supabase-js": "npm:^2.48.0"
     "@tanstack/react-query": "npm:^5.66.0"

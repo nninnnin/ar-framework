@@ -4,16 +4,20 @@ import { css } from "@emotion/react";
 const GroupItem = ({
   children,
   onClick,
+  type = "item",
 }: {
   children: React.ReactNode;
   onClick: () => void;
+  type?: "item" | "creation";
 }) => {
   return (
     <div
       css={css`
-        background-color: black;
-        color: white;
+        background-color: ${type === "item" ? "white" : "black"};
+        color: ${type === "item" ? "black" : "white"};
         padding: 1em;
+
+        cursor: pointer;
       `}
       onClick={onClick}
     >

@@ -894,11 +894,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@rebel9/memex-fetcher", [\
-      ["npm:1.4.2", {\
-        "packageLocation": "../../.yarn/berry/cache/@rebel9-memex-fetcher-npm-1.4.2-bce09d534d-10c0.zip/node_modules/@rebel9/memex-fetcher/",\
+      ["npm:1.4.3", {\
+        "packageLocation": "../../.yarn/berry/cache/@rebel9-memex-fetcher-npm-1.4.3-cfa8cfb6e1-10c0.zip/node_modules/@rebel9/memex-fetcher/",\
         "packageDependencies": [\
-          ["@rebel9/memex-fetcher", "npm:1.4.2"],\
-          ["debug", "virtual:bce09d534dd0cccacc728205c5eb10519779abbd2fda617a9de55d1caf578f4ea032f30c06d65a8664fa80b863a588b87d655fc8c77681f6b409b071057a2d86#npm:4.4.0"],\
+          ["@rebel9/memex-fetcher", "npm:1.4.3"],\
+          ["debug", "virtual:cfa8cfb6e180dd84124b32868e04d6bdef1099835eac3977bc3de9276d192169b2a9c9d4887ae618e48fd1b6df843dc39f15cb06a33722d6fb1928f3f1b5add0#npm:4.4.0"],\
           ["fxjs", "npm:0.21.3"],\
           ["supports-color", "npm:8.1.1"]\
         ],\
@@ -1356,10 +1356,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["virtual:bce09d534dd0cccacc728205c5eb10519779abbd2fda617a9de55d1caf578f4ea032f30c06d65a8664fa80b863a588b87d655fc8c77681f6b409b071057a2d86#npm:4.4.0", {\
-        "packageLocation": "./.yarn/__virtual__/debug-virtual-b0ad4c1ae2/3/.yarn/berry/cache/debug-npm-4.4.0-f6efe76023-10c0.zip/node_modules/debug/",\
+      ["virtual:cfa8cfb6e180dd84124b32868e04d6bdef1099835eac3977bc3de9276d192169b2a9c9d4887ae618e48fd1b6df843dc39f15cb06a33722d6fb1928f3f1b5add0#npm:4.4.0", {\
+        "packageLocation": "./.yarn/__virtual__/debug-virtual-591f3242cf/3/.yarn/berry/cache/debug-npm-4.4.0-f6efe76023-10c0.zip/node_modules/debug/",\
         "packageDependencies": [\
-          ["debug", "virtual:bce09d534dd0cccacc728205c5eb10519779abbd2fda617a9de55d1caf578f4ea032f30c06d65a8664fa80b863a588b87d655fc8c77681f6b409b071057a2d86#npm:4.4.0"],\
+          ["debug", "virtual:cfa8cfb6e180dd84124b32868e04d6bdef1099835eac3977bc3de9276d192169b2a9c9d4887ae618e48fd1b6df843dc39f15cb06a33722d6fb1928f3f1b5add0#npm:4.4.0"],\
           ["@types/supports-color", null],\
           ["ms", "npm:2.1.3"],\
           ["supports-color", "npm:8.1.1"]\
@@ -1986,7 +1986,7 @@ const RAW_RUNTIME_STATE =
           ["@babel/preset-react", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:7.26.3"],\
           ["@emotion/babel-plugin", "npm:11.13.5"],\
           ["@emotion/react", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:11.14.0"],\
-          ["@rebel9/memex-fetcher", "npm:1.4.2"],\
+          ["@rebel9/memex-fetcher", "npm:1.4.3"],\
           ["@supabase/ssr", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:0.5.2"],\
           ["@supabase/supabase-js", "npm:2.48.0"],\
           ["@tanstack/react-query", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:5.66.0"],\

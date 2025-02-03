@@ -2,21 +2,24 @@ import React, { useState } from "react";
 import { css } from "@emotion/react";
 
 import Dialog from "@/components/common/Dialog";
-import { createGroup } from "@/utils";
+import useCreateGroup from "@/hooks/useCreateGroup";
 
 const GroupCreationDialog = ({ close }: { close: () => void }) => {
   const [name, setName] = useState("");
 
-  const onConfirmClick = async () => {
-    const res = await createGroup(name);
+  const { mutate: createGroup } = useCreateGroup();
 
-    console.log(res);
+  const onConfirmClick = async (name: string) => {
+    await createGroup(name);
 
     close();
   };
 
   return (
-    <Dialog onConfirmClick={onConfirmClick} onCancelClick={() => close()}>
+    <Dialog
+      onConfirmClick={() => onConfirmClick(name)}
+      onCancelClick={() => close()}
+    >
       <div
         css={css`
           display: flex;
