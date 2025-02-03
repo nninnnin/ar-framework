@@ -1,10 +1,15 @@
-import { Params } from "next/dist/server/request/params";
 import React from "react";
 
-const ProjectPage = async ({ params }: { params: Params }) => {
+import { Params } from "next/dist/server/request/params";
+
+interface PageProps {
+  params: Promise<Params>;
+}
+
+const ProjectPage = async ({ params }: PageProps) => {
   const { projectName } = await params;
 
-  console.log(projectName);
+  console.log("Project Name: ", projectName);
 
   return <iframe src={"http://localhost:3000/templates/api"}></iframe>;
 };
