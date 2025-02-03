@@ -193,6 +193,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime-corejs3@npm:^7.14.5":
+  version: 7.26.7
+  resolution: "@babel/runtime-corejs3@npm:7.26.7"
+  dependencies:
+    core-js-pure: "npm:^3.30.2"
+    regenerator-runtime: "npm:^0.14.0"
+  checksum: 10c0/399855ab2a1ef21364683a1a40a3280be71dbfee587c90fb57fce4508a783a846f925b7d5509bba3521674f44f76b4f8d31eb8a32e13dc333cdacd34c31f5119
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3":
   version: 7.26.0
   resolution: "@babel/runtime@npm:7.26.0"
@@ -660,6 +670,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rebel9/memex-fetcher@npm:^1.4.2":
+  version: 1.4.2
+  resolution: "@rebel9/memex-fetcher@npm:1.4.2"
+  dependencies:
+    debug: "npm:^4.3.4"
+    fxjs: "npm:^0.21.3"
+    supports-color: "npm:^8.1.1"
+  checksum: 10c0/a6a89b91e592648014d0a156976fe6a39d231f75496577082f0067f58ad312ef1b6f78d145124f0c21790f12a68e59242662d7aea7add5573a83e59585e91e78
+  languageName: node
+  linkType: hard
+
 "@supabase/auth-js@npm:2.67.3":
   version: 2.67.3
   resolution: "@supabase/auth-js@npm:2.67.3"
@@ -756,6 +777,33 @@ __metadata:
   dependencies:
     tslib: "npm:^2.8.0"
   checksum: 10c0/33002f74f6f885f04c132960835fdfc474186983ea567606db62e86acd0680ca82f34647e8e610f4e1e422d1c16fce729dde22cd3b797ab1fd9061a825dabca4
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-core@npm:5.66.0":
+  version: 5.66.0
+  resolution: "@tanstack/query-core@npm:5.66.0"
+  checksum: 10c0/a03afcb3a075f1923ce3d03dcb16662bb35159280bf87598b9d446366cfd47f5c736be41fb90938c4e6848633c036087d7019f0dbb95f2f2450a9fea4764adbb
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.66.0":
+  version: 5.66.0
+  resolution: "@tanstack/react-query@npm:5.66.0"
+  dependencies:
+    "@tanstack/query-core": "npm:5.66.0"
+  peerDependencies:
+    react: ^18 || ^19
+  checksum: 10c0/60e1a3fd7f2f8b2038d70954b51eeb84c31273d09a68537babdc2ac3d8c200968a1f7865a8e189ffd63be0c30387985b4b4eaf1d9065990bd3699ac5872b7523
+  languageName: node
+  linkType: hard
+
+"@toss/use-overlay@npm:^1.4.2":
+  version: 1.4.2
+  resolution: "@toss/use-overlay@npm:1.4.2"
+  peerDependencies:
+    react: ^16.8 || ^17 || ^18
+  checksum: 10c0/3e0621d403e88e6f3b013177729972da3460a02c7effe08aff5fcb94a86354220690fdf72dca768b3ef0d9330658632404820f5d3ac3dcc5e34824cf77007e3e
   languageName: node
   linkType: hard
 
@@ -939,6 +987,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"core-js-pure@npm:^3.30.2":
+  version: 3.40.0
+  resolution: "core-js-pure@npm:3.40.0"
+  checksum: 10c0/97590017216e2614e44bacc0b73159061b58e3ac86b61a3ed8cd78fc12bef604c5fb559a7a4d51ae5f2d1bd23ec57760ba6bf2802e802beb42d6bbce136acf52
+  languageName: node
+  linkType: hard
+
 "cosmiconfig@npm:^7.0.0":
   version: 7.1.0
   resolution: "cosmiconfig@npm:7.1.0"
@@ -959,7 +1014,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:^4.3.1":
+"debug@npm:^4.3.1, debug@npm:^4.3.4":
   version: 4.4.0
   resolution: "debug@npm:4.4.0"
   dependencies:
@@ -1008,10 +1063,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fxjs@npm:^0.21.3":
+  version: 0.21.3
+  resolution: "fxjs@npm:0.21.3"
+  dependencies:
+    "@babel/runtime-corejs3": "npm:^7.14.5"
+  checksum: 10c0/e1b0e273bad1b3ffdbba6822d31900f81a201a5832e9e8095fd02fa695485807fc1e2d5cf8e3a1374c78f646264221d7d684cad066551aeb94d63467573329ce
+  languageName: node
+  linkType: hard
+
 "globals@npm:^11.1.0":
   version: 11.12.0
   resolution: "globals@npm:11.12.0"
   checksum: 10c0/758f9f258e7b19226bd8d4af5d3b0dcf7038780fb23d82e6f98932c44e239f884847f1766e8fa9cc5635ccb3204f7fa7314d4408dd4002a5e8ea827b4018f0a1
+  languageName: node
+  linkType: hard
+
+"has-flag@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "has-flag@npm:4.0.0"
+  checksum: 10c0/2e789c61b7888d66993e14e8331449e525ef42aac53c627cc53d1c3334e768bcb6abdc4f5f0de1478a25beec6f0bd62c7549058b7ac53e924040d4f301f02fd1
   languageName: node
   linkType: hard
 
@@ -1467,6 +1538,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"supports-color@npm:^8.1.1":
+  version: 8.1.1
+  resolution: "supports-color@npm:8.1.1"
+  dependencies:
+    has-flag: "npm:^4.0.0"
+  checksum: 10c0/ea1d3c275dd604c974670f63943ed9bd83623edc102430c05adb8efc56ba492746b6e95386e7831b872ec3807fd89dd8eb43f735195f37b5ec343e4234cc7e89
+  languageName: node
+  linkType: hard
+
 "supports-preserve-symlinks-flag@npm:^1.0.0":
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
@@ -1529,8 +1609,11 @@ __metadata:
     "@babel/preset-react": "npm:^7.26.3"
     "@emotion/babel-plugin": "npm:^11.13.5"
     "@emotion/react": "npm:^11.14.0"
+    "@rebel9/memex-fetcher": "npm:^1.4.2"
     "@supabase/ssr": "npm:^0.5.2"
     "@supabase/supabase-js": "npm:^2.48.0"
+    "@tanstack/react-query": "npm:^5.66.0"
+    "@toss/use-overlay": "npm:^1.4.2"
     "@types/lodash": "npm:^4"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"

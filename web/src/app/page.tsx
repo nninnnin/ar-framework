@@ -1,14 +1,23 @@
 "use client";
 
 import { css } from "@emotion/react";
+import { useOverlay } from "@toss/use-overlay";
+
+import GroupItem from "@/components/home/GroupItem";
+import Overlay from "@/components/common/Overlay";
+import GroupCreationDialog from "@/components/home/GroupCreationDialog";
 
 export default function Home() {
-  const handleClick = async () => {
-    // api로 요청을 보낸다.
-    const res = await fetch("/api");
-    const result = await res.json();
+  const overlay = useOverlay();
 
-    console.log(result);
+  const handleCreateGroupClick = () => {
+    overlay.open(({ isOpen, close }) => {
+      return (
+        <Overlay isOpen={isOpen}>
+          <GroupCreationDialog close={close} />
+        </Overlay>
+      );
+    });
   };
 
   return (
@@ -16,18 +25,26 @@ export default function Home() {
       css={css`
         background-color: #fff;
         height: 100%;
+        display: flex;
       `}
     >
-      <button
+      <div
         css={css`
-          margin-top: 1em;
-          margin-left: 1em;
-          padding: 0.3em;
+          background-color: violet;
+          padding: 1em;
         `}
-        onClick={handleClick}
       >
-        템플릿 생성하기
-      </button>
+        <GroupItem onClick={handleCreateGroupClick}>그룹 만들기</GroupItem>
+      </div>
+
+      <div
+        css={css`
+          background-color: aliceblue;
+          flex: 1;
+        `}
+      >
+        프로젝트 섹션
+      </div>
     </div>
   );
 }
