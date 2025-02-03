@@ -8,4 +8,8 @@
 !.yarn/sdks
 !.yarn/versions
 
-web/.next/cache/*
+web/.next
+web/.next/*
+
+web/.env.local
+web/.env.production
