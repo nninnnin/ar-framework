@@ -1,6 +1,7 @@
+import dynamic from "next/dynamic";
 import { css } from "@emotion/react";
-import React, { createContext, useEffect } from "react";
 import { useOverlay } from "@toss/use-overlay";
+import React, { createContext, useEffect } from "react";
 
 import ProjectList from "@/components/Project/ProjectList";
 import ProjectItem from "@/components/Project/ProjectItem";
@@ -9,7 +10,10 @@ import Overlay from "@/components/common/Overlay";
 import { useSelectedGroup } from "@/hooks/useSelectedGroup";
 import useProjects from "@/hooks/useProjects";
 import { ProjectFormatted } from "@/types/project";
-import ProjectCreationFunnel from "@/components/Project/ProjectCreationFunnel";
+
+const ProjectCreationFunnel = dynamic(
+  () => import("@/components/Project/ProjectCreationFunnel")
+);
 
 export const OverlayCloseContext = createContext<{
   close: null | (() => void);
