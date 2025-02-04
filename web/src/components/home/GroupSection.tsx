@@ -32,6 +32,7 @@ const GroupSection = () => {
     <div
       css={css`
         background-color: violet;
+        width: 200px;
         padding: 1em;
 
         display: flex;
