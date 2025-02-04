@@ -16,8 +16,8 @@ const ProjectItem = ({
         background-color: ${type === "item" ? "violet" : "black"};
         color: ${type === "item" ? "black" : "white"};
 
-        width: 100px;
-        height: 100px;
+        width: 170px;
+        height: 170px;
 
         list-style: none;
 
