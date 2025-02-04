@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     MEMEX_TOKEN: process.env.MEMEX_TOKEN,
     MEMEX_PROJECT_ID: process.env.MEMEX_PROJECT_ID,
   },
+  reactStrictMode: false,
 };
 
 export default nextConfig;

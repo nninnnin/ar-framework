@@ -1,4 +1,4 @@
-import { GroupFormatted } from "@/types";
+import { GroupFormatted } from "@/types/group";
 import { create } from "zustand";
 
 interface SelectedGroupState {

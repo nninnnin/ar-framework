@@ -55,3 +55,10 @@ export const getProjects = async () => {
     }
   );
 };
+
+export const getProjectTypes = async () => {
+  return await memexFetcher.getCategories(
+    process.env.MEMEX_PROJECT_ID ?? "",
+    "arProjects"
+  );
+};

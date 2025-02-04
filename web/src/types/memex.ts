@@ -45,7 +45,7 @@ export interface MediaInterface {
 }
 
 export interface CategoryInterface {
-  _id: number;
+  id: number;
   order: number;
   languageMap: LanguageMap;
 }

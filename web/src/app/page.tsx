@@ -2,8 +2,8 @@
 
 import { css } from "@emotion/react";
 
-import GroupSection from "@/components/home/GroupSection";
-import ProjectSection from "@/components/home/ProjectSection";
+import GroupSection from "@/components/Group/GroupSection";
+import ProjectSection from "@/components/Project/ProjectSection";
 
 export default function Home() {
   return (

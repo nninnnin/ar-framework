@@ -1,34 +1,44 @@
-import React from "react";
 import { css } from "@emotion/react";
+import React, { createContext, useEffect } from "react";
+import { useOverlay } from "@toss/use-overlay";
+
+import ProjectList from "@/components/Project/ProjectList";
+import ProjectItem from "@/components/Project/ProjectItem";
+import Overlay from "@/components/common/Overlay";
 
 import { useSelectedGroup } from "@/hooks/useSelectedGroup";
-import ProjectList from "@/components/home/ProjectList";
-import ProjectItem from "@/components/home/ProjectItem";
 import useProjects from "@/hooks/useProjects";
 import { ProjectFormatted } from "@/types/project";
-import useCreateProject from "@/hooks/useCreateProject";
-import Overlay from "@/components/common/Overlay";
-import { useOverlay } from "@toss/use-overlay";
-import CreationDialog from "@/components/common/CreationDialog";
+import ProjectCreationFunnel from "@/components/Project/ProjectCreationFunnel";
+
+export const OverlayCloseContext = createContext<{
+  close: null | (() => void);
+}>({ close: null });
 
 const ProjectSection = () => {
   const { selectedGroup } = useSelectedGroup();
   const { data: projects } = useProjects();
 
+  useEffect(() => {
+    console.log(projects);
+  }, [projects]);
+
   const overlay = useOverlay();
 
-  const handleClick = () => {
+  const handleCreationClick = () => {
     overlay.open(({ isOpen, close }) => {
       return (
         <Overlay isOpen={isOpen}>
-          <CreationDialog
-            creationHook={useCreateProject}
-            message="프로젝트를 만들어주세요"
-            close={close}
-          />
+          <OverlayCloseContext.Provider value={{ close }}>
+            <ProjectCreationFunnel />
+          </OverlayCloseContext.Provider>
         </Overlay>
       );
     });
+  };
+
+  const handleProjectItemClick = () => {
+    // 프로젝트를 연다
   };
 
   return (
@@ -43,7 +53,7 @@ const ProjectSection = () => {
       <h3>{selectedGroup?.name}</h3>
 
       <ProjectList>
-        <ProjectItem type="creation" onClick={handleClick}>
+        <ProjectItem type="creation" onClick={handleCreationClick}>
           <span
             css={css`
               font-size: 4em;
@@ -56,7 +66,7 @@ const ProjectSection = () => {
         {projects &&
           projects.map((project: ProjectFormatted) => {
             return (
-              <ProjectItem key={project.uid} onClick={handleClick}>
+              <ProjectItem key={project.uid} onClick={handleProjectItemClick}>
                 {project.name}
               </ProjectItem>
             );

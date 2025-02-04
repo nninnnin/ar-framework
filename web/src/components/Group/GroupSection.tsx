@@ -2,7 +2,7 @@ import React from "react";
 import { css } from "@emotion/react";
 import { useOverlay } from "@toss/use-overlay";
 
-import GroupItem from "@/components/home/GroupItem";
+import GroupItem from "@/components/Group/GroupItem";
 import Overlay from "@/components/common/Overlay";
 import useGroups from "@/hooks/useGroups";
 import { useSelectedGroup } from "@/hooks/useSelectedGroup";

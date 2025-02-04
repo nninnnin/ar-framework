@@ -18,3 +18,5 @@ export type ProjectFormatted = {
   name: string;
   projects: string[];
 };
+
+export type ProjectType = "위치기반 AR" | "얼굴인식 AR" | "이미지마커 AR";
