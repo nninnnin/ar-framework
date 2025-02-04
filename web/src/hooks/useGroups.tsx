@@ -1,9 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { getGroups } from "@/utils";
-import { GroupResult } from "@/types";
-import { GroupFormatted } from "@/types/index";
 import { QueryKeys } from "@/constants/queryKeys";
+import { GroupFormatted, GroupResult } from "@/types/group";
 
 const useGroups = () => {
   return useQuery<GroupResult, null, GroupFormatted[]>({

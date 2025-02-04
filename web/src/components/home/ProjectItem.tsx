@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 
-const GroupItem = ({
+const ProjectItem = ({
   children,
   onClick,
   type = "item",
@@ -13,13 +13,20 @@ const GroupItem = ({
   return (
     <div
       css={css`
-        background-color: ${type === "item" ? "white" : "black"};
+        background-color: ${type === "item" ? "violet" : "black"};
         color: ${type === "item" ? "black" : "white"};
-        padding: 1em;
+
+        width: 100px;
+        height: 100px;
+
+        list-style: none;
 
         display: flex;
         justify-content: center;
         align-items: center;
+
+        word-break: keep-all;
+        text-align: center;
 
         cursor: pointer;
       `}
@@ -30,4 +37,4 @@ const GroupItem = ({
   );
 };
 
-export default GroupItem;
+export default ProjectItem;

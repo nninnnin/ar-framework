@@ -28,3 +28,30 @@ export const getGroups = async () => {
     }
   );
 };
+
+export const createProject = async (projectName: string) => {
+  return await memexFetcher.postItem(
+    process.env.MEMEX_PROJECT_ID ?? "",
+    "arProjects",
+    {
+      publish: true,
+      data: {
+        name: {
+          KO: projectName,
+        },
+        glbModels: [],
+      },
+    }
+  );
+};
+
+export const getProjects = async () => {
+  return await memexFetcher.getList(
+    process.env.MEMEX_PROJECT_ID ?? "",
+    "arProjects",
+    {
+      page: 0,
+      size: 1000,
+    }
+  );
+};

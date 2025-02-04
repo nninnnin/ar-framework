@@ -3,6 +3,7 @@
 import { css } from "@emotion/react";
 
 import GroupSection from "@/components/home/GroupSection";
+import ProjectSection from "@/components/home/ProjectSection";
 
 export default function Home() {
   return (
@@ -14,15 +15,7 @@ export default function Home() {
       `}
     >
       <GroupSection />
-
-      <div
-        css={css`
-          background-color: aliceblue;
-          flex: 1;
-        `}
-      >
-        프로젝트 섹션
-      </div>
+      <ProjectSection />
     </div>
   );
 }
