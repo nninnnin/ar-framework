@@ -1,19 +1,38 @@
 import { useQuery } from "@tanstack/react-query";
+import {
+  mapListItems,
+  pipe,
+  pluckList,
+  mapObjectProps,
+} from "@rebel9/memex-fetcher";
 
 import { QueryKeys } from "@/constants/queryKeys";
 import { getProjects } from "@/utils";
+import { Project, ProjectFormatted } from "@/types/project";
+import { LanguageMap } from "@/types/memex";
 
 const useProjects = () => {
-  return useQuery({
+  return useQuery<Project[], null, ProjectFormatted[]>({
     queryKey: [QueryKeys.Projects],
     queryFn: async () => {
       const res = await getProjects();
       return res.json();
     },
     select: (data) => {
-      console.log(data);
-
-      return data.items;
+      return pipe(
+        data,
+        pluckList,
+        mapListItems((item: Project) => {
+          return {
+            uid: item.uid,
+            ...mapObjectProps(
+              item.data,
+              ["name"],
+              (name: LanguageMap) => name.KO
+            ),
+          };
+        })
+      );
     },
   });
 };
