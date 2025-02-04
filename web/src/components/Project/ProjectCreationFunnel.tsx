@@ -24,6 +24,8 @@ const ProjectCreationFunnel = () => {
     },
   });
 
+  const addModelsOnProject = () => {};
+
   return (
     <funnel.Render
       프로젝트타입선택={({ history }) => (
@@ -37,7 +39,12 @@ const ProjectCreationFunnel = () => {
       )}
       모델선택={({ context, history }) => (
         <ProjectCreationFunnel.Container>
-          <ProjectModelSelection />
+          <ProjectModelSelection
+            onNext={() => addModelsOnProject()}
+            onPrevious={() => {
+              history.back();
+            }}
+          />
         </ProjectCreationFunnel.Container>
       )}
     />

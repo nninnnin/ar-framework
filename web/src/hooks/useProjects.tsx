@@ -7,9 +7,9 @@ import {
 } from "@rebel9/memex-fetcher";
 
 import { QueryKeys } from "@/constants/queryKeys";
-import { getProjects } from "@/utils";
 import { Project, ProjectFormatted } from "@/types/project";
 import { LanguageMap } from "@/types/memex";
+import { getProjects } from "@/utils";
 
 const useProjects = () => {
   return useQuery<Project[], null, ProjectFormatted[]>({

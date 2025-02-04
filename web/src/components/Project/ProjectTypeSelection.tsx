@@ -6,6 +6,7 @@ import ProjectTypes from "@/components/Project/ProjectTypes";
 import { css } from "@emotion/react";
 import { ProjectType } from "@/types/project";
 import { useSelectedProjectType } from "@/stores";
+import FunnelButtonContainer from "@/components/common/funnel/FunnelButtonContainer";
 
 const ProjectTypeSelection = ({
   onNext,
@@ -13,7 +14,6 @@ const ProjectTypeSelection = ({
   onNext: (projectType: ProjectType) => void;
 }) => {
   const { close } = useContext(OverlayCloseContext);
-
   const { selectedProjectType } = useSelectedProjectType();
 
   return (
@@ -28,17 +28,7 @@ const ProjectTypeSelection = ({
     >
       <ProjectTypes />
 
-      <div
-        css={css`
-          width: 100%;
-          display: flex;
-
-          border-top: 1px solid #000;
-
-          background-color: black;
-          gap: 1px;
-        `}
-      >
+      <FunnelButtonContainer>
         <div
           css={css`
             flex: 1;
@@ -70,7 +60,7 @@ const ProjectTypeSelection = ({
         >
           다음으로
         </div>
-      </div>
+      </FunnelButtonContainer>
     </div>
   );
 };
