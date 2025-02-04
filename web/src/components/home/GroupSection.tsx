@@ -4,7 +4,6 @@ import { useOverlay } from "@toss/use-overlay";
 
 import GroupItem from "@/components/home/GroupItem";
 import Overlay from "@/components/common/Overlay";
-import GroupCreationDialog from "@/components/home/GroupCreationDialog";
 import useGroups from "@/hooks/useGroups";
 import { useSelectedGroup } from "@/hooks/useSelectedGroup";
 import CreationDialog from "@/components/common/CreationDialog";
@@ -32,7 +31,7 @@ const GroupSection = () => {
   return (
     <div
       css={css`
-        background-color: gray;
+        background-color: violet;
         padding: 1em;
 
         display: flex;
