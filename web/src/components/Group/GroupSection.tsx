@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { css } from "@emotion/react";
 import { useOverlay } from "@toss/use-overlay";
 
@@ -11,8 +11,15 @@ import useCreateGroup from "@/hooks/useCreateGroup";
 
 const GroupSection = () => {
   const { data: groups } = useGroups();
-  const { setSelectedGroup } = useSelectedGroup();
   const overlay = useOverlay();
+
+  const { setSelectedGroup, selectedGroup } = useSelectedGroup();
+
+  useEffect(() => {
+    if (!selectedGroup && groups && groups.length > 0) {
+      setSelectedGroup(groups[0]);
+    }
+  }, [selectedGroup, groups]);
 
   const handleCreateGroupClick = () => {
     overlay.open(({ isOpen, close }) => {
@@ -48,13 +55,25 @@ const GroupSection = () => {
           };
 
           return (
-            <GroupItem key={groupItem.uid} onClick={handleGroupItemClick}>
+            <GroupItem
+              key={groupItem.uid}
+              onClick={handleGroupItemClick}
+              cssOverlap={css`
+                background-color: ${groupItem.uid === selectedGroup?.uid
+                  ? "black"
+                  : "white"};
+
+                color: ${groupItem.uid === selectedGroup?.uid
+                  ? "white"
+                  : "initial"};
+              `}
+            >
               {groupItem.name}
             </GroupItem>
           );
         })}
 
-      <GroupItem type="creation" onClick={handleCreateGroupClick}>
+      <GroupItem onClick={handleCreateGroupClick}>
         <span
           css={css`
             font-size: 1em;

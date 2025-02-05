@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css, SerializedStyles } from "@emotion/react";
 import React from "react";
 
 const FunnelButton = ({
@@ -8,7 +8,7 @@ const FunnelButton = ({
 }: {
   children: React.ReactNode;
   onClick: () => void;
-  cssOverlap?: TemplateStringsArray;
+  cssOverlap?: SerializedStyles;
 }) => {
   return (
     <div

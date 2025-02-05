@@ -1,27 +1,30 @@
 import React from "react";
-import { css } from "@emotion/react";
+import { css, SerializedStyles } from "@emotion/react";
 
 const GroupItem = ({
   children,
   onClick,
-  type = "item",
+  cssOverlap,
 }: {
   children: React.ReactNode;
   onClick: () => void;
-  type?: "item" | "creation";
+  cssOverlap?: SerializedStyles;
 }) => {
   return (
     <div
       css={css`
-        background-color: ${type === "item" ? "white" : "black"};
-        color: ${type === "item" ? "black" : "white"};
+        background-color: white;
         padding: 1em;
+
+        border: 1px solid black;
 
         display: flex;
         justify-content: center;
         align-items: center;
 
         cursor: pointer;
+
+        ${cssOverlap}
       `}
       onClick={onClick}
     >
