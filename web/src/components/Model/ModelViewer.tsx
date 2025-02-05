@@ -35,8 +35,9 @@ const ModelViewer = ({ modelSource }: { modelSource: string }) => {
 
         & > model-viewer {
           background-color: orange;
+
           width: 100%;
-          height: 100%;
+          height: 445.5px;
         }
       `}
     ></div>

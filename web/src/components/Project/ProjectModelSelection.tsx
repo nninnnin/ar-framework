@@ -7,7 +7,6 @@ import { useAddedModels, useSelectedModelIndex } from "@/stores";
 import AddedModels from "@/components/Model/AddedModels";
 import FunnelButton from "@/components/common/funnel/FunnelButton";
 import FunnelButtonContainer from "@/components/common/funnel/FunnelButtonContainer";
-import { ProjectType } from "@/types/project";
 
 const ProjectModelSelection = ({
   onNext,

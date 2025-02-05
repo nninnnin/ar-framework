@@ -5,7 +5,7 @@ import { useAddedModels, useSelectedModelIndex } from "@/stores";
 
 const AddedModels = () => {
   const { addedModels } = useAddedModels();
-  const { setSelectedModelIndex } = useSelectedModelIndex();
+  const { selectedModelIndex, setSelectedModelIndex } = useSelectedModelIndex();
 
   useEffect(() => {
     const AddedModelContainers = document.querySelector(
@@ -22,7 +22,7 @@ const AddedModels = () => {
       id="added-models-container"
       css={css`
         width: 200px;
-        height: 100%;
+        height: 445.5px;
         background-color: beige;
 
         border-left: 1px solid #000;
@@ -31,27 +31,30 @@ const AddedModels = () => {
       `}
     >
       {addedModels.map((model, index) => {
-        const hasModelAdded = model !== null;
+        const isSelected = selectedModelIndex === index;
 
         return (
           <div
             key={model?.id ?? `model-container-${index}`}
             css={css`
-              background-color: ${hasModelAdded ? "white" : "lightgray"};
               height: 170px;
+
+              background-color: ${isSelected ? "black" : "white"};
+              color: ${isSelected ? "white" : "black"};
+
+              font-size: 1.5em;
+              padding: 1em;
+              text-align: center;
 
               display: flex;
               justify-content: center;
               align-items: center;
 
               border-bottom: 1px solid #000;
-              &:last-child {
-                border-bottom: none;
-              }
             `}
             onClick={() => setSelectedModelIndex(index)}
           >
-            {model?.file.name ?? ""}
+            {model?.file.name ?? "새로운 모델"}
           </div>
         );
       })}
