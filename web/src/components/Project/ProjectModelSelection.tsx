@@ -7,18 +7,23 @@ import { useAddedModels, useSelectedModelIndex } from "@/stores";
 import AddedModels from "@/components/Model/AddedModels";
 import FunnelButton from "@/components/common/funnel/FunnelButton";
 import FunnelButtonContainer from "@/components/common/funnel/FunnelButtonContainer";
+import { ProjectType } from "@/types/project";
 
 const ProjectModelSelection = ({
+  projectType,
   onNext,
   onPrevious,
 }: {
-  onNext: () => void;
+  projectType: ProjectType;
+  onNext: (glbModels: File[]) => void;
   onPrevious: () => void;
 }) => {
   const { selectedModelIndex } = useSelectedModelIndex();
   const { addedModels } = useAddedModels();
 
   const selectedModel = addedModels[selectedModelIndex];
+
+  console.log("p type", projectType);
 
   return (
     <div
@@ -47,7 +52,13 @@ const ProjectModelSelection = ({
 
       <FunnelButtonContainer>
         <FunnelButton onClick={onPrevious}>돌아가기</FunnelButton>
-        <FunnelButton onClick={onNext}>생성하기</FunnelButton>
+        <FunnelButton
+          onClick={() =>
+            onNext(addedModels.filter((m) => m).map((m) => m!.file))
+          }
+        >
+          다음으로
+        </FunnelButton>
       </FunnelButtonContainer>
     </div>
   );

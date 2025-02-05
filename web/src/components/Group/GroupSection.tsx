@@ -21,14 +21,19 @@ const GroupSection = () => {
     }
   }, [selectedGroup, groups]);
 
+  const { mutate: create } = useCreateGroup();
+
   const handleCreateGroupClick = () => {
     overlay.open(({ isOpen, close }) => {
       return (
         <Overlay isOpen={isOpen}>
           <CreationDialog
             message="그룹 이름을 입력해주세요."
-            creationHook={useCreateGroup}
-            close={close}
+            onCancelClick={close}
+            onConfirmClick={async (name: string) => {
+              await create(name);
+              close();
+            }}
           />
         </Overlay>
       );

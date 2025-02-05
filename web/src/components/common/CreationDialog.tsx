@@ -1,32 +1,23 @@
 import { css } from "@emotion/react";
 import React, { useState } from "react";
-import { UseMutationResult } from "@tanstack/react-query";
 
 import Dialog from "@/components/common/Dialog";
 
 const CreationDialog = ({
   message,
-  close,
-  creationHook,
+  onCancelClick,
+  onConfirmClick,
 }: {
   message: string;
-  close: () => void;
-  creationHook: () => UseMutationResult<any, Error, string, unknown>;
+  onCancelClick: () => void;
+  onConfirmClick: (name: string) => Promise<void>;
 }) => {
   const [name, setName] = useState("");
-
-  const { mutate: create } = creationHook();
-
-  const onConfirmClick = async (name: string) => {
-    await create(name);
-
-    close();
-  };
 
   return (
     <Dialog
       onConfirmClick={() => onConfirmClick(name)}
-      onCancelClick={() => close()}
+      onCancelClick={onCancelClick}
     >
       <div
         css={css`

@@ -7,12 +7,24 @@ const useCreateProject = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (projectName: string) => {
-      return await createProject(projectName);
+    mutationFn: async (params: {
+      projectName: string;
+      projectTypeId: number;
+      postedModelIds: number[];
+    }) => {
+      const { projectName, projectTypeId, postedModelIds } = params;
+
+      const res = await createProject(
+        projectName,
+        projectTypeId,
+        postedModelIds
+      );
+
+      return await res.text();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [QueryKeys.Groups],
+        queryKey: [QueryKeys.Projects],
       });
     },
   });
