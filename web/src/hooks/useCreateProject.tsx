@@ -11,13 +11,15 @@ const useCreateProject = () => {
       projectName: string;
       projectTypeId: number;
       postedModelIds: number[];
+      groupName: string;
     }) => {
-      const { projectName, projectTypeId, postedModelIds } = params;
+      const { projectName, projectTypeId, postedModelIds, groupName } = params;
 
       const res = await createProject(
         projectName,
         projectTypeId,
-        postedModelIds
+        postedModelIds,
+        groupName
       );
 
       return await res.text();

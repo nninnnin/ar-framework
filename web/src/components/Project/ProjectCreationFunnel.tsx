@@ -18,6 +18,7 @@ import { uploadGlbModels } from "@/utils";
 import useCreateProject from "@/hooks/useCreateProject";
 import usePostGlbModel from "@/hooks/usePostGlbModel";
 import useProjectTypes from "@/hooks/useProjectTypes";
+import { useSelectedGroup } from "@/hooks/useSelectedGroup";
 
 const ProjectCreationFunnel = () => {
   const funnel = useFunnel<{
@@ -31,6 +32,8 @@ const ProjectCreationFunnel = () => {
       context: {},
     },
   });
+
+  const { selectedGroup } = useSelectedGroup();
 
   const { mutateAsync: postGlbModel } = usePostGlbModel();
   const { data: projectTypes } = useProjectTypes();
@@ -93,6 +96,7 @@ const ProjectCreationFunnel = () => {
                 projectName,
                 projectTypeId,
                 postedModelIds: postModelResult,
+                groupName: selectedGroup?.uid ?? "",
               });
 
               console.log("프로젝트 생성 결과", projectCreationResult);

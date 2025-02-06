@@ -34,7 +34,8 @@ export const getGroups = async () => {
 export const createProject = async (
   projectName: string,
   projectTypeId: number,
-  postedModelIds: number[]
+  postedModelIds: number[],
+  groupName: string
 ) => {
   return await memexFetcher.postItem(
     process.env.MEMEX_PROJECT_ID ?? "",
@@ -47,6 +48,7 @@ export const createProject = async (
         },
         projectType: [projectTypeId],
         glbModels: postedModelIds,
+        groupName: [groupName],
       },
     }
   );
