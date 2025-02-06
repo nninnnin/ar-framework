@@ -11,11 +11,11 @@ import { Project, ProjectFormatted } from "@/types/project";
 import { LanguageMap } from "@/types/memex";
 import { getProjects } from "@/utils";
 
-const useProjects = () => {
+const useProjects = (filter: { groupName: string }) => {
   return useQuery<Project[], null, ProjectFormatted[]>({
-    queryKey: [QueryKeys.Projects],
+    queryKey: [QueryKeys.Projects, filter.groupName],
     queryFn: async () => {
-      const res = await getProjects();
+      const res = await getProjects(filter);
       return res.json();
     },
     select: (data) => {

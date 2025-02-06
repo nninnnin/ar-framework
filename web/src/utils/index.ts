@@ -52,13 +52,20 @@ export const createProject = async (
   );
 };
 
-export const getProjects = async () => {
+export const getProjects = async (filter: { groupName: string }) => {
   return await memexFetcher.getList(
     process.env.MEMEX_PROJECT_ID ?? "",
     "arProjects",
     {
       page: 0,
       size: 1000,
+      searchConds: [
+        {
+          componentType: "RELATION",
+          devKey: "groupName",
+          condition: `{ "type": "SAME", "language": "KO", "keyword": "${filter.groupName}" }`,
+        },
+      ],
     }
   );
 };

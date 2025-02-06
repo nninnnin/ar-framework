@@ -19,7 +19,6 @@ const useGroups = () => {
         return {
           uid: item.uid,
           name: item.data.name.KO ?? "",
-          projects: item.data.projects.map((item) => item.languageMap.KO ?? ""),
         };
       });
     },
