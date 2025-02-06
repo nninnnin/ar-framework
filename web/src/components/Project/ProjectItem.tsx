@@ -15,6 +15,11 @@ const ProjectItem = ({
       css={css`
         background-color: ${type === "item" ? "violet" : "black"};
         color: ${type === "item" ? "black" : "white"};
+        border: 1px solid black;
+
+        &:hover {
+          background-color: ${type === "item" ? "#f0f0f0" : "black"};
+        }
 
         width: 170px;
         height: 170px;
