@@ -16,8 +16,12 @@ const CreationDialog = ({
 
   return (
     <Dialog
-      onConfirmClick={() => onConfirmClick(name)}
-      onCancelClick={onCancelClick}
+      size="small"
+      cssOverlap={css`
+        display: flex;
+        flex-direction: column;
+        gap: 1.2em;
+      `}
     >
       <div
         css={css`
@@ -36,6 +40,13 @@ const CreationDialog = ({
           onChange={(e) => setName(e.target.value)}
         />
       </div>
+
+      <Dialog.ButtonContainer>
+        <Dialog.Button onClick={onCancelClick}>닫기</Dialog.Button>
+        <Dialog.Button onClick={() => onConfirmClick(name)}>
+          만들기
+        </Dialog.Button>
+      </Dialog.ButtonContainer>
     </Dialog>
   );
 };

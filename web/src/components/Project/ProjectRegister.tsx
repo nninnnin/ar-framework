@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 
 import FunnelButton from "@/components/common/funnel/FunnelButton";
 import FunnelButtonContainer from "@/components/common/funnel/FunnelButtonContainer";
+import Dialog from "@/components/common/Dialog";
 
 const ProjectRegister = ({
   onPrevious,
@@ -14,15 +15,7 @@ const ProjectRegister = ({
   const [projectName, setProjectName] = useState("");
 
   return (
-    <div
-      css={css`
-        width: 100%;
-        background-color: white;
-
-        display: flex;
-        flex-direction: column;
-      `}
-    >
+    <Dialog size="large">
       <div
         css={css`
           flex: 1;
@@ -90,9 +83,9 @@ const ProjectRegister = ({
         />
       </div>
 
-      <FunnelButtonContainer>
-        <FunnelButton onClick={onPrevious}>이전으로</FunnelButton>
-        <FunnelButton
+      <Dialog.ButtonContainer>
+        <Dialog.Button onClick={onPrevious}>이전으로</Dialog.Button>
+        <Dialog.Button
           onClick={() => onFinalize(projectName)}
           cssOverlap={css`
             background-color: ${Boolean(projectName) ? "black" : "white"};
@@ -100,9 +93,9 @@ const ProjectRegister = ({
           `}
         >
           프로젝트 생성
-        </FunnelButton>
-      </FunnelButtonContainer>
-    </div>
+        </Dialog.Button>
+      </Dialog.ButtonContainer>
+    </Dialog>
   );
 };
 

@@ -5,9 +5,8 @@ import ModelViewer from "@/components/Model/ModelViewer";
 import ModelUploader from "@/components/Model/ModelUploader";
 import { useAddedModels, useSelectedModelIndex } from "@/stores";
 import AddedModels from "@/components/Model/AddedModels";
-import FunnelButton from "@/components/common/funnel/FunnelButton";
-import FunnelButtonContainer from "@/components/common/funnel/FunnelButtonContainer";
 import { ProjectType } from "@/types/project";
+import Dialog from "@/components/common/Dialog";
 
 const ProjectModelSelection = ({
   projectType,
@@ -23,17 +22,8 @@ const ProjectModelSelection = ({
 
   const selectedModel = addedModels[selectedModelIndex];
 
-  console.log("p type", projectType);
-
   return (
-    <div
-      css={css`
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-      `}
-    >
+    <Dialog size="large">
       <div
         css={css`
           display: flex;
@@ -50,17 +40,17 @@ const ProjectModelSelection = ({
         <AddedModels />
       </div>
 
-      <FunnelButtonContainer>
-        <FunnelButton onClick={onPrevious}>돌아가기</FunnelButton>
-        <FunnelButton
+      <Dialog.ButtonContainer>
+        <Dialog.Button onClick={onPrevious}>돌아가기</Dialog.Button>
+        <Dialog.Button
           onClick={() =>
             onNext(addedModels.filter((m) => m).map((m) => m!.file))
           }
         >
           다음으로
-        </FunnelButton>
-      </FunnelButtonContainer>
-    </div>
+        </Dialog.Button>
+      </Dialog.ButtonContainer>
+    </Dialog>
   );
 };
 

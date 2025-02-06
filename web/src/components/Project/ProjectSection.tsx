@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { css } from "@emotion/react";
 import { useOverlay } from "@toss/use-overlay";
-import React, { createContext, useEffect } from "react";
+import React, { createContext } from "react";
 
 import ProjectList from "@/components/Project/ProjectList";
 import ProjectItem from "@/components/Project/ProjectItem";
@@ -10,6 +10,7 @@ import Overlay from "@/components/common/Overlay";
 import { useSelectedGroup } from "@/hooks/useSelectedGroup";
 import useProjects from "@/hooks/useProjects";
 import { ProjectFormatted } from "@/types/project";
+import ProjectDetailsDialog from "@/components/Project/ProjectDetailsDialog";
 
 const ProjectCreationFunnel = dynamic(
   () => import("@/components/Project/ProjectCreationFunnel")
@@ -39,8 +40,19 @@ const ProjectSection = () => {
     });
   };
 
-  const handleProjectItemClick = () => {
-    // 프로젝트를 연다
+  const handleProjectItemClick = (projectUid: string) => {
+    overlay.open(({ close, isOpen }) => {
+      return (
+        <Overlay isOpen={isOpen}>
+          <OverlayCloseContext.Provider value={{ close }}>
+            <ProjectDetailsDialog
+              projectUid={projectUid}
+              groupName={selectedGroup?.name ?? ""}
+            />
+          </OverlayCloseContext.Provider>
+        </Overlay>
+      );
+    });
   };
 
   return (
@@ -68,7 +80,10 @@ const ProjectSection = () => {
         {projects &&
           projects.map((project: ProjectFormatted) => {
             return (
-              <ProjectItem key={project.uid} onClick={handleProjectItemClick}>
+              <ProjectItem
+                key={project.uid}
+                onClick={() => handleProjectItemClick(project.uid)}
+              >
                 {project.name}
               </ProjectItem>
             );

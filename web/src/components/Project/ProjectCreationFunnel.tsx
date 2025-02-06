@@ -52,81 +52,53 @@ const ProjectCreationFunnel = () => {
   return (
     <funnel.Render
       프로젝트타입선택={({ history }) => (
-        <ProjectCreationFunnel.Container>
-          <ProjectTypeSelection
-            onNext={(projectType: ProjectType) =>
-              history.push("모델선택", { projectType })
-            }
-          />
-        </ProjectCreationFunnel.Container>
+        <ProjectTypeSelection
+          onNext={(projectType: ProjectType) =>
+            history.push("모델선택", { projectType })
+          }
+        />
       )}
       모델선택={({ context, history }) => (
-        <ProjectCreationFunnel.Container>
-          <ProjectModelSelection
-            projectType={context.projectType}
-            onNext={(glbModels: Array<File>) =>
-              history.push("프로젝트명입력", {
-                glbModels,
-              })
-            }
-            onPrevious={() => {
-              history.back();
-            }}
-          />
-        </ProjectCreationFunnel.Container>
+        <ProjectModelSelection
+          projectType={context.projectType}
+          onNext={(glbModels: Array<File>) =>
+            history.push("프로젝트명입력", {
+              glbModels,
+            })
+          }
+          onPrevious={() => {
+            history.back();
+          }}
+        />
       )}
       프로젝트명입력={({ context, history }) => (
-        <ProjectCreationFunnel.Container>
-          <ProjectRegister
-            onPrevious={() => history.back()}
-            onFinalize={async (projectName: string) => {
-              // 1. 미디어파일 업로드
-              const result = await uploadGlbModels(context.glbModels);
+        <ProjectRegister
+          onPrevious={() => history.back()}
+          onFinalize={async (projectName: string) => {
+            // 1. 미디어파일 업로드
+            const result = await uploadGlbModels(context.glbModels);
 
-              // 2. GLB 모델에 아이템 생성
-              const postModelResult = await postGlbModel(result);
-              const projectTypeId = getProjectTypeId(context.projectType);
+            // 2. GLB 모델에 아이템 생성
+            const postModelResult = await postGlbModel(result);
+            const projectTypeId = getProjectTypeId(context.projectType);
 
-              if (!projectTypeId) {
-                throw new Error("프로젝트 타입이 존재하지 않습니다.");
-              }
+            if (!projectTypeId) {
+              throw new Error("프로젝트 타입이 존재하지 않습니다.");
+            }
 
-              // 3. 프로젝트 생성 및 GLB 모델 연결
-              const projectCreationResult = await createProject({
-                projectName,
-                projectTypeId,
-                postedModelIds: postModelResult,
-                groupName: selectedGroup?.uid ?? "",
-              });
+            // 3. 프로젝트 생성 및 GLB 모델 연결
+            const projectCreationResult = await createProject({
+              projectName,
+              projectTypeId,
+              postedModelIds: postModelResult,
+              groupName: selectedGroup?.uid ?? "",
+            });
 
-              console.log("프로젝트 생성 결과", projectCreationResult);
-            }}
-          />
-        </ProjectCreationFunnel.Container>
+            console.log("프로젝트 생성 결과", projectCreationResult);
+          }}
+        />
       )}
     />
-  );
-};
-
-ProjectCreationFunnel.Container = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
-  return (
-    <div
-      css={css`
-        background-color: #fff;
-        border: 1px solid #000;
-
-        display: flex;
-
-        width: 800px;
-        height: 500px;
-      `}
-    >
-      {children}
-    </div>
   );
 };
 

@@ -19,22 +19,22 @@ const useProjects = (filter: { groupName: string }) => {
       return res.json();
     },
     select: (data) => {
-      return pipe(
-        data,
-        pluckList,
-        mapListItems((item: Project) => {
-          return {
-            uid: item.uid,
-            ...mapObjectProps(
-              item.data,
-              ["name"],
-              (name: LanguageMap) => name.KO
-            ),
-          };
-        })
-      );
+      return formatProjectData(data);
     },
   });
+};
+
+export const formatProjectData = (data: Project[]): ProjectFormatted[] => {
+  return pipe(
+    data,
+    pluckList,
+    mapListItems((item: Project) => {
+      return {
+        uid: item.uid,
+        ...mapObjectProps(item.data, ["name"], (name: LanguageMap) => name.KO),
+      };
+    })
+  );
 };
 
 export default useProjects;
