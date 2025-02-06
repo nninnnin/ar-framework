@@ -960,108 +960,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["@supabase/auth-js", [\
-      ["npm:2.67.3", {\
-        "packageLocation": "../../.yarn/berry/cache/@supabase-auth-js-npm-2.67.3-660051f235-10c0.zip/node_modules/@supabase/auth-js/",\
-        "packageDependencies": [\
-          ["@supabase/auth-js", "npm:2.67.3"],\
-          ["@supabase/node-fetch", "npm:2.6.15"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@supabase/functions-js", [\
-      ["npm:2.4.4", {\
-        "packageLocation": "../../.yarn/berry/cache/@supabase-functions-js-npm-2.4.4-89b91f02a3-10c0.zip/node_modules/@supabase/functions-js/",\
-        "packageDependencies": [\
-          ["@supabase/functions-js", "npm:2.4.4"],\
-          ["@supabase/node-fetch", "npm:2.6.15"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@supabase/node-fetch", [\
-      ["npm:2.6.15", {\
-        "packageLocation": "../../.yarn/berry/cache/@supabase-node-fetch-npm-2.6.15-0ebc2aefaa-10c0.zip/node_modules/@supabase/node-fetch/",\
-        "packageDependencies": [\
-          ["@supabase/node-fetch", "npm:2.6.15"],\
-          ["whatwg-url", "npm:5.0.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@supabase/postgrest-js", [\
-      ["npm:1.18.0", {\
-        "packageLocation": "../../.yarn/berry/cache/@supabase-postgrest-js-npm-1.18.0-fc5761f685-10c0.zip/node_modules/@supabase/postgrest-js/",\
-        "packageDependencies": [\
-          ["@supabase/postgrest-js", "npm:1.18.0"],\
-          ["@supabase/node-fetch", "npm:2.6.15"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@supabase/realtime-js", [\
-      ["npm:2.11.2", {\
-        "packageLocation": "../../.yarn/berry/cache/@supabase-realtime-js-npm-2.11.2-a06155b411-10c0.zip/node_modules/@supabase/realtime-js/",\
-        "packageDependencies": [\
-          ["@supabase/realtime-js", "npm:2.11.2"],\
-          ["@supabase/node-fetch", "npm:2.6.15"],\
-          ["@types/phoenix", "npm:1.6.6"],\
-          ["@types/ws", "npm:8.5.13"],\
-          ["ws", "virtual:a06155b411320219c23f7e618516ba6613da7099ecb3fcc783a3b6423e827a63ff7e776ae87285b04b0a00d5a7ff5e2ad87c0010bd66a39beb1747ad360c17fd#npm:8.18.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@supabase/ssr", [\
-      ["npm:0.5.2", {\
-        "packageLocation": "../../.yarn/berry/cache/@supabase-ssr-npm-0.5.2-b882c54a7d-10c0.zip/node_modules/@supabase/ssr/",\
-        "packageDependencies": [\
-          ["@supabase/ssr", "npm:0.5.2"]\
-        ],\
-        "linkType": "SOFT"\
-      }],\
-      ["virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:0.5.2", {\
-        "packageLocation": "./.yarn/__virtual__/@supabase-ssr-virtual-5385e402b5/3/.yarn/berry/cache/@supabase-ssr-npm-0.5.2-b882c54a7d-10c0.zip/node_modules/@supabase/ssr/",\
-        "packageDependencies": [\
-          ["@supabase/ssr", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:0.5.2"],\
-          ["@supabase/supabase-js", "npm:2.48.0"],\
-          ["@types/cookie", "npm:0.6.0"],\
-          ["@types/supabase__supabase-js", null],\
-          ["cookie", "npm:0.7.2"]\
-        ],\
-        "packagePeers": [\
-          "@supabase/supabase-js",\
-          "@types/supabase__supabase-js"\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@supabase/storage-js", [\
-      ["npm:2.7.1", {\
-        "packageLocation": "../../.yarn/berry/cache/@supabase-storage-js-npm-2.7.1-92ca6f0bb0-10c0.zip/node_modules/@supabase/storage-js/",\
-        "packageDependencies": [\
-          ["@supabase/storage-js", "npm:2.7.1"],\
-          ["@supabase/node-fetch", "npm:2.6.15"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@supabase/supabase-js", [\
-      ["npm:2.48.0", {\
-        "packageLocation": "../../.yarn/berry/cache/@supabase-supabase-js-npm-2.48.0-405f03d944-10c0.zip/node_modules/@supabase/supabase-js/",\
-        "packageDependencies": [\
-          ["@supabase/supabase-js", "npm:2.48.0"],\
-          ["@supabase/auth-js", "npm:2.67.3"],\
-          ["@supabase/functions-js", "npm:2.4.4"],\
-          ["@supabase/node-fetch", "npm:2.6.15"],\
-          ["@supabase/postgrest-js", "npm:1.18.0"],\
-          ["@supabase/realtime-js", "npm:2.11.2"],\
-          ["@supabase/storage-js", "npm:2.7.1"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["@swc/counter", [\
       ["npm:0.1.3", {\
         "packageLocation": "../../.yarn/berry/cache/@swc-counter-npm-0.1.3-ce42b0e3f5-10c0.zip/node_modules/@swc/counter/",\
@@ -1144,15 +1042,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["@types/cookie", [\
-      ["npm:0.6.0", {\
-        "packageLocation": "../../.yarn/berry/cache/@types-cookie-npm-0.6.0-1f4c3f48f0-10c0.zip/node_modules/@types/cookie/",\
-        "packageDependencies": [\
-          ["@types/cookie", "npm:0.6.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["@types/lodash", [\
       ["npm:4.17.14", {\
         "packageLocation": "../../.yarn/berry/cache/@types-lodash-npm-4.17.14-6b38705727-10c0.zip/node_modules/@types/lodash/",\
@@ -1170,14 +1059,6 @@ const RAW_RUNTIME_STATE =
           ["undici-types", "npm:6.19.8"]\
         ],\
         "linkType": "HARD"\
-      }],\
-      ["npm:22.10.7", {\
-        "packageLocation": "../../.yarn/berry/cache/@types-node-npm-22.10.7-d71170a7fa-10c0.zip/node_modules/@types/node/",\
-        "packageDependencies": [\
-          ["@types/node", "npm:22.10.7"],\
-          ["undici-types", "npm:6.20.0"]\
-        ],\
-        "linkType": "HARD"\
       }]\
     ]],\
     ["@types/parse-json", [\
@@ -1185,15 +1066,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/@types-parse-json-npm-4.0.2-f87f65692e-10c0.zip/node_modules/@types/parse-json/",\
         "packageDependencies": [\
           ["@types/parse-json", "npm:4.0.2"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@types/phoenix", [\
-      ["npm:1.6.6", {\
-        "packageLocation": "../../.yarn/berry/cache/@types-phoenix-npm-1.6.6-b47f7364f0-10c0.zip/node_modules/@types/phoenix/",\
-        "packageDependencies": [\
-          ["@types/phoenix", "npm:1.6.6"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1266,16 +1138,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/@types-webxr-npm-0.5.21-ccbf17435b-10c0.zip/node_modules/@types/webxr/",\
         "packageDependencies": [\
           ["@types/webxr", "npm:0.5.21"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@types/ws", [\
-      ["npm:8.5.13", {\
-        "packageLocation": "../../.yarn/berry/cache/@types-ws-npm-8.5.13-7564c96514-10c0.zip/node_modules/@types/ws/",\
-        "packageDependencies": [\
-          ["@types/ws", "npm:8.5.13"],\
-          ["@types/node", "npm:22.10.7"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1440,15 +1302,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/convert-source-map-npm-1.9.0-e294555f4b-10c0.zip/node_modules/convert-source-map/",\
         "packageDependencies": [\
           ["convert-source-map", "npm:1.9.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["cookie", [\
-      ["npm:0.7.2", {\
-        "packageLocation": "../../.yarn/berry/cache/cookie-npm-0.7.2-6ea9ee4231-10c0.zip/node_modules/cookie/",\
-        "packageDependencies": [\
-          ["cookie", "npm:0.7.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1955,6 +1808,28 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["qrcode.react", [\
+      ["npm:4.2.0", {\
+        "packageLocation": "../../.yarn/berry/cache/qrcode.react-npm-4.2.0-2136f2a571-10c0.zip/node_modules/qrcode.react/",\
+        "packageDependencies": [\
+          ["qrcode.react", "npm:4.2.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:4.2.0", {\
+        "packageLocation": "./.yarn/__virtual__/qrcode.react-virtual-945b50d87c/3/.yarn/berry/cache/qrcode.react-npm-4.2.0-2136f2a571-10c0.zip/node_modules/qrcode.react/",\
+        "packageDependencies": [\
+          ["qrcode.react", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:4.2.0"],\
+          ["@types/react", "npm:19.0.7"],\
+          ["react", "npm:19.0.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["react", [\
       ["npm:19.0.0", {\
         "packageLocation": "../../.yarn/berry/cache/react-npm-19.0.0-e33c9aa1c0-10c0.zip/node_modules/react/",\
@@ -2180,15 +2055,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["tr46", [\
-      ["npm:0.0.3", {\
-        "packageLocation": "../../.yarn/berry/cache/tr46-npm-0.0.3-de53018915-10c0.zip/node_modules/tr46/",\
-        "packageDependencies": [\
-          ["tr46", "npm:0.0.3"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["tslib", [\
       ["npm:2.8.1", {\
         "packageLocation": "../../.yarn/berry/cache/tslib-npm-2.8.1-66590b21b8-10c0.zip/node_modules/tslib/",\
@@ -2214,13 +2080,6 @@ const RAW_RUNTIME_STATE =
           ["undici-types", "npm:6.19.8"]\
         ],\
         "linkType": "HARD"\
-      }],\
-      ["npm:6.20.0", {\
-        "packageLocation": "../../.yarn/berry/cache/undici-types-npm-6.20.0-bd21e669af-10c0.zip/node_modules/undici-types/",\
-        "packageDependencies": [\
-          ["undici-types", "npm:6.20.0"]\
-        ],\
-        "linkType": "HARD"\
       }]\
     ]],\
     ["uuid", [\
@@ -2242,8 +2101,6 @@ const RAW_RUNTIME_STATE =
           ["@emotion/react", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:11.14.0"],\
           ["@google/model-viewer", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:4.0.0"],\
           ["@rebel9/memex-fetcher", "npm:1.4.4"],\
-          ["@supabase/ssr", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:0.5.2"],\
-          ["@supabase/supabase-js", "npm:2.48.0"],\
           ["@tanstack/react-query", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:5.66.0"],\
           ["@toss/use-overlay", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:1.4.2"],\
           ["@types/lodash", "npm:4.17.14"],\
@@ -2254,6 +2111,7 @@ const RAW_RUNTIME_STATE =
           ["@use-funnel/browser", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:0.0.11"],\
           ["lodash", "npm:4.17.21"],\
           ["next", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:15.1.5"],\
+          ["qrcode.react", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:4.2.0"],\
           ["react", "npm:19.0.0"],\
           ["react-dom", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:19.0.0"],\
           ["three", "npm:0.173.0"],\
@@ -2262,52 +2120,6 @@ const RAW_RUNTIME_STATE =
           ["zustand", "virtual:42b1ed7d3a3ef35c42ac579b760bc4a57b4d9efe82aa857be421d347a9d5eb77b93f1eefdf7c38f1138ec18d742a002770af95542f0d242dcc89856cb39b7f23#npm:5.0.3"]\
         ],\
         "linkType": "SOFT"\
-      }]\
-    ]],\
-    ["webidl-conversions", [\
-      ["npm:3.0.1", {\
-        "packageLocation": "../../.yarn/berry/cache/webidl-conversions-npm-3.0.1-60310f6a2b-10c0.zip/node_modules/webidl-conversions/",\
-        "packageDependencies": [\
-          ["webidl-conversions", "npm:3.0.1"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["whatwg-url", [\
-      ["npm:5.0.0", {\
-        "packageLocation": "../../.yarn/berry/cache/whatwg-url-npm-5.0.0-374fb45e60-10c0.zip/node_modules/whatwg-url/",\
-        "packageDependencies": [\
-          ["whatwg-url", "npm:5.0.0"],\
-          ["tr46", "npm:0.0.3"],\
-          ["webidl-conversions", "npm:3.0.1"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["ws", [\
-      ["npm:8.18.0", {\
-        "packageLocation": "../../.yarn/berry/cache/ws-npm-8.18.0-56f68bc4d6-10c0.zip/node_modules/ws/",\
-        "packageDependencies": [\
-          ["ws", "npm:8.18.0"]\
-        ],\
-        "linkType": "SOFT"\
-      }],\
-      ["virtual:a06155b411320219c23f7e618516ba6613da7099ecb3fcc783a3b6423e827a63ff7e776ae87285b04b0a00d5a7ff5e2ad87c0010bd66a39beb1747ad360c17fd#npm:8.18.0", {\
-        "packageLocation": "./.yarn/__virtual__/ws-virtual-f15beae598/3/.yarn/berry/cache/ws-npm-8.18.0-56f68bc4d6-10c0.zip/node_modules/ws/",\
-        "packageDependencies": [\
-          ["ws", "virtual:a06155b411320219c23f7e618516ba6613da7099ecb3fcc783a3b6423e827a63ff7e776ae87285b04b0a00d5a7ff5e2ad87c0010bd66a39beb1747ad360c17fd#npm:8.18.0"],\
-          ["@types/bufferutil", null],\
-          ["@types/utf-8-validate", null],\
-          ["bufferutil", null],\
-          ["utf-8-validate", null]\
-        ],\
-        "packagePeers": [\
-          "@types/bufferutil",\
-          "@types/utf-8-validate",\
-          "bufferutil",\
-          "utf-8-validate"\
-        ],\
-        "linkType": "HARD"\
       }]\
     ]],\
     ["yaml", [\
