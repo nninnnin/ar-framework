@@ -1,11 +1,12 @@
 import path from "path";
 import { promises as fs } from "fs";
-import { parse } from "node-html-parser";
 
 import {
   ProjectFormatted,
   ProjectType,
 } from "@/types/project";
+import TemplateContentsGenerator from "@/app/templates/utils/TemplateContentsGenerator";
+import { getGlbModels } from "@/app/templates/utils/fetcher";
 
 export const generateArTemplate = async (
   projectItem: ProjectFormatted
@@ -19,7 +20,24 @@ export const generateArTemplate = async (
     "utf-8"
   );
 
-  return parseTemplate(templateFile);
+  console.log(projectItem);
+
+  const glbModels = await getGlbModels(
+    projectItem.glbModels.map(
+      (model: { uid: string }) => model.uid
+    )
+  );
+
+  console.log("이거", glbModels);
+
+  const contentsFilledTemplate =
+    new TemplateContentsGenerator(
+      projectItem.projectType,
+      templateFile,
+      glbModels
+    ).generateTemplate();
+
+  return contentsFilledTemplate;
 };
 
 const getTemplatePath = (projectType: ProjectType) => {
@@ -57,21 +75,3 @@ const getTemplatePath = (projectType: ProjectType) => {
 
   return templatePath;
 };
-
-export const parseTemplate = (
-  templateHTMLstring: string
-) => {
-  const root = parse(templateHTMLstring);
-
-  const head = root.querySelector("head");
-
-  const newScript = parse(
-    "<script>alert('Hello')</script>"
-  );
-
-  head?.appendChild(newScript);
-
-  return root.toString();
-};
-
-export const amendTemplate = () => {};

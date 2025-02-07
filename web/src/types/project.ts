@@ -29,7 +29,13 @@ export type ProjectFormatted = {
   name: string;
   projectType: ProjectType;
   groupName: string;
-  glbModels: string[];
+  glbModels: {
+    uid: string;
+    name: string;
+  }[];
 };
 
-export type ProjectType = "위치기반 AR" | "얼굴인식 AR" | "이미지마커 AR";
+export type ProjectType =
+  | "위치기반 AR"
+  | "얼굴인식 AR"
+  | "이미지마커 AR";

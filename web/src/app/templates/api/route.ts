@@ -1,7 +1,7 @@
 import { Project } from "@/types/project";
 import { formatProjectItem } from "@/utils/formatters";
 import { getProjectItem } from "@/utils/fetchers/project";
-import { generateArTemplate } from "@/app/templates/api/utils";
+import { generateArTemplate } from "@/app/templates/utils";
 
 export async function GET(request: Request) {
   // 1. 프로젝트 아이디로 미믹스에서 프로젝트 정보 가져오기
@@ -25,6 +25,8 @@ export async function GET(request: Request) {
   const templateFile = await generateArTemplate(
     projectItemFormatted
   );
+
+  console.log("보내기 전", templateFile);
 
   const response = new Response(templateFile);
   response.headers.set("Content-Type", "text/html");

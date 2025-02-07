@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { css } from "@emotion/react";
+import React, { useContext } from "react";
 import { useFunnel } from "@use-funnel/browser";
 
 import ProjectTypeSelection from "@/components/Project/ProjectTypeSelection";
@@ -19,8 +18,13 @@ import useCreateProject from "@/hooks/useCreateProject";
 import usePostGlbModel from "@/hooks/usePostGlbModel";
 import useProjectTypes from "@/hooks/useProjectTypes";
 import { useSelectedGroup } from "@/hooks/useSelectedGroup";
+import { OverlayCloseContext } from "@/components/Project/ProjectSection";
 
 const ProjectCreationFunnel = () => {
+  const { close: closeOverlay } = useContext(
+    OverlayCloseContext
+  );
+
   const funnel = useFunnel<{
     프로젝트타입선택: 프로젝트타입선택;
     모델선택: 모델선택;
@@ -35,11 +39,15 @@ const ProjectCreationFunnel = () => {
 
   const { selectedGroup } = useSelectedGroup();
 
-  const { mutateAsync: postGlbModel } = usePostGlbModel();
+  const { mutateAsync: postGlbModel } =
+    usePostGlbModel();
   const { data: projectTypes } = useProjectTypes();
-  const { mutateAsync: createProject } = useCreateProject();
+  const { mutateAsync: createProject } =
+    useCreateProject();
 
-  const getProjectTypeId = (projectTypeName: string) => {
+  const getProjectTypeId = (
+    projectTypeName: string
+  ) => {
     if (!projectTypes) return;
 
     const projectType = projectTypes.find(
@@ -76,25 +84,39 @@ const ProjectCreationFunnel = () => {
           onPrevious={() => history.back()}
           onFinalize={async (projectName: string) => {
             // 1. 미디어파일 업로드
-            const result = await uploadGlbModels(context.glbModels);
+            const result = await uploadGlbModels(
+              context.glbModels
+            );
 
             // 2. GLB 모델에 아이템 생성
-            const postModelResult = await postGlbModel(result);
-            const projectTypeId = getProjectTypeId(context.projectType);
+            const postModelResult = await postGlbModel(
+              result
+            );
+            const projectTypeId = getProjectTypeId(
+              context.projectType
+            );
 
             if (!projectTypeId) {
-              throw new Error("프로젝트 타입이 존재하지 않습니다.");
+              throw new Error(
+                "프로젝트 타입이 존재하지 않습니다."
+              );
             }
 
             // 3. 프로젝트 생성 및 GLB 모델 연결
-            const projectCreationResult = await createProject({
-              projectName,
-              projectTypeId,
-              postedModelIds: postModelResult,
-              groupName: selectedGroup?.uid ?? "",
-            });
+            const projectCreationResult =
+              await createProject({
+                projectName,
+                projectTypeId,
+                postedModelIds: postModelResult,
+                groupName: selectedGroup?.uid ?? "",
+              });
 
-            console.log("프로젝트 생성 결과", projectCreationResult);
+            console.log(
+              "프로젝트 생성 결과",
+              projectCreationResult
+            );
+
+            closeOverlay && closeOverlay();
           }}
         />
       )}

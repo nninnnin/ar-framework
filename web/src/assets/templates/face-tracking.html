@@ -2,17 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Face Trakcing AR Template</title>
 
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
       html,
       body {
-        background-color: #fff;
+        margin: 0;
+        padding: 0;
+
+        overflow: hidden;
+      }
+
+      video {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: 100vw !important;
+        height: 100dvh !important;
+
+        object-fit: cover;
       }
     </style>
   </head>
-  <body>
-    얼굴인식 기반 AR 템플릿입니다.
-  </body>
+  <body></body>
 </html>
