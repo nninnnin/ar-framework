@@ -13,12 +13,18 @@ const ProjectItem = ({
   return (
     <div
       css={css`
-        background-color: ${type === "item" ? "violet" : "black"};
+        position: relative;
+
+        background-color: ${type === "item"
+          ? "white"
+          : "black"};
         color: ${type === "item" ? "black" : "white"};
         border: 1px solid black;
 
         &:hover {
-          background-color: ${type === "item" ? "#f0f0f0" : "black"};
+          background-color: ${type === "item"
+            ? "#f0f0f0"
+            : "black"};
         }
 
         width: 170px;
