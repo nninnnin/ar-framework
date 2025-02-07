@@ -1,8 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { css } from "@emotion/react";
 
-import FunnelButton from "@/components/common/funnel/FunnelButton";
-import FunnelButtonContainer from "@/components/common/funnel/FunnelButtonContainer";
 import Dialog from "@/components/common/Dialog";
 
 const ProjectRegister = ({
