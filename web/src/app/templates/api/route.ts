@@ -1,16 +1,33 @@
-import path from "path";
-import { promises as fs } from "fs";
+import { Project } from "@/types/project";
+import { formatProjectItem } from "@/utils/formatters";
+import { getProjectItem } from "@/utils/fetchers/project";
+import { generateArTemplate } from "@/app/templates/api/utils";
 
 export async function GET(request: Request) {
-  const templatePath = path.resolve(
-    process.cwd(),
-    "src",
-    "assets",
-    "templates",
-    "location-based.html"
+  // 1. 프로젝트 아이디로 미믹스에서 프로젝트 정보 가져오기
+  const urlObj = new URL(request.url);
+  const projectUid =
+    urlObj.searchParams.get("projectUid");
+
+  if (!projectUid) {
+    return new Response("projectUid is required", {
+      status: 400,
+    });
+  }
+
+  const projectItemUnformatted: Project =
+    await getProjectItem(projectUid);
+  const projectItemFormatted = formatProjectItem(
+    projectItemUnformatted
   );
 
-  const templateFile = await fs.readFile(templatePath);
+  // 2. 가져온 프로젝트 정보 기반으로 템플릿 생성
+  const templateFile = await generateArTemplate(
+    projectItemFormatted
+  );
 
-  return new Response(templateFile);
+  const response = new Response(templateFile);
+  response.headers.set("Content-Type", "text/html");
+
+  return response;
 }
