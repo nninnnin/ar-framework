@@ -1,7 +1,16 @@
-import { LanguageMap, RelationInterface } from "@/types/memex";
+import {
+  CategoryInterface,
+  LanguageMap,
+  RelationInterface,
+} from "@/types/memex";
 
 export interface ProjectResult {
   list: Project[];
+}
+
+export interface ProjectData {
+  name: LanguageMap;
+  projects: RelationInterface[];
 }
 
 export interface Project {
@@ -9,14 +18,18 @@ export interface Project {
   order: number;
   data: {
     name: LanguageMap;
-    projects: RelationInterface[];
+    projectType: CategoryInterface[];
+    glbModels: RelationInterface[];
+    groupName: RelationInterface[];
   };
 }
 
 export type ProjectFormatted = {
   uid: string;
   name: string;
-  projects: string[];
+  projectType: ProjectType;
+  groupName: string;
+  glbModels: string[];
 };
 
 export type ProjectType = "위치기반 AR" | "얼굴인식 AR" | "이미지마커 AR";

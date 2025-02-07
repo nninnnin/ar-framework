@@ -1,7 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 
 import { QueryKeys } from "@/constants/queryKeys";
-import { formatProjectData } from "@/hooks/useProjects";
+import { formatProjectList } from "@/utils/formatters";
 import { Project, ProjectFormatted } from "@/types/project";
 
 const useProjectItem = (projectUid: string, groupName: string) => {
@@ -14,7 +14,7 @@ const useProjectItem = (projectUid: string, groupName: string) => {
 
   if (!projects) return { projectItem: undefined };
 
-  const formatted: ProjectFormatted[] = formatProjectData(projects);
+  const formatted: ProjectFormatted[] = formatProjectList(projects);
 
   return {
     projectItem: formatted.find((p) => p.uid === projectUid),
