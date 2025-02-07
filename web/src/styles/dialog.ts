@@ -2,12 +2,17 @@ import { css } from "@emotion/react";
 
 export const dialogStyles = {
   small: css`
+    background-color: #fff;
+    padding: 1em;
+
     display: flex;
     flex-direction: column;
     gap: 1.2em;
-    padding: 1em;
 
     & .dialog-contents-container {
+      width: 100%;
+      flex: 1;
+
       display: flex;
       flex-direction: column;
       gap: 1em;
@@ -27,6 +32,7 @@ export const dialogStyles = {
   `,
   large: css`
     background-color: #fff;
+
     border: 1px solid #000;
     width: 800px;
     height: 500px;
@@ -36,9 +42,10 @@ export const dialogStyles = {
     justify-content: center;
     align-items: center;
 
-    gap: 1.2em;
+    & .dialog-contents-container {
+      width: 100%;
+      flex: 1;
 
-    & .contents-container {
       display: flex;
       flex-direction: column;
       gap: 1em;
@@ -60,6 +67,7 @@ export const dialogStyles = {
 
       text-align: center;
       background-color: #fff;
+      color: #000;
 
       cursor: pointer;
     }

@@ -19,7 +19,9 @@ const ProjectTypeSelection = ({
 
   return (
     <Dialog size="large">
-      <ProjectTypes />
+      <Dialog.ContentsContainer>
+        <ProjectTypes />
+      </Dialog.ContentsContainer>
 
       <Dialog.ButtonContainer>
         <Dialog.Button onClick={() => close && close()}>닫기</Dialog.Button>

@@ -1,5 +1,6 @@
 import React from "react";
 import { css, SerializedStyles } from "@emotion/react";
+
 import { dialogStyles } from "@/styles/dialog";
 
 interface Props {
@@ -14,9 +15,7 @@ const Dialog = ({ size, children, cssOverlap = css`` }: Props) => {
   return (
     <div
       css={css`
-        background-color: #fff;
-        padding: 1em;
-
+        ${size === "small" ? dialogStyles.small : dialogStyles.large}
         ${buttonStyle}
         ${cssOverlap}
       `}
@@ -27,18 +26,7 @@ const Dialog = ({ size, children, cssOverlap = css`` }: Props) => {
 };
 
 Dialog.ContentsContainer = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div
-      className="dialog-contents-container"
-      css={css`
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
-      `}
-    >
-      {children}
-    </div>
-  );
+  return <div className="dialog-contents-container">{children}</div>;
 };
 
 Dialog.ButtonContainer = ({ children }: { children: React.ReactNode }) => {
