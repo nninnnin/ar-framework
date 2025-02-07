@@ -13,7 +13,10 @@ import { ProjectFormatted } from "@/types/project";
 import ProjectDetailsDialog from "@/components/Project/ProjectDetailsDialog";
 
 const ProjectCreationFunnel = dynamic(
-  () => import("@/components/Project/ProjectCreationFunnel")
+  () =>
+    import(
+      "@/components/Project/ProjectCreationFunnel"
+    )
 );
 
 export const OverlayCloseContext = createContext<{
@@ -32,7 +35,9 @@ const ProjectSection = () => {
     overlay.open(({ isOpen, close }) => {
       return (
         <Overlay isOpen={isOpen}>
-          <OverlayCloseContext.Provider value={{ close }}>
+          <OverlayCloseContext.Provider
+            value={{ close }}
+          >
             <ProjectCreationFunnel />
           </OverlayCloseContext.Provider>
         </Overlay>
@@ -40,11 +45,15 @@ const ProjectSection = () => {
     });
   };
 
-  const handleProjectItemClick = (projectUid: string) => {
+  const handleProjectItemClick = (
+    projectUid: string
+  ) => {
     overlay.open(({ close, isOpen }) => {
       return (
         <Overlay isOpen={isOpen}>
-          <OverlayCloseContext.Provider value={{ close }}>
+          <OverlayCloseContext.Provider
+            value={{ close }}
+          >
             <ProjectDetailsDialog
               projectUid={projectUid}
               groupName={selectedGroup?.name ?? ""}
@@ -67,7 +76,10 @@ const ProjectSection = () => {
       <h3>{selectedGroup?.name}</h3>
 
       <ProjectList>
-        <ProjectItem type="creation" onClick={handleCreationClick}>
+        <ProjectItem
+          type="creation"
+          onClick={handleCreationClick}
+        >
           <span
             css={css`
               font-size: 4em;
@@ -82,9 +94,36 @@ const ProjectSection = () => {
             return (
               <ProjectItem
                 key={project.uid}
-                onClick={() => handleProjectItemClick(project.uid)}
+                onClick={() =>
+                  handleProjectItemClick(project.uid)
+                }
               >
-                {project.name}
+                <>
+                  {project.name}
+
+                  <div
+                    css={css`
+                      position: absolute;
+                      top: 0;
+                      right: 0;
+
+                      border: 1px solid black;
+                      border-top: none;
+                      border-right: none;
+
+                      padding: 0.5em;
+                      padding-left: 0.7em;
+                      padding-right: 0.7em;
+
+                      font-size: 0.7em;
+                    `}
+                  >
+                    {project.projectType.replace(
+                      "AR",
+                      ""
+                    )}
+                  </div>
+                </>
               </ProjectItem>
             );
           })}
