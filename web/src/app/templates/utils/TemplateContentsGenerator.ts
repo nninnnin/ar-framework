@@ -93,7 +93,7 @@ class TemplateContentsGenerator {
   generateGlbModelAssets(projectType: ProjectType) {
     const assets = this.glbModels.map((model) => {
       return `
-        <a-asset-item id="testModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/glasses/scene.gltf">
+        <a-asset-item id=${model.name} src=${model.path}>
         </a-asset-item>
       `;
     });
@@ -136,7 +136,9 @@ class TemplateContentsGenerator {
               ? `mindar-face-target="anchorIndex: 168"`
               : ""
           }>
-            <a-gltf-model src="#testModel" scale="0.01 0.01 0.01" position="0 0 0" rotation="0 -0 0"></a-gltf-model>
+            <a-gltf-model src="#${
+              model.uid
+            }" scale="0.01 0.01 0.01" position="0 0 0" rotation="0 -0 0"></a-gltf-model>
           </a-entity>
         `;
       })
