@@ -93,7 +93,7 @@ class TemplateContentsGenerator {
   generateGlbModelAssets(projectType: ProjectType) {
     const assets = this.glbModels.map((model) => {
       return `
-        <a-asset-item id=${model.name} src=${model.path}>
+        <a-asset-item id=${model.uid} src=${model.path}>
         </a-asset-item>
       `;
     });
