@@ -29,7 +29,10 @@ export async function GET(request: Request) {
   console.log("보내기 전", templateFile);
 
   const response = new Response(templateFile);
-  response.headers.set("Content-Type", "text/html");
+  response.headers.set(
+    "Content-Type",
+    "text/html; charset=utf-8"
+  );
 
   return response;
 }
