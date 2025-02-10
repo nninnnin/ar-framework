@@ -138,7 +138,7 @@ class TemplateContentsGenerator {
           }>
             <a-gltf-model src="#${
               model.uid
-            }" scale="0.01 0.01 0.01" position="0 0 0" rotation="0 -0 0"></a-gltf-model>
+            }" scale="1 1 1" position="0 0 0" rotation="0 -0 0"></a-gltf-model>
           </a-entity>
         `;
       })
