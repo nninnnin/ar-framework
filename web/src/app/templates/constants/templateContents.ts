@@ -1,4 +1,12 @@
-export const TemplateContents = {
+import { ProjectType } from "@/types/project";
+
+export const TemplateContents: Record<
+  ProjectType,
+  {
+    headScripts: string;
+    bodyContents: string;
+  }
+> = {
   "위치기반 AR": {
     headScripts: `
       <script

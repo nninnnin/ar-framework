@@ -38,4 +38,5 @@ export type ProjectFormatted = {
 export type ProjectType =
   | "위치기반 AR"
   | "얼굴인식 AR"
-  | "이미지마커 AR";
+  | "이미지마커 AR"
+  | (string & NonNullable<unknown>);

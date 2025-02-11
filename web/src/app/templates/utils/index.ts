@@ -20,15 +20,11 @@ export const generateArTemplate = async (
     "utf-8"
   );
 
-  console.log(projectItem);
-
   const glbModels = await getGlbModels(
     projectItem.glbModels.map(
       (model: { uid: string }) => model.uid
     )
   );
-
-  console.log("이거", glbModels);
 
   const contentsFilledTemplate =
     new TemplateContentsGenerator(
@@ -64,6 +60,10 @@ const getTemplatePath = (projectType: ProjectType) => {
         return path.resolve(
           templatePathPrefix,
           "image-tracking.html"
+        );
+      default:
+        throw new Error(
+          `Invalid project type: ${projectType}`
         );
     }
   })();
