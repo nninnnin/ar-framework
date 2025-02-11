@@ -2,7 +2,17 @@
   "name": "@ar-framework/controls",
   "packageManager": "yarn@4.6.0",
   "dependencies": {
-    "@ar-framework/ui": "workspace:^",
-    "@ar-framework/utils": "workspace:^"
+    "@ar-framework/utils": "workspace:^",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "scripts": {
+    "build": "parcel build index.html --no-content-hash --no-source-maps"
+  },
+  "devDependencies": {
+    "@parcel/config-default": "^2.13.3",
+    "@parcel/core": "^2.13.3",
+    "parcel": "^2.13.3",
+    "parcel-namer-hashless": "^1.0.7"
   }
 }

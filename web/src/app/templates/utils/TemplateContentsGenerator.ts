@@ -38,6 +38,8 @@ class TemplateContentsGenerator {
       this.generateGlbModelElements(this.projectType)
     );
 
+    this.addControls();
+
     return this.templateRoot.toString();
   }
 
@@ -126,8 +128,6 @@ class TemplateContentsGenerator {
   }
 
   generateGlbModelElements(projectType: ProjectType) {
-    console.log("glb Models: ", this.glbModels);
-
     return this.glbModels
       .map((model) => {
         return `
@@ -143,6 +143,15 @@ class TemplateContentsGenerator {
         `;
       })
       .join("");
+  }
+
+  addControls() {
+    this.appendToBody(
+      `<div id='ar-controls-root'></div>`
+    );
+    this.appendToBody(
+      `<script src="/scripts/controls.js"></script>`
+    );
   }
 }
 

@@ -26,8 +26,6 @@ export async function GET(request: Request) {
     projectItemFormatted
   );
 
-  console.log("보내기 전", templateFile);
-
   const response = new Response(templateFile);
   response.headers.set(
     "Content-Type",
