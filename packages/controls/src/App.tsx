@@ -1,7 +1,7 @@
 import React from "react";
 
 const App = () => {
-  return <div>AR Controls</div>;
+  return <div className="bg-red-300">AR Controls</div>;
 };
 
 export default App;

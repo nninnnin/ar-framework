@@ -3,17 +3,21 @@
   "packageManager": "yarn@4.6.0",
   "dependencies": {
     "@ar-framework/utils": "workspace:^",
+    "@tailwindcss/postcss": "^4.0.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.6"
   },
   "scripts": {
     "copyAppToWebPublic": "cp -r dist/index.js ../../web/public/scripts/controls.js",
-    "build": "parcel build index.html --no-content-hash --no-source-maps && yarn copyAppToWebPublic"
+    "build": "parcel build index.html --no-content-hash --no-source-maps && yarn copyAppToWebPublic",
+    "start": "parcel index.html"
   },
   "devDependencies": {
     "@parcel/config-default": "^2.13.3",
     "@parcel/core": "^2.13.3",
     "parcel": "^2.13.3",
-    "parcel-namer-hashless": "^1.0.7"
+    "parcel-namer-hashless": "^1.0.7",
+    "postcss": "^8.2.1"
   }
 }
