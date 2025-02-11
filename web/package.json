@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "copyControllerApp": "cp -r ../packages/controls/dist/index.js ./public/scripts/controls.js",
-    "build": "yarn run copyControllerApp && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },

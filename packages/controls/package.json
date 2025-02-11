@@ -7,7 +7,8 @@
     "react-dom": "^19.0.0"
   },
   "scripts": {
-    "build": "parcel build index.html --no-content-hash --no-source-maps"
+    "copyAppToWebPublic": "cp -r dist/index.js ../../web/public/scripts/controls.js",
+    "build": "parcel build index.html --no-content-hash --no-source-maps && yarn copyAppToWebPublic"
   },
   "devDependencies": {
     "@parcel/config-default": "^2.13.3",
