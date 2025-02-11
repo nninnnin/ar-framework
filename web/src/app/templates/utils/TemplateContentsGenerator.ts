@@ -136,9 +136,11 @@ class TemplateContentsGenerator {
               ? `mindar-face-target="anchorIndex: 168"`
               : ""
           }>
-            <a-gltf-model src="#${
-              model.uid
-            }" scale="1 1 1" position="0 0 0" rotation="0 -0 0"></a-gltf-model>
+            <a-gltf-model data-model-name="${
+              model.name
+            }" src="#${
+          model.uid
+        }" scale="1 1 1" position="0 0 0" rotation="0 -0 0"></a-gltf-model>
           </a-entity>
         `;
       })
@@ -151,6 +153,10 @@ class TemplateContentsGenerator {
     );
     this.appendToBody(
       `<script src="/scripts/controls.js"></script>`
+    );
+
+    this.appendToHead(
+      `<link rel="stylesheet" href="/styles/controls.css" />`
     );
   }
 }
