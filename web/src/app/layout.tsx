@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import GlobalWrapper from "@/components/GlobalWrapper";
+import { css } from "@emotion/react";
+import GlobalNavigation from "@/components/layout/GlobalNavigation";
 
 export const metadata: Metadata = {
   title: "AR Framework",
-  description: "represented by Rebel9, produced by @justindglee",
+  description:
+    "represented by Rebel9, produced by @justindglee",
 };
 
 export default function RootLayout({
@@ -23,14 +26,7 @@ export default function RootLayout({
         }}
       >
         <GlobalWrapper>
-          <h1
-            style={{
-              backgroundColor: "#c4f551",
-              padding: "0.5em",
-            }}
-          >
-            ARF
-          </h1>
+          <GlobalNavigation />
 
           <div
             style={{

@@ -23,6 +23,7 @@ const GroupItem = ({
         align-items: center;
 
         cursor: pointer;
+        user-select: none;
 
         ${cssOverlap}
       `}

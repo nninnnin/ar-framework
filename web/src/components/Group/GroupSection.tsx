@@ -8,15 +8,21 @@ import useGroups from "@/hooks/useGroups";
 import { useSelectedGroup } from "@/hooks/useSelectedGroup";
 import CreationDialog from "@/components/common/CreationDialog";
 import useCreateGroup from "@/hooks/useCreateGroup";
+import Plus from "@/components/common/icons/Plus";
 
 const GroupSection = () => {
   const { data: groups } = useGroups();
   const overlay = useOverlay();
 
-  const { setSelectedGroup, selectedGroup } = useSelectedGroup();
+  const { setSelectedGroup, selectedGroup } =
+    useSelectedGroup();
 
   useEffect(() => {
-    if (!selectedGroup && groups && groups.length > 0) {
+    if (
+      !selectedGroup &&
+      groups &&
+      groups.length > 0
+    ) {
       setSelectedGroup(groups[0]);
     }
   }, [selectedGroup, groups]);
@@ -43,7 +49,8 @@ const GroupSection = () => {
   return (
     <div
       css={css`
-        background-color: violet;
+        border-right: 1px solid black;
+
         width: 200px;
         padding: 1em;
 
@@ -64,13 +71,19 @@ const GroupSection = () => {
               key={groupItem.uid}
               onClick={handleGroupItemClick}
               cssOverlap={css`
-                background-color: ${groupItem.uid === selectedGroup?.uid
-                  ? "black"
+                background-color: ${groupItem.uid ===
+                selectedGroup?.uid
+                  ? "black !important"
                   : "white"};
 
-                color: ${groupItem.uid === selectedGroup?.uid
+                color: ${groupItem.uid ===
+                selectedGroup?.uid
                   ? "white"
                   : "initial"};
+
+                &:hover {
+                  background-color: #f0f0f0;
+                }
               `}
             >
               {groupItem.name}
@@ -79,14 +92,7 @@ const GroupSection = () => {
         })}
 
       <GroupItem onClick={handleCreateGroupClick}>
-        <span
-          css={css`
-            font-size: 1em;
-            transform: scale(2);
-          `}
-        >
-          +
-        </span>
+        <Plus />
       </GroupItem>
     </div>
   );

@@ -15,16 +15,12 @@ const ProjectItem = ({
       css={css`
         position: relative;
 
-        background-color: ${type === "item"
-          ? "white"
-          : "black"};
-        color: ${type === "item" ? "black" : "white"};
+        background-color: white;
+        font-weight: 400;
         border: 1px solid black;
 
         &:hover {
-          background-color: ${type === "item"
-            ? "#f0f0f0"
-            : "black"};
+          background-color: #f0f0f0;
         }
 
         width: 170px;
@@ -40,6 +36,7 @@ const ProjectItem = ({
         text-align: center;
 
         cursor: pointer;
+        user-select: none;
       `}
       onClick={onClick}
     >

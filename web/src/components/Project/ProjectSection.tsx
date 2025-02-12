@@ -11,6 +11,7 @@ import { useSelectedGroup } from "@/hooks/useSelectedGroup";
 import useProjects from "@/hooks/useProjects";
 import { ProjectFormatted } from "@/types/project";
 import ProjectDetailsDialog from "@/components/Project/ProjectDetailsDialog";
+import Plus from "@/components/common/icons/Plus";
 
 const ProjectCreationFunnel = dynamic(
   () =>
@@ -67,26 +68,26 @@ const ProjectSection = () => {
   return (
     <div
       css={css`
-        background-color: aliceblue;
         flex: 1;
-
         padding: 1em;
+
+        user-select: none;
       `}
     >
-      <h3>{selectedGroup?.name}</h3>
+      <h3
+        css={css`
+          font-size: 1em;
+        `}
+      >
+        {selectedGroup?.name}
+      </h3>
 
       <ProjectList>
         <ProjectItem
           type="creation"
           onClick={handleCreationClick}
         >
-          <span
-            css={css`
-              font-size: 4em;
-            `}
-          >
-            +
-          </span>
+          <Plus />
         </ProjectItem>
 
         {projects &&

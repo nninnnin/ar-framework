@@ -9,13 +9,21 @@ interface Props {
   cssOverlap?: SerializedStyles;
 }
 
-const Dialog = ({ size, children, cssOverlap = css`` }: Props) => {
+const Dialog = ({
+  size,
+  children,
+  cssOverlap = css``,
+}: Props) => {
   const buttonStyle = getButtonStyle(size);
 
   return (
     <div
       css={css`
-        ${size === "small" ? dialogStyles.small : dialogStyles.large}
+        border: 1px solid #000;
+
+        ${size === "small"
+          ? dialogStyles.small
+          : dialogStyles.large}
         ${buttonStyle}
         ${cssOverlap}
       `}
@@ -25,11 +33,23 @@ const Dialog = ({ size, children, cssOverlap = css`` }: Props) => {
   );
 };
 
-Dialog.ContentsContainer = ({ children }: { children: React.ReactNode }) => {
-  return <div className="dialog-contents-container">{children}</div>;
+Dialog.ContentsContainer = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  return (
+    <div className="dialog-contents-container">
+      {children}
+    </div>
+  );
 };
 
-Dialog.ButtonContainer = ({ children }: { children: React.ReactNode }) => {
+Dialog.ButtonContainer = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   return (
     <div
       className="dialog-button-container"

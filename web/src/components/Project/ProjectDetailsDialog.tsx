@@ -32,7 +32,6 @@ const ProjectQrDialog = ({
         css={css`
           width: 100%;
           flex: 1;
-          background-color: aliceblue;
 
           display: flex;
           flex-direction: column;

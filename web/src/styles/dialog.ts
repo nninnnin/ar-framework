@@ -33,7 +33,6 @@ export const dialogStyles = {
   large: css`
     background-color: #fff;
 
-    border: 1px solid #000;
     width: 800px;
     height: 500px;
 

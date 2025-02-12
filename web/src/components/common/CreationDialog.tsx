@@ -31,9 +31,12 @@ const CreationDialog = ({
         `}
       >
         <div>{message}</div>
+
         <input
           css={css`
             padding: 0.5em;
+            outline: none;
+            border: 1px solid black;
           `}
           type="text"
           value={name}
@@ -42,8 +45,12 @@ const CreationDialog = ({
       </div>
 
       <Dialog.ButtonContainer>
-        <Dialog.Button onClick={onCancelClick}>닫기</Dialog.Button>
-        <Dialog.Button onClick={() => onConfirmClick(name)}>
+        <Dialog.Button onClick={onCancelClick}>
+          닫기
+        </Dialog.Button>
+        <Dialog.Button
+          onClick={() => onConfirmClick(name)}
+        >
           만들기
         </Dialog.Button>
       </Dialog.ButtonContainer>
