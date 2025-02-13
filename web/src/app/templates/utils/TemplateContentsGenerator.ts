@@ -114,6 +114,8 @@ class TemplateContentsGenerator {
       ${
         projectType === "얼굴인식 AR"
           ? `<a-camera look-controls="enabled: false" position="0 0 0"></a-camera>`
+          : projectType === "위치기반 AR"
+          ? `gps-projected-camera="gpsMinDistance: 5"`
           : ""
       }
 
@@ -134,6 +136,8 @@ class TemplateContentsGenerator {
           <a-entity ${
             projectType === "얼굴인식 AR"
               ? `mindar-face-target="anchorIndex: 168"`
+              : projectType === "위치기반 AR"
+              ? `gps-projected-entity-place="latitude: 37.533836; longitude: 127.007736"`
               : ""
           }>
             <a-gltf-model data-model-name="${
