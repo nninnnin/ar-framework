@@ -75,6 +75,7 @@ const RAW_RUNTIME_STATE =
           ["@tailwindcss/postcss", "npm:4.0.6"],\
           ["@types/react", "npm:19.0.8"],\
           ["clsx", "npm:2.1.1"],\
+          ["immer", "npm:10.1.1"],\
           ["parcel", "virtual:fd1e44d0e1e8daf9e7d3627772023e7baecd5d7bc0f83df309e7f5cc23257b22ff328039a12db1d9eba9b1c1e423559b7782b1751a634e8ca172f51091dac046#npm:2.13.3"],\
           ["parcel-namer-hashless", "npm:1.0.7"],\
           ["postcss", "npm:8.5.2"],\
@@ -5437,6 +5438,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["immer", [\
+      ["npm:10.1.1", {\
+        "packageLocation": "../../.yarn/berry/cache/immer-npm-10.1.1-973ae10d09-10c0.zip/node_modules/immer/",\
+        "packageDependencies": [\
+          ["immer", "npm:10.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["import-fresh", [\
       ["npm:3.3.0", {\
         "packageLocation": "../../.yarn/berry/cache/import-fresh-npm-3.3.0-3e34265ca9-10c0.zip/node_modules/import-fresh/",\
@@ -7457,7 +7467,7 @@ const RAW_RUNTIME_STATE =
           ["@types/immer", null],\
           ["@types/react", "npm:19.0.8"],\
           ["@types/use-sync-external-store", null],\
-          ["immer", null],\
+          ["immer", "npm:10.1.1"],\
           ["react", "npm:19.0.0"],\
           ["use-sync-external-store", null]\
         ],\

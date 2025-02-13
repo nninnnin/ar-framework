@@ -1,15 +1,14 @@
 import { create } from "zustand";
+
 import { ModelInterface } from "../types";
 
 export const useMenuStore = create<{
   isOpen: boolean;
   toggle: () => void;
-  selectedMenu: string | null;
 }>((set) => ({
   isOpen: false,
   toggle: () =>
     set((state) => ({ isOpen: !state.isOpen })),
-  selectedMenu: null,
 }));
 
 export const useModelStore = create<{

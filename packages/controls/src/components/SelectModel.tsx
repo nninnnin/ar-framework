@@ -3,6 +3,7 @@ import React from "react";
 import { Select } from "radix-ui";
 
 import { useModelStore } from "../stores";
+import { styles } from "../styles";
 
 const SelectModel = () => {
   const { models, setSelectedModelName } =
@@ -14,18 +15,21 @@ const SelectModel = () => {
         setSelectedModelName(value)
       }
     >
-      <Select.Trigger className="bg-violet-200">
+      <Select.Trigger
+        className={clsx("bg-violet-200", styles.item)}
+      >
         <Select.Value placeholder="모델을 선택해주세요" />
       </Select.Trigger>
 
       <Select.Portal>
-        <Select.Content
-          className={clsx("bg-amber-100")}
-        >
-          <Select.Viewport>
+        <Select.Content>
+          <Select.Viewport className="bg-amber-100">
             {models.map((model, index) => (
               <Select.Item
-                className="relative"
+                className={clsx(
+                  styles.item,
+                  "border-b-[0px] last:border-b-[1px]"
+                )}
                 value={model.name}
               >
                 <Select.ItemText>

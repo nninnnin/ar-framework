@@ -1,22 +1,33 @@
-import React from "react";
 import clsx from "clsx";
+import React from "react";
+
+import { styles } from "../styles";
 
 const Item = ({
   children,
+  className = "",
+  disabled = false,
+  onClick,
 }: {
   children: React.ReactNode;
+  className?: string;
+  disabled?: boolean;
+  onClick: () => void;
 }) => {
   return (
-    <li
+    <div
       className={clsx(
-        "bg-white rounded-xl p-1",
-        "ring-2 ring-blue-500",
-        "mb-[14px]",
-        "p-[1em]"
+        "bg-green-100",
+
+        styles.item,
+        disabled &&
+          "!bg-gray-200 text-gray-300 pointer-events-none",
+        className
       )}
+      onClick={onClick}
     >
       {children}
-    </li>
+    </div>
   );
 };
 

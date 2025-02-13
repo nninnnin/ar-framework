@@ -22,6 +22,7 @@ __metadata:
     "@tailwindcss/postcss": "npm:^4.0.6"
     "@types/react": "npm:^19.0.8"
     clsx: "npm:^2.1.1"
+    immer: "npm:^10.1.1"
     parcel: "npm:^2.13.3"
     parcel-namer-hashless: "npm:^1.0.7"
     postcss: "npm:^8.2.1"
@@ -4258,6 +4259,13 @@ __metadata:
   version: 3.0.6
   resolution: "immediate@npm:3.0.6"
   checksum: 10c0/f8ba7ede69bee9260241ad078d2d535848745ff5f6995c7c7cb41cfdc9ccc213f66e10fa5afb881f90298b24a3f7344b637b592beb4f54e582770cdce3f1f039
+  languageName: node
+  linkType: hard
+
+"immer@npm:^10.1.1":
+  version: 10.1.1
+  resolution: "immer@npm:10.1.1"
+  checksum: 10c0/b749e10d137ccae91788f41bd57e9387f32ea6d6ea8fd7eb47b23fd7766681575efc7f86ceef7fe24c3bc9d61e38ff5d2f49c2663b2b0c056e280a4510923653
   languageName: node
   linkType: hard
 

@@ -9,7 +9,10 @@ const MenuToggler = () => {
     <div
       className={clsx(
         "fixed top-0 left-0 z-[200]",
-        "p-[1em] bg-white"
+        "w-[56px] h-[56px]",
+        "bg-white",
+        "flex justify-center items-center",
+        "border-r-[1px] border-b-[1px] border-solid border-black"
       )}
       onClick={() => toggle()}
     >
