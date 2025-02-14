@@ -29,16 +29,30 @@ const ValueController = () => {
         )}
 
         {controllingSubject ===
-          ControllingSubject.Position &&
-          Boolean(axis) && (
-            <ValueController.PositionSlider />
-          )}
+          ControllingSubject.Position && (
+          <>
+            {Boolean(axis) ? (
+              <ValueController.PositionSlider />
+            ) : (
+              <div className="text-[13px] text-center">
+                모델을 이동시킬 축을 먼저 선택하세요!
+              </div>
+            )}
+          </>
+        )}
 
         {controllingSubject ===
-          ControllingSubject.Rotation &&
-          Boolean(axis) && (
-            <ValueController.RotationSlider />
-          )}
+          ControllingSubject.Rotation && (
+          <>
+            {Boolean(axis) ? (
+              <ValueController.RotationSlider />
+            ) : (
+              <div className="text-[13px] text-center">
+                모델을 회전시킬 축을 먼저 선택하세요!
+              </div>
+            )}
+          </>
+        )}
 
         {controllingSubject ===
           ControllingSubject.Scale && (
