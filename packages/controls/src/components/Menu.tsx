@@ -35,8 +35,6 @@ const Menu = () => {
         "overflow-auto"
       )}
     >
-      <h1 className="mb-[1em]">AR Controls</h1>
-
       <div
         className={clsx(
           "flex-1",
@@ -53,8 +51,6 @@ const Menu = () => {
                   !selectedModelName ||
                   subject ===
                     ControllingSubject.Position || // 미완성
-                  subject ===
-                    ControllingSubject.LocationCoordinate || // 미완성
                   subject ===
                     ControllingSubject.FaceTarget // 미완성
                 }

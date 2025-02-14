@@ -28,13 +28,14 @@ export const TemplateContents: Record<
     `,
     bodyContents: `
       <a-scene
-        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false; locationEnabled: true;"
-        renderer="antialias: true; alpha: true; logarithmicDepthBuffer: true; colorManagement: true"
+        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
+        renderer="antialias: false; logarithmicDepthBuffer: true; colorManagement: true"
         vr-mode-ui="enabled: false"
       >
         <a-camera
           id="camera"
           gps-projected-camera="gpsMinDistance: 5"
+          arjs-look-controls='smoothingFactor: 0.1'
           position="0 0 0"
         ></a-camera>
       </a-scene>

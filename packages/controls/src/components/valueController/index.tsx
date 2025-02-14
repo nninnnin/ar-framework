@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import Slider from "./Slider";
 import Save from "../icons/Save";
@@ -7,7 +7,7 @@ import { useModelStore } from "../../stores";
 import { Axis, ControllingSubject } from "../../types";
 import { sliderConfig } from "../../constants/inputConfig";
 import { useControlStore } from "../../stores/controls";
-import useModelElement from "./hooks/useModelElement";
+import useModelElement from "../../hooks/useModelElement";
 
 const ValueController = () => {
   const { controllingSubject, axis } =
@@ -108,14 +108,10 @@ ValueController.ScaleSlider = () => {
     setScale(selectedModelName, scale);
 
     if (modelElement) {
-      modelElement.setAttribute(
+      modelElement.parentElement.setAttribute(
         "scale",
         // @ts-ignore
-        {
-          x: scale,
-          y: scale,
-          z: scale,
-        }
+        `${scale} ${scale} ${scale}`
       );
     }
   };

@@ -1,5 +1,24 @@
 @import "tailwindcss";
+@import "mapbox-gl/dist/mapbox-gl.css";
 
 * {
   touch-action: manipulation;
+}
+
+.mapboxgl-ctrl-attrib-inner {
+  display: none;
+}
+
+.marker {
+  width: 14px;
+  height: 14px;
+
+  background-color: white;
+  border: 3px solid red;
+
+  border-radius: 50%;
+}
+
+.marker.origin {
+  border: 3px solid blue;
 }

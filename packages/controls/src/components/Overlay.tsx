@@ -11,7 +11,7 @@ const Overlay = ({
       className={clsx(
         "bg-black/60",
         "w-[100vw] h-[100dvh]",
-        "fixed top-0 left-0",
+        "fixed top-0 left-0 z-[1000]",
         "flex justify-center items-center"
       )}
     >

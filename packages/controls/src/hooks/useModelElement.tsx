@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useModelStore } from "../../../stores";
+import { useModelStore } from "../stores";
 
 const useModelElement = () => {
   const [modelElement, setModelElement] =

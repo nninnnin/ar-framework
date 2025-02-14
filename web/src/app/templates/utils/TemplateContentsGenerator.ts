@@ -131,7 +131,7 @@ class TemplateContentsGenerator {
     return this.glbModels
       .map((model) => {
         return `
-          <a-entity ${
+          <a-entity scale="10 10 10" ${
             projectType === "얼굴인식 AR"
               ? `mindar-face-target="anchorIndex: 168"`
               : projectType === "위치기반 AR"
@@ -142,7 +142,7 @@ class TemplateContentsGenerator {
               model.name
             }" src="#${
           model.uid
-        }" scale="1 1 1" position="0 0 0" rotation="0 -0 0" animation-mixer></a-gltf-model>
+        }" scale="1 1 1" position="0 0 0" rotation="0 0 0" animation-mixer></a-gltf-model>
           </a-entity>
         `;
       })

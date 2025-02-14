@@ -8,6 +8,8 @@ import { useMenuStore } from "./stores";
 import StatusPanel from "./components/statusPanel";
 import ValueController from "./components/valueController";
 import { useControlStore } from "./stores/controls";
+import { ControllingSubject } from "./types";
+import LocationSelector from "./components/locationSelector";
 
 const App = () => {
   const { isOpen: isMenuOpen } = useMenuStore();
@@ -21,14 +23,19 @@ const App = () => {
 
       {Boolean(controllingSubject) && <StatusPanel />}
 
+      {Boolean(controllingSubject) && (
+        <ValueController />
+      )}
+
+      {controllingSubject ===
+        ControllingSubject.LocationCoordinate && (
+        <LocationSelector />
+      )}
+
       {isMenuOpen && (
         <Overlay>
           <Menu />
         </Overlay>
-      )}
-
-      {Boolean(controllingSubject) && (
-        <ValueController />
       )}
     </>
   );

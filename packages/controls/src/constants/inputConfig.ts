@@ -15,9 +15,9 @@ export const sliderConfig = {
   },
   [ControllingSubject.Scale]: {
     min: 0,
-    max: 100,
+    max: 50,
     defaultValue: [1],
-    step: 0.01,
+    step: 0.1,
   },
 };
 

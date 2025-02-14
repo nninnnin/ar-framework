@@ -22,7 +22,7 @@ const SelectModel = () => {
       </Select.Trigger>
 
       <Select.Portal>
-        <Select.Content>
+        <Select.Content className="z-[9999]">
           <Select.Viewport className="bg-amber-100">
             {models.map((model, index) => (
               <Select.Item

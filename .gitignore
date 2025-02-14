@@ -11,8 +11,9 @@
 web/.next
 web/.next/*
 
-web/.env.local
-web/.env.production
+.env
+.env.local
+.env.production
 
 .parcel-cache
 
