@@ -19,7 +19,10 @@ const AxisToggler = () => {
 
   return (
     <div
-      className="flex h-[44px]"
+      className={clsx(
+        "flex h-[44px]",
+        "border-t-[1px] border-solid border-black"
+      )}
       onClick={handleAxisItemClick}
     >
       {axisList.map((axis) => {

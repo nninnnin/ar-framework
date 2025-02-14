@@ -9,7 +9,8 @@ import { ControllingSubject } from "../../types";
 
 const StatusPanel = () => {
   const { selectedModelName } = useModelStore();
-  const { controllingSubject } = useControlStore();
+  const { controllingSubject, controls } =
+    useControlStore();
 
   return (
     <div
@@ -21,17 +22,30 @@ const StatusPanel = () => {
         "border-l-[1px] border-b-[1px] border-solid border-black"
       )}
     >
-      {selectedModelName &&
-        (controllingSubject ===
-          ControllingSubject.Position ||
-          controllingSubject ===
-            ControllingSubject.Rotation) && (
-          <SelectedModel>
-            {selectedModelName}
-          </SelectedModel>
-        )}
+      {selectedModelName && (
+        <SelectedModel>
+          {selectedModelName}
+        </SelectedModel>
+      )}
 
-      <AxisToggler />
+      {(controllingSubject ===
+        ControllingSubject.Position ||
+        controllingSubject ===
+          ControllingSubject.Rotation) && (
+        <AxisToggler />
+      )}
+
+      {controllingSubject ===
+        ControllingSubject.Scale && (
+        <div className="w-full border-t-[1px] border-solid border-black text-center">
+          Scale{" "}
+          {
+            controls[selectedModelName][
+              ControllingSubject.Scale
+            ]["x"]
+          }
+        </div>
+      )}
     </div>
   );
 };
