@@ -12,8 +12,6 @@ const ValueController = () => {
   const { controllingSubject, axis } =
     useControlStore();
 
-  console.log(axis, controllingSubject);
-
   return (
     <ValueController.Container>
       <ValueController.Label />

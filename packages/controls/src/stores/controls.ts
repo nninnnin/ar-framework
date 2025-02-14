@@ -10,7 +10,6 @@ interface ControlStore {
   controls: ControlStateByModel;
   controllingSubject: ControllingSubject | null;
   setControllingSubject: (
-    modelName: string,
     subject: ControllingSubject
   ) => void;
   axis: Axis;
@@ -46,18 +45,18 @@ export const useControlStore = create(
     setControllingSubject: (
       subject: ControllingSubject
     ) => {
-      set((prev) => {
-        prev.controllingSubject = subject;
+      set((state) => {
+        state.controllingSubject = subject;
       });
     },
     axis: null,
     setAxis: (axis) =>
-      set((prev) => {
-        prev.axis = axis;
+      set((state) => {
+        state.axis = axis;
       }),
     initializeModelControls: (modelName: string) => {
-      set((prev) => {
-        prev.controls[modelName] = Object.values(
+      set((state) => {
+        state.controls[modelName] = Object.values(
           ControllingSubject
         ).reduce(
           (acc, subject: ControllingSubject) => {
@@ -76,8 +75,8 @@ export const useControlStore = create(
         lng: number;
       }
     ) =>
-      set((prev) => {
-        prev.controls[modelName][
+      set((state) => {
+        state.controls[modelName][
           ControllingSubject.LocationCoordinate
         ] = coordinate;
       }),
@@ -85,8 +84,8 @@ export const useControlStore = create(
       modelName: string,
       faceTargetIndex: number
     ) =>
-      set((prev) => {
-        prev.controls[modelName][
+      set((state) => {
+        state.controls[modelName][
           ControllingSubject.FaceTarget
         ] = faceTargetIndex;
       }),
@@ -95,8 +94,8 @@ export const useControlStore = create(
       axis: Axis,
       value: number
     ) =>
-      set((prev) => {
-        prev.controls[modelName][
+      set((state) => {
+        state.controls[modelName][
           ControllingSubject.Position
         ][axis] = value;
       }),
@@ -105,8 +104,8 @@ export const useControlStore = create(
       axis: Axis,
       value: number
     ) =>
-      set((prev) => {
-        prev.controls[modelName][
+      set((state) => {
+        state.controls[modelName][
           ControllingSubject.Rotation
         ][axis] = value;
       }),

@@ -19,12 +19,7 @@ const Menu = () => {
 
   const handleItemClick =
     (subject: ControllingSubject) => () => {
-      console.log("?", selectedModelName, subject);
-
-      setControllingSubject(
-        selectedModelName,
-        subject
-      );
+      setControllingSubject(subject);
 
       toggle();
     };
