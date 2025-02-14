@@ -31,7 +31,8 @@ const Menu = () => {
         "bg-white p-[20px]",
         "w-[300px] h-[400px]",
         "flex flex-col",
-        "border-[1px] border-solid border-black"
+        "border-[1px] border-solid border-black",
+        "overflow-auto"
       )}
     >
       <h1 className="mb-[1em]">AR Controls</h1>
@@ -48,7 +49,15 @@ const Menu = () => {
           (subject: ControllingSubject) => {
             return (
               <Item
-                disabled={!selectedModelName}
+                disabled={
+                  !selectedModelName ||
+                  subject ===
+                    ControllingSubject.Position || // 미완성
+                  subject ===
+                    ControllingSubject.LocationCoordinate || // 미완성
+                  subject ===
+                    ControllingSubject.FaceTarget // 미완성
+                }
                 onClick={handleItemClick(subject)}
               >
                 {uxWrite.menuItem[subject]}

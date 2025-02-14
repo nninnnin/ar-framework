@@ -13,6 +13,7 @@ export const uxWrite: UxWrite = {
       "좌표 위치 조정하기",
     [ControllingSubject.FaceTarget]:
       "페이스 타겟 조정하기",
+    [ControllingSubject.Scale]: "모델 크기 조정하기",
     [ControllingSubject.Rotation]:
       "모델 회전 조정하기",
     [ControllingSubject.Position]:

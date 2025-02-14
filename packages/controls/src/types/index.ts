@@ -19,11 +19,17 @@ export enum FaceTargetAnchorIndex {
 
 export type Axis = "x" | "y" | "z";
 
+export type TemplateType =
+  | "ar-location"
+  | "ar-face"
+  | "ar-image";
+
 export enum ControllingSubject {
-  LocationCoordinate = "location-coordinate",
-  FaceTarget = "face-target",
+  Scale = "scale",
   Position = "position",
   Rotation = "rotation",
+  LocationCoordinate = "location-coordinate",
+  FaceTarget = "face-target",
 }
 
 type SelectedModelName = string;
@@ -38,6 +44,7 @@ export type ControlState =
       WithNull<FaceTargetAnchorIndex>
     >
   | Record<
+      | ControllingSubject.Scale
       | ControllingSubject.Position
       | ControllingSubject.Rotation,
       WithNull<Record<Axis, number>>

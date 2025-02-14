@@ -13,6 +13,12 @@ export const sliderConfig = {
     defaultValue: [0],
     step: 0.1,
   },
+  [ControllingSubject.Scale]: {
+    min: 0,
+    max: 5,
+    defaultValue: [1],
+    step: 0.01,
+  },
 };
 
 export const coordinateConfig = {

@@ -4,9 +4,12 @@ import React from "react";
 import { useModelStore } from "../../stores";
 import AxisToggler from "./AxisToggler";
 import SelectedModel from "./SelectedModel";
+import { useControlStore } from "../../stores/controls";
+import { ControllingSubject } from "../../types";
 
 const StatusPanel = () => {
   const { selectedModelName } = useModelStore();
+  const { controllingSubject } = useControlStore();
 
   return (
     <div
@@ -18,11 +21,15 @@ const StatusPanel = () => {
         "border-l-[1px] border-b-[1px] border-solid border-black"
       )}
     >
-      {selectedModelName && (
-        <SelectedModel>
-          {selectedModelName}
-        </SelectedModel>
-      )}
+      {selectedModelName &&
+        (controllingSubject ===
+          ControllingSubject.Position ||
+          controllingSubject ===
+            ControllingSubject.Rotation) && (
+          <SelectedModel>
+            {selectedModelName}
+          </SelectedModel>
+        )}
 
       <AxisToggler />
     </div>

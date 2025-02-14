@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 
-import App from "./App.tsx";
+import App from "./App";
 
 const REACT_ROOT_DOM_ID = "ar-controls-root";
 

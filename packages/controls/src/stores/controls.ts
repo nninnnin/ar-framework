@@ -36,6 +36,7 @@ interface ControlStore {
     axis: Axis,
     value: number
   ) => void;
+  setScale: (modelName: string, value: number) => void;
 }
 
 export const useControlStore = create(
@@ -109,6 +110,16 @@ export const useControlStore = create(
           ControllingSubject.Rotation
         ][axis] = value;
       }),
+    setScale: (modelName: string, value: number) =>
+      set((state) => {
+        state.controls[modelName][
+          ControllingSubject.Scale
+        ] = {
+          x: value,
+          y: value,
+          z: value,
+        };
+      }),
   }))
 );
 
@@ -122,6 +133,12 @@ const initSubjectValue = (
       return {
         lat: null,
         lng: null,
+      };
+    case ControllingSubject.Scale:
+      return {
+        x: 1,
+        y: 1,
+        z: 1,
       };
     case ControllingSubject.Position:
       return {

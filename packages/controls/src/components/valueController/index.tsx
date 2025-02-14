@@ -7,6 +7,7 @@ import { useModelStore } from "../../stores";
 import { Axis, ControllingSubject } from "../../types";
 import { sliderConfig } from "../../constants/inputConfig";
 import { useControlStore } from "../../stores/controls";
+import useModelElement from "./hooks/useModelElement";
 
 const ValueController = () => {
   const { controllingSubject, axis } =
@@ -38,6 +39,11 @@ const ValueController = () => {
           Boolean(axis) && (
             <ValueController.RotationSlider />
           )}
+
+        {controllingSubject ===
+          ControllingSubject.Scale && (
+          <ValueController.ScaleSlider />
+        )}
       </div>
 
       <ValueController.SaveButton />
@@ -91,51 +97,51 @@ ValueController.PositionSlider = () => {
   );
 };
 
-ValueController.RotationSlider = () => {
-  const [modelElement, setModelElement] =
-    useState<null | HTMLElement>(null);
-
+ValueController.ScaleSlider = () => {
+  const { modelElement } = useModelElement();
   const { selectedModelName } = useModelStore();
+  const { setScale } = useControlStore();
 
-  const { setRotation, axis, controls } =
-    useControlStore();
+  const handleChange = (value: number[]) => {
+    const [scale] = value;
 
-  useEffect(() => {
-    if (!selectedModelName) return;
-
-    const modelElement = document.querySelector(
-      `[data-model-name="${selectedModelName}"]`
-    );
-
-    console.log("I got model element: ", modelElement);
+    setScale(selectedModelName, scale);
 
     if (modelElement) {
-      setModelElement(modelElement as HTMLElement);
+      modelElement.setAttribute(
+        "scale",
+        // @ts-ignore
+        {
+          x: scale,
+          y: scale,
+          z: scale,
+        }
+      );
     }
-  }, [selectedModelName]);
+  };
+
+  return (
+    <Slider
+      {...sliderConfig[ControllingSubject.Scale]}
+      onChange={handleChange}
+    />
+  );
+};
+
+ValueController.RotationSlider = () => {
+  const { modelElement } = useModelElement();
+  const { selectedModelName } = useModelStore();
+  const { setRotation, axis } = useControlStore();
 
   const handleChange = (value: number[]) => {
     const [rotation] = value;
 
-    console.log(
-      rotation,
-      selectedModelName,
-      axis,
-      rotation
-    );
-
-    console.log(controls);
-
     setRotation(selectedModelName, axis, rotation);
 
     if (modelElement) {
-      console.log("has element?", modelElement);
-
       const prevRotation = modelElement.getAttribute(
         "rotation"
       ) as unknown as Record<Axis, number>;
-
-      console.log("prev rotation", prevRotation);
 
       modelElement.setAttribute(
         "rotation",
