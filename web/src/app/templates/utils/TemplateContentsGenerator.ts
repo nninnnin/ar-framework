@@ -114,8 +114,6 @@ class TemplateContentsGenerator {
       ${
         projectType === "얼굴인식 AR"
           ? `<a-camera look-controls="enabled: false" position="0 0 0"></a-camera>`
-          : projectType === "위치기반 AR"
-          ? `gps-projected-camera="gpsMinDistance: 5"`
           : ""
       }
 
