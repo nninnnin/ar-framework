@@ -142,7 +142,7 @@ class TemplateContentsGenerator {
               model.name
             }" src="#${
           model.uid
-        }" scale="1 1 1" position="0 0 0" rotation="0 -0 0"></a-gltf-model>
+        }" scale="1 1 1" position="0 0 0" rotation="0 -0 0" animation-mixer></a-gltf-model>
           </a-entity>
         `;
       })
