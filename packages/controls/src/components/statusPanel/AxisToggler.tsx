@@ -7,13 +7,21 @@ const AxisToggler = () => {
   const { axis: selectedAxis, setAxis } =
     useControlStore();
 
-  const onClickAxis = (axis: Axis) => () =>
-    setAxis(axis);
-
   const axisList: Axis[] = ["x", "y", "z"];
 
+  const handleAxisItemClick = (e) => {
+    const axis = e.target.dataset.axis;
+
+    if (axis) {
+      setAxis(axis as Axis);
+    }
+  };
+
   return (
-    <div className="flex h-[44px]">
+    <div
+      className="flex h-[44px]"
+      onClick={handleAxisItemClick}
+    >
       {axisList.map((axis) => {
         return (
           <AxisToggler.AxisItem
@@ -21,7 +29,7 @@ const AxisToggler = () => {
               axis === selectedAxis &&
                 "bg-black text-white"
             )}
-            onClick={onClickAxis(axis)}
+            axisValue={axis}
           >
             {axis}
           </AxisToggler.AxisItem>
@@ -33,12 +41,12 @@ const AxisToggler = () => {
 
 AxisToggler.AxisItem = ({
   children,
-  onClick,
   className = "",
+  axisValue,
 }: {
   children: React.ReactNode;
-  onClick: () => void;
   className?: string;
+  axisValue: Axis;
 }) => {
   return (
     <div
@@ -49,7 +57,7 @@ AxisToggler.AxisItem = ({
         "uppercase",
         className
       )}
-      onClick={onClick}
+      data-axis={axisValue}
     >
       {children}
     </div>
