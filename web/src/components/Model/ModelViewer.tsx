@@ -3,14 +3,20 @@ import { useEffect } from "react";
 import { ModelViewerElement } from "@google/model-viewer";
 import { css } from "@emotion/react";
 
-const ModelViewer = ({ modelSource }: { modelSource: string }) => {
+const ModelViewer = ({
+  modelSource,
+}: {
+  modelSource: string;
+}) => {
   useEffect(() => {
     const mv = new ModelViewerElement();
 
     mv.src = modelSource;
     mv.setAttribute("camera-controls", "");
 
-    const container = document.getElementById("mv-container");
+    const container = document.getElementById(
+      "mv-container"
+    );
 
     if (container) {
       container.appendChild(mv);
@@ -18,7 +24,9 @@ const ModelViewer = ({ modelSource }: { modelSource: string }) => {
   }, []);
 
   useEffect(() => {
-    const modelViewer = document.querySelector("model-viewer");
+    const modelViewer = document.querySelector(
+      "model-viewer"
+    );
 
     if (modelViewer) {
       modelViewer.src = modelSource;
@@ -37,7 +45,7 @@ const ModelViewer = ({ modelSource }: { modelSource: string }) => {
           background-color: orange;
 
           width: 100%;
-          height: 445.5px;
+          height: 100%;
         }
       `}
     ></div>

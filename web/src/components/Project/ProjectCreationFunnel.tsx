@@ -3,22 +3,27 @@
 import React, { useContext } from "react";
 import { useFunnel } from "@use-funnel/browser";
 
-import ProjectTypeSelection from "@/components/Project/ProjectTypeSelection";
-import ProjectModelSelection from "@/components/Project/ProjectModelSelection";
+import ProjectTypeSelectionDialog from "@/components/Project/ProjectTypeSelectionDialog";
+import ProjectModelSelectionDialog from "@/components/Project/ProjectModelSelectionDialog";
 import {
   모델선택,
   프로젝트명입력,
   프로젝트타입선택,
 } from "@/types/projectCreationFunnel";
 import { ProjectType } from "@/types/project";
-
-import ProjectRegister from "@/components/Project/ProjectRegister";
-import { uploadGlbModels } from "@/utils";
+import ProjectRegisterDialog from "@/components/Project/ProjectRegisterDialog";
 import useCreateProject from "@/hooks/useCreateProject";
 import usePostGlbModel from "@/hooks/usePostGlbModel";
 import useProjectTypes from "@/hooks/useProjectTypes";
 import { useSelectedGroup } from "@/hooks/useSelectedGroup";
 import { OverlayCloseContext } from "@/components/Project/ProjectSection";
+import useResetProjectFunnelStates from "@/hooks/useResetProjectFunnelStates";
+import { useAddedModels } from "@/stores";
+import { uploadGlbModels } from "@/utils/fetchers/glbModel";
+import {
+  createProjectBody,
+  getProjectTypeId,
+} from "@/utils";
 
 const ProjectCreationFunnel = () => {
   const { close: closeOverlay } = useContext(
@@ -38,49 +43,48 @@ const ProjectCreationFunnel = () => {
   });
 
   const { selectedGroup } = useSelectedGroup();
+  const { resetProjectFunnelStates } =
+    useResetProjectFunnelStates();
 
+  const { addedModels } = useAddedModels();
   const { mutateAsync: postGlbModel } =
     usePostGlbModel();
   const { data: projectTypes } = useProjectTypes();
   const { mutateAsync: createProject } =
     useCreateProject();
 
-  const getProjectTypeId = (
-    projectTypeName: string
-  ) => {
-    if (!projectTypes) return;
-
-    const projectType = projectTypes.find(
-      (item) => item.name === projectTypeName
-    );
-
-    return projectType?.id;
+  const handleClose = () => {
+    resetProjectFunnelStates();
+    closeOverlay && closeOverlay();
   };
 
   return (
     <funnel.Render
       프로젝트타입선택={({ history }) => (
-        <ProjectTypeSelection
+        <ProjectTypeSelectionDialog
+          onClose={handleClose}
           onNext={(projectType: ProjectType) =>
             history.push("모델선택", { projectType })
           }
         />
       )}
-      모델선택={({ context, history }) => (
-        <ProjectModelSelection
-          projectType={context.projectType}
-          onNext={(glbModels: Array<File>) =>
+      모델선택={({ history }) => (
+        <ProjectModelSelectionDialog
+          onClose={handleClose}
+          onPrevious={() => history.back()}
+          onNext={() =>
             history.push("프로젝트명입력", {
-              glbModels,
+              glbModels: addedModels
+                .filter((m) => m)
+                .map((m) => m!.file),
             })
           }
-          onPrevious={() => {
-            history.back();
-          }}
+          headerLabel="모델 선택"
         />
       )}
       프로젝트명입력={({ context, history }) => (
-        <ProjectRegister
+        <ProjectRegisterDialog
+          onClose={handleClose}
           onPrevious={() => history.back()}
           onFinalize={async (projectName: string) => {
             // 1. 미디어파일 업로드
@@ -93,7 +97,8 @@ const ProjectCreationFunnel = () => {
               result
             );
             const projectTypeId = getProjectTypeId(
-              context.projectType
+              context.projectType,
+              projectTypes
             );
 
             if (!projectTypeId) {
@@ -103,13 +108,15 @@ const ProjectCreationFunnel = () => {
             }
 
             // 3. 프로젝트 생성 및 GLB 모델 연결
+            const projectBody = createProjectBody(
+              projectName,
+              projectTypeId,
+              postModelResult,
+              selectedGroup?.uid ?? ""
+            );
+
             const projectCreationResult =
-              await createProject({
-                projectName,
-                projectTypeId,
-                postedModelIds: postModelResult,
-                groupName: selectedGroup?.uid ?? "",
-              });
+              await createProject(projectBody);
 
             console.log(
               "프로젝트 생성 결과",

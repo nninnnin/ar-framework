@@ -1,35 +1,43 @@
 "use client";
 
-import { css } from "@emotion/react";
-import React, { useContext } from "react";
+import React from "react";
 
 import { ProjectType } from "@/types/project";
 import { useSelectedProjectType } from "@/stores";
-import { OverlayCloseContext } from "@/components/Project/ProjectSection";
 import ProjectTypes from "@/components/Project/ProjectTypes";
 import Dialog from "@/components/common/Dialog";
 
-const ProjectTypeSelection = ({
+const ProjectTypeSelectionDialog = ({
   onNext,
+  onClose,
 }: {
   onNext: (projectType: ProjectType) => void;
+  onClose: () => void;
 }) => {
-  const { close } = useContext(OverlayCloseContext);
-  const { selectedProjectType } = useSelectedProjectType();
+  const { selectedProjectType } =
+    useSelectedProjectType();
 
   return (
     <Dialog size="large">
+      <Dialog.Header handleCloseClick={onClose}>
+        <Dialog.HeaderLabel>
+          프로젝트 타입 선택
+        </Dialog.HeaderLabel>
+      </Dialog.Header>
+
       <Dialog.ContentsContainer>
         <ProjectTypes />
       </Dialog.ContentsContainer>
 
       <Dialog.ButtonContainer>
-        <Dialog.Button onClick={() => close && close()}>닫기</Dialog.Button>
-
         <Dialog.Button
-          cssOverlap={css`
-            ${selectedProjectType === null && "pointer-events: none;"}
-          `}
+          disabled={true}
+          onClick={() => {}}
+        >
+          {""}
+        </Dialog.Button>
+        <Dialog.Button
+          disabled={selectedProjectType === null}
           onClick={() => onNext(selectedProjectType!)}
         >
           다음으로
@@ -39,4 +47,4 @@ const ProjectTypeSelection = ({
   );
 };
 
-export default ProjectTypeSelection;
+export default ProjectTypeSelectionDialog;

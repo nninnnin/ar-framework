@@ -3,11 +3,11 @@ import { css } from "@emotion/react";
 
 const ProjectItem = ({
   children,
-  onClick,
+  onClick = () => {},
   type = "item",
 }: {
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   type?: "item" | "creation";
 }) => {
   return (
@@ -19,8 +19,9 @@ const ProjectItem = ({
         font-weight: 400;
         border: 1px solid black;
 
-        &:hover {
-          background-color: #f0f0f0;
+        &:hover > .project-item-button-container {
+          visibility: visible;
+          pointer-events: auto;
         }
 
         width: 170px;
@@ -35,8 +36,16 @@ const ProjectItem = ({
         word-break: keep-all;
         text-align: center;
 
-        cursor: pointer;
         user-select: none;
+
+        ${type === "creation" &&
+        css`
+          cursor: pointer;
+
+          &:hover {
+            background-color: #f1f1f1;
+          }
+        `};
       `}
       onClick={onClick}
     >

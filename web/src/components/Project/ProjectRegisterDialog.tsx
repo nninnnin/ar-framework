@@ -3,10 +3,12 @@ import { css } from "@emotion/react";
 
 import Dialog from "@/components/common/Dialog";
 
-const ProjectRegister = ({
+const ProjectRegisterDialog = ({
+  onClose,
   onPrevious,
   onFinalize,
 }: {
+  onClose: () => void;
   onPrevious: () => void;
   onFinalize: (projectName: string) => void;
 }) => {
@@ -14,6 +16,12 @@ const ProjectRegister = ({
 
   return (
     <Dialog size="large">
+      <Dialog.Header handleCloseClick={onClose}>
+        <Dialog.HeaderLabel>
+          프로젝트 생성
+        </Dialog.HeaderLabel>
+      </Dialog.Header>
+
       <div
         css={css`
           flex: 1;
@@ -33,11 +41,11 @@ const ProjectRegister = ({
         >
           <p
             css={css`
-              font-size: 1.3em;
+              font-size: 1.2em;
               font-weight: bold;
             `}
           >
-            AR 프로젝트 생성하기
+            AR 프로젝트의 이름을 입력해주세요!
           </p>
 
           <ul
@@ -56,11 +64,6 @@ const ProjectRegister = ({
               }
             `}
           >
-            <li>
-              AR 프로젝트 생성을 위해 이름을
-              입력해주세요!
-            </li>
-
             <ul
               css={css`
                 margin-top: 0.5em;
@@ -105,6 +108,7 @@ const ProjectRegister = ({
         <Dialog.Button onClick={onPrevious}>
           이전으로
         </Dialog.Button>
+
         <Dialog.Button
           onClick={() => onFinalize(projectName)}
           cssOverlap={css`
@@ -123,4 +127,4 @@ const ProjectRegister = ({
   );
 };
 
-export default ProjectRegister;
+export default ProjectRegisterDialog;

@@ -23,13 +23,18 @@ const CreationDialog = ({
         gap: 1.2em;
       `}
     >
-      <div
-        css={css`
-          display: flex;
-          flex-direction: column;
-          gap: 1em;
-        `}
-      >
+      <Dialog.Header handleCloseClick={onCancelClick}>
+        <div
+          css={css`
+            font-size: 0.8em;
+            margin-left: 7px;
+          `}
+        >
+          새로운 그룹 만들기
+        </div>
+      </Dialog.Header>
+
+      <Dialog.ContentsContainer>
         <div>{message}</div>
 
         <input
@@ -41,15 +46,14 @@ const CreationDialog = ({
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          placeholder="ex) 용담 플레이"
         />
-      </div>
+      </Dialog.ContentsContainer>
 
       <Dialog.ButtonContainer>
-        <Dialog.Button onClick={onCancelClick}>
-          닫기
-        </Dialog.Button>
         <Dialog.Button
           onClick={() => onConfirmClick(name)}
+          disabled={!name}
         >
           만들기
         </Dialog.Button>

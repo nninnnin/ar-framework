@@ -33,6 +33,60 @@ const Dialog = ({
   );
 };
 
+Dialog.HeaderLabel = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  return (
+    <div
+      css={css`
+        padding-left: 10px;
+        font-size: 0.8em;
+      `}
+    >
+      {children}
+    </div>
+  );
+};
+
+Dialog.Header = ({
+  handleCloseClick,
+  children,
+}: {
+  handleCloseClick: () => void;
+  children?: React.ReactNode;
+}) => {
+  return (
+    <div className="dialog-header">
+      <div>{children}</div>
+
+      <svg
+        className="dialog-close-button"
+        viewBox="0 0 40 40"
+        preserveAspectRatio="none"
+        width="100%"
+        height="100%"
+        fill="black"
+        onClick={handleCloseClick}
+      >
+        <rect
+          width="100%"
+          height="100%"
+          fill="black"
+        />
+
+        <path
+          fill="none"
+          stroke="white"
+          strokeWidth="2"
+          d="M10,10 L30,30 M30,10 L10,30"
+        />
+      </svg>
+    </div>
+  );
+};
+
 Dialog.ContentsContainer = ({
   children,
 }: {
@@ -68,20 +122,32 @@ Dialog.Button = ({
   onClick,
   children,
   cssOverlap = css``,
+  disabled = false,
 }: {
   onClick: () => void;
   children: React.ReactNode;
   cssOverlap?: SerializedStyles;
+  disabled?: boolean;
 }) => {
   return (
     <div
       className="dialog-button"
       css={css`
-        padding: 0.5em 1em 0.5em 1em;
-        background-color: black;
-        color: white;
+        background-color: #fff;
+
+        cursor: pointer;
+        user-select: none;
 
         ${cssOverlap}
+
+        ${disabled &&
+        css`
+          cursor: not-allowed !important;
+          pointer-events: none !important;
+          background-color: #f0f0f0 !important;
+          color: #bebebe !important;
+          border-color: #bebebe !important;
+        `}
       `}
       onClick={onClick}
     >

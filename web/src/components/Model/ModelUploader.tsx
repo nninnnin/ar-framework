@@ -1,8 +1,9 @@
 import React from "react";
 import { css } from "@emotion/react";
+import { v4 as uuidv4 } from "uuid";
 
 import { isGLBFile } from "@/utils";
-import { useAddedModels, useSelectedModelIndex } from "@/stores";
+import { useAddedModels } from "@/stores";
 
 const ModelUploader = () => {
   const { addModel } = useAddedModels();
@@ -29,7 +30,10 @@ const ModelUploader = () => {
           return;
         }
 
-        addModel(file);
+        addModel({
+          id: uuidv4(),
+          file,
+        });
       }}
       onDragOver={(e) => {
         e.preventDefault();

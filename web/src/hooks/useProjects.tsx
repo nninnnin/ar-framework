@@ -5,8 +5,9 @@ import {
   Project,
   ProjectFormatted,
 } from "@/types/project";
-import { getProjects } from "@/utils";
+
 import { formatProjectList } from "@/utils/formatters";
+import { getProjects } from "@/utils/fetchers/project";
 
 const useProjects = (filter: {
   groupName: string;

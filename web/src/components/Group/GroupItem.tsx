@@ -25,6 +25,10 @@ const GroupItem = ({
         cursor: pointer;
         user-select: none;
 
+        &:hover {
+          background-color: #f0f0f0;
+        }
+
         ${cssOverlap}
       `}
       onClick={onClick}

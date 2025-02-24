@@ -6,18 +6,29 @@ import React, { createContext } from "react";
 import ProjectList from "@/components/Project/ProjectList";
 import ProjectItem from "@/components/Project/ProjectItem";
 import Overlay from "@/components/common/Overlay";
-
 import { useSelectedGroup } from "@/hooks/useSelectedGroup";
 import useProjects from "@/hooks/useProjects";
 import { ProjectFormatted } from "@/types/project";
-import ProjectDetailsDialog from "@/components/Project/ProjectDetailsDialog";
 import Plus from "@/components/common/icons/Plus";
+import { designTokens } from "@/styles/tokens";
+import ProjectModelEditingDialog from "@/components/Project/ProjectModelEditingDialog";
+
+const ProjectDetailsDialog = dynamic(
+  () =>
+    import(
+      "@/components/Project/ProjectDetailsDialog"
+    ),
+  {
+    ssr: false,
+  }
+);
 
 const ProjectCreationFunnel = dynamic(
   () =>
     import(
       "@/components/Project/ProjectCreationFunnel"
-    )
+    ),
+  { ssr: false }
 );
 
 export const OverlayCloseContext = createContext<{
@@ -40,25 +51,6 @@ const ProjectSection = () => {
             value={{ close }}
           >
             <ProjectCreationFunnel />
-          </OverlayCloseContext.Provider>
-        </Overlay>
-      );
-    });
-  };
-
-  const handleProjectItemClick = (
-    projectUid: string
-  ) => {
-    overlay.open(({ close, isOpen }) => {
-      return (
-        <Overlay isOpen={isOpen}>
-          <OverlayCloseContext.Provider
-            value={{ close }}
-          >
-            <ProjectDetailsDialog
-              projectUid={projectUid}
-              groupName={selectedGroup?.name ?? ""}
-            />
           </OverlayCloseContext.Provider>
         </Overlay>
       );
@@ -91,45 +83,161 @@ const ProjectSection = () => {
         </ProjectItem>
 
         {projects &&
-          projects.map((project: ProjectFormatted) => {
-            return (
-              <ProjectItem
-                key={project.uid}
-                onClick={() =>
-                  handleProjectItemClick(project.uid)
-                }
-              >
-                <>
-                  {project.name}
-
-                  <div
-                    css={css`
-                      position: absolute;
-                      top: 0;
-                      right: 0;
-
-                      border: 1px solid black;
-                      border-top: none;
-                      border-right: none;
-
-                      padding: 0.5em;
-                      padding-left: 0.7em;
-                      padding-right: 0.7em;
-
-                      font-size: 0.7em;
-                    `}
-                  >
-                    {project.projectType.replace(
-                      "AR",
-                      ""
-                    )}
-                  </div>
-                </>
-              </ProjectItem>
-            );
-          })}
+          projects.map(
+            (projectItem: ProjectFormatted) => {
+              return (
+                <ProjectSection.ProjectDetailsItem
+                  key={projectItem.uid}
+                  projectItem={projectItem}
+                />
+              );
+            }
+          )}
       </ProjectList>
     </div>
+  );
+};
+
+ProjectSection.ProjectDetailsItem = ({
+  projectItem,
+}: {
+  projectItem: ProjectFormatted;
+}) => {
+  const overlay = useOverlay();
+  const { selectedGroup } = useSelectedGroup();
+
+  const onModifyClick = (projectId: string) => () => {
+    overlay.open(({ close, isOpen }) => (
+      <Overlay isOpen={isOpen}>
+        <ProjectModelEditingDialog
+          projectId={projectId}
+          onClose={() => close()}
+        />
+      </Overlay>
+    ));
+  };
+
+  const onConnectClick = (projectUid: string) => {
+    overlay.open(({ close, isOpen }) => {
+      return (
+        <Overlay isOpen={isOpen}>
+          <OverlayCloseContext.Provider
+            value={{ close }}
+          >
+            <ProjectDetailsDialog
+              projectUid={projectUid}
+              groupName={selectedGroup?.name ?? ""}
+            />
+          </OverlayCloseContext.Provider>
+        </Overlay>
+      );
+    });
+  };
+
+  const arColor =
+    designTokens.colors.arTypes[
+      projectItem.projectType
+    ];
+
+  const badge = (
+    <div
+      css={css`
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        border: 1px solid black;
+        border-top: none;
+        border-right: none;
+
+        padding: 0.5em;
+        padding-left: 0.7em;
+        padding-right: 0.5em;
+
+        font-size: 0.7em;
+
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      `}
+    >
+      {projectItem.projectType.replace("AR", "")}
+
+      <svg width="10" height="10" viewBox="0 0 10 10">
+        <circle cx="5" cy="5" r="3.5" fill={arColor} />
+      </svg>
+    </div>
+  );
+
+  return (
+    <ProjectItem>
+      {projectItem.name}
+
+      {badge}
+
+      <div
+        className="project-item-button-container"
+        css={css`
+          position: absolute;
+          bottom: 0;
+          right: 0;
+
+          width: 80%;
+          margin: 0 auto;
+
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 1px;
+
+          background-color: #000000;
+
+          border-top: 1px solid #000000;
+          border-left: 1px solid #000000;
+
+          visibility: hidden;
+          pointer-events: none;
+        `}
+      >
+        <div
+          css={css`
+            padding: 0.7em;
+            background-color: white;
+            flex: 1;
+            color: black;
+            font-size: 0.8em;
+            cursor: pointer;
+
+            &:hover {
+              background-color: #f1f1f1;
+            }
+          `}
+          onClick={onModifyClick(projectItem.uid)}
+        >
+          수정
+        </div>
+
+        <div
+          css={css`
+            padding: 0.7em;
+            background-color: white;
+            flex: 1;
+            color: black;
+            font-size: 0.8em;
+            cursor: pointer;
+
+            &:hover {
+              background-color: #f1f1f1;
+            }
+          `}
+          onClick={() =>
+            onConnectClick(projectItem.uid)
+          }
+        >
+          접속
+        </div>
+      </div>
+    </ProjectItem>
   );
 };
 

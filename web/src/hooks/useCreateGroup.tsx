@@ -1,7 +1,10 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 
-import { createGroup } from "@/utils";
 import { QueryKeys } from "@/constants/queryKeys";
+import { createGroup } from "@/utils/fetchers/group";
 
 const useCreateGroup = () => {
   const queryClient = useQueryClient();

@@ -6,7 +6,9 @@ interface SelectedGroupState {
   setSelectedGroup: (group: GroupFormatted) => void;
 }
 
-export const useSelectedGroup = create<SelectedGroupState>((set) => ({
-  selectedGroup: null,
-  setSelectedGroup: (group: GroupFormatted) => set({ selectedGroup: group }),
-}));
+export const useSelectedGroup =
+  create<SelectedGroupState>((set) => ({
+    selectedGroup: null,
+    setSelectedGroup: (group: GroupFormatted) =>
+      set({ selectedGroup: group }),
+  }));

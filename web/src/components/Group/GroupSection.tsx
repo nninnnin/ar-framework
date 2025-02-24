@@ -80,10 +80,6 @@ const GroupSection = () => {
                 selectedGroup?.uid
                   ? "white"
                   : "initial"};
-
-                &:hover {
-                  background-color: #f0f0f0;
-                }
               `}
             >
               {groupItem.name}

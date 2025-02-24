@@ -1,47 +1,72 @@
-import { v4 as uuidv4 } from "uuid";
 import { create } from "zustand";
 
 import { ProjectType } from "@/types/project";
 
 export const useSelectedProjectType = create<{
   selectedProjectType: ProjectType | null;
-  setSelectedProjectType: (projectType: ProjectType) => void;
+  setSelectedProjectType: (
+    projectType: ProjectType
+  ) => void;
+  resetSelectedProjectType: () => void;
 }>((set) => ({
   selectedProjectType: null,
   setSelectedProjectType: (projectType: ProjectType) =>
     set({ selectedProjectType: projectType }),
+  resetSelectedProjectType: () =>
+    set({ selectedProjectType: null }),
 }));
 
 export const useSelectedModelIndex = create<{
   selectedModelIndex: number;
   setSelectedModelIndex: (index: number) => void;
+  resetSelectedModelIndex: () => void;
 }>((set) => ({
   selectedModelIndex: 0,
-  setSelectedModelIndex: (index: number) => set({ selectedModelIndex: index }),
+  setSelectedModelIndex: (index: number) =>
+    set({ selectedModelIndex: index }),
+  resetSelectedModelIndex: () =>
+    set({ selectedModelIndex: 0 }),
 }));
 
+export type AddedModel = {
+  id: string;
+  file: File;
+};
+
 export const useAddedModels = create<{
-  addedModels: Array<{
+  addedModels: Array<AddedModel | null>;
+  addModel: (model: {
     id: string;
     file: File;
-  } | null>;
-  addModel: (model: File) => void;
-  removeModel: (model: File) => void;
+  }) => void;
+  addModels: (
+    models: { id: string; file: File }[]
+  ) => void;
+  resetAddedModels: () => void;
 }>((set) => ({
   addedModels: [null],
-  addModel: (model: File) =>
+  addModel: (newModel: { id: string; file: File }) =>
     set((state) => {
-      const newModel = {
-        id: uuidv4(),
-        file: model,
-      };
-
       return {
-        addedModels: [...state.addedModels.filter((m) => m), newModel, null],
+        addedModels: [
+          ...state.addedModels.filter((m) => m),
+          newModel,
+          null,
+        ],
       };
     }),
-  removeModel: (model: File) =>
-    set((state) => ({
-      addedModels: state.addedModels.filter((m) => m?.file !== model),
-    })),
+  addModels: (
+    newModels: { id: string; file: File }[]
+  ) => {
+    set((state) => {
+      return {
+        addedModels: [
+          ...state.addedModels.filter((m) => m),
+          ...newModels,
+          null,
+        ],
+      };
+    });
+  },
+  resetAddedModels: () => set({ addedModels: [null] }),
 }));

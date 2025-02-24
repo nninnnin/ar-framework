@@ -1,11 +1,13 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 import { MediaUploadResult } from "@/types";
-import { postGlbModels } from "@/utils";
+import { postGlbModels } from "@/utils/fetchers/glbModel";
 
 const usePostGlbModel = () => {
   return useMutation({
-    mutationFn: async (uploadedResult: MediaUploadResult[]) => {
+    mutationFn: async (
+      uploadedResult: MediaUploadResult[]
+    ) => {
       return await postGlbModels(uploadedResult);
     },
   });

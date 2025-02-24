@@ -3,7 +3,14 @@
 import { css } from "@emotion/react";
 
 import GroupSection from "@/components/Group/GroupSection";
-import ProjectSection from "@/components/Project/ProjectSection";
+import dynamic from "next/dynamic";
+
+const ProjectSection = dynamic(
+  () => import("@/components/Project/ProjectSection"),
+  {
+    ssr: false,
+  }
+);
 
 export default function Home() {
   return (
