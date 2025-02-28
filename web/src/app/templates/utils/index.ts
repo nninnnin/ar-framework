@@ -41,7 +41,7 @@ const getTemplatePath = (projectType: ProjectType) => {
     process.cwd(),
     "src",
     "features",
-    "templates",
+    "template",
     "components"
   );
 
