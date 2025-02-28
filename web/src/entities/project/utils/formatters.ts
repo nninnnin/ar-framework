@@ -5,6 +5,9 @@ import {
   mapObjectProps,
   deconstructLanguageMap,
 } from "@rebel9/memex-fetcher";
+
+import { CategoryInterface } from "@/shared/types/memex";
+import { FormattedCategory } from "@/shared/types";
 import {
   Project,
   ProjectData,
@@ -64,13 +67,25 @@ export const formatProjectItem = (
   };
 };
 
-export const formatProjectList = (
-  data: Project[]
-): ProjectFormatted[] => {
+export const formatProjectTypes = (data: {
+  list: Array<{
+    categories: CategoryInterface[];
+  }>;
+}): FormattedCategory[] => {
   return pipe(
     data,
     pluckList,
-    (projectList: Project[]) =>
-      mapListItems(formatProjectItem, projectList)
+    mapListItems(
+      (list: { categories: CategoryInterface[] }) =>
+        list.categories.map(
+          (category: CategoryInterface) => {
+            return {
+              id: category.id,
+              name: category.languageMap.KO,
+            };
+          }
+        )
+    ),
+    last
   );
 };
