@@ -1,7 +1,7 @@
-import { Project } from "@/types/project";
-import { formatProjectItem } from "@/utils/formatters";
-import { getProjectItem } from "@/utils/fetchers/project";
 import { generateArTemplate } from "@/app/templates/utils";
+import { Project } from "@/features/project/types/project";
+import { getProjectItem } from "@/features/project/fetchers/project";
+import { formatProjectItem } from "@/features/project/utils/formatter";
 
 export async function GET(request: Request) {
   // 1. 프로젝트 아이디로 미믹스에서 프로젝트 정보 가져오기

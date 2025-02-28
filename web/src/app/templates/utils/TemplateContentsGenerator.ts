@@ -1,7 +1,7 @@
 import parse, { HTMLElement } from "node-html-parser";
 
 import { TemplateContents } from "@/app/templates/constants/templateContents";
-import { ProjectType } from "@/types/project";
+import { ProjectType } from "@/features/project/types/project";
 
 class TemplateContentsGenerator {
   projectType: ProjectType;

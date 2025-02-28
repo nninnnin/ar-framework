@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import GlobalWrapper from "@/components/GlobalWrapper";
-import { css } from "@emotion/react";
-import GlobalNavigation from "@/components/layout/GlobalNavigation";
+
+import GlobalWrapper from "@/shared/components/GlobalWrapper";
+import GlobalNavigation from "@/shared/components/layout/GlobalNavigation";
 
 export const metadata: Metadata = {
   title: "AR Framework",

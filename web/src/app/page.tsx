@@ -2,11 +2,14 @@
 
 import { css } from "@emotion/react";
 
-import GroupSection from "@/components/Group/GroupSection";
+import GroupSection from "@/features/group/components/GroupSection";
 import dynamic from "next/dynamic";
 
 const ProjectSection = dynamic(
-  () => import("@/components/Project/ProjectSection"),
+  () =>
+    import(
+      "@/features/project/components/ProjectSection"
+    ),
   {
     ssr: false,
   }

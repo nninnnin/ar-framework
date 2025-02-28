@@ -1,6 +1,7 @@
-import { GlbModel } from "@/types/glbModel";
-import { LanguageMap } from "@/types/memex";
 import { createMemexFetcher } from "@rebel9/memex-fetcher";
+
+import { GlbModel } from "@/features/glbModel/types/glbModel";
+import { LanguageMap } from "@/shared/types/memex";
 
 const memexFetcher = createMemexFetcher(
   process.env.MEMEX_TOKEN ?? ""

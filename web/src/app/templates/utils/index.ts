@@ -4,7 +4,7 @@ import { promises as fs } from "fs";
 import {
   ProjectFormatted,
   ProjectType,
-} from "@/types/project";
+} from "@/features/project/types/project";
 import TemplateContentsGenerator from "@/app/templates/utils/TemplateContentsGenerator";
 import { getGlbModels } from "@/app/templates/utils/fetcher";
 
@@ -40,8 +40,9 @@ const getTemplatePath = (projectType: ProjectType) => {
   const templatePathPrefix = path.resolve(
     process.cwd(),
     "src",
-    "assets",
-    "templates"
+    "features",
+    "templates",
+    "components"
   );
 
   const templateName = (function () {

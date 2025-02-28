@@ -1,4 +1,4 @@
-import { ProjectType } from "@/types/project";
+import { ProjectType } from "@/features/project/types/project";
 
 export const TemplateContents: Record<
   ProjectType,
