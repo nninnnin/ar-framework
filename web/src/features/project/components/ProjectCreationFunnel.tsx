@@ -20,10 +20,8 @@ import { ProjectType } from "@/features/project/types/project";
 import ProjectModelSelectionDialog from "@/features/project/components/ProjectModelSelectionDialog";
 import ProjectRegisterDialog from "@/features/project/components/ProjectRegisterDialog";
 import { uploadGlbModels } from "@/features/glbModel/fetchers/glbModel";
-import {
-  createProjectBody,
-  getProjectTypeId,
-} from "@/features/project/utils";
+import { getProjectTypeId } from "@/features/project/utils";
+import { createProjectBody } from "@/entities/project/utils";
 
 const ProjectCreationFunnel = () => {
   const { close: closeOverlay } = useContext(

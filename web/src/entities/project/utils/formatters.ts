@@ -15,6 +15,7 @@ import {
   LanguageMap,
   RelationInterface,
 } from "@/shared/types/memex";
+
 export const formatProjectItem = (item: Project) => {
   return {
     uid: item.uid,

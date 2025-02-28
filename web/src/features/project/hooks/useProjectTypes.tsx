@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { QueryKeys } from "@/shared/constants/queryKeys";
 import { CategoryInterface } from "@/shared/types/memex";
 import { FormattedCategory } from "@/shared/types";
-import { getProjectTypes } from "@/features/project/fetchers/project";
+import { getProjectTypes } from "@/entities/project/utils/fetchers";
 
 const useProjectTypes = () => {
   return useQuery<any, any, FormattedCategory[]>({

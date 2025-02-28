@@ -20,3 +20,9 @@ export type MediaUploadResult = {
   mediaType: string;
   value: string;
 };
+
+export interface UpdateBody {
+  uid: string;
+  publish: boolean;
+  data: unknown;
+}

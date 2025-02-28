@@ -1,29 +1,29 @@
 import { generateArTemplate } from "@/app/templates/utils";
-import { Project } from "@/features/project/types/project";
-import { getProjectItem } from "@/features/project/fetchers/project";
-import { formatProjectItem } from "@/features/project/utils/formatter";
+import { ProjectFormatted } from "@/features/project/types/project";
+import createNextApiFetcher from "@/shared/utils/nextApiFetcher";
+
+const apiFetcher = createNextApiFetcher({
+  entity: "project",
+});
 
 export async function GET(request: Request) {
-  // 1. 프로젝트 아이디로 미믹스에서 프로젝트 정보 가져오기
   const urlObj = new URL(request.url);
-  const projectUid =
+  const projectId =
     urlObj.searchParams.get("projectUid");
 
-  if (!projectUid) {
-    return new Response("projectUid is required", {
+  if (!projectId) {
+    return new Response("projectId is required", {
       status: 400,
     });
   }
 
-  const projectItemUnformatted: Project =
-    await getProjectItem(projectUid);
-  const projectItemFormatted = formatProjectItem(
-    projectItemUnformatted
-  );
+  const { data: projectItem } =
+    await apiFetcher.getItem<ProjectFormatted>(
+      projectId
+    );
 
-  // 2. 가져온 프로젝트 정보 기반으로 템플릿 생성
   const templateFile = await generateArTemplate(
-    projectItemFormatted
+    projectItem
   );
 
   const response = new Response(templateFile);

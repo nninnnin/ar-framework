@@ -4,7 +4,7 @@ import {
 } from "@tanstack/react-query";
 
 import { QueryKeys } from "@/shared/constants/queryKeys";
-import { createProject } from "@/features/project/fetchers/project";
+import { createProject } from "@/entities/project/utils/fetchers";
 import { ProjectBody } from "@/features/project/types/project";
 
 const useCreateProject = () => {

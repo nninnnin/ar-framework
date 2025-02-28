@@ -36,6 +36,7 @@ export const OverlayCloseContext = createContext<{
 
 const ProjectSection = () => {
   const { selectedGroup } = useSelectedGroup();
+
   const { data: projects } = useProjects({
     groupName: selectedGroup?.name ?? "",
   });

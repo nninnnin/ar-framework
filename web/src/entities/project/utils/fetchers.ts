@@ -1,6 +1,8 @@
 import { createMemexFetcher } from "@rebel9/memex-fetcher";
 
 import { ProjectBody } from "@/features/project/types/project";
+import { ProjectFilter } from "@/entities/project/types";
+import { UpdateBody } from "@/shared/types";
 
 const memexFetcher = createMemexFetcher(
   process.env.MEMEX_TOKEN ?? ""
@@ -15,7 +17,9 @@ export const getProjectItem = async (
     projectItemUid
   );
 
-  return await res.json();
+  const result = await res.json();
+
+  return result;
 };
 
 export const createProject = async (
@@ -28,9 +32,9 @@ export const createProject = async (
   );
 };
 
-export const getProjects = async (filter: {
-  groupName: string;
-}) => {
+export const getProjects = async (
+  filter: ProjectFilter
+) => {
   return await memexFetcher.getList(
     process.env.MEMEX_PROJECT_ID ?? "",
     "arProjects",
@@ -41,7 +45,9 @@ export const getProjects = async (filter: {
         {
           componentType: "RELATION",
           devKey: "groupName",
-          condition: `{ "type": "SAME", "language": "KO", "keyword": "${filter.groupName}" }`,
+          condition: `{ "type": "SAME", "language": "KO", "keyword": "${decodeURIComponent(
+            filter.groupName
+          )}" }`,
         },
       ],
     }
@@ -55,14 +61,12 @@ export const getProjectTypes = async () => {
   );
 };
 
-export const updateProject = async (updateBody: {
-  uid: string;
-  publish: boolean;
-  data: unknown;
-}) => {
+export const updateProject = async (
+  body: UpdateBody
+) => {
   return await memexFetcher.updateItem(
     process.env.MEMEX_PROJECT_ID ?? "",
     "arProjects",
-    { ...updateBody }
+    body
   );
 };

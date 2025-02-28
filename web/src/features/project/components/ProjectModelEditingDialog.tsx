@@ -15,12 +15,15 @@ import {
   postGlbModels,
   uploadGlbModels,
 } from "@/features/glbModel/fetchers/glbModel";
-import {
-  createProjectBody,
-  getProjectTypeId,
-} from "@/features/project/utils";
-import { updateProject } from "@/features/project/fetchers/project";
+import { getProjectTypeId } from "@/features/project/utils";
+import { updateProject } from "@/entities/project/utils/fetchers";
 import ModelEditor from "@/features/project/components/ModelEditor";
+import { createProjectBody } from "@/entities/project/utils";
+import createNextApiFetcher from "@/shared/utils/nextApiFetcher";
+
+const apiFetcher = createNextApiFetcher({
+  entity: "project",
+});
 
 const ProjectModelEditingDialog = ({
   projectId,
@@ -71,11 +74,6 @@ const ProjectModelEditingDialog = ({
       "id"
     );
 
-    console.log(
-      "새롭게 추가된 것: ",
-      newlyAddedModels
-    );
-
     const result = await uploadGlbModels(
       newlyAddedModels
         .filter((m) => m)
@@ -97,18 +95,26 @@ const ProjectModelEditingDialog = ({
       );
     }
 
-    const postUpdateResult = await updateProject({
+    const projectBody = createProjectBody(
+      projectItem!.name,
+      projectTypeId,
+      [
+        ...projectItem!.glbModels.map((m) => m.uid),
+        ...postModelResult.map((r) => r),
+      ],
+      selectedGroup!.uid
+    );
+
+    const updateBody = {
       uid: projectId,
-      ...createProjectBody(
-        projectItem!.name,
-        projectTypeId,
-        [
-          ...projectItem!.glbModels.map((m) => m.uid),
-          ...postModelResult.map((r) => r),
-        ],
-        selectedGroup!.uid
-      ),
-    });
+      ...projectBody,
+    };
+
+    const postUpdateResult =
+      await apiFetcher.updateItem(
+        projectId,
+        updateBody
+      );
 
     console.log(
       "postUpdateResult: ",

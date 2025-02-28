@@ -1,24 +1,4 @@
-import { ProjectBody } from "@/features/project/types/project";
 import { FormattedCategory } from "@/shared/types";
-
-export const createProjectBody = (
-  projectName: string,
-  projectTypeId: number,
-  postedModelIds: number[],
-  groupId: string
-): ProjectBody => {
-  return {
-    publish: true,
-    data: {
-      name: {
-        KO: projectName,
-      },
-      projectType: [projectTypeId],
-      glbModels: postedModelIds,
-      groupName: [groupId],
-    },
-  };
-};
 
 export const getProjectTypeId = (
   projectTypeName: string,
@@ -31,4 +11,11 @@ export const getProjectTypeId = (
   );
 
   return projectType?.id;
+};
+
+export const getSearchParam = (
+  request: Request,
+  key: string
+) => {
+  return new URL(request.url).searchParams.get(key);
 };
