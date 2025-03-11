@@ -16,7 +16,9 @@ import {
   RelationInterface,
 } from "@/shared/types/memex";
 
-export const formatProjectItem = (item: Project) => {
+export const formatProjectItem = (
+  item: Project
+): ProjectFormatted => {
   return {
     uid: item.uid,
     ...pipe(

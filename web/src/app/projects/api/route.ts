@@ -1,5 +1,6 @@
 import ProjectService from "@/entities/project/service";
 import { getSearchParam } from "@/features/project/utils/index";
+import { formatProjectItem } from "@/entities/project/utils/formatters";
 
 const projectService = new ProjectService();
 
@@ -13,8 +14,9 @@ export async function GET(request: Request) {
     const projectItem =
       await projectService.getProject({ projectId });
 
-    // return one project item
-    return Response.json(projectItem);
+    const formatted = formatProjectItem(projectItem);
+
+    return Response.json(formatted);
   }
 
   const groupName = getSearchParam(

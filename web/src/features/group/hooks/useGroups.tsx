@@ -2,10 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 
 import { QueryKeys } from "@/shared/constants/queryKeys";
 import {
+  Group,
   GroupFormatted,
   GroupResult,
 } from "@/features/group/types/group";
 import { getGroups } from "@/features/group/fetchers/group";
+import {
+  mapListItems,
+  pipe,
+  pluckList,
+} from "@rebel9/memex-fetcher";
 
 const useGroups = () => {
   return useQuery<GroupResult, null, GroupFormatted[]>(
@@ -16,17 +22,19 @@ const useGroups = () => {
 
         return await res.json();
       },
-      select: (data) => {
-        const list = data.list;
-
-        return list.map((item) => {
-          return {
-            uid: item.uid,
-            name: item.data.name.KO ?? "",
-          };
-        });
-      },
+      select: formatGroup,
     }
+  );
+};
+
+export const formatGroup = (result: GroupResult) => {
+  return pipe(
+    result,
+    pluckList,
+    mapListItems((item: Group) => ({
+      uid: item.uid,
+      name: item.data.name.KO ?? "",
+    }))
   );
 };
 

@@ -1,6 +1,9 @@
 import { createMemexFetcher } from "@rebel9/memex-fetcher";
 
-import { ProjectBody } from "@/features/project/types/project";
+import {
+  Project,
+  ProjectBody,
+} from "@/features/project/types/project";
 import { ProjectFilter } from "@/entities/project/types";
 import { UpdateBody } from "@/shared/types";
 
@@ -10,7 +13,7 @@ const memexFetcher = createMemexFetcher(
 
 export const getProjectItem = async (
   projectItemUid: string
-) => {
+): Promise<Project> => {
   const res = await memexFetcher.getItem(
     process.env.MEMEX_PROJECT_ID ?? "",
     "arProjects",

@@ -5,32 +5,34 @@ import {
   getProjectItem,
   getProjects,
   updateProject,
+  createProject as fetchCreateProject,
 } from "@/entities/project/utils/fetchers";
-import { ProjectFormatted } from "@/features/project/types/project";
 import {
-  formatProjectItem,
-  formatProjectList,
-} from "@/entities/project/utils/formatters";
+  Project,
+  ProjectBody,
+  ProjectFormatted,
+} from "@/features/project/types/project";
+import { formatProjectList } from "@/entities/project/utils/formatters";
 import { UpdateBody } from "@/shared/types";
 
 class ProjectService {
   constructor() {}
 
-  async createProject() {}
+  async createProject(body: ProjectBody) {
+    return await fetchCreateProject(body);
+  }
 
   async getProject({
     projectId,
   }: {
     projectId: string;
-  }): Promise<ProjectFormatted> {
-    return pipe(
-      projectId,
-      getProjectItem,
-      formatProjectItem
-    );
+  }): Promise<Project> {
+    return pipe(projectId, getProjectItem);
   }
 
-  async getProjects(filter: ProjectFilter) {
+  async getProjects(
+    filter: ProjectFilter
+  ): Promise<ProjectFormatted[]> {
     const res = await getProjects(filter);
     const result = await res.json();
 
@@ -41,7 +43,7 @@ class ProjectService {
     return await updateProject(body);
   }
 
-  async removeProject() {}
+  async removeProject(uid: string) {}
 }
 
 export default ProjectService;

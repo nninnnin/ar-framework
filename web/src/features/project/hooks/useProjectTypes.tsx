@@ -1,43 +1,28 @@
-import { last } from "lodash";
-import {
-  mapListItems,
-  pipe,
-  pluckList,
-} from "@rebel9/memex-fetcher";
 import { useQuery } from "@tanstack/react-query";
 
 import { QueryKeys } from "@/shared/constants/queryKeys";
 import { CategoryInterface } from "@/shared/types/memex";
 import { FormattedCategory } from "@/shared/types";
 import { getProjectTypes } from "@/entities/project/utils/fetchers";
+import { formatProjectTypes } from "@/features/project/utils/formatter";
 
 const useProjectTypes = () => {
-  return useQuery<any, any, FormattedCategory[]>({
+  return useQuery<
+    {
+      list: Array<{
+        categories: CategoryInterface[];
+      }>;
+    },
+    any,
+    FormattedCategory[]
+  >({
     queryKey: [QueryKeys.ProjectTypes],
     queryFn: async () => {
       const res = await getProjectTypes();
+
       return await res.json();
     },
-    select: (data) => {
-      return pipe(
-        data,
-        pluckList,
-        mapListItems(
-          (list: {
-            categories: CategoryInterface[];
-          }) =>
-            list.categories.map(
-              (category: CategoryInterface) => {
-                return {
-                  id: category.id,
-                  name: category.languageMap.KO,
-                };
-              }
-            )
-        ),
-        last
-      );
-    },
+    select: formatProjectTypes,
   });
 };
 
