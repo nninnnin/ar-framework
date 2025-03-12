@@ -12,21 +12,23 @@ const jacquard = Jacquard_24({
 
 const GlobalNavigation = () => {
   return (
-    <h1
-      className={jacquard.className}
-      css={css`
-        border-bottom: 1px solid black;
-        padding: 16px;
-        font-size: 32px;
+    <a href="/">
+      <h1
+        className={jacquard.className}
+        css={css`
+          border-bottom: 1px solid black;
+          padding: 16px;
+          font-size: 32px;
 
-        background-color: #fff;
-        color: black;
+          background-color: #fff;
+          color: black;
 
-        user-select: none;
-      `}
-    >
-      AR framework
-    </h1>
+          user-select: none;
+        `}
+      >
+        AR framework
+      </h1>
+    </a>
   );
 };
 
