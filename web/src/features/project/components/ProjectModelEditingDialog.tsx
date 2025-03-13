@@ -11,15 +11,15 @@ import {
 import useProjectItem from "@/features/project/hooks/useProjectItem";
 import useProjectTypes from "@/features/project/hooks/useProjectTypes";
 import useGlbModels from "@/features/glbModel/hooks/useGlbModels";
-import {
-  postGlbModels,
-  uploadGlbModels,
-} from "@/features/glbModel/fetchers/glbModel";
 import { getProjectTypeId } from "@/features/project/utils";
-import { updateProject } from "@/entities/project/utils/fetchers";
+
 import ModelEditor from "@/features/project/components/ModelEditor";
 import { createProjectBody } from "@/entities/project/utils";
 import createNextApiFetcher from "@/shared/utils/nextApiFetcher";
+import {
+  postGlbModels,
+  uploadGlbModels,
+} from "@/entities/glbModel/utils/fetchers";
 
 const apiFetcher = createNextApiFetcher({
   entity: "project",

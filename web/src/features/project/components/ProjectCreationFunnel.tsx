@@ -19,9 +19,9 @@ import ProjectTypeSelectionDialog from "@/features/project/components/ProjectTyp
 import { ProjectType } from "@/features/project/types/project";
 import ProjectModelSelectionDialog from "@/features/project/components/ProjectModelSelectionDialog";
 import ProjectRegisterDialog from "@/features/project/components/ProjectRegisterDialog";
-import { uploadGlbModels } from "@/features/glbModel/fetchers/glbModel";
 import { getProjectTypeId } from "@/features/project/utils";
 import { createProjectBody } from "@/entities/project/utils";
+import { uploadGlbModels } from "@/entities/glbModel/utils/fetchers";
 
 const ProjectCreationFunnel = () => {
   const { close: closeOverlay } = useContext(

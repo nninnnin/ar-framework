@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 
 import { MediaUploadResult } from "@/shared/types";
-import { postGlbModels } from "@/features/glbModel/fetchers/glbModel";
+import { postGlbModels } from "@/entities/glbModel/utils/fetchers";
 
 const usePostGlbModel = () => {
   return useMutation({
