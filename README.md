@@ -16,7 +16,11 @@
 - "Select TypeScript Version" 를 선택합니다.
 - "Use Workspace Version" 를 선택합니다.
 
-#### 3. yarn workspace를 사용한 프로젝트의 의존성 설치방법
+#### 3. 프로젝트 클론 이후 `yarn install` 은 필요합니다
+
+루트 디렉터리에서 꼭 yarn install을 실행해주세요.
+
+#### 4. yarn workspace를 사용한 프로젝트의 의존성 설치방법
 
 `web` 이라는 워크스페이스 (모노레포의 서브패키지)에 `lodash` 라는 모듈을 추가할 때
 
