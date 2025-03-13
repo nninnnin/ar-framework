@@ -50,7 +50,7 @@ const ModelViewer = ({
         }
       `}
     >
-      <ModelViewer.ModelController />
+      {/* <ModelViewer.ModelController /> */}
     </div>
   );
 };
