@@ -50,8 +50,6 @@ const Menu = () => {
                 disabled={
                   !selectedModelName ||
                   subject ===
-                    ControllingSubject.Position || // 미완성
-                  subject ===
                     ControllingSubject.FaceTarget // 미완성
                 }
                 onClick={handleItemClick(subject)}

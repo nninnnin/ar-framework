@@ -8,10 +8,10 @@ export const sliderConfig = {
     step: 1,
   },
   [ControllingSubject.Position]: {
-    min: -10,
-    max: 10,
+    min: -1200,
+    max: 1200,
     defaultValue: [0],
-    step: 0.1,
+    step: 1,
   },
   [ControllingSubject.Scale]: {
     min: 0,

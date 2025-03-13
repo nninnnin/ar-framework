@@ -103,10 +103,38 @@ ValueController.SaveButton = () => {
 };
 
 ValueController.PositionSlider = () => {
+  const { modelElement } = useModelElement();
+  const { selectedModelName } = useModelStore();
+  const { setPosition, axis } = useControlStore();
+
+  const handleChange = (value: number[]) => {
+    const [position] = value;
+
+    setPosition(selectedModelName, axis, position);
+
+    if (modelElement) {
+      const prevPosition =
+        modelElement.parentElement.getAttribute(
+          "position"
+        ) as unknown as Record<Axis, number>;
+
+      const newPosition = {
+        ...prevPosition,
+        [axis]: position,
+      };
+
+      modelElement.parentElement.setAttribute(
+        "position",
+        // @ts-ignore
+        newPosition
+      );
+    }
+  };
+
   return (
     <Slider
       {...sliderConfig[ControllingSubject.Position]}
-      onChange={(value) => console.log(value)}
+      onChange={handleChange}
     />
   );
 };
