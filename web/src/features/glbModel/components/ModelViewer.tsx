@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { ModelViewerElement } from "@google/model-viewer";
 import { css } from "@emotion/react";
@@ -37,8 +37,9 @@ const ModelViewer = ({
     <div
       id="mv-container"
       css={css`
-        flex: 1;
+        position: relative;
 
+        flex: 1;
         background-color: powderblue;
 
         & > model-viewer {
@@ -48,7 +49,46 @@ const ModelViewer = ({
           height: 100%;
         }
       `}
-    ></div>
+    >
+      <ModelViewer.ModelController />
+    </div>
+  );
+};
+
+ModelViewer.ModelController = () => {
+  const [value, setValue] = useState(false);
+
+  const handleChange = () => setValue((prev) => !prev);
+
+  return (
+    <div
+      css={css`
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1000;
+
+        background-color: #fff;
+
+        padding: 4px;
+        padding-left: 6px;
+        padding-right: 6px;
+      `}
+    >
+      <div
+        css={css`
+          display: flex;
+          gap: 4px;
+        `}
+      >
+        <label>카메라에서 벗어나도 렌더링하기</label>
+        <input
+          type="checkbox"
+          onChange={handleChange}
+          checked={value}
+        />
+      </div>
+    </div>
   );
 };
 
