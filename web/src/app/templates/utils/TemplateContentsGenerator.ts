@@ -142,7 +142,7 @@ class TemplateContentsGenerator {
               model.name
             }" src="#${
           model.uid
-        }" scale="1 1 1" position="0 0 0" rotation="0 0 0" animation-mixer></a-gltf-model>
+        }" scale="1 1 1" position="0 0 0" rotation="0 0 0" animation-mixer frustumCulled="cull: false"></a-gltf-model>
           </a-entity>
         `;
       })
@@ -156,7 +156,9 @@ class TemplateContentsGenerator {
     this.appendToBody(
       `<script src="/scripts/controls.js"></script>`
     );
-
+    this.appendToHead(
+      `<script src="/scripts/aframeComponent/frustumCulled.js"></script>`
+    );
     this.appendToHead(
       `<link rel="stylesheet" href="/styles/controls.css" />`
     );
