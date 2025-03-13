@@ -12,7 +12,7 @@
   "packageManager": "yarn@4.6.0",
   "workspaces": [
     "packages/*",
-    "@ar-framework/web"
+    "web"
   ],
   "dependencies": {
     "lit": "^3.2.1"
