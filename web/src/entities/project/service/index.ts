@@ -13,7 +13,7 @@ import {
   ProjectFormatted,
 } from "@/features/project/types/project";
 import { UpdateBody } from "@/shared/types";
-import { formatProjectItem } from "@/entities/project/utils/formatters";
+import { formatProjectList } from "@/entities/project/utils/formatters";
 
 class ProjectService {
   constructor() {}
@@ -36,9 +36,7 @@ class ProjectService {
     const res = await getProjects(filter);
     const result = await res.json();
 
-    return pipe(result, (result: any) =>
-      result.map(formatProjectItem)
-    );
+    return pipe(result, formatProjectList);
   }
 
   async updateProject(body: UpdateBody) {

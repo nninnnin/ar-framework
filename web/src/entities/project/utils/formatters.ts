@@ -19,6 +19,15 @@ import {
   RelationInterface,
 } from "@/shared/types/memex";
 
+export const formatProjectList = (data: Project[]) => {
+  return pipe(
+    data,
+    pluckList,
+    (projectList: Project[]) =>
+      mapListItems(formatProjectItem, projectList)
+  );
+};
+
 export const formatProjectItem = (
   item: Project
 ): ProjectFormatted => {
