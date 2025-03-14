@@ -12,6 +12,8 @@ const TestInput = ({
     <input
       css={css`
         padding: 6px;
+        border: 1px solid #ccc;
+        outline: none;
       `}
       type="text"
       name={name}

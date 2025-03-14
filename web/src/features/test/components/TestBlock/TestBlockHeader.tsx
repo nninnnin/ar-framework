@@ -50,7 +50,7 @@ const TestBlockHeader = ({
         )}
       </div>
 
-      <div>{children}</div>
+      <>{children}</>
 
       <span
         css={css`
@@ -61,7 +61,17 @@ const TestBlockHeader = ({
         {isTestRunned ? (
           <>{isTestPassed ? "통과" : "실패"}</>
         ) : (
-          <button onClick={handleTestRunClick}>
+          <button
+            css={css`
+              padding: 4px;
+              border: 1px solid black;
+              outline: none;
+              background-color: #fff;
+
+              cursor: pointer;
+            `}
+            onClick={handleTestRunClick}
+          >
             실행하기
           </button>
         )}
