@@ -1,11 +1,12 @@
+import { z } from "zod";
+
 import ProjectService from "@/entities/project/service";
 import { createProjectBody } from "@/entities/project/utils";
 import { getProjectTypeId } from "@/features/project/utils";
 import { getProjectTypes } from "@/entities/project/utils/fetchers";
-import { formatProjectTypes } from "@/features/project/utils/formatter";
-import { z } from "zod";
 import { getGroups } from "@/features/group/fetchers/group";
 import { formatGroup } from "@/features/group/hooks/useGroups";
+import { formatProjectTypes } from "@/entities/project/utils/formatters";
 
 const isString = z.string();
 

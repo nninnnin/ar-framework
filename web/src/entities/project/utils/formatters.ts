@@ -1,3 +1,4 @@
+import { last } from "lodash";
 import {
   mapListItems,
   pipe,
@@ -6,7 +7,6 @@ import {
   deconstructLanguageMap,
 } from "@rebel9/memex-fetcher";
 
-import { CategoryInterface } from "@/shared/types/memex";
 import { FormattedCategory } from "@/shared/types";
 import {
   Project,

@@ -4,7 +4,7 @@ import { QueryKeys } from "@/shared/constants/queryKeys";
 import { CategoryInterface } from "@/shared/types/memex";
 import { FormattedCategory } from "@/shared/types";
 import { getProjectTypes } from "@/entities/project/utils/fetchers";
-import { formatProjectTypes } from "@/features/project/utils/formatter";
+import { formatProjectTypes } from "@/entities/project/utils/formatters";
 
 const useProjectTypes = () => {
   return useQuery<

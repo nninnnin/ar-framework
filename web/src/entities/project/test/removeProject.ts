@@ -1,10 +1,12 @@
 import ProjectService from "@/entities/project/service";
 import { getProjectTypes } from "@/entities/project/utils/fetchers";
-import { formatProjectItem } from "@/entities/project/utils/formatters";
+import {
+  formatProjectItem,
+  formatProjectTypes,
+} from "@/entities/project/utils/formatters";
 import { ProjectFormatted } from "@/features/project/types/project";
 import { getProjectTypeId } from "@/features/project/utils";
 import { createUpdateBody } from "@/shared/utils/createUpdateBody";
-import { formatProjectTypes } from "@/features/project/utils/formatter";
 
 export const removeProject = {
   name: "프로젝트 삭제하기",
