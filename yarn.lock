@@ -58,7 +58,7 @@ __metadata:
     "@emotion/react": "npm:^11.14.0"
     "@fxts/core": "npm:^1.5.0"
     "@google/model-viewer": "npm:^4.0.0"
-    "@rebel9/memex-fetcher": "npm:^1.4.4"
+    "@rebel9/memex-fetcher": "npm:^1.5.2"
     "@tanstack/react-query": "npm:^5.66.0"
     "@toss/use-overlay": "npm:^1.4.2"
     "@types/lodash": "npm:^4"
@@ -3087,7 +3087,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rebel9/memex-fetcher@npm:^1.4.4":
+"@rebel9/memex-fetcher@npm:^1.5.2":
   version: 1.5.2
   resolution: "@rebel9/memex-fetcher@npm:1.5.2"
   dependencies:
