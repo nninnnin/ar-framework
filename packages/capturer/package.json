@@ -1,0 +1,22 @@
+{
+  "name": "@ar-framework/capturer",
+  "packageManager": "yarn@4.6.0",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "parcel build index.html --no-content-hash --no-source-maps",
+    "start": "parcel index.html"
+  },
+  "dependencies": {
+    "clsx": "*",
+    "dotenv": "*",
+    "react": "*",
+    "react-dom": "*",
+    "zustand": "*"
+  },
+  "devDependencies": {
+    "@parcel/config-default": "*",
+    "@parcel/core": "*",
+    "parcel": "*",
+    "parcel-namer-hashless": "*"
+  }
+}

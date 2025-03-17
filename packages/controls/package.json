@@ -3,9 +3,8 @@
   "packageManager": "yarn@4.6.0",
   "dependencies": {
     "@ar-framework/utils": "workspace:^",
-    "@tailwindcss/postcss": "^4.0.6",
-    "clsx": "^2.1.1",
-    "dotenv": "^16.4.7",
+    "clsx": "*",
+    "dotenv": "*",
     "immer": "^10.1.1",
     "mapbox-gl": "^3.10.0",
     "radix-ui": "^1.1.3",
