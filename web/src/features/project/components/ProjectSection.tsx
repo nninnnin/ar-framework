@@ -2,14 +2,15 @@ import dynamic from "next/dynamic";
 import { css } from "@emotion/react";
 import { useOverlay } from "@toss/use-overlay";
 import React, { createContext } from "react";
+
 import { useSelectedGroup } from "@/features/group/hooks/useSelectedGroup";
 import useProjects from "@/features/project/hooks/useProjects";
 import ProjectList from "@/features/project/components/ProjectList";
-import Plus from "@/shared/components/icons/Plus";
 import ProjectItem from "@/features/project/components/ProjectItem";
 import { ProjectFormatted } from "@/features/project/types/project";
-import Overlay from "@/shared/components/Overlay";
 import ProjectModelEditingDialog from "@/features/project/components/ProjectModelEditingDialog";
+import Overlay from "@/shared/components/Overlay";
+import Plus from "@/shared/components/icons/Plus";
 import { designTokens } from "@/shared/styles/tokens";
 
 const ProjectDetailsDialog = dynamic(

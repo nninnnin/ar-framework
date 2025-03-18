@@ -1,5 +1,5 @@
 import { differenceBy } from "lodash";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Dialog from "@/shared/components/Dialog";
 import { useSelectedGroup } from "@/features/group/hooks/useSelectedGroup";
@@ -20,6 +20,8 @@ import {
   postGlbModels,
   uploadGlbModels,
 } from "@/entities/glbModel/utils/fetchers";
+import { QueryKeys } from "@/shared/constants/queryKeys";
+import { useQueryClient } from "@tanstack/react-query";
 
 const apiFetcher = createNextApiFetcher({
   entity: "project",
@@ -32,6 +34,10 @@ const ProjectModelEditingDialog = ({
   projectId: string;
   onClose: () => void;
 }) => {
+  const queryClient = useQueryClient();
+
+  const [isSaving, setIsSaving] = useState(false);
+
   const { selectedGroup } = useSelectedGroup();
   const {
     addModels,
@@ -71,6 +77,8 @@ const ProjectModelEditingDialog = ({
       projectGlbModels.filter((el) => el).length;
 
   const handleSaveClick = async () => {
+    setIsSaving(true);
+
     const newlyAddedModels = differenceBy(
       projectGlbModels.filter((el) => el),
       glbModels as AddedModel[],
@@ -124,6 +132,12 @@ const ProjectModelEditingDialog = ({
       postUpdateResult
     );
 
+    await queryClient.invalidateQueries({
+      queryKey: [QueryKeys.GlbModels],
+    });
+
+    setIsSaving(false);
+
     onClose();
   };
 
@@ -139,7 +153,9 @@ const ProjectModelEditingDialog = ({
 
       <Dialog.ButtonContainer>
         <Dialog.Button
-          disabled={!isChanged || !projectItem}
+          disabled={
+            !isChanged || !projectItem || isSaving
+          }
           onClick={handleSaveClick}
         >
           수정하기
