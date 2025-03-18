@@ -2,11 +2,11 @@ import React from "react";
 import { css } from "@emotion/react";
 import { v4 as uuidv4 } from "uuid";
 
-import { useAddedModels } from "@/features/project/store";
+import { useProjectGlbModels } from "@/features/project/store";
 import { isGLBFile } from "@/features/glbModel/utils";
 
 const ModelUploader = () => {
-  const { addModel } = useAddedModels();
+  const { addModel } = useProjectGlbModels();
 
   return (
     <div

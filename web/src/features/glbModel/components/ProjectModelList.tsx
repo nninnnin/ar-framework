@@ -5,20 +5,20 @@ import React, {
   useRef,
 } from "react";
 import { css } from "@emotion/react";
-
 import { useIsFetching } from "@tanstack/react-query";
+
 import { QueryKeys } from "@/shared/constants/queryKeys";
 import {
-  useAddedModels,
+  useProjectGlbModels,
   useSelectedModelIndex,
 } from "@/features/project/store";
 
-const AddedModels = () => {
+const ProjectModelList = () => {
   const containerRef = useRef<HTMLDivElement | null>(
     null
   );
 
-  const { addedModels } = useAddedModels();
+  const { projectGlbModels } = useProjectGlbModels();
   const { selectedModelIndex, setSelectedModelIndex } =
     useSelectedModelIndex();
 
@@ -38,7 +38,7 @@ const AddedModels = () => {
         AddedModelContainers.scrollHeight
       );
     }
-  }, [addedModels]);
+  }, [projectGlbModels]);
 
   useLayoutEffect(() => {
     const modelSelectionContainer =
@@ -57,37 +57,37 @@ const AddedModels = () => {
     }
   }, []);
 
-  const listRendered = addedModels.map(
+  const listRendered = projectGlbModels.map(
     (model, index) => {
       return (
-        <AddedModels.Item
+        <ProjectModelList.Item
           key={model?.id ?? `model-container-${index}`}
           onClick={() => setSelectedModelIndex(index)}
           isSelected={selectedModelIndex === index}
         >
           {model?.file.name ?? "새로운 모델"}
-        </AddedModels.Item>
+        </ProjectModelList.Item>
       );
     }
   );
 
   return (
-    <AddedModels.Container ref={containerRef}>
+    <ProjectModelList.Container ref={containerRef}>
       {isGlbFetching ? (
-        <AddedModels.Item
+        <ProjectModelList.Item
           onClick={() => {}}
           isSelected={true}
         >
           {" "}
-        </AddedModels.Item>
+        </ProjectModelList.Item>
       ) : (
         listRendered
       )}
-    </AddedModels.Container>
+    </ProjectModelList.Container>
   );
 };
 
-AddedModels.Container = forwardRef(
+ProjectModelList.Container = forwardRef(
   (
     {
       children,
@@ -116,7 +116,7 @@ AddedModels.Container = forwardRef(
   }
 );
 
-AddedModels.Item = ({
+ProjectModelList.Item = ({
   children,
   isSelected,
   onClick,
@@ -152,4 +152,4 @@ AddedModels.Item = ({
   );
 };
 
-export default AddedModels;
+export default ProjectModelList;

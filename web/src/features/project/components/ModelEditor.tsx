@@ -3,22 +3,22 @@ import { css } from "@emotion/react";
 
 import ModelViewer from "@/features/glbModel/components/ModelViewer";
 import ModelUploader from "@/features/glbModel/components/ModelUploader";
-import AddedModels from "@/features/glbModel/components/AddedModels";
+import ProjectModelList from "@/features/glbModel/components/ProjectModelList";
 
 import { useIsFetching } from "@tanstack/react-query";
 import { QueryKeys } from "@/shared/constants/queryKeys";
 import {
-  useAddedModels,
+  useProjectGlbModels,
   useSelectedModelIndex,
 } from "@/features/project/store";
 
 const ModelEditor = () => {
   const { selectedModelIndex } =
     useSelectedModelIndex();
-  const { addedModels } = useAddedModels();
+  const { projectGlbModels } = useProjectGlbModels();
 
   const selectedModel =
-    addedModels[selectedModelIndex];
+    projectGlbModels[selectedModelIndex];
 
   const isGlbFetching = useIsFetching({
     queryKey: [QueryKeys.GlbModels],
@@ -50,7 +50,7 @@ const ModelEditor = () => {
         <ModelUploader />
       )}
 
-      <AddedModels />
+      <ProjectModelList />
     </ModelEditor.Container>
   );
 };

@@ -5,7 +5,7 @@ import Dialog from "@/shared/components/Dialog";
 import { useSelectedGroup } from "@/features/group/hooks/useSelectedGroup";
 import {
   AddedModel,
-  useAddedModels,
+  useProjectGlbModels,
   useSelectedModelIndex,
 } from "@/features/project/store";
 import useProjectItem from "@/features/project/hooks/useProjectItem";
@@ -33,8 +33,11 @@ const ProjectModelEditingDialog = ({
   onClose: () => void;
 }) => {
   const { selectedGroup } = useSelectedGroup();
-  const { addModels, resetAddedModels, addedModels } =
-    useAddedModels();
+  const {
+    addModels,
+    resetAddedModels,
+    projectGlbModels,
+  } = useProjectGlbModels();
 
   const { resetSelectedModelIndex } =
     useSelectedModelIndex();
@@ -65,11 +68,11 @@ const ProjectModelEditingDialog = ({
   const isChanged =
     !isLoading &&
     glbModels?.length !==
-      addedModels.filter((el) => el).length;
+      projectGlbModels.filter((el) => el).length;
 
   const handleSaveClick = async () => {
     const newlyAddedModels = differenceBy(
-      addedModels.filter((el) => el),
+      projectGlbModels.filter((el) => el),
       glbModels as AddedModel[],
       "id"
     );

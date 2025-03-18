@@ -1,10 +1,10 @@
 import {
-  useAddedModels,
+  useProjectGlbModels,
   useSelectedProjectType,
 } from "@/features/project/store";
 
 const useResetProjectFunnelStates = () => {
-  const { resetAddedModels } = useAddedModels();
+  const { resetAddedModels } = useProjectGlbModels();
   const { resetSelectedProjectType } =
     useSelectedProjectType();
 

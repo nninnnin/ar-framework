@@ -11,7 +11,7 @@ import {
 } from "@/features/project/types/projectCreationFunnel";
 import { useSelectedGroup } from "@/features/group/hooks/useSelectedGroup";
 import useResetProjectFunnelStates from "@/features/project/hooks/useResetProjectFunnelStates";
-import { useAddedModels } from "@/features/project/store";
+import { useProjectGlbModels } from "@/features/project/store";
 import usePostGlbModel from "@/features/glbModel/hooks/usePostGlbModel";
 import useProjectTypes from "@/features/project/hooks/useProjectTypes";
 import useCreateProject from "@/features/project/hooks/useCreateProject";
@@ -44,7 +44,7 @@ const ProjectCreationFunnel = () => {
   const { resetProjectFunnelStates } =
     useResetProjectFunnelStates();
 
-  const { addedModels } = useAddedModels();
+  const { projectGlbModels } = useProjectGlbModels();
   const { mutateAsync: postGlbModel } =
     usePostGlbModel();
   const { data: projectTypes } = useProjectTypes();
@@ -72,7 +72,7 @@ const ProjectCreationFunnel = () => {
           onPrevious={() => history.back()}
           onNext={() =>
             history.push("프로젝트명입력", {
-              glbModels: addedModels
+              glbModels: projectGlbModels
                 .filter((m) => m)
                 .map((m) => m!.file),
             })

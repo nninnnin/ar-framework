@@ -33,8 +33,8 @@ export type AddedModel = {
   file: File;
 };
 
-export const useAddedModels = create<{
-  addedModels: Array<AddedModel | null>;
+export const useProjectGlbModels = create<{
+  projectGlbModels: Array<AddedModel | null>;
   addModel: (model: {
     id: string;
     file: File;
@@ -44,12 +44,12 @@ export const useAddedModels = create<{
   ) => void;
   resetAddedModels: () => void;
 }>((set) => ({
-  addedModels: [null],
+  projectGlbModels: [null],
   addModel: (newModel: { id: string; file: File }) =>
     set((state) => {
       return {
-        addedModels: [
-          ...state.addedModels.filter((m) => m),
+        projectGlbModels: [
+          ...state.projectGlbModels.filter((m) => m),
           newModel,
           null,
         ],
@@ -60,13 +60,14 @@ export const useAddedModels = create<{
   ) => {
     set((state) => {
       return {
-        addedModels: [
-          ...state.addedModels.filter((m) => m),
+        projectGlbModels: [
+          ...state.projectGlbModels.filter((m) => m),
           ...newModels,
           null,
         ],
       };
     });
   },
-  resetAddedModels: () => set({ addedModels: [null] }),
+  resetAddedModels: () =>
+    set({ projectGlbModels: [null] }),
 }));
