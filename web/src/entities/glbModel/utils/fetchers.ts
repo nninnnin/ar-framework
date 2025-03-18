@@ -1,10 +1,15 @@
-import { MediaUploadResult } from "@/shared/types";
+import {
+  MediaUploadResult,
+  UpdateBody,
+} from "@/shared/types";
 
 import { createMemexFetcher } from "@rebel9/memex-fetcher";
 
-const memexFetcher = createMemexFetcher(
-  process.env.MEMEX_TOKEN ?? ""
-);
+const TOKEN = process.env.MEMEX_TOKEN ?? "";
+const PROJECT_ID = process.env.MEMEX_PROJECT_ID ?? "";
+const MODEL_NAME = "glbModels";
+
+const memexFetcher = createMemexFetcher(TOKEN);
 
 export const uploadGlbModels = (
   models: Array<File>
@@ -12,10 +17,29 @@ export const uploadGlbModels = (
   return Promise.all(
     models.map(async (file) => {
       return await memexFetcher.postMedia(
-        process.env.MEMEX_PROJECT_ID ?? "",
+        PROJECT_ID,
         file
       );
     })
+  );
+};
+
+export const getGlbModel = async (uid: string) => {
+  return await memexFetcher.getItem(
+    PROJECT_ID,
+    MODEL_NAME,
+    uid
+  );
+};
+
+export const getGlbModels = async () => {
+  return await memexFetcher.getList(
+    PROJECT_ID,
+    MODEL_NAME,
+    {
+      page: 0,
+      size: 1000,
+    }
   );
 };
 
@@ -25,8 +49,8 @@ export const postGlbModels = async (
   return Promise.all(
     uploadedResult.map(async (item) => {
       const res = await memexFetcher.postItem(
-        process.env.MEMEX_PROJECT_ID ?? "",
-        "glbModels",
+        PROJECT_ID,
+        MODEL_NAME,
         {
           publish: true,
           data: {
@@ -43,5 +67,13 @@ export const postGlbModels = async (
 
       return await res.text();
     })
+  );
+};
+
+export const updateGlbModel = (body: UpdateBody) => {
+  memexFetcher.updateItem(
+    PROJECT_ID,
+    MODEL_NAME,
+    body
   );
 };

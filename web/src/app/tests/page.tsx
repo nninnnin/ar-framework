@@ -5,10 +5,16 @@ import { css } from "@emotion/react";
 
 import TestBlock from "@/features/test/components/TestBlock";
 
-import projectTestSuite from "@/entities/project/test";
+import projectTestSuite from "@/entities/project/tests";
+import glbModelTestSuite from "@/entities/glbModel/tests";
 import TestInput from "@/features/test/components/TestBlock/TestInput";
 
 const TestPage = () => {
+  const testSuites = [
+    ...projectTestSuite,
+    ...glbModelTestSuite,
+  ];
+
   return (
     <div
       css={css`
@@ -28,7 +34,7 @@ const TestPage = () => {
         테스트 목록
       </h1>
 
-      {projectTestSuite.map((test) => (
+      {testSuites.map((test) => (
         <TestBlock
           key={test.name}
           testName={test.name}
