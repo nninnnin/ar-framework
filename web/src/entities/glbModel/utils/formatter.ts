@@ -8,6 +8,7 @@ import {
 } from "@rebel9/memex-fetcher";
 
 import {
+  GlbModelItemFormatted,
   GlbModelItemResult,
   GlbModelListResult,
 } from "@/entities/glbModel/types";
@@ -31,4 +32,16 @@ export const formatGLBModelItem = (
     flattenListItem,
     extractStringValues(["name"], "KO")
   );
+};
+
+export const createGlbPostBody = (
+  glbModelItemFormatted: GlbModelItemFormatted
+) => {
+  return {
+    name: {
+      KO: glbModelItemFormatted.name,
+    },
+    mediaPath: glbModelItemFormatted.mediaPath,
+    isDeleted: String(glbModelItemFormatted.isDeleted),
+  };
 };

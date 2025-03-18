@@ -77,8 +77,10 @@ export const postGlbModels = async (
   );
 };
 
-export const updateGlbModel = (body: UpdateBody) => {
-  memexFetcher.updateItem(
+export const updateGlbModel = async (
+  body: UpdateBody
+) => {
+  return await memexFetcher.updateItem(
     PROJECT_ID,
     MODEL_NAME,
     body

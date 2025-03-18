@@ -3,11 +3,10 @@
 import React from "react";
 import { css } from "@emotion/react";
 
-import TestBlock from "@/features/test/components/TestBlock";
-
 import projectTestSuite from "@/entities/project/tests";
 import glbModelTestSuite from "@/entities/glbModel/tests";
 import TestInput from "@/features/test/components/TestBlock/TestInput";
+import TestBlock from "@/features/test/components/TestBlock";
 
 const TestPage = () => {
   const testSuites = [

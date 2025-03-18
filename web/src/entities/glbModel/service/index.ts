@@ -15,11 +15,14 @@ class GlbModelService {
     return await getGlbModels();
   };
 
-  updateGlbModel = async (uid: string) => {
-    await updateGlbModel({
-      uid: "uid",
+  updateGlbModel = async (
+    uid: string,
+    data: unknown
+  ) => {
+    return await updateGlbModel({
+      uid,
       publish: true,
-      data: {},
+      data,
     });
   };
 }
