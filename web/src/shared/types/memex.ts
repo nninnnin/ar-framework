@@ -80,3 +80,9 @@ export type MemexListResult<Item> = {
   pageInfo: PageInfo;
   validateAt: string;
 };
+
+export type MemexItemResult<Item> = {
+  uid: string;
+  data: Item;
+  createdAt: string;
+};

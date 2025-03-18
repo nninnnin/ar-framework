@@ -1,5 +1,6 @@
 import {
   LanguageMap,
+  MemexItemResult,
   MemexListResult,
 } from "@/shared/types/memex";
 
@@ -19,4 +20,5 @@ export interface GlbModelItemFormatted {
 export type GlbModelListResult =
   MemexListResult<GlbModelItem>;
 
-export interface GlbModelItemResult {}
+export type GlbModelItemResult =
+  MemexItemResult<GlbModelItem>;

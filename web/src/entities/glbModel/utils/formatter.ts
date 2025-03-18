@@ -4,9 +4,13 @@ import {
   pipe,
   pluckList,
   extractStringValues,
+  pluckData,
 } from "@rebel9/memex-fetcher";
 
-import { GlbModelListResult } from "@/entities/glbModel/types";
+import {
+  GlbModelItemResult,
+  GlbModelListResult,
+} from "@/entities/glbModel/types";
 
 export const formatGLBModelItems = (
   result: GlbModelListResult
@@ -16,5 +20,15 @@ export const formatGLBModelItems = (
     pluckList,
     mapListItems(flattenListItem),
     mapListItems(extractStringValues(["name"], "KO"))
+  );
+};
+
+export const formatGLBModelItem = (
+  result: GlbModelItemResult
+) => {
+  return pipe(
+    result,
+    flattenListItem,
+    extractStringValues(["name"], "KO")
   );
 };
