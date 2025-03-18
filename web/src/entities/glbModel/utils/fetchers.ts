@@ -39,6 +39,13 @@ export const getGlbModels = async () => {
     {
       page: 0,
       size: 1000,
+      searchConds: [
+        {
+          componentType: "BOOLEAN",
+          devKey: "isDeleted",
+          condition: "{ value: false }",
+        },
+      ],
     }
   );
 };
