@@ -15,7 +15,12 @@ export interface DateInterface {
   editedAt?: string | null;
 }
 
-export type FileType = "IMAGE" | "VIDEO" | "AUDIO" | "PDF" | "FILE";
+export type FileType =
+  | "IMAGE"
+  | "VIDEO"
+  | "AUDIO"
+  | "PDF"
+  | "FILE";
 export type MediaType = "FILE" | "URL";
 
 export interface FileMetaInterface {
@@ -55,3 +60,23 @@ export interface RelationInterface {
   uid: string;
   languageMap: LanguageMap;
 }
+
+type MemexModelItem<Item> = {
+  uid: string;
+  data: Item;
+  createdAt: string;
+};
+
+type PageInfo = {
+  isLast: boolean;
+  page: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+};
+
+export type MemexListResult<Item> = {
+  list: MemexModelItem<Item>[];
+  pageInfo: PageInfo;
+  validateAt: string;
+};
