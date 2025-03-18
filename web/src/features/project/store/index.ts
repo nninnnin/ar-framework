@@ -43,6 +43,7 @@ export const useProjectGlbModels = create<{
     models: { id: string; file: File }[]
   ) => void;
   resetAddedModels: () => void;
+  removeModel: (index: string) => void;
 }>((set) => ({
   projectGlbModels: [null],
   addModel: (newModel: { id: string; file: File }) =>
@@ -70,4 +71,15 @@ export const useProjectGlbModels = create<{
   },
   resetAddedModels: () =>
     set({ projectGlbModels: [null] }),
+  removeModel: (id: string) => {
+    return set((state) => {
+      const filtered = state.projectGlbModels.filter(
+        (model) => model && model.id !== id
+      );
+
+      return {
+        projectGlbModels: [...filtered, null],
+      };
+    });
+  },
 }));

@@ -1,5 +1,6 @@
 import React, {
   forwardRef,
+  MouseEvent,
   useEffect,
   useLayoutEffect,
   useRef,
@@ -12,6 +13,7 @@ import {
   useProjectGlbModels,
   useSelectedModelIndex,
 } from "@/features/project/store";
+import useProjectModelDifference from "@/features/glbModel/hooks/useProjectModelDifference";
 
 const ProjectModelList = () => {
   const containerRef = useRef<HTMLDivElement | null>(
@@ -26,19 +28,26 @@ const ProjectModelList = () => {
     queryKey: [QueryKeys.GlbModels],
   });
 
+  const { differenceDirection } =
+    useProjectModelDifference();
+
   useEffect(() => {
     const AddedModelContainers =
       document.querySelector(
         "#added-models-container"
       );
 
-    if (AddedModelContainers) {
+    if (!AddedModelContainers) return;
+
+    if (differenceDirection === "increase") {
       AddedModelContainers.scrollTo(
         0,
         AddedModelContainers.scrollHeight
       );
+    } else if (differenceDirection === "decrease") {
+      AddedModelContainers.scrollTo(0, 0);
     }
-  }, [projectGlbModels]);
+  }, [projectGlbModels.length, differenceDirection]);
 
   useLayoutEffect(() => {
     const modelSelectionContainer =
@@ -57,15 +66,34 @@ const ProjectModelList = () => {
     }
   }, []);
 
+  const { removeModel } = useProjectGlbModels();
+
   const listRendered = projectGlbModels.map(
     (model, index) => {
+      const hasModel = model !== null;
+
+      const handleRemoveClick = (e: MouseEvent) => {
+        e.stopPropagation();
+        removeModel(model!.id);
+      };
+
       return (
         <ProjectModelList.Item
-          key={model?.id ?? `model-container-${index}`}
+          key={
+            hasModel
+              ? model.id
+              : `model-container-${index}`
+          }
           onClick={() => setSelectedModelIndex(index)}
           isSelected={selectedModelIndex === index}
         >
-          {model?.file.name ?? "새로운 모델"}
+          {hasModel ? model.file.name : "새로운 모델"}
+
+          {hasModel && (
+            <ProjectModelList.RemoveItemButton
+              handleClick={handleRemoveClick}
+            />
+          )}
         </ProjectModelList.Item>
       );
     }
@@ -74,16 +102,22 @@ const ProjectModelList = () => {
   return (
     <ProjectModelList.Container ref={containerRef}>
       {isGlbFetching ? (
-        <ProjectModelList.Item
-          onClick={() => {}}
-          isSelected={true}
-        >
-          {" "}
-        </ProjectModelList.Item>
+        <ProjectModelList.ItemSkeleton />
       ) : (
         listRendered
       )}
     </ProjectModelList.Container>
+  );
+};
+
+ProjectModelList.ItemSkeleton = () => {
+  return (
+    <ProjectModelList.Item
+      onClick={() => {}}
+      isSelected={true}
+    >
+      {" "}
+    </ProjectModelList.Item>
   );
 };
 
@@ -144,11 +178,61 @@ ProjectModelList.Item = ({
         align-items: center;
 
         border-bottom: 1px solid #000;
+
+        position: relative;
       `}
       onClick={onClick}
     >
       {children}
     </div>
+  );
+};
+
+ProjectModelList.RemoveItemButton = ({
+  handleClick,
+}: {
+  handleClick: (e: MouseEvent) => void;
+}) => {
+  return (
+    <svg
+      onClick={handleClick}
+      css={css`
+        position: absolute;
+        left: 0px;
+        top: 0px;
+
+        background-color: black;
+
+        border: 0px;
+        border-right: 0.5px;
+        border-bottom: 0.5px;
+        border-color: white;
+        border-style: solid;
+
+        cursor: pointer;
+      `}
+      width="28"
+      height="28"
+      viewBox="0 0 100 100"
+    >
+      <line
+        x1="20"
+        y1="20"
+        x2="80"
+        y2="80"
+        stroke="white"
+        strokeWidth="6"
+      />
+
+      <line
+        x1="20"
+        y1="80"
+        x2="80"
+        y2="20"
+        stroke="white"
+        strokeWidth="6"
+      />
+    </svg>
   );
 };
 
