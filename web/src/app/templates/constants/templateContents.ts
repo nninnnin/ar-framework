@@ -19,7 +19,7 @@ export const TemplateContents: Record<
       ></script>
       <script
         type='text/javascript'
-        src='https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js'
+        src='/scripts/libs/aframe-ar.js'
       ></script>
       <script
         type="text/javascript"
