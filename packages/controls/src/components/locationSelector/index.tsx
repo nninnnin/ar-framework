@@ -5,11 +5,26 @@ import Map from "./components/Map";
 import Coordinate from "./components/Coordinate";
 import Overlay from "../Overlay";
 import ConfirmButton from "./components/ConfirmButton";
+import { useControlStore } from "../../stores/controls";
 
 const LocationSelector = () => {
+  const { setControllingSubject } = useControlStore();
+
   return (
     <Overlay>
       <LocationSelector.Container>
+        <div
+          className={clsx(
+            "absolute top-[0px] right-0 z-[9999] -translate-y-[100%]",
+            "w-[48px] h-[48px]",
+            "flex justify-center items-center",
+            "bg-black text-white"
+          )}
+          onClick={() => setControllingSubject(null)}
+        >
+          닫기
+        </div>
+
         <Map />
         <Coordinate />
 
