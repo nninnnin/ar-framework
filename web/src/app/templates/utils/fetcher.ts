@@ -1,7 +1,9 @@
 import { createMemexFetcher } from "@rebel9/memex-fetcher";
 
-import { GlbModel } from "@/features/glbModel/types/glbModel";
-import { LanguageMap } from "@/shared/types/memex";
+import {
+  GlbModelData,
+  GlbModelFormatted,
+} from "@/features/glbModel/types/glbModel";
 
 const memexFetcher = createMemexFetcher(
   process.env.MEMEX_TOKEN ?? ""
@@ -9,7 +11,7 @@ const memexFetcher = createMemexFetcher(
 
 export const getGlbModels = async (
   glbModelUids?: string[]
-): Promise<GlbModel[]> => {
+): Promise<GlbModelFormatted[]> => {
   const res = await memexFetcher.getList(
     process.env.MEMEX_PROJECT_ID ?? "",
     "glbModels",
@@ -31,16 +33,18 @@ export const getGlbModels = async (
       (glbModelUids ?? []).includes(glbModel.uid)
     )
     .map(
-      (model: {
-        uid: string;
-        data: {
-          name: LanguageMap;
-          mediaPath: string;
+      (model: { uid: string; data: GlbModelData }) => {
+        console.log(model);
+
+        return {
+          uid: model.uid,
+          name: model.data.name.KO,
+          path: model.data.mediaPath,
+          coordinates: {
+            latitude: model.data.latitude,
+            longitude: model.data.longitude,
+          },
         };
-      }) => ({
-        uid: model.uid,
-        name: model.data.name.KO,
-        path: model.data.mediaPath,
-      })
+      }
     );
 };

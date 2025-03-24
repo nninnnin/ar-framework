@@ -2,24 +2,17 @@ import parse, { HTMLElement } from "node-html-parser";
 
 import { TemplateContents } from "@/app/templates/constants/templateContents";
 import { ProjectType } from "@/features/project/types/project";
+import { GlbModelFormatted } from "@/features/glbModel/types/glbModel";
 
 class TemplateContentsGenerator {
   projectType: ProjectType;
   templateRoot: HTMLElement;
-  glbModels: {
-    uid: string;
-    name: string;
-    path: string;
-  }[];
+  glbModels: GlbModelFormatted[];
 
   constructor(
     projectType: ProjectType,
     htmlTemplateString: string,
-    glbModels: {
-      uid: string;
-      name: string;
-      path: string;
-    }[]
+    glbModels: GlbModelFormatted[]
   ) {
     this.projectType = projectType;
     this.templateRoot = parse(htmlTemplateString);
@@ -130,19 +123,34 @@ class TemplateContentsGenerator {
   generateGlbModelElements(projectType: ProjectType) {
     return this.glbModels
       .map((model) => {
+        const modelName = model.name;
+        const modelUid = model.uid;
+
+        if (projectType === "위치기반 AR") {
+          const defaultCoordinates = {
+            latitude: "37.533836",
+            longitude: "127.007736",
+          }; // 한남동 사무실
+
+          const latitude =
+            model.coordinates.latitude ??
+            defaultCoordinates.latitude;
+          const longitude =
+            model.coordinates.longitude ??
+            defaultCoordinates.longitude;
+
+          const coordinates = `latitude: ${latitude}; longitude: ${longitude}`;
+
+          return `<a-entity scale="10 10 10" gps-projected-entity-place="${coordinates}"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" position="0 0 0" rotation="0 0 0" animation-mixer frustum-culled></a-gltf-model></a-entity>`;
+        }
+
+        if (projectType === "얼굴인식 AR") {
+          return `<a-entity scale="10 10 10" mindar-face-target="anchorIndex: 168"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" position="0 0 0" rotation="0 0 0" animation-mixer frustum-culled></a-gltf-model></a-entity>`;
+        }
+
         return `
-          <a-entity scale="10 10 10" ${
-            projectType === "얼굴인식 AR"
-              ? `mindar-face-target="anchorIndex: 168"`
-              : projectType === "위치기반 AR"
-              ? `gps-projected-entity-place="latitude: 37.533836; longitude: 127.007736"`
-              : ""
-          }>
-            <a-gltf-model data-model-name="${
-              model.name
-            }" src="#${
-          model.uid
-        }" scale="1 1 1" position="0 0 0" rotation="0 0 0" animation-mixer frustum-culled></a-gltf-model>
+          <a-entity scale="10 10 10">
+            <a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" position="0 0 0" rotation="0 0 0" animation-mixer frustum-culled></a-gltf-model>
           </a-entity>
         `;
       })
