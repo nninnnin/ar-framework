@@ -76,6 +76,8 @@ const Map = () => {
       new mapboxgl.Marker(marker)
         .setLngLat([longitude, latitude])
         .addTo(mapRef.current);
+
+      setCoordinate(latitude, longitude);
     }
   }, [modelElement]);
 
