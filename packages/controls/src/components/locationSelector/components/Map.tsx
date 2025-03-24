@@ -6,6 +6,8 @@ import { useRef, useEffect } from "react";
 import { useCoordinateStore } from "../store";
 import { WithNull } from "../../../types/utils";
 import useModelElement from "../../../hooks/useModelElement";
+import { useControlStore } from "../../../stores/controls";
+import { useModelStore } from "../../../stores";
 
 const Map = () => {
   const mapContinerRef =
@@ -14,6 +16,9 @@ const Map = () => {
   const locationMarkerRef =
     useRef<WithNull<mapboxgl.Marker>>(null);
 
+  const { selectedModelName } = useModelStore();
+  const { setCoordinate: setModelCoordinate } =
+    useControlStore();
   const { setCoordinate } = useCoordinateStore();
 
   useEffect(() => {
@@ -47,6 +52,10 @@ const Map = () => {
       }
 
       setCoordinate(lat, lng);
+      setModelCoordinate(selectedModelName, {
+        lat,
+        lng,
+      });
     });
 
     mapRef.current = map;
@@ -78,6 +87,10 @@ const Map = () => {
         .addTo(mapRef.current);
 
       setCoordinate(latitude, longitude);
+      setModelCoordinate(selectedModelName, {
+        lat: latitude,
+        lng: longitude,
+      });
     }
   }, [modelElement]);
 
