@@ -26,6 +26,8 @@ export const generateArTemplate = async (
     )
   );
 
+  console.log("모델들: ", glbModels);
+
   const contentsFilledTemplate =
     new TemplateContentsGenerator(
       projectItem.projectType,

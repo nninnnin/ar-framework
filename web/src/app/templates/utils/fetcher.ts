@@ -34,16 +34,29 @@ export const getGlbModels = async (
     )
     .map(
       (model: { uid: string; data: GlbModelData }) => {
-        console.log(model);
+        console.log("HI", model);
 
         return {
           uid: model.uid,
           name: model.data.name.KO,
           path: model.data.mediaPath,
           coordinates: {
-            latitude: model.data.latitude,
-            longitude: model.data.longitude,
+            latitude: model.data.latitude
+              ? model.data.latitude
+              : null,
+            longitude: model.data.longitude
+              ? model.data.longitude
+              : null,
           },
+          scale: model.data.scale
+            ? JSON.parse(model.data.scale)
+            : { x: 0, y: 0, z: 0 },
+          rotation: model.data.rotation
+            ? JSON.parse(model.data.rotation)
+            : { x: 0, y: 0, z: 0 },
+          position: model.data.position
+            ? JSON.parse(model.data.position)
+            : { x: 0, y: 0, z: 0 },
         };
       }
     );

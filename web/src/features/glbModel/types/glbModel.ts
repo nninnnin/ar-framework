@@ -6,6 +6,9 @@ export interface GlbModelData {
   isDeleted: boolean;
   latitude: string;
   longitude: string;
+  scale: string;
+  rotation: string;
+  position: string;
 }
 
 export interface GlbModelFormatted {
@@ -15,5 +18,20 @@ export interface GlbModelFormatted {
   coordinates: {
     latitude: string;
     longitude: string;
+  };
+  scale: {
+    x: number;
+    y: number;
+    z: number;
+  };
+  rotation: {
+    x: number;
+    y: number;
+    z: number;
+  };
+  position: {
+    x: number;
+    y: number;
+    z: number;
   };
 }

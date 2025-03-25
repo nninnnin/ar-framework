@@ -126,6 +126,18 @@ class TemplateContentsGenerator {
         const modelName = model.name;
         const modelUid = model.uid;
 
+        const scale = model.scale
+          ? `scale="${model.scale.x} ${model.scale.y} ${model.scale.z}"`
+          : `scale="10 10 10"`;
+
+        const position = model.position
+          ? `position="${model.position.x} ${model.position.y} ${model.position.z}"`
+          : `position="0 0 0"`;
+
+        const rotation = model.rotation
+          ? `rotation="${model.rotation.x} ${model.rotation.y} ${model.rotation.z}"`
+          : `rotation="0 0 0"`;
+
         if (projectType === "위치기반 AR") {
           const defaultCoordinates = {
             latitude: "37.533836",
@@ -141,16 +153,16 @@ class TemplateContentsGenerator {
 
           const coordinates = `latitude: ${latitude}; longitude: ${longitude}`;
 
-          return `<a-entity scale="10 10 10" gps-projected-entity-place="${coordinates}"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" position="0 0 0" rotation="0 0 0" animation-mixer frustum-culled></a-gltf-model></a-entity>`;
+          return `<a-entity ${scale} ${position} ${rotation} gps-projected-entity-place="${coordinates}"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" animation-mixer frustum-culled></a-gltf-model></a-entity>`;
         }
 
         if (projectType === "얼굴인식 AR") {
-          return `<a-entity scale="10 10 10" mindar-face-target="anchorIndex: 168"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" position="0 0 0" rotation="0 0 0" animation-mixer frustum-culled></a-gltf-model></a-entity>`;
+          return `<a-entity ${scale} ${position} ${rotation} mindar-face-target="anchorIndex: 168"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" animation-mixer frustum-culled></a-gltf-model></a-entity>`;
         }
 
         return `
-          <a-entity scale="10 10 10">
-            <a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" position="0 0 0" rotation="0 0 0" animation-mixer frustum-culled></a-gltf-model>
+          <a-entity ${scale} ${position} ${rotation}>
+            <a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" animation-mixer frustum-culled></a-gltf-model>
           </a-entity>
         `;
       })
