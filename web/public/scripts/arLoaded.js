@@ -19,13 +19,21 @@ const addLocationARLoadedHandler = (handleLoaded) => {
   );
 };
 
+const throwSceneNotFound = () => {
+  throw Error(
+    "No <a-scene> element found in the document. Make sure to include it in your HTML file."
+  );
+};
+
 const addFaceARLoadedHandler = (handleLoaded) => {
   document.addEventListener("DOMContentLoaded", () => {
     const scene = document.querySelector("a-scene");
 
-    console.log("have scene?", scene);
+    if (!scene) {
+      throwSceneNotFound();
+    }
 
-    scene?.addEventListener("arReady", handleLoaded);
+    scene.addEventListener("arReady", handleLoaded);
   });
 };
 
@@ -33,7 +41,11 @@ const addMarkerARLoadedHandler = (handleLoaded) => {
   document.addEventListener("DOMContentLoaded", () => {
     const scene = document.querySelector("a-scene");
 
-    scene?.addEventListener("arReady", handleLoaded);
+    if (!scene) {
+      throwSceneNotFound();
+    }
+
+    scene.addEventListener("arReady", handleLoaded);
   });
 };
 

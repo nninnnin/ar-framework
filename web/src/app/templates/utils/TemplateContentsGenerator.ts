@@ -196,11 +196,38 @@ class TemplateContentsGenerator {
     this.appendToBody(
       `<script>
         addMessageHandler({
-          "ar-guide-close": () => {
-            console.log("AR GUIDE CLOSED");
+          "show-glb-models": () => {
+            console.log("Show All Glb Models");
 
-            // showModels
-            // showCaptureButton
+            const hideAllModels = () => {
+              const models = document.querySelectorAll("a-gltf-model");
+
+              if (!models || !models.length) {
+                throw Error("No Glb Models on AR Contents!");
+              }
+
+              models.forEach((model) => {
+                model.setAttribute("visible", true);
+              });
+            }
+
+            hideAllModels();
+          }
+          "show-capture-button": () => {
+            console.log("Show Capture Button");
+
+            const captureButton = document.getElementById("capture-button");
+
+            if (!captureButton) {
+              throw Error("Capture Button not found!");
+            }
+
+            const enableCaptureButton = () => {
+              captureButton.style.setProperty('visibility', 'visible');
+              captureButton.style.setProperty('pointer-events', 'initial');
+            };
+
+            enableCaptureButton();
           }
         })
       </script>`

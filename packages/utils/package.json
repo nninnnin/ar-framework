@@ -1,4 +1,23 @@
 {
   "name": "@ar-framework/utils",
-  "packageManager": "yarn@4.6.0"
+  "version": "1.1.2",
+  "main": "dist/index.js",
+  "packageManager": "yarn@4.6.0",
+  "dependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "scripts": {
+    "build": "parcel build src/index.tsx --no-content-hash --no-source-maps"
+  },
+  "devDependencies": {
+    "@parcel/config-default": "*",
+    "@parcel/core": "*",
+    "@types/react": "^19.0.12",
+    "parcel": "*",
+    "parcel-namer-hashless": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

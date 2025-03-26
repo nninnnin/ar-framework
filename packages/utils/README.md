@@ -1,8 +1,55 @@
 # @ar-framework/utils
 
-ar-framework에서 사용되는 유틸리티를 제공합니다. 크게
+`AR Framework` 로 만들어진 컨텐츠와의 연동을 위해 사용할 수 있는 유틸리티 함수들을 작성해 두었습니다.
 
-- 캡쳐에 사용되는 유틸리티
-- iframe 통신을 위해 사용되는 유틸리티
+## 리액트 앱과 AR 컨텐츠의 연동
 
-로 구분됩니다.
+일반적으로 AR 컨텐츠를 담는 앱은 리액트로 UI를 사용해 구성하게 됩니다. 아래는 리액트 앱에서 AR 컨텐츠의 상태 변화와 리액트 앱의 UI 변경을 연동하기 위해 사용할 수 있는 훅(hook)입니다.
+
+### `useArContents`
+
+- AR 컨텐츠 소스 URL을 입력받고 iframe을 이용해 AR 컨텐츠를 보여주는 컴포넌트 `ArContentsIframe` 을 반환합니다.
+
+- AR 컨텐츠의 상태 변화를 유발하기 위한 두 가지 메서드 `showGlbModels`와 `showCaptureButton` 을 반환합니다.
+
+```
+const AR_CONTENTS_SOURCE = "https://ar-framework.com/templates/api?projectUid=<PROJECT_UID>";
+
+const {
+  ArContentsIframe,
+  showGlbModels,
+  showCaptureButton,
+} = useArContents(AR_CONTENTS_SOURCE);
+
+const handleClick = () => {
+  showGlbModels();
+  showCaptureButton();
+};
+
+return (
+  <>
+    <ArContentsIframe />
+
+    <button onClick={handleClick}>
+      AR 시작하기
+    </button>
+  </>
+);
+```
+
+### `useArContentsMessages`
+
+AR 컨텐츠의 상태 변화에 리액트 UI를 반응시키기 위해 사용됩니다.
+
+```
+useArContentsMessages({
+  handleARLoaded: () => {
+    showArContents(false);
+  },
+  handleCapturedImage: (capturedImage: Blob) => {
+    const objectURL = URL.createObjectURL(capturedImage);
+
+    setCapturedImage(objectURL);
+  },
+});
+```
