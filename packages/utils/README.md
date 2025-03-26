@@ -53,3 +53,9 @@ useArContentsMessages({
   },
 });
 ```
+
+---
+
+### 버전 히스토리
+
+`1.1.3`: `index.d.ts` 추가

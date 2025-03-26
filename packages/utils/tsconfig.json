@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "module": "ES6",
+    "lib": ["esnext", "dom"]
+  }
+}

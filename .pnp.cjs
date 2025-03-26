@@ -44,6 +44,8 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@parcel/config-default", "virtual:8c6cfc826c2ecc1b6d8dc38f65c77ebcfb8be82567f01502ab4545b51d1aab24881ad81340eb4e7d957924b346beb567fbbf3292d6f7cba12c23fb9417e1dca8#npm:2.14.2"],\
           ["@parcel/core", "npm:2.14.2"],\
+          ["@parcel/packager-ts", "npm:2.14.2"],\
+          ["@parcel/transformer-typescript-types", "virtual:8c6cfc826c2ecc1b6d8dc38f65c77ebcfb8be82567f01502ab4545b51d1aab24881ad81340eb4e7d957924b346beb567fbbf3292d6f7cba12c23fb9417e1dca8#npm:2.14.2"],\
           ["@types/react", "npm:19.0.12"],\
           ["lit", "npm:3.2.1"],\
           ["parcel", "virtual:8c6cfc826c2ecc1b6d8dc38f65c77ebcfb8be82567f01502ab4545b51d1aab24881ad81340eb4e7d957924b346beb567fbbf3292d6f7cba12c23fb9417e1dca8#npm:2.14.2"],\
@@ -99,6 +101,7 @@ const RAW_RUNTIME_STATE =
           ["@ar-framework/utils", "workspace:packages/utils"],\
           ["@parcel/config-default", "virtual:8c6cfc826c2ecc1b6d8dc38f65c77ebcfb8be82567f01502ab4545b51d1aab24881ad81340eb4e7d957924b346beb567fbbf3292d6f7cba12c23fb9417e1dca8#npm:2.14.2"],\
           ["@parcel/core", "npm:2.14.2"],\
+          ["@types/node", "npm:22.13.13"],\
           ["@types/react", "npm:19.0.12"],\
           ["parcel", "virtual:8c6cfc826c2ecc1b6d8dc38f65c77ebcfb8be82567f01502ab4545b51d1aab24881ad81340eb4e7d957924b346beb567fbbf3292d6f7cba12c23fb9417e1dca8#npm:2.14.2"],\
           ["parcel-namer-hashless", "npm:1.0.7"],\
@@ -1866,6 +1869,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@parcel/packager-ts", [\
+      ["npm:2.14.2", {\
+        "packageLocation": "../../.yarn/berry/cache/@parcel-packager-ts-npm-2.14.2-41dcedfae9-10c0.zip/node_modules/@parcel/packager-ts/",\
+        "packageDependencies": [\
+          ["@parcel/packager-ts", "npm:2.14.2"],\
+          ["@parcel/plugin", "npm:2.14.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@parcel/packager-wasm", [\
       ["npm:2.14.2", {\
         "packageLocation": "../../.yarn/berry/cache/@parcel-packager-wasm-npm-2.14.2-937a5bbcfa-10c0.zip/node_modules/@parcel/packager-wasm/",\
@@ -2257,6 +2270,57 @@ const RAW_RUNTIME_STATE =
           ["posthtml-parser", "npm:0.12.1"],\
           ["posthtml-render", "npm:3.0.0"],\
           ["semver", "npm:7.7.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@parcel/transformer-typescript-types", [\
+      ["npm:2.14.2", {\
+        "packageLocation": "../../.yarn/berry/cache/@parcel-transformer-typescript-types-npm-2.14.2-8d933f8fbf-10c0.zip/node_modules/@parcel/transformer-typescript-types/",\
+        "packageDependencies": [\
+          ["@parcel/transformer-typescript-types", "npm:2.14.2"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:8c6cfc826c2ecc1b6d8dc38f65c77ebcfb8be82567f01502ab4545b51d1aab24881ad81340eb4e7d957924b346beb567fbbf3292d6f7cba12c23fb9417e1dca8#npm:2.14.2", {\
+        "packageLocation": "./.yarn/__virtual__/@parcel-transformer-typescript-types-virtual-c22d62de8a/3/.yarn/berry/cache/@parcel-transformer-typescript-types-npm-2.14.2-8d933f8fbf-10c0.zip/node_modules/@parcel/transformer-typescript-types/",\
+        "packageDependencies": [\
+          ["@parcel/transformer-typescript-types", "virtual:8c6cfc826c2ecc1b6d8dc38f65c77ebcfb8be82567f01502ab4545b51d1aab24881ad81340eb4e7d957924b346beb567fbbf3292d6f7cba12c23fb9417e1dca8#npm:2.14.2"],\
+          ["@parcel/diagnostic", "npm:2.14.2"],\
+          ["@parcel/plugin", "npm:2.14.2"],\
+          ["@parcel/source-map", "npm:2.1.1"],\
+          ["@parcel/ts-utils", "virtual:c22d62de8a5d7002afbbc7d97f598ca283e849321fff2966369cb8e49c4e7d627c16001100a8533c513a510ccbd73c8ce4dd3c7b48fd5be899d455b162fbb64c#npm:2.14.2"],\
+          ["@parcel/utils", "npm:2.14.2"],\
+          ["@types/typescript", null],\
+          ["nullthrows", "npm:1.1.1"],\
+          ["typescript", "patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=5786d5"]\
+        ],\
+        "packagePeers": [\
+          "@types/typescript",\
+          "typescript"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@parcel/ts-utils", [\
+      ["npm:2.14.2", {\
+        "packageLocation": "../../.yarn/berry/cache/@parcel-ts-utils-npm-2.14.2-2e8981c53f-10c0.zip/node_modules/@parcel/ts-utils/",\
+        "packageDependencies": [\
+          ["@parcel/ts-utils", "npm:2.14.2"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:c22d62de8a5d7002afbbc7d97f598ca283e849321fff2966369cb8e49c4e7d627c16001100a8533c513a510ccbd73c8ce4dd3c7b48fd5be899d455b162fbb64c#npm:2.14.2", {\
+        "packageLocation": "./.yarn/__virtual__/@parcel-ts-utils-virtual-ca110fdc6f/3/.yarn/berry/cache/@parcel-ts-utils-npm-2.14.2-2e8981c53f-10c0.zip/node_modules/@parcel/ts-utils/",\
+        "packageDependencies": [\
+          ["@parcel/ts-utils", "virtual:c22d62de8a5d7002afbbc7d97f598ca283e849321fff2966369cb8e49c4e7d627c16001100a8533c513a510ccbd73c8ce4dd3c7b48fd5be899d455b162fbb64c#npm:2.14.2"],\
+          ["@types/typescript", null],\
+          ["nullthrows", "npm:1.1.1"],\
+          ["typescript", "patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=5786d5"]\
+        ],\
+        "packagePeers": [\
+          "@types/typescript",\
+          "typescript"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4640,6 +4704,14 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
+      ["npm:22.13.13", {\
+        "packageLocation": "../../.yarn/berry/cache/@types-node-npm-22.13.13-b6310cb3a6-10c0.zip/node_modules/@types/node/",\
+        "packageDependencies": [\
+          ["@types/node", "npm:22.13.13"],\
+          ["undici-types", "npm:6.20.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:22.13.4", {\
         "packageLocation": "../../.yarn/berry/cache/@types-node-npm-22.13.4-80985669cb-10c0.zip/node_modules/@types/node/",\
         "packageDependencies": [\
@@ -4877,6 +4949,8 @@ const RAW_RUNTIME_STATE =
           ["ar-framework", "workspace:."],\
           ["@parcel/config-default", "virtual:8c6cfc826c2ecc1b6d8dc38f65c77ebcfb8be82567f01502ab4545b51d1aab24881ad81340eb4e7d957924b346beb567fbbf3292d6f7cba12c23fb9417e1dca8#npm:2.14.2"],\
           ["@parcel/core", "npm:2.14.2"],\
+          ["@parcel/packager-ts", "npm:2.14.2"],\
+          ["@parcel/transformer-typescript-types", "virtual:8c6cfc826c2ecc1b6d8dc38f65c77ebcfb8be82567f01502ab4545b51d1aab24881ad81340eb4e7d957924b346beb567fbbf3292d6f7cba12c23fb9417e1dca8#npm:2.14.2"],\
           ["@types/react", "npm:19.0.12"],\
           ["lit", "npm:3.2.1"],\
           ["parcel", "virtual:8c6cfc826c2ecc1b6d8dc38f65c77ebcfb8be82567f01502ab4545b51d1aab24881ad81340eb4e7d957924b346beb567fbbf3292d6f7cba12c23fb9417e1dca8#npm:2.14.2"],\

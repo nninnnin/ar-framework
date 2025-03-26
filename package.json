@@ -22,6 +22,8 @@
   "devDependencies": {
     "@parcel/config-default": "^2.14.2",
     "@parcel/core": "^2.14.2",
+    "@parcel/packager-ts": "2.14.2",
+    "@parcel/transformer-typescript-types": "2.14.2",
     "@types/react": "^19.0.12",
     "parcel": "^2.14.2",
     "parcel-namer-hashless": "^1.0.7",

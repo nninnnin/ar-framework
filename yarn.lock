@@ -43,6 +43,7 @@ __metadata:
   dependencies:
     "@parcel/config-default": "npm:*"
     "@parcel/core": "npm:*"
+    "@types/node": "npm:^22.13.13"
     "@types/react": "npm:^19.0.12"
     parcel: "npm:*"
     parcel-namer-hashless: "npm:*"
@@ -1452,6 +1453,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@parcel/packager-ts@npm:2.14.2":
+  version: 2.14.2
+  resolution: "@parcel/packager-ts@npm:2.14.2"
+  dependencies:
+    "@parcel/plugin": "npm:2.14.2"
+  checksum: 10c0/9e0c67625e6b05108b61b95fe2c8e20d3fe2d1bc9394318c930eb6484857b544b025a11d2e8b35364a8bf5511256bb2e35decc6d89e09b670d53223bd214f52f
+  languageName: node
+  linkType: hard
+
 "@parcel/packager-wasm@npm:2.14.2":
   version: 2.14.2
   resolution: "@parcel/packager-wasm@npm:2.14.2"
@@ -1790,6 +1800,33 @@ __metadata:
     posthtml-render: "npm:^3.0.0"
     semver: "npm:^7.5.2"
   checksum: 10c0/12d60e8fb23732faf9a597d4af2c505356f91a8eb977052451b4093a3630a3c1cecd2cac290008944e650260041b327f14d7eaf1fd812a90e7191852dae53f46
+  languageName: node
+  linkType: hard
+
+"@parcel/transformer-typescript-types@npm:2.14.2":
+  version: 2.14.2
+  resolution: "@parcel/transformer-typescript-types@npm:2.14.2"
+  dependencies:
+    "@parcel/diagnostic": "npm:2.14.2"
+    "@parcel/plugin": "npm:2.14.2"
+    "@parcel/source-map": "npm:^2.1.1"
+    "@parcel/ts-utils": "npm:2.14.2"
+    "@parcel/utils": "npm:2.14.2"
+    nullthrows: "npm:^1.1.1"
+  peerDependencies:
+    typescript: ">=3.0.0"
+  checksum: 10c0/fe2538bdab9a749d3ce5d67eee0bc7775196459214eab6f094e117a59d7d50b2eb09d3e42eded88fb8932c47b5e227bdc3b65a27700f1f9802f89711cffb07bd
+  languageName: node
+  linkType: hard
+
+"@parcel/ts-utils@npm:2.14.2":
+  version: 2.14.2
+  resolution: "@parcel/ts-utils@npm:2.14.2"
+  dependencies:
+    nullthrows: "npm:^1.1.1"
+  peerDependencies:
+    typescript: ">=3.0.0"
+  checksum: 10c0/36b1c5dbed587ff7f63417798d90b0df0bc6fa317639f190dfbd5e84cd1a35f4d9c79e35d73b3ddb9ce26320fa7fd040436c81720071782120e1a4c7b31fda54
   languageName: node
   linkType: hard
 
@@ -3640,6 +3677,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^22.13.13":
+  version: 22.13.13
+  resolution: "@types/node@npm:22.13.13"
+  dependencies:
+    undici-types: "npm:~6.20.0"
+  checksum: 10c0/daf792ba5dcff1316abf4b33680f94b792f8d54d6ae495efc8929531e0ba1284a248d29aab117d2259f9280284d986ad5799b193b0516e2b926d713aab835f7d
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^22.13.4":
   version: 22.13.4
   resolution: "@types/node@npm:22.13.4"
@@ -3820,6 +3866,8 @@ __metadata:
   dependencies:
     "@parcel/config-default": "npm:^2.14.2"
     "@parcel/core": "npm:^2.14.2"
+    "@parcel/packager-ts": "npm:2.14.2"
+    "@parcel/transformer-typescript-types": "npm:2.14.2"
     "@types/react": "npm:^19.0.12"
     lit: "npm:^3.2.1"
     parcel: "npm:^2.14.2"
