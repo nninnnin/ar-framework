@@ -11,7 +11,7 @@
     "react": "*",
     "react-dom": "*",
     "tailwindcss": "^4.0.6",
-    "zustand": "^5.0.3"
+    "zustand": "*"
   },
   "scripts": {
     "copyAppToWebPublic": "cp -r dist/index.js ../../web/public/scripts/controls.js && cp -r dist/index.css ../../web/public/styles/controls.css",
