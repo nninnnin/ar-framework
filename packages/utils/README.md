@@ -66,4 +66,9 @@ useArContentsMessages({
   - tsconfig 옵션 추가: `"moduleResolution": "node"`
 
 - `1.1.6`
+
   - 메시지 수신 로그 수정
+
+- `1.1.7`
+  - `ArContentsIframe` 에서 src 속성 제거
+  - `ArContentsIframe` 리렌더링 문제 해소를 위해 메모아이징
