@@ -3,7 +3,6 @@ import React, {
   useEffect,
   useRef,
   forwardRef,
-  useMemo,
 } from "react";
 
 import IframeMessenger from "./IframeMessenger";
@@ -112,14 +111,8 @@ export const useArContents = () => {
     showGlbModels,
     showCaptureButton,
     ArContentsIframe: ({ src }: { src: string }) => {
-      return useMemo(
-        () => (
-          <ArContentsIframe
-            ref={iframeRef}
-            src={src}
-          />
-        ),
-        [src]
+      return (
+        <ArContentsIframe ref={iframeRef} src={src} />
       );
     },
   };

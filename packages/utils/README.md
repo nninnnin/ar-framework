@@ -75,5 +75,9 @@ useArContentsMessages({
   - `ArContentsIframe` 리렌더링 문제 해소를 위해 메모아이징
 
 - `1.1.8`
+
   - `ArContentsIframe` 에 src 속성 다시 추가
   - `useArContents` 에서 src 속성 제거
+
+- `1.1.9`
+  - `ArContentsIframe` 메모기능 제거
