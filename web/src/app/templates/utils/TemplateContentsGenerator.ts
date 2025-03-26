@@ -197,8 +197,6 @@ class TemplateContentsGenerator {
       `<script>
         addMessageHandler({
           "show-glb-models": () => {
-            console.log("Show All Glb Models");
-
             const hideAllModels = () => {
               const models = document.querySelectorAll("a-gltf-model");
 
@@ -214,8 +212,6 @@ class TemplateContentsGenerator {
             hideAllModels();
           },
           "show-capture-button": () => {
-            console.log("Show Capture Button");
-
             const captureButton = document.getElementById("capture-button");
 
             if (!captureButton) {
