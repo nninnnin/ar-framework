@@ -188,7 +188,7 @@ class TemplateContentsGenerator {
 
   addCapturer() {
     this.appendToHead(
-      `<link rel="stylesheet" href="/features/capturer/index.css"></link>`
+      `<link rel="stylesheet" href="/features/capturer/index.css" />`
     );
     this.appendToBody(
       `<script src="/features/capturer/index.js"></script>`

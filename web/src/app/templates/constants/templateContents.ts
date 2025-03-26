@@ -15,7 +15,7 @@ export const TemplateContents: Record<
       </script>
       <script
         type="text/javascript"
-        src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js"
+        src="/scripts/libs/ar-threex-location-only.js"
       ></script>
       <script
         type='text/javascript'
