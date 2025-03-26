@@ -110,7 +110,7 @@ export const useArContents = (src: string) => {
   return {
     showGlbModels,
     showCaptureButton,
-    ArContentsIframe: () => (
+    ArContentsIframe: ({ src }: { src: string }) => (
       <ArContentsIframe ref={iframeRef} src={src} />
     ),
   };

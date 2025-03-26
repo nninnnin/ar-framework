@@ -58,4 +58,8 @@ useArContentsMessages({
 
 ### 버전 히스토리
 
-`1.1.3`: `index.d.ts` 추가
+- `1.1.3`
+  - `index.d.ts` 추가
+- `1.1.4`
+  - `ArContentsIframe` 인터페이스 수정 (src 속성 추가)
+  - tsconfig 옵션 추가: `"moduleResolution": "node"`

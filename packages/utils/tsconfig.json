@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "jsx": "preserve",
     "module": "ES6",
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "moduleResolution": "node"
   }
 }
