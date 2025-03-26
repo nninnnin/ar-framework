@@ -73,7 +73,7 @@ const throwIframeRefError = () => {
   );
 };
 
-export const useArContents = (src: string) => {
+export const useArContents = () => {
   const iframeRef = useRef<HTMLIFrameElement | null>(
     null
   );
@@ -111,11 +111,16 @@ export const useArContents = (src: string) => {
   return {
     showGlbModels,
     showCaptureButton,
-    ArContentsIframe: useMemo(
-      () => (
-        <ArContentsIframe ref={iframeRef} src={src} />
-      ),
-      [src]
-    ),
+    ArContentsIframe: ({ src }: { src: string }) => {
+      return useMemo(
+        () => (
+          <ArContentsIframe
+            ref={iframeRef}
+            src={src}
+          />
+        ),
+        [src]
+      );
+    },
   };
 };
