@@ -32,6 +32,10 @@ class TemplateContentsGenerator {
     );
 
     this.addControls();
+    this.addMessageHandler();
+    this.addArContentsLoadingHandlers(
+      this.projectType
+    );
 
     return this.templateRoot.toString();
   }
@@ -182,6 +186,67 @@ class TemplateContentsGenerator {
     this.appendToHead(
       `<link rel="stylesheet" href="/styles/controls.css" />`
     );
+  }
+
+  addMessageHandler() {
+    this.appendToBody(
+      `<script src="/scripts/message.js"></script>`
+    );
+
+    this.appendToBody(
+      `<script>
+        addMessageHandler({
+          "ar-guide-close": () => {
+            console.log("AR GUIDE CLOSED");
+
+            // showModels
+            // showCaptureButton
+          }
+        })
+      </script>`
+    );
+  }
+
+  addArContentsLoadingHandlers(arType: ProjectType) {
+    this.appendToBody(
+      `<script src="/scripts/arLoaded.js"></script>`
+    );
+
+    if (arType === "위치기반 AR") {
+      this.appendToBody(
+        `<script>
+          addARLoadedHandler("location", () => {
+            postMessageToParent({
+              type: "ar-loaded"
+            })
+          })
+        </script>`
+      );
+    }
+
+    if (arType === "얼굴인식 AR") {
+      this.appendToBody(
+        `<script>
+          addARLoadedHandler("face", () => {
+            postMessageToParent({
+              type: "ar-loaded"
+            })
+          })
+        </script>`
+      );
+    }
+
+    if (arType === "이미지마커 AR") {
+      this.appendToBody(
+        `<script>
+          addARLoadedHandler("marker", () => {
+            postMessageToParent({
+              type: "ar-loaded"
+            })
+          })
+        </script>`
+      );
+    }
   }
 }
 
