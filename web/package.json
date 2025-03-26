@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ar-framework/utils": "workspace:^",
+    "react": "*",
+    "zustand": "*",
+    "react-dom": "*",
+    "@ar-framework/utils": "*",
     "@emotion/react": "^11.14.0",
     "@fxts/core": "^1.5.0",
     "@google/model-viewer": "^4.0.0",
@@ -22,12 +25,9 @@
     "next": "^15.1.5",
     "node-html-parser": "^7.0.1",
     "qrcode.react": "^4.2.0",
-    "react": "*",
-    "react-dom": "*",
     "three": "^0.173.0",
     "uuid": "^11.0.5",
-    "zod": "^3.24.2",
-    "zustand": "*"
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.26.3",
