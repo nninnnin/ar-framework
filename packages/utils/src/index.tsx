@@ -20,7 +20,7 @@ export const useArContentsMessages = ({
       const message: MessageInterface = event.data;
 
       console.log(
-        "AR Framework: 메시지 수신 📨",
+        "AR Framework 프로젝트로부터 받은 메시지 📮: ",
         message
       );
 
