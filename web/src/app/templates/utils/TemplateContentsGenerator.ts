@@ -175,9 +175,6 @@ class TemplateContentsGenerator {
 
   addControls() {
     this.appendToBody(
-      `<div id='ar-controls-root'></div>`
-    );
-    this.appendToBody(
       `<script src="/scripts/controls.js"></script>`
     );
     this.appendToHead(
