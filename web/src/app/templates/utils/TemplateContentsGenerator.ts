@@ -212,7 +212,7 @@ class TemplateContentsGenerator {
             }
 
             hideAllModels();
-          }
+          },
           "show-capture-button": () => {
             console.log("Show Capture Button");
 
