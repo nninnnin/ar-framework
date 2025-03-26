@@ -6,9 +6,8 @@ import App from "./App";
 function addRootElement() {
   const REACT_ROOT_DOM_ID = "ar-controls-root";
 
-  const rootDOM = document.createElement(
-    REACT_ROOT_DOM_ID
-  );
+  const rootDOM = document.createElement("div");
+  rootDOM.id = REACT_ROOT_DOM_ID;
 
   document.body.appendChild(rootDOM);
 

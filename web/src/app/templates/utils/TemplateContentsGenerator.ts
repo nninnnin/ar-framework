@@ -20,10 +20,9 @@ class TemplateContentsGenerator {
   }
 
   generateTemplate() {
+    // Construct HTML tags
     this.appendToHead(this.getHeadScripts());
-
     this.appendToBody(this.getBodyContents());
-
     this.appendToScene(
       this.generateGlbModelAssets(this.projectType)
     );
@@ -31,7 +30,9 @@ class TemplateContentsGenerator {
       this.generateGlbModelElements(this.projectType)
     );
 
+    // Add scripts
     this.addControls();
+    this.addCapturer();
     this.addMessageHandler();
     this.addArContentsLoadingHandlers(
       this.projectType
@@ -174,14 +175,23 @@ class TemplateContentsGenerator {
   }
 
   addControls() {
-    this.appendToBody(
-      `<script src="/scripts/controls.js"></script>`
+    this.appendToHead(
+      `<link rel="stylesheet" href="/features/controls/index.css" />`
     );
     this.appendToHead(
       `<script src="/scripts/aframeComponents/frustumCulled.js"></script>`
     );
+    this.appendToBody(
+      `<script src="/features/controls/index.js"></script>`
+    );
+  }
+
+  addCapturer() {
     this.appendToHead(
-      `<link rel="stylesheet" href="/styles/controls.css" />`
+      `<script src="/features/capturer/index.css"></script>`
+    );
+    this.appendToBody(
+      `<script src="/features/capturer/index.js"></script>`
     );
   }
 

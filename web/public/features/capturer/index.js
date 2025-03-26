@@ -1,0 +1,1 @@
+(()=>{let e=document.createElement("button");e.id="capture-button",document.body.appendChild(e),console.log(e)})();
