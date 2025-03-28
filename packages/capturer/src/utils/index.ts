@@ -42,14 +42,8 @@ export class Capturer {
     video.pause();
   }
 
-  stopGltfAnimations(scene) {
-    const gltfModels = scene.querySelectorAll(
-      "a-gltf-model"
-    );
-
-    gltfModels.forEach((model: Element) => {
-      model.removeAttribute("animation-mixer");
-    });
+  stopAnimatingScene(scene) {
+    scene.renderer.setAnimationLoop(null);
   }
 
   captureScene(scene) {
@@ -64,7 +58,7 @@ export class Capturer {
   drawScene() {
     const scene = this.getScene();
 
-    this.stopGltfAnimations(scene);
+    this.stopAnimatingScene(scene);
     const capturedScene = this.captureScene(scene);
 
     const ctx = this.canvas.getContext("2d");
