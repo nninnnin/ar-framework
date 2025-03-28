@@ -4,6 +4,8 @@
     "lib": ["esnext", "dom"],
     "moduleResolution": "node",
     "jsx": "preserve",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   }
 }

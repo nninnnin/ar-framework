@@ -1,3 +1,5 @@
+import { CaptureMessageInterface } from "../types";
+
 export class Capturer {
   canvas: HTMLCanvasElement;
 
@@ -69,7 +71,14 @@ export class Capturer {
     this.drawVideo();
     this.drawScene();
 
-    this.appendCanvasToBody();
+    this.exportAsBlob((blob) => {
+      const captureMessage: CaptureMessageInterface = {
+        type: "image-captured",
+        payload: blob,
+      };
+
+      window.parent?.postMessage(captureMessage, "*");
+    });
   }
 
   appendCanvasToBody() {
@@ -78,5 +87,11 @@ export class Capturer {
 
   removeCanvasFromBody() {
     document.body.removeChild(this.canvas);
+  }
+
+  exportAsBlob(callback) {
+    return this.canvas.toBlob((blob) => {
+      callback(blob);
+    }, "image/png");
   }
 }
