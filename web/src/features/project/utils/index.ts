@@ -1,3 +1,5 @@
+import { xor } from "lodash";
+
 import { FormattedCategory } from "@/shared/types";
 
 export const getProjectTypeId = (
@@ -18,4 +20,14 @@ export const getSearchParam = (
   key: string
 ) => {
   return new URL(request.url).searchParams.get(key);
+};
+
+export const isProjectGlbModelsChanged = (
+  serverGlbModelIds: string[],
+  clientGlbModelIds: string[]
+) => {
+  return (
+    xor(serverGlbModelIds, clientGlbModelIds).length >
+    0
+  );
 };

@@ -28,7 +28,7 @@ const formatDataValue = (
     case "number":
       return Number(value);
     case "boolean":
-      return Boolean(value);
+      return String(value); // 서버에서 스트링으로 보내야 인식
     case "relation":
       return value;
     default:

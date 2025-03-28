@@ -26,3 +26,5 @@ export interface UpdateBody {
   publish: boolean;
   data: unknown;
 }
+
+export type FormattedData = Record<string, unknown>;

@@ -61,7 +61,7 @@ export interface RelationInterface {
   languageMap: LanguageMap;
 }
 
-type MemexModelItem<Item> = {
+export type MemexModelItem<Item> = {
   uid: string;
   data: Item;
   createdAt: string;

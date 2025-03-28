@@ -3,7 +3,7 @@ import { ProjectBody } from "@/features/project/types/project";
 export const createProjectBody = (
   projectName: string,
   projectTypeId: number,
-  postedModelIds: number[],
+  postedModelIds: string[],
   groupId: string
 ): ProjectBody => {
   return {

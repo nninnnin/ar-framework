@@ -1,4 +1,4 @@
-import { differenceBy } from "lodash";
+import { differenceBy, xorBy } from "lodash";
 import React, { useEffect, useState } from "react";
 
 import Dialog from "@/shared/components/Dialog";
@@ -11,7 +11,10 @@ import {
 import useProjectItem from "@/features/project/hooks/useProjectItem";
 import useProjectTypes from "@/features/project/hooks/useProjectTypes";
 import useGlbModels from "@/features/glbModel/hooks/useGlbModels";
-import { getProjectTypeId } from "@/features/project/utils";
+import {
+  getProjectTypeId,
+  isProjectGlbModelsChanged,
+} from "@/features/project/utils";
 
 import ModelEditor from "@/features/project/components/ModelEditor";
 import { createProjectBody } from "@/entities/project/utils";
@@ -22,9 +25,15 @@ import {
 } from "@/entities/glbModel/utils/fetchers";
 import { QueryKeys } from "@/shared/constants/queryKeys";
 import { useQueryClient } from "@tanstack/react-query";
+import { createUpdateBody } from "@/shared/utils/createUpdateBody";
+import { GlbModelItemFormatted } from "@/entities/glbModel/types";
 
 const apiFetcher = createNextApiFetcher({
   entity: "project",
+});
+
+const glbModelApiFetcher = createNextApiFetcher({
+  entity: "glbModel",
 });
 
 const ProjectModelEditingDialog = ({
@@ -71,69 +80,143 @@ const ProjectModelEditingDialog = ({
     };
   }, [glbModels, isLoading]);
 
-  const isChanged =
-    !isLoading &&
-    glbModels?.length !==
-      projectGlbModels.filter((el) => el).length;
+  const hasChangedModel =
+    xorBy(
+      glbModels as AddedModel[],
+      projectGlbModels.filter((el) => el),
+      (model) => model?.id
+    ).length > 0;
+
+  const isChanged = !isLoading && hasChangedModel;
 
   const handleSaveClick = async () => {
     setIsSaving(true);
 
+    // 새로 추가된 모델이 있다면 업로드 후 프로젝트에 추가
     const newlyAddedModels = differenceBy(
-      projectGlbModels.filter((el) => el),
+      projectGlbModels.filter(
+        (el) => el
+      ) as AddedModel[],
       glbModels as AddedModel[],
       "id"
     );
 
-    const result = await uploadGlbModels(
-      newlyAddedModels
-        .filter((m) => m)
-        .map((m) => m!.file)
+    let postedModelIds: string[] = [];
+
+    if (newlyAddedModels && newlyAddedModels.length) {
+      const result = await uploadGlbModels(
+        newlyAddedModels
+          .filter((m) => m)
+          .map((m) => m!.file)
+      );
+
+      postedModelIds = await postGlbModels(result);
+    }
+
+    // 삭제된 모델이 있다면 프로젝트에서 제거 후 삭제
+    const removedModels = differenceBy(
+      glbModels as AddedModel[],
+      projectGlbModels.filter((el) => el),
+      "id"
     );
 
-    const postModelResult = await postGlbModels(
-      result
-    );
+    if (removedModels && removedModels.length) {
+      await Promise.all(
+        removedModels.map(async (model) => {
+          const res = await glbModelApiFetcher.getItem(
+            model.id
+          );
 
-    const projectTypeId = getProjectTypeId(
-      projectItem!.projectType,
-      projectTypes
-    );
+          const originalBody =
+            res.data as GlbModelItemFormatted;
 
-    if (!projectTypeId) {
-      throw new Error(
-        "프로젝트 타입이 존재하지 않습니다."
+          const updateBody = createUpdateBody<{
+            isDeleted: boolean;
+            mediaPath: string;
+            name: string;
+            uid: string;
+          }>(
+            { ...originalBody, isDeleted: true },
+            {
+              isDeleted: "boolean",
+              mediaPath: "longtext",
+              name: "title",
+              uid: "singletext",
+            }
+          );
+
+          await glbModelApiFetcher.updateItem(
+            model.id,
+            updateBody
+          );
+        })
       );
     }
 
-    const projectBody = createProjectBody(
-      projectItem!.name,
-      projectTypeId,
-      [
-        ...projectItem!.glbModels.map((m) => m.uid),
-        ...postModelResult.map((r) => r),
-      ],
-      selectedGroup!.uid
+    // 프로젝트 모델 수정
+    const serverModelIds = projectItem!.glbModels.map(
+      (m) => m.uid
     );
+    const clientModelIds = projectGlbModels
+      .filter((el) => el)
+      .map((model) => model!.id);
 
-    const updateBody = {
-      uid: projectId,
-      ...projectBody,
-    };
+    if (
+      isProjectGlbModelsChanged(
+        serverModelIds,
+        clientModelIds
+      )
+    ) {
+      const updatedModelIds = projectItem!.glbModels
+        .filter((model) =>
+          removedModels.every(
+            (removedModel) =>
+              removedModel.id !== model.uid
+          )
+        )
+        .map((model) => model.uid)
+        .concat(postedModelIds);
 
-    const postUpdateResult =
-      await apiFetcher.updateItem(
-        projectId,
-        updateBody
-      );
+      const updateProjectGlbModelList = async () => {
+        // 프로젝트 아이디와 업데이트 바디를 가져온다
+        const projectTypeId = getProjectTypeId(
+          projectItem!.projectType,
+          projectTypes
+        );
 
-    console.log(
-      "postUpdateResult: ",
-      postUpdateResult
-    );
+        if (!projectTypeId) {
+          throw new Error(
+            "프로젝트 타입이 존재하지 않습니다."
+          );
+        }
 
+        const projectBody = createProjectBody(
+          projectItem!.name,
+          projectTypeId,
+          updatedModelIds,
+          selectedGroup!.uid
+        );
+
+        const updateBody = {
+          uid: projectId,
+          ...projectBody,
+        };
+
+        await apiFetcher.updateItem(
+          projectId,
+          updateBody
+        );
+      };
+
+      await updateProjectGlbModelList();
+    }
+
+    // GlbModel Query Invalidation
     await queryClient.invalidateQueries({
-      queryKey: [QueryKeys.GlbModels],
+      queryKey: [
+        QueryKeys.GlbModels,
+        QueryKeys.Projects,
+      ],
     });
 
     setIsSaving(false);

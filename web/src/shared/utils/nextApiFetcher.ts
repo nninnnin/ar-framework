@@ -1,4 +1,3 @@
-import { UpdateBody } from "@/shared/types";
 import axios from "axios";
 
 interface FetcherConfig {
@@ -36,7 +35,7 @@ const createNextApiFetcher = ({
       await axiosInstance.post("", body),
     updateItem: async (
       uid: string,
-      body: UpdateBody
+      body: Record<string, unknown>
     ) => {
       return await axiosInstance.put(
         `?${entity}Id=${uid}`,

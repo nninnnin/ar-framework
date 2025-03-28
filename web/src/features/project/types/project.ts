@@ -48,7 +48,7 @@ export type ProjectBody = {
       KO: string;
     };
     projectType: number[];
-    glbModels: number[];
+    glbModels: string[];
     groupName: string[];
   };
 };

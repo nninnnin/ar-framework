@@ -1,9 +1,16 @@
-import { createMemexFetcher } from "@rebel9/memex-fetcher";
+import {
+  createMemexFetcher,
+  pipe,
+} from "@rebel9/memex-fetcher";
 
 import {
   GlbModelData,
   GlbModelFormatted,
 } from "@/features/glbModel/types/glbModel";
+import {
+  MemexListResult,
+  MemexModelItem,
+} from "@/shared/types/memex";
 
 const memexFetcher = createMemexFetcher(
   process.env.MEMEX_TOKEN ?? ""
@@ -26,38 +33,55 @@ export const getGlbModels = async (
     }
   );
 
-  const result = await res.json();
+  const result =
+    (await res.json()) as MemexListResult<GlbModelData>;
 
-  return result.list
-    .filter((glbModel: { uid: string }) =>
-      (glbModelUids ?? []).includes(glbModel.uid)
-    )
-    .map(
-      (model: { uid: string; data: GlbModelData }) => {
-        console.log("HI", model);
-
-        return {
-          uid: model.uid,
-          name: model.data.name.KO,
-          path: model.data.mediaPath,
-          coordinates: {
-            latitude: model.data.latitude
-              ? model.data.latitude
-              : null,
-            longitude: model.data.longitude
-              ? model.data.longitude
-              : null,
-          },
-          scale: model.data.scale
-            ? JSON.parse(model.data.scale)
-            : { x: 0, y: 0, z: 0 },
-          rotation: model.data.rotation
-            ? JSON.parse(model.data.rotation)
-            : { x: 0, y: 0, z: 0 },
-          position: model.data.position
-            ? JSON.parse(model.data.position)
-            : { x: 0, y: 0, z: 0 },
-        };
-      }
-    );
+  return pipe(
+    result.list,
+    filterDeletedModels,
+    (items: MemexModelItem<GlbModelData>[]) =>
+      glbModelUids
+        ? filterWithIds(items, glbModelUids)
+        : items,
+    formatGlbModelItems
+  );
 };
+
+const filterDeletedModels = (
+  items: MemexModelItem<GlbModelData>[]
+) => {
+  return items.filter((item) => !item.data.isDeleted);
+};
+
+const filterWithIds = (
+  items: MemexModelItem<GlbModelData>[],
+  ids: string[]
+) => {
+  return items.filter((item) =>
+    ids.includes(item.uid)
+  );
+};
+
+const formatGlbModelItems = (
+  items: MemexModelItem<GlbModelData>[]
+) =>
+  items.map(({ uid, data }) => ({
+    uid: uid,
+    name: data.name.KO,
+    path: data.mediaPath,
+    coordinates: {
+      latitude: data.latitude ? data.latitude : null,
+      longitude: data.longitude
+        ? data.longitude
+        : null,
+    },
+    scale: data.scale
+      ? JSON.parse(data.scale)
+      : { x: 0, y: 0, z: 0 },
+    rotation: data.rotation
+      ? JSON.parse(data.rotation)
+      : { x: 0, y: 0, z: 0 },
+    position: data.position
+      ? JSON.parse(data.position)
+      : { x: 0, y: 0, z: 0 },
+  }));
