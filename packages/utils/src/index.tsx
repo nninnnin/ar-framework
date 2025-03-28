@@ -52,7 +52,7 @@ const ArContentsIframe = forwardRef(
       <iframe
         ref={ref}
         id="ar-contents-frame"
-        allow="camera; microphone; geolocation; accelerometer; gyroscope; magnetometer; xr-spatial-tracking;"
+        allow="camera; microphone; geolocation; accelerometer; gyroscope; magnetometer; xr-spatial-tracking; web-share"
         src={src}
         style={{
           width: "100vw",
