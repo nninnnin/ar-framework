@@ -49,9 +49,9 @@ const ProjectModelEditingDialog = ({
 
   const { selectedGroup } = useSelectedGroup();
   const {
-    addModels,
+    setModels,
     resetAddedModels,
-    projectGlbModels,
+    projectGlbModels: clientsideProjectGlbModels,
   } = useProjectGlbModels();
 
   const { resetSelectedModelIndex } =
@@ -64,26 +64,32 @@ const ProjectModelEditingDialog = ({
 
   const { data: projectTypes } = useProjectTypes();
 
-  const { data: glbModels, isLoading } = useGlbModels({
+  const {
+    data: serversideProjectGlbModels,
+    isLoading,
+  } = useGlbModels({
     modelIds: projectItem?.glbModels.map((m) => m.uid),
     asFile: true,
   });
 
   useEffect(() => {
-    if (!glbModels || isLoading) return;
+    if (!serversideProjectGlbModels || isLoading)
+      return;
 
-    addModels(glbModels as AddedModel[]);
+    setModels(
+      serversideProjectGlbModels as AddedModel[]
+    );
 
     return () => {
       resetAddedModels();
       resetSelectedModelIndex();
     };
-  }, [glbModels, isLoading]);
+  }, [serversideProjectGlbModels, isLoading]);
 
   const hasChangedModel =
     xorBy(
-      glbModels as AddedModel[],
-      projectGlbModels.filter((el) => el),
+      serversideProjectGlbModels as AddedModel[],
+      clientsideProjectGlbModels.filter((el) => el),
       (model) => model?.id
     ).length > 0;
 
@@ -94,10 +100,10 @@ const ProjectModelEditingDialog = ({
 
     // 새로 추가된 모델이 있다면 업로드 후 프로젝트에 추가
     const newlyAddedModels = differenceBy(
-      projectGlbModels.filter(
+      clientsideProjectGlbModels.filter(
         (el) => el
       ) as AddedModel[],
-      glbModels as AddedModel[],
+      serversideProjectGlbModels as AddedModel[],
       "id"
     );
 
@@ -115,8 +121,8 @@ const ProjectModelEditingDialog = ({
 
     // 삭제된 모델이 있다면 프로젝트에서 제거 후 삭제
     const removedModels = differenceBy(
-      glbModels as AddedModel[],
-      projectGlbModels.filter((el) => el),
+      serversideProjectGlbModels as AddedModel[],
+      clientsideProjectGlbModels.filter((el) => el),
       "id"
     );
 
@@ -157,7 +163,7 @@ const ProjectModelEditingDialog = ({
     const serverModelIds = projectItem!.glbModels.map(
       (m) => m.uid
     );
-    const clientModelIds = projectGlbModels
+    const clientModelIds = clientsideProjectGlbModels
       .filter((el) => el)
       .map((model) => model!.id);
 
@@ -169,10 +175,7 @@ const ProjectModelEditingDialog = ({
     ) {
       const updatedModelIds = projectItem!.glbModels
         .filter((model) =>
-          removedModels.every(
-            (removedModel) =>
-              removedModel.id !== model.uid
-          )
+          clientModelIds.includes(model.uid)
         )
         .map((model) => model.uid)
         .concat(postedModelIds);
@@ -219,6 +222,12 @@ const ProjectModelEditingDialog = ({
       ],
     });
 
+    const groupName = selectedGroup?.name ?? "";
+
+    await queryClient.refetchQueries({
+      queryKey: [QueryKeys.Projects, groupName],
+    });
+
     setIsSaving(false);
 
     onClose();
@@ -226,7 +235,10 @@ const ProjectModelEditingDialog = ({
 
   return (
     <Dialog size="large">
-      <Dialog.Header handleCloseClick={onClose}>
+      <Dialog.Header
+        disableCloseButton={isSaving}
+        handleCloseClick={onClose}
+      >
         <Dialog.HeaderLabel>
           프로젝트 모델 수정
         </Dialog.HeaderLabel>

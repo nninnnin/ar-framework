@@ -9,7 +9,7 @@ const useGlbModels = (options: {
   const { modelIds, asFile } = options;
 
   return useQuery({
-    queryKey: [QueryKeys.GlbModels],
+    queryKey: [QueryKeys.GlbModels, modelIds, asFile],
     queryFn: async () => {
       const glbModels = await (modelIds
         ? getGlbModels(modelIds)

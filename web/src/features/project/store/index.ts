@@ -42,6 +42,7 @@ export const useProjectGlbModels = create<{
   addModels: (
     models: { id: string; file: File }[]
   ) => void;
+  setModels: (models: AddedModel[]) => void;
   resetAddedModels: () => void;
   removeModel: (index: string) => void;
 }>((set) => ({
@@ -67,6 +68,19 @@ export const useProjectGlbModels = create<{
           null,
         ],
       };
+    });
+  },
+  setModels: (
+    models: { id: string; file: File }[]
+  ) => {
+    set({
+      projectGlbModels: [
+        ...models.map((model) => ({
+          id: model.id,
+          file: model.file,
+        })),
+        null,
+      ],
     });
   },
   resetAddedModels: () =>

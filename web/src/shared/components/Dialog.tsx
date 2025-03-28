@@ -53,9 +53,11 @@ Dialog.HeaderLabel = ({
 Dialog.Header = ({
   handleCloseClick,
   children,
+  disableCloseButton = false,
 }: {
   handleCloseClick: () => void;
   children?: React.ReactNode;
+  disableCloseButton?: boolean;
 }) => {
   return (
     <div className="dialog-header">
@@ -63,17 +65,25 @@ Dialog.Header = ({
 
       <svg
         className="dialog-close-button"
+        css={css`
+          ${disableCloseButton
+            ? css`
+                pointer-events: none;
+              `
+            : ""}
+        `}
         viewBox="0 0 40 40"
         preserveAspectRatio="none"
         width="100%"
         height="100%"
-        fill="black"
         onClick={handleCloseClick}
       >
         <rect
           width="100%"
           height="100%"
-          fill="black"
+          fill={
+            disableCloseButton ? "gainsboro" : "black"
+          }
         />
 
         <path

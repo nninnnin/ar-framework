@@ -64,6 +64,7 @@ const ProjectDetailsDialog = ({
       `}
     >
       <Dialog.Header
+        disableCloseButton={false}
         handleCloseClick={() => close && close()}
       >
         <ProjectDetailsDialog.Header>
