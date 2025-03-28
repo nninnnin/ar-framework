@@ -42,6 +42,16 @@ export class Capturer {
     video.pause();
   }
 
+  stopGltfAnimations(scene) {
+    const gltfModels = scene.querySelectorAll(
+      "a-gltf-model"
+    );
+
+    gltfModels.forEach((model: Element) => {
+      model.removeAttribute("animation-mixer");
+    });
+  }
+
   captureScene(scene) {
     const capturedScene =
       scene.components.screenshot.getCanvas(
@@ -53,6 +63,8 @@ export class Capturer {
 
   drawScene() {
     const scene = this.getScene();
+
+    this.stopGltfAnimations(scene);
     const capturedScene = this.captureScene(scene);
 
     const ctx = this.canvas.getContext("2d");
