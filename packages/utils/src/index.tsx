@@ -45,7 +45,10 @@ export const useArContentsMessages = ({
 
 const ArContentsIframe = forwardRef(
   (
-    { src }: { src: string },
+    {
+      src,
+      visibility,
+    }: { src: string; visibility: boolean },
     ref: ForwardedRef<HTMLIFrameElement>
   ) => {
     return (
@@ -60,6 +63,9 @@ const ArContentsIframe = forwardRef(
           position: "fixed",
           top: 0,
           left: 0,
+          visibility: visibility
+            ? "visible"
+            : "hidden",
         }}
       ></iframe>
     );
@@ -110,9 +116,19 @@ export const useArContents = () => {
   return {
     showGlbModels,
     showCaptureButton,
-    ArContentsIframe: ({ src }: { src: string }) => {
+    ArContentsIframe: ({
+      src,
+      visibility,
+    }: {
+      src: string;
+      visibility: boolean;
+    }) => {
       return (
-        <ArContentsIframe ref={iframeRef} src={src} />
+        <ArContentsIframe
+          ref={iframeRef}
+          src={src}
+          visibility={visibility}
+        />
       );
     },
   };

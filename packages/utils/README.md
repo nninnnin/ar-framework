@@ -84,4 +84,8 @@ useArContentsMessages({
   - `ArContentsIframe` 메모기능 제거
 
 - `1.1.10`
+
   - iframe에 web-share 권한 추가
+
+- `1.2.0`
+  - `ArContentsIframe` 에 visibility 속성 추가
