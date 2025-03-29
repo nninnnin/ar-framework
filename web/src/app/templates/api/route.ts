@@ -1,5 +1,6 @@
 import { generateArTemplate } from "@/app/templates/utils";
 import { ProjectFormatted } from "@/features/project/types/project";
+import { getSearchParam } from "@/features/project/utils";
 import createNextApiFetcher from "@/shared/utils/nextApiFetcher";
 
 const apiFetcher = createNextApiFetcher({
@@ -7,9 +8,10 @@ const apiFetcher = createNextApiFetcher({
 });
 
 export async function GET(request: Request) {
-  const urlObj = new URL(request.url);
-  const projectId =
-    urlObj.searchParams.get("projectUid");
+  const projectId = getSearchParam(
+    request,
+    "projectUid"
+  );
 
   if (!projectId) {
     return new Response("projectId is required", {
@@ -22,8 +24,14 @@ export async function GET(request: Request) {
       projectId
     );
 
+  const hasControls =
+    getSearchParam(request, "glbControls") === "1"
+      ? true
+      : false;
+
   const templateFile = await generateArTemplate(
-    projectItem
+    projectItem,
+    { hasControls }
   );
 
   const response = new Response(templateFile);

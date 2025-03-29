@@ -19,7 +19,11 @@ class TemplateContentsGenerator {
     this.glbModels = glbModels;
   }
 
-  generateTemplate() {
+  generateTemplate({
+    hasControls,
+  }: {
+    hasControls: boolean;
+  }) {
     // Construct HTML tags
     this.appendToHead(this.getHeadScripts());
     this.appendToBody(this.getBodyContents());
@@ -31,7 +35,7 @@ class TemplateContentsGenerator {
     );
 
     // Add scripts
-    this.addControls();
+    if (hasControls) this.addControls();
     this.addCapturer();
     this.addMessageHandler();
     this.addArContentsLoadingHandlers(

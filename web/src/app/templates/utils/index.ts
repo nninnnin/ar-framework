@@ -9,7 +9,12 @@ import TemplateContentsGenerator from "@/app/templates/utils/TemplateContentsGen
 import { getGlbModels } from "@/app/templates/utils/fetcher";
 
 export const generateArTemplate = async (
-  projectItem: ProjectFormatted
+  projectItem: ProjectFormatted,
+  {
+    hasControls,
+  }: {
+    hasControls: boolean;
+  }
 ) => {
   const templatePath = getTemplatePath(
     projectItem.projectType
@@ -26,14 +31,14 @@ export const generateArTemplate = async (
     )
   );
 
-  console.log("모델들: ", glbModels);
-
   const contentsFilledTemplate =
     new TemplateContentsGenerator(
       projectItem.projectType,
       templateFile,
       glbModels
-    ).generateTemplate();
+    ).generateTemplate({
+      hasControls,
+    });
 
   return contentsFilledTemplate;
 };
