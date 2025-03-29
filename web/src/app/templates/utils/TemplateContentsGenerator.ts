@@ -25,6 +25,7 @@ class TemplateContentsGenerator {
     hasControls: boolean;
   }) {
     // Construct HTML tags
+    this.appendToHead(this.getCommonHeadScripts());
     this.appendToHead(this.getHeadScripts());
     this.appendToBody(this.getBodyContents());
     this.appendToScene(
@@ -43,6 +44,10 @@ class TemplateContentsGenerator {
     );
 
     return this.templateRoot.toString();
+  }
+
+  getCommonHeadScripts() {
+    return TemplateContents.common.headScripts;
   }
 
   getHeadScripts() {

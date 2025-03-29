@@ -7,6 +7,14 @@ export const TemplateContents: Record<
     bodyContents: string;
   }
 > = {
+  common: {
+    headScripts: `
+      <script>
+        window.alert = () => {};
+      </script>
+    `,
+    bodyContents: ``,
+  },
   "위치기반 AR": {
     headScripts: `
       <script
