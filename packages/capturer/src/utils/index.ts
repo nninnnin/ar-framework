@@ -98,6 +98,16 @@ export class Capturer {
     );
   }
 
+  resumeVideo(video) {
+    video.play();
+  }
+
+  resumeAnimatingScene(scene) {
+    scene.renderer.setAnimationLoop(() =>
+      scene.render()
+    );
+  }
+
   capture() {
     this.stopAnimatingScene(this.getScene());
     this.stopVideo(this.getVideo());
@@ -105,16 +115,23 @@ export class Capturer {
     setTimeout(() => {
       this.drawVideo();
       this.drawScene();
+
+      this.exportAsBlob((blob) => {
+        this.resumeVideo(this.getVideo());
+        this.resumeAnimatingScene(this.getScene());
+
+        const captureMessage: CaptureMessageInterface =
+          {
+            type: "image-captured",
+            payload: blob,
+          };
+
+        window.parent?.postMessage(
+          captureMessage,
+          "*"
+        );
+      });
     }, 3000);
-
-    this.exportAsBlob((blob) => {
-      const captureMessage: CaptureMessageInterface = {
-        type: "image-captured",
-        payload: blob,
-      };
-
-      window.parent?.postMessage(captureMessage, "*");
-    });
 
     // this.appendCanvasToBody();
   }
