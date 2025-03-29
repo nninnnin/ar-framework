@@ -2,14 +2,21 @@ import { CaptureMessageInterface } from "../types";
 
 export class Capturer {
   canvas: HTMLCanvasElement;
+  dpr: number;
 
   constructor() {
     const canvas = document.createElement("canvas");
 
     canvas.id = "capture-canvas";
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const dpr = window.devicePixelRatio || 1;
+    this.dpr = dpr;
+
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+
+    canvas.style.width = `${window.innerWidth}px`;
+    canvas.style.height = `${window.innerHeight}px`;
 
     this.canvas = canvas;
   }
@@ -55,27 +62,50 @@ export class Capturer {
     return capturedScene;
   }
 
-  drawScene() {
+  async drawScene() {
     const scene = this.getScene();
 
-    this.stopAnimatingScene(scene);
     const capturedScene = this.captureScene(scene);
 
     const ctx = this.canvas.getContext("2d");
-    ctx.drawImage(capturedScene, 0, 0);
+    ctx.drawImage(
+      capturedScene,
+      0,
+      0,
+      capturedScene.width,
+      capturedScene.height,
+      0,
+      0,
+      this.canvas.width,
+      this.canvas.height
+    );
   }
 
   drawVideo() {
     const video = this.getVideo();
-    this.stopVideo(video);
-
     const ctx = this.canvas.getContext("2d");
-    ctx.drawImage(video, 0, 0);
+
+    ctx.drawImage(
+      video,
+      0,
+      0,
+      video.videoWidth,
+      video.videoHeight,
+      0,
+      0,
+      this.canvas.width,
+      this.canvas.height
+    );
   }
 
   capture() {
-    this.drawVideo();
-    this.drawScene();
+    this.stopAnimatingScene(this.getScene());
+    this.stopVideo(this.getVideo());
+
+    setTimeout(() => {
+      this.drawVideo();
+      this.drawScene();
+    }, 3000);
 
     this.exportAsBlob((blob) => {
       const captureMessage: CaptureMessageInterface = {
@@ -85,6 +115,8 @@ export class Capturer {
 
       window.parent?.postMessage(captureMessage, "*");
     });
+
+    // this.appendCanvasToBody();
   }
 
   appendCanvasToBody() {
