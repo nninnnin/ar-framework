@@ -16,7 +16,7 @@ export const useArContentsMessages = ({
   handleCapturedImage: (capturedImage: Blob) => void;
 }) => {
   useEffect(() => {
-    window.addEventListener("message", (event) => {
+    const messageHandler = (event) => {
       const message: MessageInterface = event.data;
 
       console.log(
@@ -39,8 +39,17 @@ export const useArContentsMessages = ({
 
         handleCapturedImage(message.payload as Blob);
       }
-    });
-  }, []);
+    };
+
+    window.addEventListener("message", messageHandler);
+
+    return () => {
+      window.removeEventListener(
+        "message",
+        messageHandler
+      );
+    };
+  }, [handleARLoaded, handleCapturedImage]);
 };
 
 const ArContentsIframe = forwardRef(

@@ -88,4 +88,8 @@ useArContentsMessages({
   - iframe에 web-share 권한 추가
 
 - `1.2.0`
+
   - `ArContentsIframe` 에 visibility 속성 추가
+
+- `1.2.1`
+  - `useArContentsMessages` 에 이벤트 핸들러 클린업 적용
