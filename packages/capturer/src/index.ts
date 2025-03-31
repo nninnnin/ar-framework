@@ -15,9 +15,9 @@ captureButton.addEventListener("click", async () => {
   isCapturing = true;
 
   const capturer = new Capturer();
-  await capturer.capture();
-
-  isCapturing = false;
+  capturer.capture(() => {
+    isCapturing = false;
+  });
 });
 
 document.body.appendChild(captureButton);

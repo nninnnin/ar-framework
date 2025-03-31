@@ -108,33 +108,25 @@ export class Capturer {
     );
   }
 
-  async capture() {
-    return new Promise((resolve, reject) => {
-      this.stopAnimatingScene(this.getScene());
-      this.stopVideo(this.getVideo());
+  capture(callback) {
+    this.stopAnimatingScene(this.getScene());
+    this.stopVideo(this.getVideo());
 
-      setTimeout(() => {
-        this.drawVideo();
-        this.drawScene();
+    this.drawVideo();
+    this.drawScene();
 
-        this.exportAsBlob((blob) => {
-          this.resumeVideo(this.getVideo());
-          this.resumeAnimatingScene(this.getScene());
+    this.exportAsBlob((blob) => {
+      this.resumeVideo(this.getVideo());
+      this.resumeAnimatingScene(this.getScene());
 
-          const captureMessage: CaptureMessageInterface =
-            {
-              type: "image-captured",
-              payload: blob,
-            };
+      const captureMessage: CaptureMessageInterface = {
+        type: "image-captured",
+        payload: blob,
+      };
 
-          window.parent?.postMessage(
-            captureMessage,
-            "*"
-          );
+      window.parent?.postMessage(captureMessage, "*");
 
-          resolve(true);
-        });
-      }, 3000);
+      callback();
     });
   }
 
