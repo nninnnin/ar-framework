@@ -4,6 +4,8 @@ export class Capturer {
   canvas: HTMLCanvasElement;
   dpr: number;
 
+  isCapturing: boolean = false;
+
   constructor() {
     const canvas = document.createElement("canvas");
 
@@ -108,7 +110,14 @@ export class Capturer {
     );
   }
 
-  capture(callback) {
+  capture() {
+    if (this.isCapturing) {
+      console.log("캡쳐가 진행중입니다");
+      return;
+    }
+
+    this.isCapturing = true;
+
     this.stopAnimatingScene(this.getScene());
     this.stopVideo(this.getVideo());
 
@@ -126,7 +135,7 @@ export class Capturer {
 
       window.parent?.postMessage(captureMessage, "*");
 
-      callback();
+      this.isCapturing = false;
     });
   }
 
