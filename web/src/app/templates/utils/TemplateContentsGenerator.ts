@@ -213,7 +213,7 @@ class TemplateContentsGenerator {
       `<script>
         addMessageHandler({
           "show-glb-models": () => {
-            const hideAllModels = () => {
+            const showAllModels = () => {
               const models = document.querySelectorAll("a-gltf-model");
 
               if (!models || !models.length) {
@@ -225,7 +225,7 @@ class TemplateContentsGenerator {
               });
             }
 
-            hideAllModels();
+            showAllModels();
           },
           "show-capture-button": () => {
             const captureButton = document.getElementById("capture-button");
