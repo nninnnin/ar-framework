@@ -3,54 +3,56 @@ import { css } from "@emotion/react";
 
 import ModelViewer from "@/features/glbModel/components/ModelViewer";
 import ModelUploader from "@/features/glbModel/components/ModelUploader";
-import ProjectModelList from "@/features/glbModel/components/ProjectModelList";
+import EditableGlbModelList from "@/features/glbModel/components/EditableGlbModelList";
 
 import { useIsFetching } from "@tanstack/react-query";
 import { QueryKeys } from "@/shared/constants/queryKeys";
-import {
-  useProjectGlbModels,
-  useSelectedModelIndex,
-} from "@/features/project/store";
+import { useSelectedModelIndex } from "@/features/project/store";
+import { useEditableGlbModels } from "@/features/glbModel/store/editableGlbModels";
 
 const ModelEditor = () => {
   const { selectedModelIndex } =
     useSelectedModelIndex();
-  const { projectGlbModels } = useProjectGlbModels();
+  const { editableGlbModels } = useEditableGlbModels();
 
   const selectedModel =
-    projectGlbModels[selectedModelIndex];
+    editableGlbModels[selectedModelIndex];
 
   const isGlbFetching = useIsFetching({
     queryKey: [QueryKeys.GlbModels],
   });
 
-  return (
-    <ModelEditor.Container>
-      {isGlbFetching ? (
-        <div
-          css={css`
-            flex: 1;
-            height: 1;
-            background-color: orange;
+  const spinner = (
+    <div
+      css={css`
+        flex: 1;
+        height: 1;
+        background-color: orange;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          `}
-        >
-          모델 가져오는 중..
-        </div>
-      ) : selectedModel ? (
-        <ModelViewer
-          modelSource={URL.createObjectURL(
-            selectedModel.file
-          )}
-        />
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      `}
+    >
+      모델 가져오는 중..
+    </div>
+  );
+
+  const contents = (
+    <>
+      {selectedModel ? (
+        <ModelViewer glbModel={selectedModel} />
       ) : (
         <ModelUploader />
       )}
+    </>
+  );
 
-      <ProjectModelList />
+  return (
+    <ModelEditor.Container>
+      {isGlbFetching ? spinner : contents}
+
+      <EditableGlbModelList />
     </ModelEditor.Container>
   );
 };

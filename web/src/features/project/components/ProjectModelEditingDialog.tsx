@@ -3,11 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import Dialog from "@/shared/components/Dialog";
 import { useSelectedGroup } from "@/features/group/hooks/useSelectedGroup";
-import {
-  AddedModel,
-  useProjectGlbModels,
-  useSelectedModelIndex,
-} from "@/features/project/store";
+import { useSelectedModelIndex } from "@/features/project/store";
 import useProjectItem from "@/features/project/hooks/useProjectItem";
 import useProjectTypes from "@/features/project/hooks/useProjectTypes";
 import useGlbModels from "@/features/glbModel/hooks/useGlbModels";
@@ -27,6 +23,7 @@ import { QueryKeys } from "@/shared/constants/queryKeys";
 import { useQueryClient } from "@tanstack/react-query";
 import { createUpdateBody } from "@/shared/utils/createUpdateBody";
 import { GlbModelItemFormatted } from "@/entities/glbModel/types";
+import { useEditableGlbModels } from "@/features/glbModel/store/editableGlbModels";
 
 const apiFetcher = createNextApiFetcher({
   entity: "project",
@@ -49,10 +46,10 @@ const ProjectModelEditingDialog = ({
 
   const { selectedGroup } = useSelectedGroup();
   const {
-    setModels,
-    resetAddedModels,
-    projectGlbModels: clientsideProjectGlbModels,
-  } = useProjectGlbModels();
+    editableGlbModels,
+    setEditables,
+    resetEditables,
+  } = useEditableGlbModels();
 
   const { resetSelectedModelIndex } =
     useSelectedModelIndex();
@@ -64,33 +61,29 @@ const ProjectModelEditingDialog = ({
 
   const { data: projectTypes } = useProjectTypes();
 
-  const {
-    data: serversideProjectGlbModels,
-    isLoading,
-  } = useGlbModels({
+  const { data: glbModels, isLoading } = useGlbModels({
     modelIds: projectItem?.glbModels.map((m) => m.uid),
-    asFile: true,
   });
 
   useEffect(() => {
-    if (!serversideProjectGlbModels || isLoading)
-      return;
+    if (!glbModels || isLoading) return;
 
-    setModels(
-      serversideProjectGlbModels as AddedModel[]
-    );
+    setEditables(glbModels);
 
     return () => {
-      resetAddedModels();
+      resetEditables();
       resetSelectedModelIndex();
     };
-  }, [serversideProjectGlbModels, isLoading]);
+  }, [glbModels, isLoading]);
+
+  if (!glbModels) return <></>;
 
   const hasChangedModel =
     xorBy(
-      serversideProjectGlbModels as AddedModel[],
-      clientsideProjectGlbModels.filter((el) => el),
-      (model) => model?.id
+      glbModels,
+      // @ts-ignore
+      editableGlbModels,
+      (model) => model.uid
     ).length > 0;
 
   const isChanged = !isLoading && hasChangedModel;
@@ -100,11 +93,9 @@ const ProjectModelEditingDialog = ({
 
     // 새로 추가된 모델이 있다면 업로드 후 프로젝트에 추가
     const newlyAddedModels = differenceBy(
-      clientsideProjectGlbModels.filter(
-        (el) => el
-      ) as AddedModel[],
-      serversideProjectGlbModels as AddedModel[],
-      "id"
+      editableGlbModels,
+      glbModels,
+      "uid"
     );
 
     let postedModelIds: string[] = [];
@@ -112,8 +103,8 @@ const ProjectModelEditingDialog = ({
     if (newlyAddedModels && newlyAddedModels.length) {
       const result = await uploadGlbModels(
         newlyAddedModels
-          .filter((m) => m)
-          .map((m) => m!.file)
+          .filter((m) => m.file)
+          .map((m) => m!.file!)
       );
 
       postedModelIds = await postGlbModels(result);
@@ -121,16 +112,16 @@ const ProjectModelEditingDialog = ({
 
     // 삭제된 모델이 있다면 프로젝트에서 제거 후 삭제
     const removedModels = differenceBy(
-      serversideProjectGlbModels as AddedModel[],
-      clientsideProjectGlbModels.filter((el) => el),
-      "id"
+      glbModels,
+      editableGlbModels,
+      "uid"
     );
 
     if (removedModels && removedModels.length) {
       await Promise.all(
         removedModels.map(async (model) => {
           const res = await glbModelApiFetcher.getItem(
-            model.id
+            model.uid
           );
 
           const originalBody =
@@ -152,7 +143,7 @@ const ProjectModelEditingDialog = ({
           );
 
           await glbModelApiFetcher.updateItem(
-            model.id,
+            model.uid,
             updateBody
           );
         })
@@ -163,9 +154,9 @@ const ProjectModelEditingDialog = ({
     const serverModelIds = projectItem!.glbModels.map(
       (m) => m.uid
     );
-    const clientModelIds = clientsideProjectGlbModels
-      .filter((el) => el)
-      .map((model) => model!.id);
+    const clientModelIds = editableGlbModels.map(
+      (model) => model!.uid
+    );
 
     if (
       isProjectGlbModelsChanged(

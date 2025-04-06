@@ -1,17 +1,15 @@
-import {
-  useProjectGlbModels,
-  useSelectedProjectType,
-} from "@/features/project/store";
+import { useEditableGlbModels } from "@/features/glbModel/store/editableGlbModels";
+import { useSelectedProjectType } from "@/features/project/store";
 
 const useResetProjectFunnelStates = () => {
-  const { resetAddedModels } = useProjectGlbModels();
+  const { resetEditables } = useEditableGlbModels();
   const { resetSelectedProjectType } =
     useSelectedProjectType();
 
   return {
     resetProjectFunnelStates: () => {
       resetSelectedProjectType();
-      resetAddedModels();
+      resetEditables();
     },
   };
 };

@@ -4,23 +4,21 @@ import React, {
   useEffect,
   useLayoutEffect,
   useRef,
+  useState,
 } from "react";
 import { css } from "@emotion/react";
 import { useIsFetching } from "@tanstack/react-query";
 
 import { QueryKeys } from "@/shared/constants/queryKeys";
-import {
-  useProjectGlbModels,
-  useSelectedModelIndex,
-} from "@/features/project/store";
+import { useSelectedModelIndex } from "@/features/project/store";
 import useProjectModelDifference from "@/features/glbModel/hooks/useProjectModelDifference";
+import { useEditableGlbModels } from "@/features/glbModel/store/editableGlbModels";
 
-const ProjectModelList = () => {
+const EditableGlbModelList = () => {
   const containerRef = useRef<HTMLDivElement | null>(
     null
   );
 
-  const { projectGlbModels } = useProjectGlbModels();
   const { selectedModelIndex, setSelectedModelIndex } =
     useSelectedModelIndex();
 
@@ -30,6 +28,9 @@ const ProjectModelList = () => {
 
   const { differenceDirection } =
     useProjectModelDifference();
+
+  const { editableGlbModels, removeEditables } =
+    useEditableGlbModels();
 
   useEffect(() => {
     const AddedModelContainers =
@@ -47,7 +48,7 @@ const ProjectModelList = () => {
     } else if (differenceDirection === "decrease") {
       AddedModelContainers.scrollTo(0, 0);
     }
-  }, [projectGlbModels.length, differenceDirection]);
+  }, [editableGlbModels.length, differenceDirection]);
 
   useLayoutEffect(() => {
     const modelSelectionContainer =
@@ -66,62 +67,81 @@ const ProjectModelList = () => {
     }
   }, []);
 
-  const { removeModel } = useProjectGlbModels();
-
-  const listRendered = projectGlbModels.map(
+  const listRendered = editableGlbModels.map(
     (model, index) => {
-      const hasModel = model !== null;
-
       const handleRemoveClick = (e: MouseEvent) => {
         e.stopPropagation();
-        removeModel(model!.id);
+        removeEditables(model!.uid);
       };
 
+      const itemLabel = model.name;
+
       return (
-        <ProjectModelList.Item
-          key={
-            hasModel
-              ? model.id
-              : `model-container-${index}`
-          }
+        <EditableGlbModelList.Item
+          key={model.uid}
           onClick={() => setSelectedModelIndex(index)}
           isSelected={selectedModelIndex === index}
         >
-          {hasModel ? model.file.name : "새로운 모델"}
+          <span>{itemLabel}</span>
 
-          {hasModel && (
-            <ProjectModelList.RemoveItemButton
-              handleClick={handleRemoveClick}
-            />
-          )}
-        </ProjectModelList.Item>
+          <EditableGlbModelList.RemoveItemButton
+            handleClick={handleRemoveClick}
+          />
+        </EditableGlbModelList.Item>
       );
     }
   );
 
   return (
-    <ProjectModelList.Container ref={containerRef}>
+    <EditableGlbModelList.Container ref={containerRef}>
       {isGlbFetching ? (
-        <ProjectModelList.ItemSkeleton />
+        <EditableGlbModelList.ItemSkeleton />
       ) : (
-        listRendered
+        <>
+          <>{listRendered}</>
+          <EditableGlbModelList.AddEditableItem />
+        </>
       )}
-    </ProjectModelList.Container>
+    </EditableGlbModelList.Container>
   );
 };
 
-ProjectModelList.ItemSkeleton = () => {
+EditableGlbModelList.AddEditableItem = () => {
+  const { editableGlbModels } = useEditableGlbModels();
+
+  const { selectedModelIndex, setSelectedModelIndex } =
+    useSelectedModelIndex();
+
   return (
-    <ProjectModelList.Item
+    <EditableGlbModelList.Item
+      key={`add-model-item`}
+      onClick={() => {
+        setSelectedModelIndex(
+          editableGlbModels.length
+        );
+      }}
+      isSelected={
+        selectedModelIndex ===
+        (editableGlbModels.length ?? 0)
+      }
+    >
+      <span>새로운 모델 추가하기</span>
+    </EditableGlbModelList.Item>
+  );
+};
+
+EditableGlbModelList.ItemSkeleton = () => {
+  return (
+    <EditableGlbModelList.Item
       onClick={() => {}}
       isSelected={true}
     >
       {" "}
-    </ProjectModelList.Item>
+    </EditableGlbModelList.Item>
   );
 };
 
-ProjectModelList.Container = forwardRef(
+EditableGlbModelList.Container = forwardRef(
   (
     {
       children,
@@ -150,7 +170,7 @@ ProjectModelList.Container = forwardRef(
   }
 );
 
-ProjectModelList.Item = ({
+EditableGlbModelList.Item = ({
   children,
   isSelected,
   onClick,
@@ -188,7 +208,7 @@ ProjectModelList.Item = ({
   );
 };
 
-ProjectModelList.RemoveItemButton = ({
+EditableGlbModelList.RemoveItemButton = ({
   handleClick,
 }: {
   handleClick: (e: MouseEvent) => void;
@@ -236,4 +256,4 @@ ProjectModelList.RemoveItemButton = ({
   );
 };
 
-export default ProjectModelList;
+export default EditableGlbModelList;

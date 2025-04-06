@@ -35,3 +35,10 @@ export interface GlbModelFormatted {
     z: number;
   };
 }
+
+export type GlbModelEditable =
+  Partial<GlbModelFormatted> & {
+    uid: string;
+    name: string;
+    file: File | null;
+  };
