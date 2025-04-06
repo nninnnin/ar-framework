@@ -79,7 +79,7 @@ const GroupSection = () => {
                 color: ${groupItem.uid ===
                 selectedGroup?.uid
                   ? "white"
-                  : "initial"};
+                  : "black"};
               `}
             >
               {groupItem.name}

@@ -14,6 +14,7 @@ const GroupItem = ({
     <div
       css={css`
         background-color: white;
+        color: black;
         padding: 1em;
 
         border: 1px solid black;
