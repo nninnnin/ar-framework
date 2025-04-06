@@ -125,7 +125,11 @@ EditableGlbModelList.AddEditableItem = () => {
         (editableGlbModels.length ?? 0)
       }
     >
-      <span>새로운 모델 추가하기</span>
+      <span>
+        새로운 모델
+        <br />
+        추가하기
+      </span>
     </EditableGlbModelList.Item>
   );
 };
