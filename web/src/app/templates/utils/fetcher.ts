@@ -66,6 +66,10 @@ const formatGlbModelInteractions = (
   interactionsRaw: string
 ) => {
   try {
+    if (!interactionsRaw) {
+      return interactionsRaw;
+    }
+
     const parsed = JSON.parse(interactionsRaw);
 
     return parsed;
