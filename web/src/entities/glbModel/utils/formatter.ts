@@ -4,7 +4,6 @@ import {
   pipe,
   pluckList,
   extractStringValues,
-  pluckData,
 } from "@rebel9/memex-fetcher";
 
 import {

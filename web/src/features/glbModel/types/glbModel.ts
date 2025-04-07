@@ -1,3 +1,4 @@
+import { InteractionItem } from "@/features/interactionEditor/types";
 import { LanguageMap } from "@/shared/types/memex";
 
 export interface GlbModelData {
@@ -9,6 +10,7 @@ export interface GlbModelData {
   scale: string;
   rotation: string;
   position: string;
+  interactions: string;
 }
 
 export interface GlbModelFormatted {
@@ -34,6 +36,7 @@ export interface GlbModelFormatted {
     y: number;
     z: number;
   };
+  interactions: InteractionItem[];
 }
 
 export type GlbModelEditable =

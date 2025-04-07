@@ -4,7 +4,7 @@ import { ModelViewerElement } from "@google/model-viewer";
 
 import { GlbModelEditable } from "@/features/glbModel/types/glbModel";
 import InfoPanel from "@/features/glbModel/components/ModelViewer/InfoPanel";
-import InteractionPanel from "@/features/glbModel/components/ModelViewer/InteractionPanel";
+import InteractionEditor from "@/features/interactionEditor/components";
 
 const ModelViewer = ({
   glbModel,
@@ -68,7 +68,10 @@ const ModelViewer = ({
       `}
     >
       <InfoPanel glbModel={glbModel} />
-      {/* <InteractionPanel /> */}
+
+      {/* {glbModel.interactions && (
+        <InteractionEditor glbModel={glbModel} />
+      )} */}
     </div>
   );
 };

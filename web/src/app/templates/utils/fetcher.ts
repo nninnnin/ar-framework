@@ -62,26 +62,48 @@ const filterWithIds = (
   );
 };
 
+const formatGlbModelInteractions = (
+  interactionsRaw: string
+) => {
+  try {
+    const parsed = JSON.parse(interactionsRaw);
+
+    return parsed;
+  } catch (error) {
+    throw new Error(
+      `Failed to parse interactions: ${error}`
+    );
+  }
+};
+
 const formatGlbModelItems = (
   items: MemexModelItem<GlbModelData>[]
-) =>
-  items.map(({ uid, data }) => ({
-    uid: uid,
-    name: data.name.KO,
-    path: data.mediaPath,
-    coordinates: {
-      latitude: data.latitude ? data.latitude : null,
-      longitude: data.longitude
-        ? data.longitude
-        : null,
-    },
-    scale: data.scale
-      ? JSON.parse(data.scale)
-      : { x: 0, y: 0, z: 0 },
-    rotation: data.rotation
-      ? JSON.parse(data.rotation)
-      : { x: 0, y: 0, z: 0 },
-    position: data.position
-      ? JSON.parse(data.position)
-      : { x: 0, y: 0, z: 0 },
-  }));
+) => {
+  const formatted = items.map(({ uid, data }) => {
+    return {
+      uid: uid,
+      name: data.name.KO,
+      path: data.mediaPath,
+      coordinates: {
+        latitude: data.latitude ? data.latitude : null,
+        longitude: data.longitude
+          ? data.longitude
+          : null,
+      },
+      scale: data.scale
+        ? JSON.parse(data.scale)
+        : { x: 0, y: 0, z: 0 },
+      rotation: data.rotation
+        ? JSON.parse(data.rotation)
+        : { x: 0, y: 0, z: 0 },
+      position: data.position
+        ? JSON.parse(data.position)
+        : { x: 0, y: 0, z: 0 },
+      interactions: formatGlbModelInteractions(
+        data.interactions
+      ),
+    };
+  });
+
+  return formatted;
+};
