@@ -11,7 +11,6 @@ import {
 } from "@/features/project/types/projectCreationFunnel";
 import { useSelectedGroup } from "@/features/group/hooks/useSelectedGroup";
 import useResetProjectFunnelStates from "@/features/project/hooks/useResetProjectFunnelStates";
-import { useProjectGlbModels } from "@/features/project/store";
 import usePostGlbModel from "@/features/glbModel/hooks/usePostGlbModel";
 import useProjectTypes from "@/features/project/hooks/useProjectTypes";
 import useCreateProject from "@/features/project/hooks/useCreateProject";
@@ -22,6 +21,7 @@ import ProjectRegisterDialog from "@/features/project/components/ProjectRegister
 import { getProjectTypeId } from "@/features/project/utils";
 import { createProjectBody } from "@/entities/project/utils";
 import { uploadGlbModels } from "@/entities/glbModel/utils/fetchers";
+import { useEditableGlbModels } from "@/features/glbModel/store/editableGlbModels";
 
 const ProjectCreationFunnel = () => {
   const { close: closeOverlay } = useContext(
@@ -44,7 +44,7 @@ const ProjectCreationFunnel = () => {
   const { resetProjectFunnelStates } =
     useResetProjectFunnelStates();
 
-  const { projectGlbModels } = useProjectGlbModels();
+  const { editableGlbModels } = useEditableGlbModels();
   const { mutateAsync: postGlbModel } =
     usePostGlbModel();
   const { data: projectTypes } = useProjectTypes();
@@ -72,9 +72,9 @@ const ProjectCreationFunnel = () => {
           onPrevious={() => history.back()}
           onNext={() =>
             history.push("프로젝트명입력", {
-              glbModels: projectGlbModels
-                .filter((m) => m)
-                .map((m) => m!.file),
+              glbModels: editableGlbModels
+                .filter((m) => m?.file)
+                .map((m) => m!.file!),
             })
           }
           headerLabel="모델 선택"

@@ -2,16 +2,18 @@ import React from "react";
 import { css } from "@emotion/react";
 import { v4 as uuidv4 } from "uuid";
 
-import { useProjectGlbModels } from "@/features/project/store";
 import { isGLBFile } from "@/features/glbModel/utils";
+import { useEditableGlbModels } from "@/features/glbModel/store/editableGlbModels";
 
 const ModelUploader = () => {
-  const { addModel } = useProjectGlbModels();
+  const { addEditableGlbModel } =
+    useEditableGlbModels();
 
   return (
     <div
       css={css`
         background-color: blanchedalmond;
+        color: black;
 
         flex: 1;
 
@@ -26,12 +28,12 @@ const ModelUploader = () => {
 
         if (!isGLBFile(file)) {
           alert("GLB 파일이 아닙니다.");
-
           return;
         }
 
-        addModel({
-          id: uuidv4(),
+        addEditableGlbModel({
+          uid: uuidv4(),
+          name: file.name,
           file,
         });
       }}

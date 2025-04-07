@@ -16,3 +16,17 @@ export const isGLBFile = (file: File) => {
     reader.readAsArrayBuffer(file.slice(0, 4));
   });
 };
+
+export const loadGlbFileFromPath = async (
+  name: string,
+  path: string
+) => {
+  const res = await fetch(path);
+
+  const blob = await res.blob();
+  const file = new File([blob], name, {
+    type: blob.type,
+  });
+
+  return file;
+};

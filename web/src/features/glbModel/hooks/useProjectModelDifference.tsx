@@ -1,11 +1,11 @@
+import { useEditableGlbModels } from "@/features/glbModel/store/editableGlbModels";
 import { useEffect, useRef, useState } from "react";
-import { useProjectGlbModels } from "@/features/project/store";
 
 const useProjectModelDifference = () => {
   const [differenceDirection, setdifferenceDirection] =
     useState<null | "increase" | "decrease">(null);
 
-  const { projectGlbModels } = useProjectGlbModels();
+  const { editableGlbModels } = useEditableGlbModels();
 
   const prevNumberOfGlbModels = useRef<number | null>(
     null
@@ -14,7 +14,7 @@ const useProjectModelDifference = () => {
   useEffect(() => {
     if (prevNumberOfGlbModels.current) {
       const direction =
-        projectGlbModels.length >
+        editableGlbModels.length >
         prevNumberOfGlbModels.current
           ? "increase"
           : "decrease";
@@ -23,8 +23,8 @@ const useProjectModelDifference = () => {
     }
 
     prevNumberOfGlbModels.current =
-      projectGlbModels.length;
-  }, [projectGlbModels]);
+      editableGlbModels.length;
+  }, [editableGlbModels]);
 
   return {
     differenceDirection,

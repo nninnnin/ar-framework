@@ -16,6 +16,7 @@ const ProjectItem = ({
         position: relative;
 
         background-color: white;
+        color: black;
         font-weight: 400;
         border: 1px solid black;
 
