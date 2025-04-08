@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 import {
+  Actions,
   InteractionItem,
   Triggers,
 } from "@/features/interactionEditor/types";
@@ -15,6 +16,8 @@ interface InteractionEditorStore {
   setSelectedTrigger: (
     trigger: Triggers | null
   ) => void;
+  selectedAction: Actions | null;
+  setSelectedAction: (action: Actions | null) => void;
 }
 
 export const useInteractionEditor =
@@ -29,5 +32,10 @@ export const useInteractionEditor =
     setSelectedTrigger: (trigger) =>
       set(() => ({
         selectedTrigger: trigger,
+      })),
+    selectedAction: null,
+    setSelectedAction: (action) =>
+      set(() => ({
+        selectedAction: action,
       })),
   }));

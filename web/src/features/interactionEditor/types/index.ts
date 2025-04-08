@@ -12,3 +12,8 @@ export type InteractionItem = {
   trigger: Triggers;
   actions: Actions[];
 };
+
+export type UpdateStatus =
+  | "updated"
+  | "updating"
+  | null;

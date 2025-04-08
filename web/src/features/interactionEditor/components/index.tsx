@@ -100,9 +100,30 @@ InteractionEditor.InteractionItem = ({
         {item.actions.map((action) => (
           <ActionItem
             key={`interaction-${item.id}-${action}`}
+            interactionId={item.id}
             name={action}
           />
         ))}
+
+        <div
+          css={css`
+            background-color: black;
+            color: white;
+
+            padding: 4px 6px;
+
+            border: 1px solid black;
+            border-bottom: 0px;
+
+            text-align: center;
+
+            &:last-child {
+              border-bottom: 1px solid black;
+            }
+          `}
+        >
+          +
+        </div>
       </div>
     </div>
   );
