@@ -13,8 +13,6 @@ const InteractionEditor = ({
 }) => {
   const [showItems, setShowItems] = useState(false);
 
-  console.log(`let's render this`, glbModel);
-
   return (
     <div
       css={css`
@@ -46,7 +44,8 @@ const InteractionEditor = ({
           `}
           onClick={() => setShowItems(true)}
         >
-          3개의 인터랙션이 존재합니다
+          {glbModel.interactions?.length ?? 0}개의
+          인터랙션이 존재합니다
           <img
             width="12"
             height="12"
@@ -84,7 +83,7 @@ InteractionEditor.InteractionItem = ({
     <div
       css={css`
         display: flex;
-        font-size: 10px;
+        font-size: 12px;
 
         position: relative;
         bottom: 0;
@@ -92,7 +91,10 @@ InteractionEditor.InteractionItem = ({
         z-index: 100;
       `}
     >
-      <TriggerItem name={item.trigger} />
+      <TriggerItem
+        interactionId={item.id}
+        name={item.trigger}
+      />
 
       <div>
         {item.actions.map((action) => (
@@ -114,7 +116,7 @@ InteractionEditor.CloseButton = ({
   return (
     <div
       css={css`
-        font-size: 10px;
+        font-size: 12px;
         background-color: black;
         color: white;
 

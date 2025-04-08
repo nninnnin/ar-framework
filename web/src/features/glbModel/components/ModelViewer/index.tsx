@@ -69,9 +69,9 @@ const ModelViewer = ({
     >
       <InfoPanel glbModel={glbModel} />
 
-      {/* {glbModel.interactions && (
+      {glbModel.interactions && (
         <InteractionEditor glbModel={glbModel} />
-      )} */}
+      )}
     </div>
   );
 };

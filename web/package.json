@@ -25,6 +25,7 @@
     "qrcode.react": "^4.2.0",
     "react": "*",
     "react-dom": "*",
+    "react-lottie": "^1.2.10",
     "three": "^0.173.0",
     "uuid": "^11.0.5",
     "zod": "^3.24.2",
@@ -37,6 +38,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-lottie": "^1.2.10",
     "@types/three": "^0",
     "typescript": "^5.7.3"
   }
