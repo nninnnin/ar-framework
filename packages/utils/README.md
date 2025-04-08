@@ -95,5 +95,9 @@ useArContentsMessages({
 
   - `useArContentsMessages` 에 이벤트 핸들러 클린업 적용
 
-- `1.2.2`
+- `1.3.0`
+
+  - `useArContentsMessages` : gif 메시지 핸들러 추가
+
+- `1.3.1`
   - iframe 크기 조정: 99.9dvh. 삼성인터넷에서 100dvh 시 플리커 현상 방지

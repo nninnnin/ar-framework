@@ -11,9 +11,11 @@ import { MessageInterface } from "./types";
 export const useArContentsMessages = ({
   handleARLoaded,
   handleCapturedImage,
+  handleGifLoaded,
 }: {
   handleARLoaded: () => void;
   handleCapturedImage: (capturedImage: Blob) => void;
+  handleGifLoaded?: () => void;
 }) => {
   useEffect(() => {
     const messageHandler = (event) => {
@@ -39,6 +41,12 @@ export const useArContentsMessages = ({
 
         handleCapturedImage(message.payload as Blob);
       }
+
+      if (message.type === "gif-loaded") {
+        console.log("AR Framework: GIF 로딩 완료 🏞️");
+
+        handleGifLoaded && handleGifLoaded();
+      }
     };
 
     window.addEventListener("message", messageHandler);
@@ -49,7 +57,11 @@ export const useArContentsMessages = ({
         messageHandler
       );
     };
-  }, [handleARLoaded, handleCapturedImage]);
+  }, [
+    handleARLoaded,
+    handleCapturedImage,
+    handleGifLoaded,
+  ]);
 };
 
 const ArContentsIframe = forwardRef(
