@@ -24,7 +24,7 @@ const useUpdateModel = () => {
     const modelId = selectedModel.id.split("#")[1];
 
     const res = await fetch(
-      `https://1c1b0d5ddcef.ngrok.app/glbModels/api?glbModelId=${modelId}`
+      `https://ar-framework-web.vercel.app/glbModels/api?glbModelId=${modelId}`
     );
 
     const glbModelData = await res.json();
@@ -57,10 +57,8 @@ const useUpdateModel = () => {
       isDeleted: "false",
     };
 
-    console.log("update body", updateBody);
-
     const updateRes = await fetch(
-      `https://1c1b0d5ddcef.ngrok.app/glbModels/api?glbModelId=${modelId}`,
+      `https://ar-framework-web.vercel.app/glbModels/api?glbModelId=${modelId}`,
       {
         method: "PUT",
         body: JSON.stringify(updateBody),
@@ -68,13 +66,6 @@ const useUpdateModel = () => {
           "Content-Type": "application/json",
         },
       }
-    );
-
-    console.log("update res", updateRes);
-
-    console.log(
-      "update result",
-      await updateRes.text()
     );
 
     setUpdating(false);

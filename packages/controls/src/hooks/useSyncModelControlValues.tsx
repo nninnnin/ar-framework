@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useModelStore } from "../stores";
 import { useControlStore } from "../stores/controls";
 import { useCoordinateStore } from "../components/locationSelector/store";
@@ -22,12 +22,10 @@ const useSyncModelControlValues = () => {
       const modelId = selectedModel.id.split("#")[1];
 
       const res = await fetch(
-        `https://1c1b0d5ddcef.ngrok.app/glbModels/api?glbModelId=${modelId}`
+        `https://ar-framework-web.vercel.app/glbModels/api?glbModelId=${modelId}`
       );
 
       const glbModelData = await res.json();
-
-      console.log("먼가 잘못됟ㅅ다", glbModelData);
 
       const position = initControlValues(
         glbModelData.position

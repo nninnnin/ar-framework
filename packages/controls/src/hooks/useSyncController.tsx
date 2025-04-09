@@ -17,8 +17,6 @@ const useSyncController = (
   const selectedModelControls =
     controls[selectedModelName];
 
-  console.log("-_-", selectedModelControls);
-
   const isUpdated = useRef(false);
 
   useEffect(() => {
