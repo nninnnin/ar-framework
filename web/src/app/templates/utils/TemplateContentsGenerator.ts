@@ -167,7 +167,7 @@ class TemplateContentsGenerator {
 
           const coordinates = `latitude: ${latitude}; longitude: ${longitude}`;
 
-          return `<a-entity ${scale} ${position} ${rotation} gps-projected-entity-place="${coordinates}"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" animation-mixer frustum-culled></a-gltf-model></a-entity>`;
+          return `<a-entity gps-projected-entity-place="${coordinates}"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" ${position} ${scale} ${rotation} animation-mixer frustum-culled></a-gltf-model></a-entity>`;
         }
 
         if (projectType === "얼굴인식 AR") {
