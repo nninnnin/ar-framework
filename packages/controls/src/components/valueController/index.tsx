@@ -169,16 +169,17 @@ ValueController.PositionSlider = () => {
     setPosition(selectedModelName, axis, position);
 
     if (modelElement) {
-      const prevPosition = modelElement.getAttribute(
-        "position"
-      ) as unknown as Record<Axis, number>;
+      const prevPosition =
+        modelElement.parentElement.getAttribute(
+          "position"
+        ) as unknown as Record<Axis, number>;
 
       const newPosition = {
         ...prevPosition,
         [axis]: position,
       };
 
-      modelElement.setAttribute(
+      modelElement.parentElement.setAttribute(
         "position",
         // @ts-ignore
         newPosition
@@ -214,7 +215,7 @@ ValueController.ScaleSlider = () => {
     setScale(selectedModelName, scale);
 
     if (modelElement) {
-      modelElement.setAttribute(
+      modelElement.parentElement.setAttribute(
         "scale",
         // @ts-ignore
         `${scale} ${scale} ${scale}`
