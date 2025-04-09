@@ -74,6 +74,7 @@ const ProjectDetailsDialog = ({
           <h1
             css={css`
               font-size: 0.8em;
+              color: black;
             `}
           >
             {projectItem.name}
@@ -186,6 +187,7 @@ ProjectDetailsDialog.ArTypeBadge = ({
         margin-right: 10px;
 
         font-size: 0.5em;
+        color: black;
 
         user-select: none;
       `}
@@ -255,9 +257,15 @@ ProjectDetailsDialog.ModeToggler = () => {
     >
       <ProjectDetailsDialog.ModeGuide />
 
-      {templateMode === "production" &&
-        "프로덕션 모드"}
-      {templateMode === "editor" && "에디터 모드"}
+      <span
+        css={css`
+          color: black;
+        `}
+      >
+        {templateMode === "production" &&
+          "프로덕션 모드"}
+        {templateMode === "editor" && "에디터 모드"}
+      </span>
     </div>
   );
 };
@@ -329,6 +337,7 @@ ProjectDetailsDialog.ModeGuide = () => {
         align-items: center;
 
         font-size: 12px;
+        color: black;
       `}
       onClick={(e) => e.stopPropagation()}
     >

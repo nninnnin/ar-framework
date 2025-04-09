@@ -8,6 +8,12 @@ export interface GlbModelItem {
   name: LanguageMap;
   mediaPath: string;
   isDeleted: boolean;
+  latitude: string;
+  longitude: string;
+  scale: string;
+  rotation: string;
+  position: string;
+  interactions: string;
 }
 
 export interface GlbModelItemFormatted {
@@ -15,6 +21,12 @@ export interface GlbModelItemFormatted {
   name: string;
   mediaPath: string;
   isDeleted: boolean;
+  latitude: string;
+  longitude: string;
+  scale: string;
+  rotation: string;
+  position: string;
+  interactions: string;
 }
 
 export type GlbModelListResult =

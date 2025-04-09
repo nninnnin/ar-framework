@@ -5,6 +5,6 @@ export const styles = {
     "menu-item",
     "flex justify-center items-center",
     "w-full h-[44px]",
-    "border-[1px] border-solid border-black"
+    "bg-black text-white font-semibold rounded-[10px]"
   ),
 };

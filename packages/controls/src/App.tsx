@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import useSetModelsFromTemplate from "./hooks/useSetModelsFromTemplate";
 import Overlay from "./components/Overlay";
@@ -10,12 +10,14 @@ import ValueController from "./components/valueController";
 import { useControlStore } from "./stores/controls";
 import { ControllingSubject } from "./types";
 import LocationSelector from "./components/locationSelector";
+import useSyncModelControlValues from "./hooks/useSyncModelControlValues";
 
 const App = () => {
   const { isOpen: isMenuOpen } = useMenuStore();
   const { controllingSubject } = useControlStore();
 
   useSetModelsFromTemplate();
+  useSyncModelControlValues();
 
   return (
     <>

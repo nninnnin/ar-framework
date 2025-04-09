@@ -16,6 +16,10 @@ interface ControlStore {
   axis: Axis;
   setAxis: (axis: Axis) => void;
   initializeModelControls: (modelName: string) => void;
+  setModelControls: (
+    modelName: string,
+    controlValues: Record<string, unknown>
+  ) => void;
   setCoordinate: (
     modelName: string,
     coordinate: {
@@ -68,6 +72,17 @@ export const useControlStore = create(
           },
           {}
         ) as ControlState;
+      });
+    },
+    setModelControls: (
+      modelName: string,
+      controlValues: Record<string, unknown>
+    ) => {
+      set((state) => {
+        state.controls[modelName] = {
+          ...state.controls[modelName],
+          ...controlValues,
+        };
       });
     },
     setCoordinate: (

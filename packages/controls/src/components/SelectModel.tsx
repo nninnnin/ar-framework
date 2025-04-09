@@ -16,19 +16,20 @@ const SelectModel = () => {
       }
     >
       <Select.Trigger
-        className={clsx("bg-violet-200", styles.item)}
+        className={clsx("!bg-[violet]", styles.item)}
       >
         <Select.Value placeholder="모델을 선택해주세요" />
       </Select.Trigger>
 
       <Select.Portal>
         <Select.Content className="z-[9999]">
-          <Select.Viewport className="bg-amber-100">
+          <Select.Viewport>
             {models.map((model, index) => (
               <Select.Item
                 className={clsx(
                   styles.item,
-                  "border-b-[0px] last:border-b-[1px]"
+                  "!bg-amber-500",
+                  "!rounded-l-[0px]"
                 )}
                 value={model.name}
               >

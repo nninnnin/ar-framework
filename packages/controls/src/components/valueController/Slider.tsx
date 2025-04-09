@@ -5,18 +5,18 @@ import React from "react";
 
 interface SliderProps {
   step: number;
-  defaultValue: number[];
   min: number;
   max: number;
   onChange: (value: number[]) => void;
+  value: number[];
 }
 
 const Slider = ({
   step,
-  defaultValue,
   min,
   max,
   onChange,
+  value,
 }: SliderProps) => {
   return (
     <RadixSlider.Root
@@ -27,7 +27,8 @@ const Slider = ({
         "touch-none select-none",
         "bg-white"
       )}
-      defaultValue={defaultValue}
+      defaultValue={value}
+      value={value}
       step={step}
       min={min}
       max={max}

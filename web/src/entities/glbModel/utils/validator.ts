@@ -6,7 +6,13 @@ const GlbModelItemFormattedValidator = z.object({
   uid: z.string(),
   name: z.string(),
   mediaPath: z.string(),
-  isDeleted: z.boolean(),
+  isDeleted: z.nullable(z.boolean()),
+  latitude: z.string(),
+  longitude: z.string(),
+  scale: z.string(),
+  rotation: z.string(),
+  position: z.string(),
+  interactions: z.nullable(z.string()),
 });
 
 export const validateGlbModelListFormatted = (

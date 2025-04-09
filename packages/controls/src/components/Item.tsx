@@ -17,11 +17,9 @@ const Item = ({
   return (
     <div
       className={clsx(
-        "bg-green-100",
-
         styles.item,
         disabled &&
-          "!bg-gray-200 text-gray-300 pointer-events-none",
+          "!bg-gray-200 !text-gray-300 pointer-events-none",
         className
       )}
       onClick={onClick}

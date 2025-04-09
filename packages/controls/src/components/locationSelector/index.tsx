@@ -16,9 +16,9 @@ const LocationSelector = () => {
         <div
           className={clsx(
             "absolute top-[0px] right-0 z-[9999] -translate-y-[100%]",
-            "w-[48px] h-[48px]",
+            "w-full h-[50px]",
             "flex justify-center items-center",
-            "bg-black text-white"
+            "bg-white"
           )}
           onClick={() => setControllingSubject(null)}
         >

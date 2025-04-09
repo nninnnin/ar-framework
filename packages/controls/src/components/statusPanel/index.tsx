@@ -6,10 +6,11 @@ import AxisToggler from "./AxisToggler";
 import SelectedModel from "./SelectedModel";
 import { useControlStore } from "../../stores/controls";
 import { ControllingSubject } from "../../types";
+import { SUBJECT_LABEL } from "../../constants/uxWrite";
 
 const StatusPanel = () => {
   const { selectedModelName } = useModelStore();
-  const { controllingSubject, controls } =
+  const { controllingSubject, controls, axis } =
     useControlStore();
 
   return (
@@ -18,7 +19,7 @@ const StatusPanel = () => {
         "fixed top-0 right-0",
         "flex flex-col justify-center items-center",
         "bg-white",
-        "text-[11px]",
+        "text-[13px]",
         "border-l-[1px] border-b-[1px] border-solid border-black"
       )}
     >
@@ -32,20 +33,25 @@ const StatusPanel = () => {
         ControllingSubject.Position ||
         controllingSubject ===
           ControllingSubject.Rotation) && (
-        <AxisToggler />
+        <>
+          <AxisToggler />
+        </>
       )}
 
-      {controllingSubject ===
-        ControllingSubject.Scale && (
-        <div className="w-full border-t-[1px] border-solid border-black text-center">
-          Scale{" "}
-          {
-            controls[selectedModelName][
-              ControllingSubject.Scale
-            ]["x"]
-          }
-        </div>
-      )}
+      <div className="w-full border-t-[1px] border-solid border-black text-center px-[8px] py-[3px]">
+        {`${SUBJECT_LABEL[controllingSubject]} ${(
+          axis ?? ""
+        ).toUpperCase()} ${
+          controls[selectedModelName][
+            controllingSubject
+          ][
+            controllingSubject ===
+            ControllingSubject.Scale
+              ? "x"
+              : axis
+          ] ?? ""
+        }`}
+      </div>
     </div>
   );
 };

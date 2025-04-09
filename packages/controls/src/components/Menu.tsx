@@ -62,6 +62,13 @@ const Menu = () => {
         )}
 
         <Item
+          className={"!bg-black text-white mt-auto"}
+          onClick={handleCloseClick}
+        >
+          닫기
+        </Item>
+
+        <Item
           className={"!bg-yellow-400"}
           onClick={() => {
             if (navigator.share) {
@@ -90,13 +97,6 @@ const Menu = () => {
           }}
         >
           설정값 공유하기
-        </Item>
-
-        <Item
-          className={"!bg-black text-white mt-auto"}
-          onClick={handleCloseClick}
-        >
-          닫기
         </Item>
       </div>
     </div>

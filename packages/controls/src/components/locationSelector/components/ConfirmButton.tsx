@@ -3,6 +3,7 @@ import React from "react";
 import { useCoordinateStore } from "../store";
 import useModelElement from "../../../hooks/useModelElement";
 import { useControlStore } from "../../../stores/controls";
+import useUpdateModel from "../../../hooks/useUpdateModel";
 
 const ConfirmButton = () => {
   const { setControllingSubject } = useControlStore();
@@ -11,10 +12,12 @@ const ConfirmButton = () => {
   const { coordinate: selectedCoordinate } =
     useCoordinateStore();
 
+  const { isUpdating, updateModel } = useUpdateModel();
+
   const closeLocationSelector = () =>
     setControllingSubject(null);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (
       modelElement.parentElement &&
       selectedCoordinate
@@ -29,6 +32,8 @@ const ConfirmButton = () => {
         "gps-projected-entity-place",
         `latitude: ${lat}; longitude: ${lng}`
       );
+
+      await updateModel();
     }
 
     closeLocationSelector();
@@ -48,7 +53,9 @@ const ConfirmButton = () => {
       )}
       onClick={handleClick}
     >
-      새로운 좌표 적용하기
+      {isUpdating
+        ? "적용중.."
+        : "새로운 좌표 적용하기"}
     </div>
   );
 };

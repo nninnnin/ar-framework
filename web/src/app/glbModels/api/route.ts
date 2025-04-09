@@ -13,7 +13,33 @@ import {
 
 const glbModelService = new GlbModelService();
 
+import { NextResponse } from "next/server";
+
 export async function GET(request: Request) {
+  const response = NextResponse.json(
+    {},
+    {
+      status: 200,
+    }
+  );
+
+  response.headers.set(
+    "Access-Control-Allow-Credentials",
+    "true"
+  );
+  response.headers.set(
+    "Access-Control-Allow-Origin",
+    "*"
+  );
+  response.headers.set(
+    "Access-Control-Allow-Methods",
+    "GET,OPTIONS,PATCH,DELETE,POST,PUT"
+  );
+  response.headers.set(
+    "Access-Control-Allow-Headers",
+    "X-CSRF-Token, X-Requested-With, Accept, Content-Type, Authorization"
+  );
+
   const glbModelId = getSearchParam(
     request,
     "glbModelId"
@@ -33,7 +59,13 @@ export async function GET(request: Request) {
       validateGlbModelItemFormatted
     );
 
-    return Response.json(formatted);
+    return new NextResponse(
+      JSON.stringify(formatted),
+      {
+        status: 200,
+        headers: response.headers,
+      }
+    );
   }
 
   // 여러개
@@ -46,7 +78,10 @@ export async function GET(request: Request) {
     validateGlbModelListFormatted
   );
 
-  return Response.json(formatted);
+  return new NextResponse(JSON.stringify(formatted), {
+    status: 200,
+    headers: response.headers,
+  });
 }
 
 export async function PUT(request: Request) {

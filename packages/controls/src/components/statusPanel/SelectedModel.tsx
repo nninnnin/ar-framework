@@ -10,7 +10,8 @@ const SelectedModel = ({
     <div
       className={clsx(
         "w-full",
-        "flex justify-center items-center"
+        "flex justify-center items-center",
+        "px-[8px] py-[3px]"
       )}
     >
       {children}

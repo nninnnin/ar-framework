@@ -20,7 +20,7 @@ const AxisToggler = () => {
   return (
     <div
       className={clsx(
-        "flex h-[44px]",
+        "w-full flex h-[44px]",
         "border-t-[1px] border-solid border-black"
       )}
       onClick={handleAxisItemClick}
@@ -29,6 +29,7 @@ const AxisToggler = () => {
         return (
           <AxisToggler.AxisItem
             className={clsx(
+              "flex-1",
               axis === selectedAxis &&
                 "bg-black text-white"
             )}

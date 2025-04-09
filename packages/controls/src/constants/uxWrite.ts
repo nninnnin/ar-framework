@@ -13,10 +13,16 @@ export const uxWrite: UxWrite = {
       "좌표 위치 조정하기",
     [ControllingSubject.FaceTarget]:
       "페이스 타겟 조정하기",
-    [ControllingSubject.Scale]: "모델 크기 조정하기",
-    [ControllingSubject.Rotation]:
-      "모델 회전 조정하기",
-    [ControllingSubject.Position]:
-      "모델 위치 조정하기",
+    [ControllingSubject.Scale]: "크기 조정하기",
+    [ControllingSubject.Rotation]: "회전 조정하기",
+    [ControllingSubject.Position]: "위치 조정하기",
   },
+};
+
+export const SUBJECT_LABEL = {
+  [ControllingSubject.Position]: "위치",
+  [ControllingSubject.Rotation]: "회전",
+  [ControllingSubject.Scale]: "크기",
+  [ControllingSubject.LocationCoordinate]: "좌표",
+  [ControllingSubject.FaceTarget]: "페이스 타겟",
 };
