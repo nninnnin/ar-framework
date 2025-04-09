@@ -40,12 +40,12 @@ const useUpdateModel = () => {
         controlValues["rotation"]
       ),
       scale: JSON.stringify(controlValues["scale"]),
-      latitude: String(
-        (coordinate?.lat).toFixed(6) ?? ""
-      ),
-      longitude: String(
-        (coordinate?.lng).toFixed(6) ?? ""
-      ),
+      latitude: coordinate?.lat
+        ? String((coordinate?.lat).toFixed(6))
+        : "",
+      longitude: coordinate?.lng
+        ? String((coordinate?.lng).toFixed(6))
+        : "",
     };
 
     const updateBody = {
@@ -67,6 +67,8 @@ const useUpdateModel = () => {
         },
       }
     );
+
+    console.log("업데이트 결과", updateRes);
 
     setUpdating(false);
   };
