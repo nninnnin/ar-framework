@@ -3,6 +3,7 @@ import React, {
   useEffect,
   useRef,
   forwardRef,
+  useMemo,
 } from "react";
 
 import IframeMessenger from "./IframeMessenger";
@@ -66,10 +67,7 @@ export const useArContentsMessages = ({
 
 const ArContentsIframe = forwardRef(
   (
-    {
-      src,
-      visibility,
-    }: { src: string; visibility: boolean },
+    { src }: { src: string },
     ref: ForwardedRef<HTMLIFrameElement>
   ) => {
     return (
@@ -84,9 +82,7 @@ const ArContentsIframe = forwardRef(
           position: "fixed",
           top: 0,
           left: 0,
-          visibility: visibility
-            ? "visible"
-            : "hidden",
+          visibility: "hidden",
         }}
       ></iframe>
     );
@@ -134,23 +130,39 @@ export const useArContents = () => {
     });
   };
 
+  const ArContentsIframeComponent = useMemo(
+    () =>
+      ({
+        src,
+        visibility,
+      }: {
+        src: string;
+        visibility: boolean;
+      }) => {
+        useEffect(() => {
+          if (visibility) {
+            console.log("visibility changed!");
+
+            if (iframeRef.current) {
+              iframeRef.current.style.visibility =
+                "visible";
+            }
+          }
+        }, [visibility]);
+
+        return (
+          <ArContentsIframe
+            ref={iframeRef}
+            src={src}
+          />
+        );
+      },
+    [iframeRef]
+  );
+
   return {
     showGlbModels,
     showCaptureButton,
-    ArContentsIframe: ({
-      src,
-      visibility,
-    }: {
-      src: string;
-      visibility: boolean;
-    }) => {
-      return (
-        <ArContentsIframe
-          ref={iframeRef}
-          src={src}
-          visibility={visibility}
-        />
-      );
-    },
+    ArContentsIframe: ArContentsIframeComponent,
   };
 };

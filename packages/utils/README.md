@@ -100,4 +100,9 @@ useArContentsMessages({
   - `useArContentsMessages` : gif 메시지 핸들러 추가
 
 - `1.3.1`
+
   - iframe 크기 조정: 99.9dvh. 삼성인터넷에서 100dvh 시 플리커 현상 방지
+
+- `1.3.6`
+
+  - `ArContentsIFrame` : React.memo 적용으로 visibility로 인한 리렌더링 방어
