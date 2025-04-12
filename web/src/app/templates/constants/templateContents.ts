@@ -35,6 +35,7 @@ export const TemplateContents: Record<
         arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false; locationEnabled: true"
         renderer="antialias: false; logarithmicDepthBuffer: true; colorManagement: true"
         vr-mode-ui="enabled: false"
+        gesture-detector
       >
         <a-camera
           id="camera"
