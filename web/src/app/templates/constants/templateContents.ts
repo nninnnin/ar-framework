@@ -17,26 +17,22 @@ export const TemplateContents: Record<
   },
   "위치기반 AR": {
     headScripts: `
-      <script
-        type="text/javascript"
-        src="https://aframe.io/releases/1.3.0/aframe.min.js">
+      <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
       </script>
       <script
         type="text/javascript"
-        src="/scripts/libs/ar-threex-location-only.js"
+        src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js"
       ></script>
       <script
         type='text/javascript'
         src='/scripts/libs/aframe-ar.js'
       ></script>
-      <script
-        type="text/javascript"
-        src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"
-      ></script>
+      <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
     `,
     bodyContents: `
       <a-scene
-        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
+        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false; locationEnabled: true"
         renderer="antialias: false; logarithmicDepthBuffer: true; colorManagement: true"
         vr-mode-ui="enabled: false"
       >
