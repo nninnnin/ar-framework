@@ -41,6 +41,7 @@ export const TemplateContents: Record<
           gps-projected-camera="gpsMinDistance: 5"
           arjs-look-controls='smoothingFactor: 0.1'
           position="0 0 0"
+          rotation-reader
         ></a-camera>
       </a-scene>
     `,
