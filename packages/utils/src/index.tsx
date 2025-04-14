@@ -68,7 +68,7 @@ const ArContentsIframe = forwardRef(
         src={src}
         style={{
           width: "100vw",
-          height: "100dvh",
+          height: "99.9dvh",
           position: "fixed",
           top: 0,
           left: 0,
