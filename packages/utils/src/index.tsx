@@ -105,11 +105,11 @@ export const useArContents = () => {
       throwIframeRefError();
     }
 
-    const messanger = new IframeMessenger(
+    const messenger = new IframeMessenger(
       iframeRef.current!
     );
 
-    messanger.postMessage({
+    messenger.postMessage({
       type: "show-glb-models",
       payload: null,
     });
@@ -120,12 +120,23 @@ export const useArContents = () => {
       throwIframeRefError();
     }
 
-    const messanger = new IframeMessenger(
+    const messenger = new IframeMessenger(
       iframeRef.current!
     );
 
-    messanger.postMessage({
+    messenger.postMessage({
       type: "show-capture-button",
+      payload: null,
+    });
+  };
+
+  const triggerCapture = () => {
+    const messenger = new IframeMessenger(
+      iframeRef.current!
+    );
+
+    messenger.postMessage({
+      type: "trigger-capture",
       payload: null,
     });
   };
@@ -163,6 +174,7 @@ export const useArContents = () => {
   return {
     showGlbModels,
     showCaptureButton,
+    triggerCapture,
     ArContentsIframe: ArContentsIframeComponent,
   };
 };

@@ -1,13 +1,11 @@
 import "./styles.css";
 import { Capturer } from "./utils/index.ts";
 
-const captureButton = document.createElement("button");
-captureButton.id = "capture-button";
+window.addEventListener("message", async (event) => {
+  const message = event.data;
 
-const capturer = new Capturer();
-
-captureButton.addEventListener("click", async () => {
-  capturer.capture();
+  if (message.type === "trigger-capture") {
+    const capturer = new Capturer();
+    capturer.capture();
+  }
 });
-
-document.body.appendChild(captureButton);

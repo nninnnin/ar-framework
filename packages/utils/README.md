@@ -106,3 +106,7 @@ useArContentsMessages({
 - `1.3.6`
 
   - `ArContentsIFrame` : React.memo 적용으로 visibility로 인한 리렌더링 방어
+
+- `1.4.1`
+
+  - `useArContents`에 캡쳐 트리거용 메서드(`triggerCapture`) 추가

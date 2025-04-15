@@ -1,6 +1,7 @@
 type ArContentsSendingMessages =
   | "ar-loaded"
   | "gif-loaded"
+  | "trigger-capture"
   | "image-captured";
 
 type ArContentsReceivingMessages =
