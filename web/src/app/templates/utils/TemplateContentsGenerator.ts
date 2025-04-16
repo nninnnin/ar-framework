@@ -155,6 +155,8 @@ class TemplateContentsGenerator {
           ? `rotation="${model.rotation.x} ${model.rotation.y} ${model.rotation.z}"`
           : `rotation="0 0 0"`;
 
+        const visibility = model.visibility ?? true;
+
         if (projectType === "위치기반 AR") {
           const defaultCoordinates = {
             latitude: "37.533836",
@@ -170,7 +172,7 @@ class TemplateContentsGenerator {
 
           const coordinates = `latitude: ${latitude}; longitude: ${longitude}`;
 
-          return `<a-entity gps-projected-entity-place="${coordinates}"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" ${scale} ${rotation} ${position} animation-mixer frustum-culled></a-gltf-model></a-entity>`;
+          return `<a-entity gps-projected-entity-place="${coordinates}"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" ${scale} ${rotation} ${position} animation-mixer frustum-culled visible="${visibility}"></a-gltf-model></a-entity>`;
         }
 
         if (projectType === "얼굴인식 AR") {

@@ -22,7 +22,10 @@ const useSyncModelControlValues = () => {
       const modelId = selectedModel.id.split("#")[1];
 
       const res = await fetch(
-        `https://ar-framework-web.vercel.app/glbModels/api?glbModelId=${modelId}`
+        `${
+          process.env.API_URL ??
+          "https://ar-framework-web.vercel.app"
+        }/glbModels/api?glbModelId=${modelId}`
       );
 
       const glbModelData = await res.json();
@@ -39,10 +42,13 @@ const useSyncModelControlValues = () => {
         glbModelData.scale
       );
 
+      const visibility = glbModelData.visibility;
+
       setModelControls(selectedModel.name, {
         position,
         rotation,
         scale,
+        visibility,
       });
 
       const coordinate = initCoordinate(

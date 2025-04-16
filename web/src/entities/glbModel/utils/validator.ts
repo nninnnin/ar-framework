@@ -13,6 +13,7 @@ const GlbModelItemFormattedValidator = z.object({
   rotation: z.string(),
   position: z.string(),
   interactions: z.nullable(z.string()),
+  visibility: z.nullable(z.boolean()),
 });
 
 export const validateGlbModelListFormatted = (

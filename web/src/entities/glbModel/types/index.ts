@@ -14,6 +14,7 @@ export interface GlbModelItem {
   rotation: string;
   position: string;
   interactions: string;
+  visibility: boolean;
 }
 
 export interface GlbModelItemFormatted {
@@ -27,6 +28,7 @@ export interface GlbModelItemFormatted {
   rotation: string;
   position: string;
   interactions: string;
+  visibility: boolean;
 }
 
 export type GlbModelListResult =

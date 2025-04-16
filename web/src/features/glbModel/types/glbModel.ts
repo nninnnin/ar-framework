@@ -11,6 +11,7 @@ export interface GlbModelData {
   rotation: string;
   position: string;
   interactions: string;
+  visibility: boolean;
 }
 
 export interface GlbModelFormatted {
@@ -37,6 +38,7 @@ export interface GlbModelFormatted {
     z: number;
   };
   interactions: InteractionItem[];
+  visibility: boolean;
 }
 
 export type GlbModelEditable =

@@ -51,6 +51,7 @@ export const transformGlbEditableToUpdate = (
     rotation,
     position,
     interactions,
+    visibility: editable.visibility ?? false,
     isDeleted: false,
   };
 

@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { pipe } from "@rebel9/memex-fetcher";
 
 import GlbModelService from "@/entities/glbModel/service";
@@ -12,8 +13,6 @@ import {
 } from "@/entities/glbModel/utils/validator";
 
 const glbModelService = new GlbModelService();
-
-import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   const response = NextResponse.json(

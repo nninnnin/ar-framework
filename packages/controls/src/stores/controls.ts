@@ -42,6 +42,10 @@ interface ControlStore {
     value: number
   ) => void;
   setScale: (modelName: string, value: number) => void;
+  setVisibility: (
+    modelName: string,
+    value: boolean
+  ) => void;
 }
 
 export const useControlStore = create(
@@ -135,6 +139,14 @@ export const useControlStore = create(
           y: value,
           z: value,
         };
+      }),
+    setVisibility: (
+      modelName: string,
+      value: boolean
+    ) =>
+      set((state) => {
+        state.controls[modelName]["visibility"] =
+          value;
       }),
   }))
 );

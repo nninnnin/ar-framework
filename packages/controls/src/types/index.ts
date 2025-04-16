@@ -48,7 +48,8 @@ export type ControlState =
       | ControllingSubject.Position
       | ControllingSubject.Rotation,
       WithNull<Record<Axis, number>>
-    >;
+    >
+  | Record<"visibility", boolean>;
 
 export type ControlStateByModel = Record<
   SelectedModelName,

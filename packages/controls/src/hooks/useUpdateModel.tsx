@@ -24,7 +24,10 @@ const useUpdateModel = () => {
     const modelId = selectedModel.id.split("#")[1];
 
     const res = await fetch(
-      `https://ar-framework-web.vercel.app/glbModels/api?glbModelId=${modelId}`
+      `${
+        process.env.API_URL ??
+        "https://ar-framework-web.vercel.app"
+      }/glbModels/api?glbModelId=${modelId}`
     );
 
     const glbModelData = await res.json();
@@ -46,6 +49,7 @@ const useUpdateModel = () => {
       longitude: coordinate?.lng
         ? String((coordinate?.lng).toFixed(6))
         : "",
+      visibility: String(controlValues["visibility"]),
     };
 
     const updateBody = {
@@ -58,7 +62,10 @@ const useUpdateModel = () => {
     };
 
     const updateRes = await fetch(
-      `https://ar-framework-web.vercel.app/glbModels/api?glbModelId=${modelId}`,
+      `${
+        process.env.API_URL ??
+        "https://ar-framework-web.vercel.app"
+      }/glbModels/api?glbModelId=${modelId}`,
       {
         method: "PUT",
         body: JSON.stringify(updateBody),

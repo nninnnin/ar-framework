@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import useSetModelsFromTemplate from "./hooks/useSetModelsFromTemplate";
 import Overlay from "./components/Overlay";

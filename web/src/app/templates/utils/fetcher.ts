@@ -106,6 +106,7 @@ const formatGlbModelItems = (
       interactions: formatGlbModelInteractions(
         data.interactions
       ),
+      visibility: data.visibility,
     };
   });
 
