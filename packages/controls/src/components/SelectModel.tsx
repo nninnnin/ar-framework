@@ -28,12 +28,12 @@ const SelectModel = () => {
               <Select.Item
                 className={clsx(
                   styles.item,
-                  "!bg-amber-500",
-                  "!rounded-l-[0px]"
+                  "!bg-[violet]",
+                  "my-[5px]"
                 )}
                 value={model.name}
               >
-                <Select.ItemText>
+                <Select.ItemText className="px-[1em]">
                   {model.name}
                 </Select.ItemText>
               </Select.Item>

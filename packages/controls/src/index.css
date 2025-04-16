@@ -22,3 +22,8 @@
 .marker.origin {
   border: 3px solid blue;
 }
+
+.mapboxgl-ctrl-logo,
+.mapboxgl-ctrl-icon {
+  display: none;
+}

@@ -54,8 +54,8 @@ const ConfirmButton = () => {
       onClick={handleClick}
     >
       {isUpdating
-        ? "적용중.."
-        : "새로운 좌표 적용하기"}
+        ? "저장중.."
+        : "새로운 좌표 저장하기"}
     </div>
   );
 };

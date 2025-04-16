@@ -6,6 +6,7 @@ import Coordinate from "./components/Coordinate";
 import Overlay from "../Overlay";
 import ConfirmButton from "./components/ConfirmButton";
 import { useControlStore } from "../../stores/controls";
+import CurrentCoords from "./components/CurrentCoords";
 
 const LocationSelector = () => {
   const { setControllingSubject } = useControlStore();
@@ -15,8 +16,8 @@ const LocationSelector = () => {
       <LocationSelector.Container>
         <div
           className={clsx(
-            "absolute top-[0px] right-0 z-[9999] -translate-y-[100%]",
-            "w-full h-[50px]",
+            "absolute top-[0px] left-1/2 -translate-x-1/2 z-[9999] -translate-y-[100%]",
+            "w-[calc(100%-2px)] h-[50px]",
             "flex justify-center items-center",
             "bg-white"
           )}
@@ -24,6 +25,8 @@ const LocationSelector = () => {
         >
           닫기
         </div>
+
+        <CurrentCoords />
 
         <Map />
         <Coordinate />

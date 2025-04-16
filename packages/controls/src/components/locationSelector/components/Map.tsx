@@ -19,7 +19,8 @@ const Map = () => {
   const { selectedModelName } = useModelStore();
   const { setCoordinate: setModelCoordinate } =
     useControlStore();
-  const { setCoordinate } = useCoordinateStore();
+  const { setCoordinate, coordinate } =
+    useCoordinateStore();
 
   useEffect(() => {
     if (mapRef.current) return;
@@ -36,21 +37,6 @@ const Map = () => {
     map.on("click", (event) => {
       const { lng, lat } = event.lngLat;
 
-      if (locationMarkerRef.current) {
-        locationMarkerRef.current.setLngLat([
-          lng,
-          lat,
-        ]);
-      } else {
-        const marker = document.createElement("div");
-        marker.classList.add("marker");
-
-        locationMarkerRef.current =
-          new mapboxgl.Marker(marker)
-            .setLngLat([lng, lat])
-            .addTo(map);
-      }
-
       setCoordinate(lat, lng);
       setModelCoordinate(selectedModelName, {
         lat,
@@ -60,6 +46,25 @@ const Map = () => {
 
     mapRef.current = map;
   }, []);
+
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    const { lat, lng } = coordinate;
+
+    if (locationMarkerRef.current) {
+      locationMarkerRef.current.setLngLat([lng, lat]);
+    } else {
+      const marker = document.createElement("div");
+      marker.classList.add("marker");
+
+      locationMarkerRef.current = new mapboxgl.Marker(
+        marker
+      )
+        .setLngLat([lng, lat])
+        .addTo(mapRef.current);
+    }
+  }, [coordinate]);
 
   const { modelElement } = useModelElement();
 
