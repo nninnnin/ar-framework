@@ -37,11 +37,14 @@ class TemplateContentsGenerator {
 
     // Add scripts
     if (hasControls) this.addControls();
+
     this.addCapturer();
     this.addMessageHandler();
     this.addArContentsLoadingHandlers(
       this.projectType
     );
+
+    this.addToneResetter(this.projectType);
 
     return this.templateRoot.toString();
   }
@@ -202,6 +205,14 @@ class TemplateContentsGenerator {
     this.appendToBody(
       `<script src="/features/capturer/index.js"></script>`
     );
+  }
+
+  addToneResetter(projectType: ProjectType) {
+    if (projectType === "위치기반 AR") {
+      this.appendToBody(
+        `<script src="/scripts/toneReset.js"></script>`
+      );
+    }
   }
 
   addMessageHandler() {
