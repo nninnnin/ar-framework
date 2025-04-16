@@ -11,6 +11,7 @@ import { ControllingSubject } from "../types";
 import { uxWrite } from "../constants/uxWrite";
 import { useControlStore } from "../stores/controls";
 import useUpdateModel from "../hooks/useUpdateModel";
+import useModelElement from "../hooks/useModelElement";
 
 const Menu = () => {
   const { toggle } = useMenuStore();
@@ -21,6 +22,8 @@ const Menu = () => {
     setControllingSubject,
     setVisibility,
   } = useControlStore();
+
+  const { modelElement } = useModelElement();
 
   const { updateModel, isUpdating } = useUpdateModel();
 
@@ -104,10 +107,20 @@ const Menu = () => {
                 selectedModelName as string,
                 false
               );
+
+              modelElement.setAttribute(
+                "visible",
+                "false"
+              );
             } else {
               setVisibility(
                 selectedModelName as string,
                 true
+              );
+
+              modelElement.setAttribute(
+                "visible",
+                "true"
               );
             }
           }}
