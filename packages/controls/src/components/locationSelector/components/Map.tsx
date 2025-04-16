@@ -49,6 +49,7 @@ const Map = () => {
 
   useEffect(() => {
     if (!mapRef.current) return;
+    if (!coordinate) return;
 
     const { lat, lng } = coordinate;
 
