@@ -118,15 +118,15 @@ export class Capturer {
 
     this.isCapturing = true;
 
-    this.stopAnimatingScene(this.getScene());
-    this.stopVideo(this.getVideo());
+    // this.stopAnimatingScene(this.getScene());
+    // this.stopVideo(this.getVideo());
 
     this.drawVideo();
     this.drawScene();
 
     this.exportAsBlob((blob) => {
-      this.resumeVideo(this.getVideo());
-      this.resumeAnimatingScene(this.getScene());
+      // this.resumeVideo(this.getVideo());
+      // this.resumeAnimatingScene(this.getScene());
 
       const captureMessage: CaptureMessageInterface = {
         type: "image-captured",
