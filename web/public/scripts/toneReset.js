@@ -19,38 +19,8 @@ window.addEventListener("DOMContentLoaded", () => {
     ) {
       renderer.outputEncoding = THREE.LinearEncoding;
     }
-
-    modelToneSetter();
   });
 });
-
-function modelToneSetter() {
-  const models = document.querySelectorAll(
-    "a-gltf-model"
-  );
-
-  models.forEach((modelElement) => {
-    console.log(modelElement);
-
-    modelElement.addEventListener(
-      "model-loaded",
-      (event) => {
-        const object3D = modelElement.object3D;
-
-        if (object3D) {
-          traverseModel(object3D, (child) => {
-            if (child.isMesh) {
-              child.material.map.encoding =
-                THREE.sRGBEncoding;
-              child.material.toneMapped = true;
-              child.material.map.needsUpdate = true;
-            }
-          });
-        }
-      }
-    );
-  });
-}
 
 function traverseModel(model, callback) {
   callback(model);
