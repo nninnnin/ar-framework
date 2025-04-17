@@ -222,6 +222,12 @@ class TemplateContentsGenerator {
     }
   }
 
+  addScreenshotFixComponent() {
+    this.appendToHead(
+      `<script src="/scripts/aframeComponents/screenshotFixed.js"></script>`
+    );
+  }
+
   addMessageHandler() {
     this.appendToBody(
       `<script src="/scripts/message.js"></script>`
