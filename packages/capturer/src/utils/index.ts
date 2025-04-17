@@ -67,7 +67,7 @@ export class Capturer {
     const preprocessor = (scene) => {
       scene.renderer.toneMapping = THREE.NoToneMapping;
       scene.renderer.outputEncoding =
-        THREE.LinearEncoding;
+        THREE.sRGBEncoding;
     };
 
     const postprocessor = (scene) => {
