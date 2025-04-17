@@ -45,6 +45,7 @@ class TemplateContentsGenerator {
     );
 
     this.addToneResetter(this.projectType);
+    this.addFrustumCulled();
 
     return this.templateRoot.toString();
   }
@@ -192,11 +193,15 @@ class TemplateContentsGenerator {
     this.appendToHead(
       `<link rel="stylesheet" href="/features/controls/index.css" />`
     );
-    this.appendToHead(
-      `<script src="/scripts/aframeComponents/frustumCulled.js"></script>`
-    );
+
     this.appendToBody(
       `<script src="/features/controls/index.js"></script>`
+    );
+  }
+
+  addFrustumCulled() {
+    this.appendToHead(
+      `<script src="/scripts/aframeComponents/frustumCulled.js"></script>`
     );
   }
 
