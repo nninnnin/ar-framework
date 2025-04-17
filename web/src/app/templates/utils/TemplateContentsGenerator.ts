@@ -173,16 +173,16 @@ class TemplateContentsGenerator {
 
           const coordinates = `latitude: ${latitude}; longitude: ${longitude}`;
 
-          return `<a-entity gps-projected-entity-place="${coordinates}"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" ${scale} ${rotation} ${position} visible="${visibility}" animation-mixer frustum-culled></a-gltf-model></a-entity>`;
+          return `<a-entity gps-projected-entity-place="${coordinates}"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" ${scale} ${rotation} ${position} visible="${visibility}" animation-mixer frustum-culled gltf-tone-mapped></a-gltf-model></a-entity>`;
         }
 
         if (projectType === "얼굴인식 AR") {
-          return `<a-entity ${scale} ${position} ${rotation} mindar-face-target="anchorIndex: 168"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" animation-mixer frustum-culled></a-gltf-model></a-entity>`;
+          return `<a-entity ${scale} ${position} ${rotation} mindar-face-target="anchorIndex: 168"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" animation-mixer frustum-culled gltf-tone-mapped></a-gltf-model></a-entity>`;
         }
 
         return `
           <a-entity ${scale} ${position} ${rotation}>
-            <a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" animation-mixer frustum-culled></a-gltf-model>
+            <a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" animation-mixer frustum-culled gltf-tone-mapped></a-gltf-model>
           </a-entity>
         `;
       })
