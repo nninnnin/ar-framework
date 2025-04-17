@@ -45,6 +45,7 @@ class TemplateContentsGenerator {
     );
 
     this.addToneResetter(this.projectType);
+    this.addScreenshotFixComponent();
     this.addFrustumCulled();
 
     return this.templateRoot.toString();
