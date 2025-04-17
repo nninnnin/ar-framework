@@ -8,10 +8,12 @@
     "start": "parcel index.ts"
   },
   "dependencies": {
+    "@types/three": "0.152.0",
     "clsx": "*",
     "dotenv": "*",
     "react": "*",
     "react-dom": "*",
+    "three": "0.152.0",
     "zustand": "*"
   },
   "devDependencies": {

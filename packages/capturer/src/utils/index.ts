@@ -1,3 +1,5 @@
+import * as THREE from "three";
+
 import { CaptureMessageInterface } from "../types";
 
 export class Capturer {
@@ -5,6 +7,8 @@ export class Capturer {
   dpr: number;
 
   isCapturing: boolean = false;
+  toneMappingStore: number;
+  outputEncodingStore: number;
 
   constructor() {
     const canvas = document.createElement("canvas");
@@ -56,10 +60,31 @@ export class Capturer {
   }
 
   captureScene(scene) {
+    this.toneMappingStore = scene.renderer.toneMapping;
+    this.outputEncodingStore =
+      scene.renderer.outputEncoding;
+
+    const preprocessor = (scene) => {
+      scene.renderer.toneMapping = THREE.NoToneMapping;
+      scene.renderer.outputEncoding =
+        THREE.LinearEncoding;
+    };
+
+    const postprocessor = (scene) => {
+      scene.renderer.toneMapping =
+        this.toneMappingStore;
+      scene.renderer.outputEncoding =
+        this.outputEncodingStore;
+    };
+
+    preprocessor(scene);
+
     const capturedScene =
       scene.components.screenshot.getCanvas(
         "perspective"
       );
+
+    postprocessor(scene);
 
     return capturedScene;
   }

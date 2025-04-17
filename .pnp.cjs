@@ -83,12 +83,14 @@ const RAW_RUNTIME_STATE =
           ["@ar-framework/capturer", "workspace:packages/capturer"],\
           ["@parcel/config-default", "virtual:8c6cfc826c2ecc1b6d8dc38f65c77ebcfb8be82567f01502ab4545b51d1aab24881ad81340eb4e7d957924b346beb567fbbf3292d6f7cba12c23fb9417e1dca8#npm:2.14.2"],\
           ["@parcel/core", "npm:2.14.2"],\
+          ["@types/three", "npm:0.152.0"],\
           ["clsx", "npm:2.1.1"],\
           ["dotenv", "npm:16.4.7"],\
           ["parcel", "virtual:8c6cfc826c2ecc1b6d8dc38f65c77ebcfb8be82567f01502ab4545b51d1aab24881ad81340eb4e7d957924b346beb567fbbf3292d6f7cba12c23fb9417e1dca8#npm:2.14.2"],\
           ["parcel-namer-hashless", "npm:1.0.7"],\
           ["react", "npm:19.0.0"],\
           ["react-dom", "virtual:70b89d175ee2c48207e81efafc89d19de804ad3ac21dcabeeb089979ec14c4a3e8aac7b0cec78e7f9e36ed6abc1aac7073a828e405a17e0044d64a9ccdc78787#npm:19.0.0"],\
+          ["three", "npm:0.152.0"],\
           ["zustand", "virtual:70b89d175ee2c48207e81efafc89d19de804ad3ac21dcabeeb089979ec14c4a3e8aac7b0cec78e7f9e36ed6abc1aac7073a828e405a17e0044d64a9ccdc78787#npm:5.0.3"]\
         ],\
         "linkType": "SOFT"\
@@ -4669,6 +4671,13 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@tweenjs/tween.js", [\
+      ["npm:18.6.4", {\
+        "packageLocation": "../../.yarn/berry/cache/@tweenjs-tween.js-npm-18.6.4-3b136362c7-10c0.zip/node_modules/@tweenjs/tween.js/",\
+        "packageDependencies": [\
+          ["@tweenjs/tween.js", "npm:18.6.4"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:23.1.3", {\
         "packageLocation": "../../.yarn/berry/cache/@tweenjs-tween.js-npm-23.1.3-54a25ced7d-10c0.zip/node_modules/@tweenjs/tween.js/",\
         "packageDependencies": [\
@@ -4854,6 +4863,18 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@types/three", [\
+      ["npm:0.152.0", {\
+        "packageLocation": "../../.yarn/berry/cache/@types-three-npm-0.152.0-9e32e558ca-10c0.zip/node_modules/@types/three/",\
+        "packageDependencies": [\
+          ["@types/three", "npm:0.152.0"],\
+          ["@tweenjs/tween.js", "npm:18.6.4"],\
+          ["@types/stats.js", "npm:0.17.3"],\
+          ["@types/webxr", "npm:0.5.21"],\
+          ["fflate", "npm:0.6.10"],\
+          ["lil-gui", "npm:0.17.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:0.174.0", {\
         "packageLocation": "../../.yarn/berry/cache/@types-three-npm-0.174.0-ba683651cb-10c0.zip/node_modules/@types/three/",\
         "packageDependencies": [\
@@ -5818,6 +5839,13 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["fflate", [\
+      ["npm:0.6.10", {\
+        "packageLocation": "../../.yarn/berry/cache/fflate-npm-0.6.10-b727a5dabe-10c0.zip/node_modules/fflate/",\
+        "packageDependencies": [\
+          ["fflate", "npm:0.6.10"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:0.8.2", {\
         "packageLocation": "../../.yarn/berry/cache/fflate-npm-0.8.2-5129f303f0-10c0.zip/node_modules/fflate/",\
         "packageDependencies": [\
@@ -6663,6 +6691,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/unplugged/lightningcss-win32-x64-msvc-npm-1.29.2-bede0b2d99/node_modules/lightningcss-win32-x64-msvc/",\
         "packageDependencies": [\
           ["lightningcss-win32-x64-msvc", "npm:1.29.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["lil-gui", [\
+      ["npm:0.17.0", {\
+        "packageLocation": "../../.yarn/berry/cache/lil-gui-npm-0.17.0-6e5e3a6fbb-10c0.zip/node_modules/lil-gui/",\
+        "packageDependencies": [\
+          ["lil-gui", "npm:0.17.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -8312,6 +8349,13 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["three", [\
+      ["npm:0.152.0", {\
+        "packageLocation": "../../.yarn/berry/cache/three-npm-0.152.0-e9dbf6dd8b-10c0.zip/node_modules/three/",\
+        "packageDependencies": [\
+          ["three", "npm:0.152.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:0.173.0", {\
         "packageLocation": "../../.yarn/berry/cache/three-npm-0.173.0-e15eae306e-10c0.zip/node_modules/three/",\
         "packageDependencies": [\
