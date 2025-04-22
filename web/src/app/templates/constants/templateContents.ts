@@ -43,6 +43,7 @@ export const TemplateContents: Record<
           gps-projected-camera="gpsMinDistance: 5"
           position="0 0 0"
           rotation-reader
+          look-controls="touchEnabled: false; mouseEnabled: false"
         ></a-camera>
       </a-scene>
     `,
