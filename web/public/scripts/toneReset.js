@@ -9,16 +9,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   scene.addEventListener("loaded", () => {
     const renderer = scene.renderer;
-
-    const video = document.querySelector("video");
-    const videoTexture = new THREE.VideoTexture(video);
-
-    if (
-      videoTexture.encoding === THREE.LinearEncoding &&
-      renderer.outputEncoding !== THREE.LinearEncoding
-    ) {
-      renderer.outputEncoding = THREE.LinearEncoding;
-    }
+    renderer.outputEncoding = THREE.LinearEncoding;
+    renderer.outputColorSpace = THREE.LinearEncoding;
   });
 });
 
@@ -43,6 +35,7 @@ AFRAME.registerComponent("gltf-tone-mapped", {
       mesh.traverse((child) => {
         if (child.isMesh) {
           const material = child.material.clone(); // 기존 머티리얼 복사
+
           material.onBeforeCompile = (shader) => {
             shader.fragmentShader =
               shader.fragmentShader.replace(
