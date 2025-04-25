@@ -95,7 +95,7 @@ AFRAME.registerComponent("screenshotfixed", {
 
   getRenderTarget: function (width, height) {
     return new THREE.WebGLRenderTarget(width, height, {
-      encoding: THREE.sRGBEncoding,
+      encoding: THREE.LinearEncoding,
       minFilter: THREE.LinearFilter,
       magFilter: THREE.LinearFilter,
       wrapS: THREE.ClampToEdgeWrapping,
