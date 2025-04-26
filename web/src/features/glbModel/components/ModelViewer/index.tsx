@@ -26,15 +26,19 @@ const ModelViewer = ({
   }, [glbModel]);
 
   useEffect(() => {
+    if (!modelSource) return;
+
     const modelViewer = document.querySelector(
       "model-viewer"
     ) as ModelViewerElement;
 
     if (modelViewer) {
+      modelViewer.src = modelSource;
+      modelViewer.removeAttribute("camera-controls");
+      modelViewer.setAttribute("camera-controls", "");
+
       return;
     }
-
-    if (!modelSource) return;
 
     const mv = new ModelViewerElement();
 
