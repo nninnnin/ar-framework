@@ -65,6 +65,7 @@ export const postGlbModels = async (
               KO: item.value,
             },
             mediaPath: item.file.path,
+            visibility: "true",
           },
         },
         {
