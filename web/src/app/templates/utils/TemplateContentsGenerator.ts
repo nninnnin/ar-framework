@@ -178,7 +178,7 @@ class TemplateContentsGenerator {
         }
 
         if (projectType === "얼굴인식 AR") {
-          return `<a-entity ${scale} ${position} ${rotation} mindar-face-target="anchorIndex: 168"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" animation-mixer frustum-culled gltf-tone-mapped></a-gltf-model></a-entity>`;
+          return `<a-entity mindar-face-target="anchorIndex: 168"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" ${scale} ${position} ${rotation} visible="${visibility}" animation-mixer frustum-culled gltf-tone-mapped></a-gltf-model></a-entity>`;
         }
 
         return `
