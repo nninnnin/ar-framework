@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  scene.addEventListener("loaded", () => {
+  scene.addEventListener("renderstart", () => {
     const renderer = scene.renderer;
     renderer.outputEncoding = THREE.LinearEncoding;
     renderer.outputColorSpace = THREE.LinearEncoding;
