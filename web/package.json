@@ -19,6 +19,7 @@
     "@use-funnel/browser": "^0.0.11",
     "axios": "^1.8.1",
     "lodash": "^4.17.21",
+    "motion": "^12.9.2",
     "next": "^15.1.5",
     "nextjs-cors": "^2.2.0",
     "node-html-parser": "^7.0.1",

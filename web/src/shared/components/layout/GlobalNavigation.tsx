@@ -2,23 +2,16 @@
 
 import React from "react";
 import { css } from "@emotion/react";
-import { Jacquard_24 } from "next/font/google";
-
-const jacquard = Jacquard_24({
-  weight: ["400"],
-  style: "normal",
-  subsets: ["latin"],
-});
 
 const GlobalNavigation = () => {
   return (
     <a href="/">
       <h1
-        className={jacquard.className}
+        className="lora-bold"
         css={css`
           border-bottom: 1px solid black;
-          padding: 16px;
-          font-size: 32px;
+          padding: 20px;
+          font-size: 24px;
 
           background-color: #fff;
           color: black;
@@ -26,7 +19,7 @@ const GlobalNavigation = () => {
           user-select: none;
         `}
       >
-        AR framework
+        AR Framework
       </h1>
     </a>
   );
