@@ -27,6 +27,32 @@ function traverseModel(model, callback) {
 }
 
 AFRAME.registerComponent("gltf-tone-mapped", {
+  tick: function () {
+    if (this.hasSetEncoding) return;
+
+    const scene = document.querySelector("a-scene");
+
+    if (!scene) {
+      return;
+    }
+
+    const renderer = scene.renderer;
+
+    if (!renderer) return;
+
+    if (
+      renderer.outputEncoding ===
+        THREE.LinearEncoding &&
+      renderer.outputColorSpace ===
+        THREE.LinearEncoding
+    ) {
+      return;
+    }
+
+    renderer.outputEncoding = THREE.LinearEncoding;
+    renderer.outputColorSpace = THREE.LinearEncoding;
+    this.hasSetEncoding = true;
+  },
   init: function () {
     this.el.addEventListener("model-loaded", () => {
       const mesh = this.el.getObject3D("mesh");
