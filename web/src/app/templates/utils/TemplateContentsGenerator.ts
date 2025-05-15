@@ -8,15 +8,18 @@ class TemplateContentsGenerator {
   projectType: ProjectType;
   templateRoot: HTMLElement;
   glbModels: GlbModelFormatted[];
+  targetImagePath: string | null;
 
   constructor(
     projectType: ProjectType,
     htmlTemplateString: string,
-    glbModels: GlbModelFormatted[]
+    glbModels: GlbModelFormatted[],
+    targetImagePath: string | null
   ) {
     this.projectType = projectType;
     this.templateRoot = parse(htmlTemplateString);
     this.glbModels = glbModels;
+    this.targetImagePath = targetImagePath;
   }
 
   generateTemplate({
@@ -61,8 +64,17 @@ class TemplateContentsGenerator {
   }
 
   getBodyContents() {
-    return TemplateContents[this.projectType]
-      .bodyContents;
+    const bodyContents =
+      TemplateContents[this.projectType].bodyContents;
+
+    if (this.targetImagePath) {
+      return bodyContents.replaceAll(
+        "#imageTarget",
+        this.targetImagePath
+      );
+    }
+
+    return bodyContents;
   }
 
   appendToHead(contents: string) {
@@ -105,7 +117,9 @@ class TemplateContentsGenerator {
   }
 
   generateGlbModelAssets(projectType: ProjectType) {
-    const assets = this.glbModels.map((model) => {
+    const headOccluderAsset = `<a-asset-item id="headModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>`;
+
+    const modelAssets = this.glbModels.map((model) => {
       return `
         <a-asset-item id=${model.uid} src=${model.path}>
         </a-asset-item>
@@ -116,26 +130,12 @@ class TemplateContentsGenerator {
       <a-assets>
         ${
           projectType === "얼굴인식 AR"
-            ? `<a-asset-item id="headModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>`
+            ? `${headOccluderAsset}`
             : ""
         }
 
-        ${assets}
+        ${modelAssets}
       </a-assets>
-
-      ${
-        projectType === "얼굴인식 AR"
-          ? `<a-camera look-controls="enabled: false" position="0 0 0"></a-camera>`
-          : ""
-      }
-
-      ${
-        projectType === "얼굴인식 AR"
-          ? `<a-entity mindar-face-target="anchorIndex: 168">
-          <a-gltf-model mindar-face-occluder position="0 0 0" rotation="0 0 0" scale="1 1 1" src="#headModel"></a-gltf-model>
-        </a-entity>`
-          : ""
-      }
     `;
   }
 
@@ -181,9 +181,15 @@ class TemplateContentsGenerator {
           return `<a-entity mindar-face-target="anchorIndex: 168"><a-gltf-model data-model-name="${modelName}" src="#${modelUid}" ${scale} ${position} ${rotation} visible="${visibility}" animation-mixer frustum-culled gltf-tone-mapped></a-gltf-model></a-entity>`;
         }
 
+        if (projectType === "이미지마커 AR") {
+          return `<a-entity id="imageTarget" mindar-image-target="targetIndex: 0">
+            <a-gltf-model src="#${modelUid}" ${scale} ${position} ${rotation} animation-mixer></a-gltf-model>
+          </a-entity>`;
+        }
+
         return `
-          <a-entity ${scale} ${position} ${rotation}>
-            <a-gltf-model data-model-name="${modelName}" src="#${modelUid}" scale="1 1 1" animation-mixer frustum-culled gltf-tone-mapped></a-gltf-model>
+          <a-entity>
+            <a-gltf-model data-model-name="${modelName}" src="#${modelUid}" ${scale} ${position} ${rotation} animation-mixer frustum-culled gltf-tone-mapped></a-gltf-model>
           </a-entity>
         `;
       })

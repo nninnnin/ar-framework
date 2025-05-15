@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { QueryKeys } from "@/shared/constants/queryKeys";
-import { getGlbModels } from "@/app/templates/utils/fetcher";
+import { getGlbModels } from "@/app/templates/utils/fetchers/glbModels";
 import { GlbModelFormatted } from "@/features/glbModel/types/glbModel";
 
 type Options = { modelIds?: string[] };

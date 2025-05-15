@@ -6,7 +6,8 @@ import {
   ProjectType,
 } from "@/features/project/types/project";
 import TemplateContentsGenerator from "@/app/templates/utils/TemplateContentsGenerator";
-import { getGlbModels } from "@/app/templates/utils/fetcher";
+import { getGlbModels } from "@/app/templates/utils/fetchers/glbModels";
+import { getTargetImage } from "@/app/templates/utils/fetchers/targetImage";
 
 export const generateArTemplate = async (
   projectItem: ProjectFormatted,
@@ -31,11 +32,27 @@ export const generateArTemplate = async (
     )
   );
 
+  const targetImage = await (async function () {
+    if (
+      projectItem.imageTarget &&
+      projectItem.imageTarget[0]
+    ) {
+      return await getTargetImage(
+        projectItem.imageTarget[0].uid
+      );
+    }
+
+    return null;
+  })();
+
+  console.log("삐약", targetImage);
+
   const contentsFilledTemplate =
     new TemplateContentsGenerator(
       projectItem.projectType,
       templateFile,
-      glbModels
+      glbModels,
+      targetImage.path
     ).generateTemplate({
       hasControls,
     });

@@ -63,6 +63,11 @@ export const TemplateContents: Record<
         device-orientation-permission-ui="enabled: false"
         reflection="directionalLight:a-light#dirlight;"
       >
+        <a-camera look-controls="enabled: false" position="0 0 0"></a-camera>
+
+        <a-entity mindar-face-target="anchorIndex: 168">
+          <a-gltf-model mindar-face-occluder position="0 0 0" rotation="0 0 0" scale="1 1 1" src="#headModel"></a-gltf-model>
+        </a-entity>
       </a-scene>
     `,
   },
@@ -74,11 +79,16 @@ export const TemplateContents: Record<
     `,
     bodyContents: `
       <a-scene
-        id="myscene"
-        mindar-image="imageTargetSrc: /dragon-pond/assets/targets.mind; filterMinCF: 0.001; filterBeta: 0.1"
+        mindar-image="imageTargetSrc: #imageTarget; filterMinCF: 0.001; filterBeta: 0.1"
         vr-mode-ui="enabled: false"
         device-orientation-permission-ui="enabled: false"
-      ></a-scene>
+      >
+        <a-camera
+          id="camera"
+          position="0 0 0"
+          look-controls="enabled: false"
+        ></a-camera>  
+      </a-scene>
     `,
   },
 };
