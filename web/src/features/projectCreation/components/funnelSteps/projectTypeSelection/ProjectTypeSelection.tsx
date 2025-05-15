@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 
 import useProjectTypes from "@/features/project/hooks/useProjectTypes";
 import { useSelectedProjectType } from "@/features/project/store";
+import { designTokens } from "@/shared/styles/tokens";
 
 const ProjectTypeSelection = () => {
   const { data: projectTypes } = useProjectTypes();
@@ -24,25 +25,32 @@ const ProjectTypeSelection = () => {
           const handleItemClick = () =>
             setSelectedProjectType(projectType.name);
 
+          const isSelected =
+            selectedProjectType === projectType.name;
+
+          const arThemeColor =
+            designTokens.colors.arTypes[
+              projectType.name
+            ];
+
           return (
             <li
               key={projectType.id}
               css={css`
                 &:hover {
-                  background-color: #f0f0f0;
+                  ${isSelected
+                    ? ""
+                    : css`
+                        background-color: #f9f9f9;
+                      `}
                 }
 
-                background-color: ${selectedProjectType ===
-                projectType.name
-                  ? "black !important"
-                  : "white"};
-
-                color: ${selectedProjectType ===
-                projectType.name
-                  ? "white"
-                  : "black"};
+                box-shadow: ${isSelected
+                  ? `0px 0px 60px 0px ${arThemeColor} inset !important`
+                  : "none"};
 
                 border-right: 1px solid black;
+
                 &:last-child {
                   border-right: none;
                 }
