@@ -161,6 +161,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react-lottie", "npm:1.2.10"],\
           ["@types/three", "npm:0.174.0"],\
           ["@use-funnel/browser", "virtual:60286fc9680d883f368f47a419f749645547cddc939bda6b5c005b9b039ae91df1d09d17e219c23b9ca0c5636f81309cc56117d698d714e4354cd244bef41e39#npm:0.0.11"],\
+          ["@use-funnel/core", "virtual:60286fc9680d883f368f47a419f749645547cddc939bda6b5c005b9b039ae91df1d09d17e219c23b9ca0c5636f81309cc56117d698d714e4354cd244bef41e39#npm:0.0.11"],\
           ["axios", "npm:1.8.1"],\
           ["lodash", "npm:4.17.21"],\
           ["motion", "virtual:60286fc9680d883f368f47a419f749645547cddc939bda6b5c005b9b039ae91df1d09d17e219c23b9ca0c5636f81309cc56117d698d714e4354cd244bef41e39#npm:12.9.2"],\
@@ -4932,12 +4933,32 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@use-funnel/core", [\
+      ["npm:0.0.11", {\
+        "packageLocation": "../../.yarn/berry/cache/@use-funnel-core-npm-0.0.11-8dcd85c846-10c0.zip/node_modules/@use-funnel/core/",\
+        "packageDependencies": [\
+          ["@use-funnel/core", "npm:0.0.11"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
       ["npm:0.0.9", {\
         "packageLocation": "../../.yarn/berry/cache/@use-funnel-core-npm-0.0.9-e87b543e5e-10c0.zip/node_modules/@use-funnel/core/",\
         "packageDependencies": [\
           ["@use-funnel/core", "npm:0.0.9"]\
         ],\
         "linkType": "SOFT"\
+      }],\
+      ["virtual:60286fc9680d883f368f47a419f749645547cddc939bda6b5c005b9b039ae91df1d09d17e219c23b9ca0c5636f81309cc56117d698d714e4354cd244bef41e39#npm:0.0.11", {\
+        "packageLocation": "./.yarn/__virtual__/@use-funnel-core-virtual-f2cbcf894a/3/.yarn/berry/cache/@use-funnel-core-npm-0.0.11-8dcd85c846-10c0.zip/node_modules/@use-funnel/core/",\
+        "packageDependencies": [\
+          ["@use-funnel/core", "virtual:60286fc9680d883f368f47a419f749645547cddc939bda6b5c005b9b039ae91df1d09d17e219c23b9ca0c5636f81309cc56117d698d714e4354cd244bef41e39#npm:0.0.11"],\
+          ["@types/react", "npm:19.0.10"],\
+          ["react", "npm:19.0.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
       }],\
       ["virtual:e1d7965e094b07d709ec997b05a484446ac2d860edd27fdb314cc68fd4c23ad08f6125ba0ec5357cb70736f7b4d32fe7a10cda323941207ec6151c09cb5e6e28#npm:0.0.9", {\
         "packageLocation": "./.yarn/__virtual__/@use-funnel-core-virtual-e98ed1b184/3/.yarn/berry/cache/@use-funnel-core-npm-0.0.9-e87b543e5e-10c0.zip/node_modules/@use-funnel/core/",\

@@ -8,31 +8,36 @@ import {
   모델선택,
   프로젝트명입력,
   프로젝트타입선택,
-} from "@/features/project/types/projectCreationFunnel";
+  마커입력,
+} from "@/features/projectCreation/types/projectCreationFunnel";
 import { useSelectedGroup } from "@/features/group/hooks/useSelectedGroup";
-import useResetProjectFunnelStates from "@/features/project/hooks/useResetProjectFunnelStates";
+import useResetProjectFunnelStates from "@/features/projectCreation/hooks/useResetProjectFunnelStates";
 import usePostGlbModel from "@/features/glbModel/hooks/usePostGlbModel";
 import useProjectTypes from "@/features/project/hooks/useProjectTypes";
-import useCreateProject from "@/features/project/hooks/useCreateProject";
-import ProjectTypeSelectionDialog from "@/features/project/components/ProjectTypeSelectionDialog";
+import useCreateProject from "@/features/projectCreation/hooks/useCreateProject";
+import ProjectTypeSelectionDialog from "@/features/projectCreation/components/funnelSteps/ProjectTypeSelectionDialog";
 import { ProjectType } from "@/features/project/types/project";
-import ProjectModelSelectionDialog from "@/features/project/components/ProjectModelSelectionDialog";
-import ProjectRegisterDialog from "@/features/project/components/ProjectRegisterDialog";
+import ProjectModelSelectionDialog from "@/features/projectCreation/components/funnelSteps/ProjectModelSelectionDialog";
+import ProjectRegisterDialog from "@/features/projectCreation/components/funnelSteps/ProjectRegisterDialog";
 import { getProjectTypeId } from "@/features/project/utils";
 import { createProjectBody } from "@/entities/project/utils";
 import { uploadGlbModels } from "@/entities/glbModel/utils/fetchers";
 import { useEditableGlbModels } from "@/features/glbModel/store/editableGlbModels";
+import MarkerRegisterDialog from "@/features/projectCreation/components/funnelSteps/MarkerRegisterDialog";
+
+type CreationFunnelSteps = {
+  프로젝트타입선택: 프로젝트타입선택;
+  마커입력: 마커입력;
+  모델선택: 모델선택;
+  프로젝트명입력: 프로젝트명입력;
+};
 
 const ProjectCreationFunnel = () => {
   const { close: closeOverlay } = useContext(
     OverlayCloseContext
   );
 
-  const funnel = useFunnel<{
-    프로젝트타입선택: 프로젝트타입선택;
-    모델선택: 모델선택;
-    프로젝트명입력: 프로젝트명입력;
-  }>({
+  const funnel = useFunnel<CreationFunnelSteps>({
     id: "project-creation-funnel",
     initial: {
       step: "프로젝트타입선택",
@@ -61,9 +66,27 @@ const ProjectCreationFunnel = () => {
       프로젝트타입선택={({ history }) => (
         <ProjectTypeSelectionDialog
           onClose={handleClose}
-          onNext={(projectType: ProjectType) =>
-            history.push("모델선택", { projectType })
-          }
+          onNext={(projectType: ProjectType) => {
+            if (projectType === "이미지마커 AR") {
+              history.push("마커입력", {
+                projectType,
+              });
+
+              return;
+            }
+
+            history.push("모델선택", { projectType });
+          }}
+        />
+      )}
+      마커입력={({ history }) => (
+        <MarkerRegisterDialog
+          headerLabel="마커 등록하기"
+          onClose={handleClose}
+          onPrevious={() => history.back()}
+          onNext={() => {
+            history.push("모델선택");
+          }}
         />
       )}
       모델선택={({ history }) => (

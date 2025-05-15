@@ -90,6 +90,7 @@ __metadata:
     "@types/react-lottie": "npm:^1.2.10"
     "@types/three": "npm:^0"
     "@use-funnel/browser": "npm:^0.0.11"
+    "@use-funnel/core": "npm:^0.0.11"
     axios: "npm:^1.8.1"
     lodash: "npm:^4.17.21"
     motion: "npm:^12.9.2"
@@ -3858,6 +3859,15 @@ __metadata:
   peerDependencies:
     react: ">=16.8"
   checksum: 10c0/9c05046bb33f58e6a9962f2917e291685f1fa5b9fe22b449c46458cccd714942d799684f1eff03c7ee21382eb1b05b3332e08be05b87215e1e94b8cc8e1cfa41
+  languageName: node
+  linkType: hard
+
+"@use-funnel/core@npm:^0.0.11":
+  version: 0.0.11
+  resolution: "@use-funnel/core@npm:0.0.11"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 10c0/a9abb6c56325ec595039edd15ec4f36129bd7d55e26c84459c0680942b2e7eefa1cbcac50e2d1f28d2cf69eda27e10d24298d308cbbc3ab45425c7da8df7c684
   languageName: node
   linkType: hard
 

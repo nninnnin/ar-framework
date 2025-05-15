@@ -78,8 +78,7 @@ export const TemplateContents: Record<
         mindar-image="imageTargetSrc: /dragon-pond/assets/targets.mind; filterMinCF: 0.001; filterBeta: 0.1"
         vr-mode-ui="enabled: false"
         device-orientation-permission-ui="enabled: false"
-      >
-      </a-scene>
+      ></a-scene>
     `,
   },
 };

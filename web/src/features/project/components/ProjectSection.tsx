@@ -8,7 +8,7 @@ import useProjects from "@/features/project/hooks/useProjects";
 import ProjectList from "@/features/project/components/ProjectList";
 import ProjectItem from "@/features/project/components/ProjectItem";
 import { ProjectFormatted } from "@/features/project/types/project";
-import ProjectModelEditingDialog from "@/features/project/components/ProjectModelEditingDialog";
+import ProjectModelEditingDialog from "@/features/projectCreation/components/funnelSteps/ProjectModelEditingDialog";
 import Overlay from "@/shared/components/Overlay";
 import Plus from "@/shared/components/icons/Plus";
 import { designTokens } from "@/shared/styles/tokens";
@@ -26,7 +26,7 @@ const ProjectDetailsDialog = dynamic(
 const ProjectCreationFunnel = dynamic(
   () =>
     import(
-      "@/features/project/components/ProjectCreationFunnel"
+      "@/features/projectCreation/components/ProjectCreationFunnel"
     ),
   { ssr: false }
 );
