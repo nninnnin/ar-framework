@@ -23,7 +23,7 @@ import { getProjectTypeId } from "@/features/project/utils";
 import { createProjectBody } from "@/entities/project/utils";
 import { uploadGlbModels } from "@/entities/glbModel/utils/fetchers";
 import { useEditableGlbModels } from "@/features/glbModel/store/editableGlbModels";
-import MarkerRegisterDialog from "@/features/projectCreation/components/funnelSteps/MarkerRegisterDialog";
+import MarkerRegisterDialog from "@/features/projectCreation/components/funnelSteps/markerRegister/Dialog";
 
 type CreationFunnelSteps = {
   프로젝트타입선택: 프로젝트타입선택;
@@ -79,16 +79,20 @@ const ProjectCreationFunnel = () => {
           }}
         />
       )}
-      마커입력={({ history }) => (
-        <MarkerRegisterDialog
-          headerLabel="마커 등록하기"
-          onClose={handleClose}
-          onPrevious={() => history.back()}
-          onNext={() => {
-            history.push("모델선택");
-          }}
-        />
-      )}
+      마커입력={({ history }) => {
+        return (
+          <MarkerRegisterDialog
+            headerLabel="마커정보 생성과 등록"
+            onClose={handleClose}
+            onPrevious={() => history.back()}
+            onNext={(imageTargetFile: File) => {
+              history.push("모델선택", {
+                imageTargetFile,
+              });
+            }}
+          />
+        );
+      }}
       모델선택={({ history }) => (
         <ProjectModelSelectionDialog
           onClose={handleClose}
