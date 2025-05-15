@@ -15,7 +15,7 @@ import useResetProjectFunnelStates from "@/features/projectCreation/hooks/useRes
 import usePostGlbModel from "@/features/glbModel/hooks/usePostGlbModel";
 import useProjectTypes from "@/features/project/hooks/useProjectTypes";
 import useCreateProject from "@/features/projectCreation/hooks/useCreateProject";
-import ProjectTypeSelectionDialog from "@/features/projectCreation/components/funnelSteps/ProjectTypeSelectionDialog";
+import ProjectTypeSelectionDialog from "@/features/projectCreation/components/funnelSteps/projectTypeSelection/Dialog";
 import { ProjectType } from "@/features/project/types/project";
 import ProjectModelSelectionDialog from "@/features/projectCreation/components/funnelSteps/ProjectModelSelectionDialog";
 import ProjectRegisterDialog from "@/features/projectCreation/components/funnelSteps/ProjectRegisterDialog";

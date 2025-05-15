@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 
-const ProjectItem = ({
+const ProjectItemContainer = ({
   children,
   onClick = () => {},
   type = "item",
@@ -55,4 +55,4 @@ const ProjectItem = ({
   );
 };
 
-export default ProjectItem;
+export default ProjectItemContainer;

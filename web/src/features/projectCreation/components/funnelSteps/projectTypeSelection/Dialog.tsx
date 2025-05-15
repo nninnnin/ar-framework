@@ -6,7 +6,7 @@ import Dialog from "@/shared/components/Dialog";
 
 import { ProjectType } from "@/features/project/types/project";
 import { useSelectedProjectType } from "@/features/project/store";
-import ProjectTypes from "@/features/project/components/ProjectTypes";
+import ProjectTypes from "@/features/projectCreation/components/funnelSteps/projectTypeSelection/ProjectTypeSelection";
 
 const ProjectTypeSelectionDialog = ({
   onNext,

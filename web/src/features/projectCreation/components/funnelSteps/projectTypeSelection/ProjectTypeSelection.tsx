@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import useProjectTypes from "@/features/project/hooks/useProjectTypes";
 import { useSelectedProjectType } from "@/features/project/store";
 
-const ProjectTypes = () => {
+const ProjectTypeSelection = () => {
   const { data: projectTypes } = useProjectTypes();
 
   const {
@@ -69,4 +69,4 @@ const ProjectTypes = () => {
   );
 };
 
-export default ProjectTypes;
+export default ProjectTypeSelection;
