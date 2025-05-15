@@ -35,12 +35,12 @@ export const createProject = {
     const groupResult = await groupRes.json();
     const groups = formatGroup(groupResult);
 
-    const body = createProjectBody(
-      "새로운 프로젝트",
-      projectTypeId,
-      [],
-      groups[0].uid
-    );
+    const body = createProjectBody({
+      projectName: "새로운 프로젝트",
+      projectTypeId: projectTypeId,
+      postedModelIds: [],
+      groupId: groups[0].uid,
+    });
 
     const createRes =
       await projectService.createProject(body);

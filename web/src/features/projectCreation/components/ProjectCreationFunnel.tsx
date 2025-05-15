@@ -24,6 +24,8 @@ import { createProjectBody } from "@/entities/project/utils";
 import { uploadGlbModels } from "@/entities/glbModel/utils/fetchers";
 import { useEditableGlbModels } from "@/features/glbModel/store/editableGlbModels";
 import MarkerRegisterDialog from "@/features/projectCreation/components/funnelSteps/markerRegister/Dialog";
+import { uploadImageTargetFile } from "@/features/projectCreation/utils/imageTarget/uploadImageTargetFile";
+import { postImageTarget } from "@/features/projectCreation/utils/imageTarget/postImageTarget";
 
 type CreationFunnelSteps = {
   프로젝트타입선택: 프로젝트타입선택;
@@ -112,13 +114,23 @@ const ProjectCreationFunnel = () => {
           onClose={handleClose}
           onPrevious={() => history.back()}
           onFinalize={async (projectName: string) => {
+            const imageTargetUploadResult =
+              await uploadImageTargetFile(
+                context.imageTargetFile
+              );
+
+            const postedImageTargetId =
+              await postImageTarget(
+                imageTargetUploadResult
+              );
+
             // 1. 미디어파일 업로드
             const result = await uploadGlbModels(
               context.glbModels
             );
 
             // 2. GLB 모델에 아이템 생성
-            const postModelResult = await postGlbModel(
+            const postedModelIds = await postGlbModel(
               result
             );
             const projectTypeId = getProjectTypeId(
@@ -133,12 +145,13 @@ const ProjectCreationFunnel = () => {
             }
 
             // 3. 프로젝트 생성 및 GLB 모델 연결
-            const projectBody = createProjectBody(
+            const projectBody = createProjectBody({
               projectName,
               projectTypeId,
-              postModelResult,
-              selectedGroup?.uid ?? ""
-            );
+              postedModelIds,
+              groupId: selectedGroup?.uid ?? "",
+              imageTargetId: postedImageTargetId,
+            });
 
             const projectCreationResult =
               await createProject(projectBody);

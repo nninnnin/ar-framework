@@ -61,7 +61,7 @@ export const formatProjectItem = (
       (data: ProjectData) =>
         mapObjectProps(
           data,
-          ["glbModels"],
+          ["glbModels", "imageTarget"],
           (glbModels: RelationInterface[]) => {
             return glbModels.map((glbModel) => ({
               uid: glbModel.uid,

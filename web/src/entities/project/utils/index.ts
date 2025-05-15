@@ -1,20 +1,28 @@
 import { ProjectBody } from "@/features/project/types/project";
 
-export const createProjectBody = (
-  projectName: string,
-  projectTypeId: number,
-  postedModelIds: string[],
-  groupId: string
-): ProjectBody => {
+export const createProjectBody = (params: {
+  projectName: string;
+  projectTypeId: number;
+  postedModelIds: string[];
+  groupId: string;
+  imageTargetId?: string;
+}): ProjectBody => {
+  const name = { KO: params.projectName };
+  const projectType = [params.projectTypeId];
+  const glbModels = params.postedModelIds;
+  const groupName = [params.groupId];
+  const imageTarget = params.imageTargetId
+    ? [params.imageTargetId]
+    : undefined;
+
   return {
     publish: true,
     data: {
-      name: {
-        KO: projectName,
-      },
-      projectType: [projectTypeId],
-      glbModels: postedModelIds,
-      groupName: [groupId],
+      name,
+      projectType,
+      glbModels,
+      groupName,
+      imageTarget,
     },
   };
 };

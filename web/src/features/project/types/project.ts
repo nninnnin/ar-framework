@@ -33,6 +33,10 @@ export type ProjectFormatted = {
     uid: string;
     name: string;
   }[];
+  imageTarget?: {
+    uid: string;
+    name: string;
+  }[];
 };
 
 export type ProjectType =
@@ -50,5 +54,6 @@ export type ProjectBody = {
     projectType: number[];
     glbModels: string[];
     groupName: string[];
+    imageTarget: string[] | undefined;
   };
 };

@@ -184,12 +184,17 @@ const ProjectModelEditingDialog = ({
           );
         }
 
-        const projectBody = createProjectBody(
-          projectItem!.name,
+        const imageTargetId = projectItem!.imageTarget
+          ? projectItem!.imageTarget[0].uid
+          : undefined;
+
+        const projectBody = createProjectBody({
+          projectName: projectItem!.name,
           projectTypeId,
-          updatedModelIds,
-          selectedGroup!.uid
-        );
+          postedModelIds: updatedModelIds,
+          groupId: selectedGroup!.uid,
+          imageTargetId,
+        });
 
         const updateBody = {
           uid: projectId,
