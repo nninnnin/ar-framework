@@ -7,6 +7,7 @@ import { OverlayCloseContext } from "@/features/project/components/ProjectSectio
 import { useSelectedGroup } from "@/features/group/hooks/useSelectedGroup";
 
 import dynamic from "next/dynamic";
+import useProjectUidContext from "@/features/project/hooks/useProjectUidContext";
 
 const ProjectDetailsDialog = dynamic(
   () =>
@@ -18,11 +19,9 @@ const ProjectDetailsDialog = dynamic(
   }
 );
 
-const ConnectButton = ({
-  projectItemUid,
-}: {
-  projectItemUid: string;
-}) => {
+const ConnectButton = () => {
+  const { projectItem } = useProjectUidContext();
+
   const overlay = useOverlay();
   const { selectedGroup } = useSelectedGroup();
 
@@ -43,6 +42,8 @@ const ConnectButton = ({
     });
   };
 
+  if (!projectItem) return;
+
   return (
     <div
       css={css`
@@ -57,7 +58,7 @@ const ConnectButton = ({
           background-color: #f1f1f1;
         }
       `}
-      onClick={() => onClick(projectItemUid)}
+      onClick={() => onClick(projectItem.uid)}
     >
       접속
     </div>

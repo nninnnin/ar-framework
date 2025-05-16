@@ -1,10 +1,10 @@
-import React from "react";
-
-import ProjectItemContainer from "@/features/project/components/projectItem/Container";
 import { ProjectFormatted } from "@/features/project/types/project";
-import ProjectItemBadge from "@/features/project/components/projectItem/Badge";
 import EditButton from "@/features/project/components/projectItem/EditButton";
+import ProjectItemBadge from "@/features/project/components/projectItem/Badge";
+import RemoveButton from "@/features/project/components/projectItem/RemoveButton";
+import { ProjectItemContext } from "@/features/project/hooks/useProjectUidContext";
 import ConnectButton from "@/features/project/components/projectItem/ConnectButton";
+import ProjectItemContainer from "@/features/project/components/projectItem/Container";
 import ButtonContainer from "@/features/project/components/projectItem/ButtonContainer";
 
 const ProjectItem = ({
@@ -15,22 +15,26 @@ const ProjectItem = ({
   onClick?: () => void;
 }) => {
   return (
-    <ProjectItemContainer onClick={onClick}>
-      <ProjectItem.Name>
-        {projectItem.name}
-      </ProjectItem.Name>
+    <ProjectItemContext.Provider
+      value={{ projectItem }}
+    >
+      <ProjectItemContainer onClick={onClick}>
+        {/* <RemoveButton /> */}
 
-      <ProjectItemBadge
-        projectType={projectItem.projectType}
-      />
+        <ProjectItem.Name>
+          {projectItem.name}
+        </ProjectItem.Name>
 
-      <ButtonContainer>
-        <EditButton projectItemUid={projectItem.uid} />
-        <ConnectButton
-          projectItemUid={projectItem.uid}
+        <ProjectItemBadge
+          projectType={projectItem.projectType}
         />
-      </ButtonContainer>
-    </ProjectItemContainer>
+
+        <ButtonContainer>
+          <EditButton />
+          <ConnectButton />
+        </ButtonContainer>
+      </ProjectItemContainer>
+    </ProjectItemContext.Provider>
   );
 };
 

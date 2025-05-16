@@ -4,12 +4,11 @@ import { useOverlay } from "@toss/use-overlay";
 
 import Overlay from "@/shared/components/Overlay";
 import ProjectModelEditingDialog from "@/features/projectCreation/components/funnelSteps/ProjectModelEditingDialog";
+import useProjectUidContext from "@/features/project/hooks/useProjectUidContext";
 
-const EditButton = ({
-  projectItemUid,
-}: {
-  projectItemUid: string;
-}) => {
+const EditButton = () => {
+  const { projectItem } = useProjectUidContext();
+
   const overlay = useOverlay();
 
   const onClick = (projectId: string) => () => {
@@ -22,6 +21,8 @@ const EditButton = ({
       </Overlay>
     ));
   };
+
+  if (!projectItem) return;
 
   return (
     <div
@@ -37,7 +38,7 @@ const EditButton = ({
           background-color: #f1f1f1;
         }
       `}
-      onClick={onClick(projectItemUid)}
+      onClick={onClick(projectItem.uid)}
     >
       수정
     </div>

@@ -16,11 +16,11 @@ const ProjectItemBadge = ({
       css={css`
         position: absolute;
         top: 0;
-        right: 0;
+        left: 0;
 
         border: 1px solid black;
         border-top: none;
-        border-right: none;
+        border-left: none;
 
         padding: 0.5em;
         padding-left: 0.7em;

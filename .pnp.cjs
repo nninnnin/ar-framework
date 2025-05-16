@@ -163,6 +163,7 @@ const RAW_RUNTIME_STATE =
           ["@use-funnel/browser", "virtual:60286fc9680d883f368f47a419f749645547cddc939bda6b5c005b9b039ae91df1d09d17e219c23b9ca0c5636f81309cc56117d698d714e4354cd244bef41e39#npm:0.0.11"],\
           ["@use-funnel/core", "virtual:60286fc9680d883f368f47a419f749645547cddc939bda6b5c005b9b039ae91df1d09d17e219c23b9ca0c5636f81309cc56117d698d714e4354cd244bef41e39#npm:0.0.11"],\
           ["axios", "npm:1.8.1"],\
+          ["es-hangul", "npm:2.3.3"],\
           ["lodash", "npm:4.17.21"],\
           ["motion", "virtual:60286fc9680d883f368f47a419f749645547cddc939bda6b5c005b9b039ae91df1d09d17e219c23b9ca0c5636f81309cc56117d698d714e4354cd244bef41e39#npm:12.9.2"],\
           ["next", "virtual:60286fc9680d883f368f47a419f749645547cddc939bda6b5c005b9b039ae91df1d09d17e219c23b9ca0c5636f81309cc56117d698d714e4354cd244bef41e39#npm:15.2.2"],\
@@ -5806,6 +5807,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/es-errors-npm-1.3.0-fda0c9b8a8-10c0.zip/node_modules/es-errors/",\
         "packageDependencies": [\
           ["es-errors", "npm:1.3.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["es-hangul", [\
+      ["npm:2.3.3", {\
+        "packageLocation": "../../.yarn/berry/cache/es-hangul-npm-2.3.3-0ac422b65d-10c0.zip/node_modules/es-hangul/",\
+        "packageDependencies": [\
+          ["es-hangul", "npm:2.3.3"]\
         ],\
         "linkType": "HARD"\
       }]\

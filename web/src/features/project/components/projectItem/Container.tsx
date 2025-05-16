@@ -25,6 +25,11 @@ const ProjectItemContainer = ({
           pointer-events: auto;
         }
 
+        &:hover > .project-item-button {
+          visibility: visible;
+          pointer-events: auto;
+        }
+
         width: 170px;
         height: 170px;
 
