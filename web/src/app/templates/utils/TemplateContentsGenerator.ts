@@ -183,7 +183,7 @@ class TemplateContentsGenerator {
 
         if (projectType === "이미지마커 AR") {
           return `<a-entity id="imageTarget" mindar-image-target="targetIndex: 0">
-            <a-gltf-model src="#${modelUid}" ${scale} ${position} ${rotation} animation-mixer></a-gltf-model>
+            <a-gltf-model data-model-name="${modelName}" src="#${modelUid}" ${scale} ${position} ${rotation} animation-mixer></a-gltf-model>
           </a-entity>`;
         }
 
