@@ -30,7 +30,9 @@ class TemplateContentsGenerator {
     // Construct HTML tags
     this.appendToHead(this.getCommonHeadScripts());
     this.appendToHead(this.getHeadScripts());
+
     this.appendToBody(this.getBodyContents());
+
     this.appendToScene(
       this.generateGlbModelAssets(this.projectType)
     );

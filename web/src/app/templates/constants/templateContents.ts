@@ -73,6 +73,8 @@ export const TemplateContents: Record<
   },
   "이미지마커 AR": {
     headScripts: `
+      <link rel="stylesheet" href="/styles/image-tracking.css" >
+
       <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
       <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
