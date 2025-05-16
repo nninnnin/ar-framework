@@ -5,23 +5,27 @@ import { css } from "@emotion/react";
 
 const GlobalNavigation = () => {
   return (
-    <a href="/">
-      <h1
+    <h1
+      css={css`
+        border-bottom: 1px solid black;
+        padding: 20px;
+
+        background-color: #fff;
+        color: black;
+
+        user-select: none;
+      `}
+    >
+      <a
         className="lora-bold"
         css={css`
-          border-bottom: 1px solid black;
-          padding: 20px;
           font-size: 24px;
-
-          background-color: #fff;
-          color: black;
-
-          user-select: none;
         `}
+        href="/"
       >
         AR Framework
-      </h1>
-    </a>
+      </a>
+    </h1>
   );
 };
 
