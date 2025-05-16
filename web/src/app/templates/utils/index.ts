@@ -45,8 +45,6 @@ export const generateArTemplate = async (
     return null;
   })();
 
-  console.log("삐약", targetImage);
-
   const contentsFilledTemplate =
     new TemplateContentsGenerator(
       projectItem.projectType,
