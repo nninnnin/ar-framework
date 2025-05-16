@@ -33,6 +33,7 @@ export const removeProject = {
       projectType: "category",
       glbModels: "relation",
       groupName: "relation",
+      imageTarget: "relation",
     });
 
     console.log("updateBody", updateBody);
