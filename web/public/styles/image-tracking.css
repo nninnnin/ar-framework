@@ -9,3 +9,14 @@ video {
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
 }
+
+.mindar-ui-overlay {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 9999 !important;
+
+  width: 80vw !important;
+  height: 80vw !important;
+}
