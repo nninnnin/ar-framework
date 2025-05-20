@@ -61,7 +61,7 @@ export const formatProjectItem = (
           ["projectType"],
           (projectType: CategoryInterface[]) => {
             return {
-              id: projectType[0]._id,
+              id: projectType[0].id,
               name: deconstructLanguageMap(
                 projectType[0],
                 "KO"
