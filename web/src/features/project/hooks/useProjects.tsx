@@ -18,7 +18,9 @@ const useProjects = (filter: {
         ProjectFormatted[]
       >(filter);
 
-      return data;
+      return data.filter(({ isDeleted }) => {
+        return !isDeleted;
+      });
     },
   });
 };

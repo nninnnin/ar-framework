@@ -1,27 +1,61 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { josa } from "es-hangul";
 import { css } from "@emotion/react";
 import { useOverlay } from "@toss/use-overlay";
-import { josa } from "es-hangul";
 
 import RemoveDialog from "@/features/project/components/projectItem/RemoveDialog";
-import Overlay from "@/shared/components/Overlay";
 import useProjectUidContext from "@/features/project/hooks/useProjectUidContext";
+import { removeProject } from "@/entities/project/utils/fetchers/removeProject";
+import Overlay from "@/shared/components/Overlay";
+import { useQueryClient } from "@tanstack/react-query";
+import { QueryKeys } from "@/shared/constants/queryKeys";
 
 const RemoveButton = () => {
-  const { projectItem } = useProjectUidContext();
-
+  const queryClient = useQueryClient();
   const overlay = useOverlay();
+
+  const { projectItem } = useProjectUidContext();
 
   if (!projectItem) return;
 
   const handleClick = () => {
-    const handleConfirm = () => {
-      console.log(projectItem?.uid);
-    };
-
     overlay.open(({ close, isOpen }) => {
       const handleClose = () => {
         close();
+      };
+
+      const handleConfirm = async () => {
+        close();
+
+        overlay.open(({ isOpen, close }) => {
+          useEffect(() => {
+            (async function () {
+              await removeProject(projectItem.uid);
+
+              queryClient.invalidateQueries({
+                queryKey: [QueryKeys.Projects],
+              });
+
+              close();
+            })();
+          }, []);
+
+          return (
+            <Overlay isOpen={isOpen}>
+              <div
+                css={css`
+                  color: white;
+                  font-weight: bold;
+
+                  padding: 1em;
+                  border: 1px solid black;
+                `}
+              >
+                프로젝트를 삭제하는 중입니다
+              </div>
+            </Overlay>
+          );
+        });
       };
 
       return (

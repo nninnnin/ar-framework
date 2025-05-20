@@ -114,15 +114,19 @@ const ProjectCreationFunnel = () => {
           onClose={handleClose}
           onPrevious={() => history.back()}
           onFinalize={async (projectName: string) => {
-            const imageTargetUploadResult =
-              await uploadImageTargetFile(
-                context.imageTargetFile
-              );
+            let postedImageTargetId = null;
 
-            const postedImageTargetId =
-              await postImageTarget(
-                imageTargetUploadResult
-              );
+            if (context.imageTargetFile) {
+              const imageTargetUploadResult =
+                await uploadImageTargetFile(
+                  context.imageTargetFile
+                );
+
+              postedImageTargetId =
+                await postImageTarget(
+                  imageTargetUploadResult
+                );
+            }
 
             // 1. 미디어파일 업로드
             const result = await uploadGlbModels(
@@ -133,6 +137,7 @@ const ProjectCreationFunnel = () => {
             const postedModelIds = await postGlbModel(
               result
             );
+
             const projectTypeId = getProjectTypeId(
               context.projectType,
               projectTypes

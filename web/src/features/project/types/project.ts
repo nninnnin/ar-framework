@@ -27,8 +27,14 @@ export interface Project {
 export type ProjectFormatted = {
   uid: string;
   name: string;
-  projectType: ProjectType;
-  groupName: string;
+  projectType: {
+    id: number;
+    name: ProjectType;
+  };
+  group: {
+    id: number;
+    name: string;
+  };
   glbModels: {
     uid: string;
     name: string;
@@ -37,6 +43,7 @@ export type ProjectFormatted = {
     uid: string;
     name: string;
   }[];
+  isDeleted: boolean;
 };
 
 export type ProjectType =

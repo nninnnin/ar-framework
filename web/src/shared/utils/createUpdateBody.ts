@@ -22,7 +22,7 @@ const formatDataValue = (
     case "longtext":
       return String(value);
     case "category":
-      return String(value);
+      return value;
     case "date":
       return value;
     case "number":

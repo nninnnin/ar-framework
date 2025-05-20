@@ -1,12 +1,13 @@
 import ProjectService from "@/entities/project/service";
-import { getProjectTypes } from "@/entities/project/utils/fetchers";
+
+import { formatProjectItem } from "@/entities/project/utils/formatters";
 import {
-  formatProjectItem,
-  formatProjectTypes,
-} from "@/entities/project/utils/formatters";
-import { ProjectFormatted } from "@/features/project/types/project";
-import { getProjectTypeId } from "@/features/project/utils";
+  ProjectFormatted,
+  ProjectType,
+} from "@/features/project/types/project";
+
 import { createUpdateBody } from "@/shared/utils/createUpdateBody";
+import { mapObjectProps } from "@rebel9/memex-fetcher";
 
 export const removeProject = {
   name: "프로젝트 삭제하기",
@@ -15,7 +16,6 @@ export const removeProject = {
   }: Record<string, string>) => {
     const service = new ProjectService();
 
-    // 일단 가져와
     const projectToDelete = await service.getProject({
       projectId,
     });
@@ -24,30 +24,23 @@ export const removeProject = {
       projectToDelete
     );
 
-    console.log("지우려고 가져온", projectData);
-
-    const updateBody = createUpdateBody<
-      Omit<ProjectFormatted, "uid">
-    >(projectData, {
-      name: "title",
-      projectType: "category",
-      glbModels: "relation",
-      groupName: "relation",
-      imageTarget: "relation",
-    });
-
-    console.log("updateBody", updateBody);
-
-    const res = await getProjectTypes();
-    const projectTypes = await res.json();
-    const formatted = formatProjectTypes(projectTypes);
-
-    const projectTypeId = getProjectTypeId(
-      updateBody.projectType as string,
-      formatted
+    const updateBody = createUpdateBody(
+      mapObjectProps(
+        projectData,
+        ["projectType"],
+        (value: { id: number; name: ProjectType }) => {
+          return [value.id];
+        }
+      ),
+      {
+        name: "title",
+        projectType: "category",
+        glbModels: "relation",
+        imageTarget: "relation",
+      }
     );
 
-    updateBody.projectType = [projectTypeId];
+    console.log("updateBody", updateBody);
 
     const result = await service.updateProject({
       publish: true,

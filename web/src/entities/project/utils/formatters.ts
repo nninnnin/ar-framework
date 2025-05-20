@@ -45,18 +45,29 @@ export const formatProjectItem = (
         mapObjectProps(
           data,
           ["groupName"],
-          (groupName: RelationInterface[]) =>
-            deconstructLanguageMap(groupName[0], "KO")
+          (groupName: RelationInterface[]) => {
+            return {
+              id: groupName[0].uid,
+              name: deconstructLanguageMap(
+                groupName[0],
+                "KO"
+              ),
+            };
+          }
         ),
       (data: ProjectData) =>
         mapObjectProps(
           data,
           ["projectType"],
-          (projectType: CategoryInterface[]) =>
-            deconstructLanguageMap(
-              projectType[0],
-              "KO"
-            )
+          (projectType: CategoryInterface[]) => {
+            return {
+              id: projectType[0]._id,
+              name: deconstructLanguageMap(
+                projectType[0],
+                "KO"
+              ),
+            };
+          }
         ),
       (data: ProjectData) =>
         mapObjectProps(

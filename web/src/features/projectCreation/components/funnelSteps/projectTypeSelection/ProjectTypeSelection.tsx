@@ -35,7 +35,7 @@ const ProjectTypeSelection = () => {
 
           return (
             <li
-              key={projectType.id}
+              key={`selection-${projectType.name}`}
               css={css`
                 &:hover {
                   ${isSelected

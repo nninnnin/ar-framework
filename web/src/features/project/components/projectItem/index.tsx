@@ -19,14 +19,14 @@ const ProjectItem = ({
       value={{ projectItem }}
     >
       <ProjectItemContainer onClick={onClick}>
-        {/* <RemoveButton /> */}
+        <RemoveButton />
 
         <ProjectItem.Name>
           {projectItem.name}
         </ProjectItem.Name>
 
         <ProjectItemBadge
-          projectType={projectItem.projectType}
+          projectType={projectItem.projectType.name}
         />
 
         <ButtonContainer>

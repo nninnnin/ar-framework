@@ -174,7 +174,7 @@ const ProjectModelEditingDialog = ({
       const updateProjectGlbModelList = async () => {
         // 프로젝트 아이디와 업데이트 바디를 가져온다
         const projectTypeId = getProjectTypeId(
-          projectItem!.projectType,
+          projectItem!.projectType.name,
           projectTypes
         );
 

@@ -69,7 +69,7 @@ const ProjectDetailsDialog = ({
       >
         <ProjectDetailsDialog.Header>
           <ProjectDetailsDialog.ArTypeBadge
-            arType={projectItem.projectType}
+            arType={projectItem.projectType.name}
           />
           <h1
             css={css`
@@ -98,7 +98,7 @@ const ProjectDetailsDialog = ({
         <div
           css={css`
             background-color: ${designTokens.colors
-              .arTypes[projectItem.projectType]};
+              .arTypes[projectItem.projectType.name]};
 
             width: 100%;
             flex: 1;

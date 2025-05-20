@@ -18,7 +18,7 @@ export const generateArTemplate = async (
   }
 ) => {
   const templatePath = getTemplatePath(
-    projectItem.projectType
+    projectItem.projectType.name
   );
 
   const templateFile = await fs.readFile(
@@ -47,7 +47,7 @@ export const generateArTemplate = async (
 
   const contentsFilledTemplate =
     new TemplateContentsGenerator(
-      projectItem.projectType,
+      projectItem.projectType.name,
       templateFile,
       glbModels,
       targetImage.path
