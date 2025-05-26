@@ -50,7 +50,7 @@ export const generateArTemplate = async (
       projectItem.projectType.name,
       templateFile,
       glbModels,
-      targetImage.path
+      targetImage?.path ?? null
     ).generateTemplate({
       hasControls,
     });
