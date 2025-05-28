@@ -50,9 +50,17 @@ export interface MediaInterface {
 }
 
 export interface CategoryInterface {
-  id: number;
+  _id: number;
   order: number;
   languageMap: LanguageMap;
+}
+
+export interface CategoryItemInterface {
+  id: number;
+  order: number;
+  parentId: null | number;
+  languageMap: LanguageMap;
+  childList: Array<number>;
 }
 
 export interface RelationInterface {

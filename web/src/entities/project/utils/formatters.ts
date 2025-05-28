@@ -17,6 +17,7 @@ import {
   CategoryInterface,
   LanguageMap,
   RelationInterface,
+  CategoryItemInterface,
 } from "@/shared/types/memex";
 
 export const formatProjectList = (data: Project[]) => {
@@ -61,7 +62,7 @@ export const formatProjectItem = (
           ["projectType"],
           (projectType: CategoryInterface[]) => {
             return {
-              id: projectType[0].id,
+              id: projectType[0]._id,
               name: deconstructLanguageMap(
                 projectType[0],
                 "KO"
@@ -89,16 +90,18 @@ export const formatProjectItem = (
 
 export const formatProjectTypes = (data: {
   list: Array<{
-    categories: CategoryInterface[];
+    categories: CategoryItemInterface[];
   }>;
 }): FormattedCategory[] => {
   return pipe(
     data,
     pluckList,
     mapListItems(
-      (list: { categories: CategoryInterface[] }) =>
+      (list: {
+        categories: CategoryItemInterface[];
+      }) =>
         list.categories.map(
-          (category: CategoryInterface) => {
+          (category: CategoryItemInterface) => {
             return {
               id: category.id,
               name: category.languageMap.KO,

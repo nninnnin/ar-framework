@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { QueryKeys } from "@/shared/constants/queryKeys";
-import { CategoryInterface } from "@/shared/types/memex";
 import { FormattedCategory } from "@/shared/types";
+import { QueryKeys } from "@/shared/constants/queryKeys";
+import { CategoryItemInterface } from "@/shared/types/memex";
 import { getProjectTypes } from "@/entities/project/utils/fetchers";
 import { formatProjectTypes } from "@/entities/project/utils/formatters";
 
@@ -10,7 +10,7 @@ const useProjectTypes = () => {
   return useQuery<
     {
       list: Array<{
-        categories: CategoryInterface[];
+        categories: CategoryItemInterface[];
       }>;
     },
     any,
