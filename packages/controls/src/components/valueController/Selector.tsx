@@ -89,7 +89,7 @@ Selector.Item = ({
       className={clsx(
         "selector-item",
         "relative",
-        "border-[1px] border-black",
+        "border-[1px] border-black bg-white",
         "p-[10px] py-[6px]",
         "flex justify-between items-center",
         "!whitespace-nowrap"

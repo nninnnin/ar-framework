@@ -99,7 +99,8 @@ const SlideConfigSelector = ({
                     values={
                       {
                         [ValueConfigs.Min]: [
-                          0, 1, 10, 100,
+                          -5000, -1000, -100, -10, 0,
+                          1,
                         ],
                         [ValueConfigs.Max]: [
                           10, 100, 1000, 5000,

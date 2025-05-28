@@ -35,6 +35,7 @@ const ValueSelector = ({
             key={`${name}-${value}`}
             className={clsx(
               "border-[1px] border-black",
+              "bg-white",
               "p-[6px] px-[10px]"
             )}
             onClick={handleClick(String(value))}
