@@ -63,7 +63,9 @@ const useSyncModelControlValues = () => {
   }, [selectedModel]);
 };
 
-const initControlValues = (strValue: string) => {
+export const initControlValues = (
+  strValue: string
+) => {
   return strValue
     ? JSON.parse(strValue)
     : { x: 0, y: 0, z: 0 };

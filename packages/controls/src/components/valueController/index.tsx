@@ -1,5 +1,9 @@
 import clsx from "clsx";
-import React from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+} from "react";
 
 import Slider from "./Slider";
 import Save from "../icons/Save";
@@ -10,56 +14,61 @@ import { useControlStore } from "../../stores/controls";
 import useModelElement from "../../hooks/useModelElement";
 import useSyncController from "../../hooks/useSyncController";
 import useUpdateModel from "../../hooks/useUpdateModel";
+import SlideConfigSelector from "./SlideConfigSelector";
+
+const SlideConfigContext = createContext<null | {
+  step: number;
+  min: number;
+  max: number;
+}>(null);
 
 const ValueController = () => {
-  const { controllingSubject, axis } =
-    useControlStore();
+  const { controllingSubject } = useControlStore();
+
+  const [slideConfigs, setSlideConfigs] =
+    useState<null | {
+      step: number;
+      min: number;
+      max: number;
+      defaultValue: number;
+    }>(sliderConfig[controllingSubject]);
+
+  const handleChangeConfigValue =
+    (configName: string) => (value: number) => {
+      console.log("enw value", value);
+
+      setSlideConfigs((prev) => ({
+        ...prev,
+        [configName]: value,
+      }));
+    };
 
   return (
     <ValueController.Container>
       <ValueController.Label />
 
-      <div className="flex-1">
-        {controllingSubject ===
-          ControllingSubject.LocationCoordinate && (
-          <input type="text" value="" />
+      <div
+        className={clsx(
+          "h-full flex-1",
+          "flex items-center"
         )}
+      >
+        <SlideConfigSelector
+          configValues={slideConfigs}
+          onChangeValue={{
+            min: handleChangeConfigValue("min"),
+            max: handleChangeConfigValue("max"),
+            step: handleChangeConfigValue("step"),
+          }}
+        />
 
-        {controllingSubject ===
-          ControllingSubject.FaceTarget && (
-          <select></select>
-        )}
-
-        {controllingSubject ===
-          ControllingSubject.Position && (
-          <>
-            {Boolean(axis) ? (
-              <ValueController.PositionSlider />
-            ) : (
-              <div className="text-[13px] text-center">
-                모델을 이동시킬 축을 먼저 선택하세요!
-              </div>
-            )}
-          </>
-        )}
-
-        {controllingSubject ===
-          ControllingSubject.Rotation && (
-          <>
-            {Boolean(axis) ? (
-              <ValueController.RotationSlider />
-            ) : (
-              <div className="text-[13px] text-center">
-                모델을 회전시킬 축을 먼저 선택하세요!
-              </div>
-            )}
-          </>
-        )}
-
-        {controllingSubject ===
-          ControllingSubject.Scale && (
-          <ValueController.ScaleSlider />
-        )}
+        <div className="w-full">
+          <SlideConfigContext.Provider
+            value={slideConfigs}
+          >
+            <ValueController.Slider />
+          </SlideConfigContext.Provider>
+        </div>
       </div>
 
       <ValueController.SaveButton />
@@ -155,6 +164,56 @@ ValueController.SaveSpinner = () => {
   );
 };
 
+ValueController.Slider = () => {
+  const { controllingSubject, axis } =
+    useControlStore();
+
+  return (
+    <>
+      {controllingSubject ===
+        ControllingSubject.LocationCoordinate && (
+        <input type="text" value="" />
+      )}
+
+      {controllingSubject ===
+        ControllingSubject.FaceTarget && (
+        <select></select>
+      )}
+
+      {controllingSubject ===
+        ControllingSubject.Position && (
+        <>
+          {Boolean(axis) ? (
+            <ValueController.PositionSlider />
+          ) : (
+            <div className="text-[13px] text-center">
+              모델을 이동시킬 축을 먼저 선택하세요!
+            </div>
+          )}
+        </>
+      )}
+
+      {controllingSubject ===
+        ControllingSubject.Rotation && (
+        <>
+          {Boolean(axis) ? (
+            <ValueController.RotationSlider />
+          ) : (
+            <div className="text-[13px] text-center">
+              모델을 회전시킬 축을 먼저 선택하세요!
+            </div>
+          )}
+        </>
+      )}
+
+      {controllingSubject ===
+        ControllingSubject.Scale && (
+        <ValueController.ScaleSlider />
+      )}
+    </>
+  );
+};
+
 ValueController.PositionSlider = () => {
   const { modelElement } = useModelElement();
   const { selectedModelName } = useModelStore();
@@ -162,6 +221,8 @@ ValueController.PositionSlider = () => {
     useControlStore();
 
   useSyncController(ControllingSubject.Position);
+
+  const sliderConfigs = useContext(SlideConfigContext);
 
   const handleChange = (value: number[]) => {
     const [position] = value;
@@ -193,7 +254,7 @@ ValueController.PositionSlider = () => {
 
   return (
     <Slider
-      {...sliderConfig[ControllingSubject.Position]}
+      {...sliderConfigs}
       value={[defaultValue]}
       onChange={handleChange}
     />
@@ -205,6 +266,8 @@ ValueController.ScaleSlider = () => {
   const { selectedModelName } = useModelStore();
 
   useSyncController(ControllingSubject.Scale);
+
+  const sliderConfigs = useContext(SlideConfigContext);
 
   const { setScale, controls } = useControlStore();
 
@@ -229,7 +292,7 @@ ValueController.ScaleSlider = () => {
 
   return (
     <Slider
-      {...sliderConfig[ControllingSubject.Scale]}
+      {...sliderConfigs}
       value={[scale.x]}
       onChange={handleChange}
     />
@@ -243,6 +306,8 @@ ValueController.RotationSlider = () => {
     useControlStore();
 
   useSyncController(ControllingSubject.Rotation);
+
+  const sliderConfigs = useContext(SlideConfigContext);
 
   const handleChange = (value: number[]) => {
     const [rotation] = value;
@@ -265,16 +330,16 @@ ValueController.RotationSlider = () => {
     }
   };
 
-  const value =
+  const defaultValue =
     controls[selectedModelName][
       ControllingSubject.Rotation
     ][axis];
 
   return (
     <Slider
-      {...sliderConfig[ControllingSubject.Rotation]}
+      {...sliderConfigs}
       onChange={handleChange}
-      value={[value]}
+      value={[defaultValue]}
     />
   );
 };

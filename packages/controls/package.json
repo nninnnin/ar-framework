@@ -16,7 +16,8 @@
   "scripts": {
     "copyAppToWebPublic": "cp -r dist/index.js ../../web/public/features/controls/index.js && cp -r dist/index.css ../../web/public/features/controls/index.css",
     "build": "parcel build index.html --no-content-hash --no-source-maps && yarn copyAppToWebPublic",
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "dev": "NODE_ENV=DEV parcel serve index.html"
   },
   "devDependencies": {
     "@parcel/config-default": "*",

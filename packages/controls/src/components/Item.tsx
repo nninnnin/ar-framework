@@ -14,11 +14,14 @@ const Item = ({
   disabled?: boolean;
   onClick: () => void;
 }) => {
+  const IS_DEV = process.env.NODE_ENV === "DEV";
+
   return (
     <div
       className={clsx(
         styles.item,
-        disabled &&
+        !IS_DEV &&
+          disabled &&
           "!bg-gray-200 !text-gray-300 pointer-events-none",
         className
       )}

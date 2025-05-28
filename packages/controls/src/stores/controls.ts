@@ -180,5 +180,7 @@ const initSubjectValue = (
         y: 0,
         z: 0,
       };
+    case ControllingSubject.Visibility:
+      return true;
   }
 };

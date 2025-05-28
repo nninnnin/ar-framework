@@ -30,6 +30,7 @@ export enum ControllingSubject {
   Rotation = "rotation",
   LocationCoordinate = "location-coordinate",
   FaceTarget = "face-target",
+  Visibility = "visibility",
 }
 
 type SelectedModelName = string;

@@ -28,6 +28,7 @@ const AxisToggler = () => {
       {axisList.map((axis) => {
         return (
           <AxisToggler.AxisItem
+            key={`axis-toggler-${axis}`}
             className={clsx(
               "flex-1",
               axis === selectedAxis &&

@@ -11,28 +11,22 @@ interface SliderProps {
   value: number[];
 }
 
-const Slider = ({
-  step,
-  min,
-  max,
-  onChange,
-  value,
-}: SliderProps) => {
+const Slider = (slideProps: SliderProps) => {
   return (
     <RadixSlider.Root
       className={clsx(
         "relative flex items-center",
-        "h-5 w-[calc(100%-64px)]",
+        "h-5 w-[calc(100%-32px)]",
         "mx-auto",
         "touch-none select-none",
         "bg-white"
       )}
-      defaultValue={value}
-      value={value}
-      step={step}
-      min={min}
-      max={max}
-      onValueChange={onChange}
+      defaultValue={slideProps.value}
+      value={slideProps.value}
+      step={slideProps.step}
+      min={slideProps.min}
+      max={slideProps.max}
+      onValueChange={slideProps.onChange}
     >
       <RadixSlider.Track
         className={clsx("w-full h-[3px] bg-gray-300")}
