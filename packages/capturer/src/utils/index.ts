@@ -114,7 +114,7 @@ export class Capturer {
     return capturedScene;
   }
 
-  async drawScene(
+  drawSceneNormal(
     options = {
       reverse: false,
     }
@@ -129,6 +129,7 @@ export class Capturer {
       : this.captureScene(scene);
 
     const ctx = this.canvas.getContext("2d");
+
     ctx.drawImage(
       capturedScene,
       0,
@@ -141,6 +142,55 @@ export class Capturer {
         this.canvas.height,
       this.canvas.height
     );
+  }
+
+  drawSceneReverse(
+    options = {
+      reverse: false,
+    }
+  ) {
+    const scene = this.getScene();
+
+    const capturedScene = options.reverse
+      ? this.captureScene(scene, {
+          preprocessor: () => {},
+          postprocessor: () => {},
+        })
+      : this.captureScene(scene);
+
+    const ctx = this.canvas.getContext("2d");
+
+    const sourceWidth = capturedScene.width;
+    const sourceHeight = capturedScene.height;
+
+    const drawWidth = this.canvas.width;
+    const drawHeight = this.canvas.height;
+
+    ctx.drawImage(
+      capturedScene,
+      sourceWidth * 0.1,
+      0,
+      sourceWidth * 0.8,
+      sourceHeight,
+      0,
+      0,
+      drawWidth,
+      drawHeight
+    );
+  }
+
+  async drawScene(
+    options = {
+      reverse: false,
+    }
+  ) {
+    if (options.reverse) {
+      this.drawSceneReverse();
+
+      return;
+    }
+
+    this.drawSceneNormal();
   }
 
   drawVideo(
@@ -180,19 +230,37 @@ export class Capturer {
 
     ctx.save();
     ctx.scale(-1, 1);
-    ctx.translate(-this.canvas.width, 0);
+
+    const sourceWidth = video.videoWidth;
+    const sourceHeight = video.videoHeight;
+
+    const sourceAspectRatio =
+      sourceWidth / sourceHeight;
+
+    let drawWidth = this.canvas.width;
+    const drawHeight = this.canvas.height;
+
+    const drawAspectRatio = drawWidth / drawHeight;
+
+    drawWidth =
+      drawWidth *
+      (sourceAspectRatio / drawAspectRatio);
+
+    ctx.translate(-drawWidth, 0);
+
+    const drawOffsetX =
+      Math.abs(drawWidth - this.canvas.width) / 2;
 
     ctx.drawImage(
       video,
       0,
       0,
-      video.videoWidth,
-      video.videoHeight,
+      sourceWidth,
+      sourceHeight,
+      drawOffsetX,
       0,
-      0,
-      (this.canvas.width / video.videoHeight) *
-        this.canvas.height,
-      this.canvas.height
+      drawWidth,
+      drawHeight
     );
 
     ctx.restore();
