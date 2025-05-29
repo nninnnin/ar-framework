@@ -189,7 +189,8 @@ export class Capturer {
       video.videoHeight,
       0,
       0,
-      this.canvas.width,
+      (this.canvas.width / video.videoHeight) *
+        this.canvas.height,
       this.canvas.height
     );
 
