@@ -39,7 +39,7 @@ var SSFRAGMENT_SHADER = [
  * The cube map produced by the CubeCamera is projected on a quad and then rendered to
  * WebGLRenderTarget with an ortographic camera.
  */
-AFRAME.registerComponent("screenshotfixed", {
+AFRAME.registerComponent("screenshot-fixed", {
   schema: {
     width: { default: 4096 },
     height: { default: 2048 },

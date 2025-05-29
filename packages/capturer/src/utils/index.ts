@@ -80,15 +80,15 @@ export class Capturer {
     preprocessor(scene);
 
     console.log(
-      "has screenshotfixed component?: ",
-      scene.components.screenshotfixed
+      "has screenshot-fixed component?: ",
+      scene.components["screenshot-fixed"]
     );
 
     let capturedScene;
 
-    if (scene.components.screenshotfixed) {
+    if (scene.components["screenshot-fixed"]) {
       capturedScene =
-        scene.components.screenshotfixed.getCanvas(
+        scene.components["screenshot-fixed"].getCanvas(
           "perspective"
         );
     } else {

@@ -36,7 +36,7 @@ export const TemplateContents: Record<
         renderer="antialias: false; logarithmicDepthBuffer: true; colorManagement: true"
         vr-mode-ui="enabled: false"
         gesture-detector
-        screenshotfixed
+        screenshot-fixed
       >
         <a-camera
           id="camera"
@@ -62,6 +62,7 @@ export const TemplateContents: Record<
         vr-mode-ui="enabled: false"
         device-orientation-permission-ui="enabled: false"
         reflection="directionalLight:a-light#dirlight;"
+        screenshot-fixed
       >
         <a-camera look-controls="enabled: false" position="0 0 0"></a-camera>
 
