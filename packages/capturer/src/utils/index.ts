@@ -152,15 +152,18 @@ export class Capturer {
   }
 
   drawVideoReverse() {
+    console.log("reverse capture processing");
+
     const video = this.getVideo();
     const ctx = this.canvas.getContext("2d");
 
     ctx.save();
     ctx.scale(-1, 1);
+    ctx.translate(-this.canvas.width, 0);
 
     ctx.drawImage(
       video,
-      -video.videoWidth,
+      0,
       0,
       video.videoWidth,
       video.videoHeight,
