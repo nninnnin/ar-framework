@@ -3,6 +3,12 @@ import { useModelStore } from "../stores";
 import { useControlStore } from "../stores/controls";
 import { useCoordinateStore } from "../components/locationSelector/store";
 
+const IS_DEV = process.env.NODE_ENV === "DEV";
+
+const API_URL = IS_DEV
+  ? process.env.API_URL
+  : "https://ar-framework-web.vercel.app";
+
 const useSyncModelControlValues = () => {
   const { models, selectedModelName } =
     useModelStore();
@@ -22,10 +28,7 @@ const useSyncModelControlValues = () => {
       const modelId = selectedModel.id.split("#")[1];
 
       const res = await fetch(
-        `${
-          process.env.API_URL ??
-          "https://ar-framework-web.vercel.app"
-        }/glbModels/api?glbModelId=${modelId}`
+        `${API_URL}/glbModels/api?glbModelId=${modelId}`
       );
 
       const glbModelData = await res.json();

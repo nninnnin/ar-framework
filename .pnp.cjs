@@ -109,6 +109,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react", "npm:19.0.8"],\
           ["clsx", "npm:2.1.1"],\
           ["dotenv", "npm:16.4.7"],\
+          ["dotenv-cli", "npm:8.0.0"],\
           ["immer", "npm:10.1.1"],\
           ["mapbox-gl", "npm:3.10.0"],\
           ["parcel", "virtual:8c6cfc826c2ecc1b6d8dc38f65c77ebcfb8be82567f01502ab4545b51d1aab24881ad81340eb4e7d957924b346beb567fbbf3292d6f7cba12c23fb9417e1dca8#npm:2.14.2"],\
@@ -5654,9 +5655,36 @@ const RAW_RUNTIME_STATE =
           ["dotenv", "npm:16.4.7"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:16.5.0", {\
+        "packageLocation": "../../.yarn/berry/cache/dotenv-npm-16.5.0-67343a179e-10c0.zip/node_modules/dotenv/",\
+        "packageDependencies": [\
+          ["dotenv", "npm:16.5.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["dotenv-cli", [\
+      ["npm:8.0.0", {\
+        "packageLocation": "../../.yarn/berry/cache/dotenv-cli-npm-8.0.0-96370dc09b-10c0.zip/node_modules/dotenv-cli/",\
+        "packageDependencies": [\
+          ["dotenv-cli", "npm:8.0.0"],\
+          ["cross-spawn", "npm:7.0.6"],\
+          ["dotenv", "npm:16.5.0"],\
+          ["dotenv-expand", "npm:10.0.0"],\
+          ["minimist", "npm:1.2.8"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["dotenv-expand", [\
+      ["npm:10.0.0", {\
+        "packageLocation": "../../.yarn/berry/cache/dotenv-expand-npm-10.0.0-fa5b032ad9-10c0.zip/node_modules/dotenv-expand/",\
+        "packageDependencies": [\
+          ["dotenv-expand", "npm:10.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:11.0.7", {\
         "packageLocation": "../../.yarn/berry/cache/dotenv-expand-npm-11.0.7-3d83888ae0-10c0.zip/node_modules/dotenv-expand/",\
         "packageDependencies": [\
@@ -7009,6 +7037,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["minimatch", "npm:9.0.5"],\
           ["brace-expansion", "npm:2.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["minimist", [\
+      ["npm:1.2.8", {\
+        "packageLocation": "../../.yarn/berry/cache/minimist-npm-1.2.8-d7af7b1dce-10c0.zip/node_modules/minimist/",\
+        "packageDependencies": [\
+          ["minimist", "npm:1.2.8"]\
         ],\
         "linkType": "HARD"\
       }]\
