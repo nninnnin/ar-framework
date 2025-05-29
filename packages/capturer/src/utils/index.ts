@@ -122,7 +122,19 @@ export class Capturer {
     );
   }
 
-  drawVideo() {
+  drawVideo(
+    options = {
+      reverse: false,
+    }
+  ) {
+    if (options.reverse) {
+      this.drawVideoReverse();
+    } else {
+      this.drawVideoNormal();
+    }
+  }
+
+  drawVideoNormal() {
     const video = this.getVideo();
     const ctx = this.canvas.getContext("2d");
 
@@ -139,6 +151,28 @@ export class Capturer {
     );
   }
 
+  drawVideoReverse() {
+    const video = this.getVideo();
+    const ctx = this.canvas.getContext("2d");
+
+    ctx.save();
+    ctx.scale(-1, 1);
+
+    ctx.drawImage(
+      video,
+      -video.videoWidth,
+      0,
+      video.videoWidth,
+      video.videoHeight,
+      0,
+      0,
+      this.canvas.width,
+      this.canvas.height
+    );
+
+    ctx.restore();
+  }
+
   resumeVideo(video) {
     video.play();
   }
@@ -149,7 +183,7 @@ export class Capturer {
     );
   }
 
-  capture() {
+  capture(options = { reverse: false }) {
     if (this.isCapturing) {
       console.log("캡쳐가 진행중입니다");
       return;
@@ -157,16 +191,10 @@ export class Capturer {
 
     this.isCapturing = true;
 
-    // this.stopAnimatingScene(this.getScene());
-    // this.stopVideo(this.getVideo());
-
-    this.drawVideo();
+    this.drawVideo(options);
     this.drawScene();
 
     this.exportAsBlob((blob) => {
-      // this.resumeVideo(this.getVideo());
-      // this.resumeAnimatingScene(this.getScene());
-
       const captureMessage: CaptureMessageInterface = {
         type: "image-captured",
         payload: blob,
