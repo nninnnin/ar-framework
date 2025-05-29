@@ -137,7 +137,8 @@ export class Capturer {
       capturedScene.height,
       0,
       0,
-      this.canvas.width,
+      (this.canvas.width / capturedScene.height) *
+        this.canvas.height,
       this.canvas.height
     );
   }
