@@ -59,23 +59,34 @@ export class Capturer {
     scene.renderer.setAnimationLoop(null);
   }
 
-  captureScene(scene) {
+  captureScene(
+    scene,
+    options = {
+      preprocessor: null,
+      postprocessor: null,
+    }
+  ) {
     this.toneMappingStore = scene.renderer.toneMapping;
     this.outputEncodingStore =
       scene.renderer.outputEncoding;
 
-    const preprocessor = (scene) => {
-      scene.renderer.toneMapping = THREE.NoToneMapping;
-      scene.renderer.outputEncoding =
-        THREE.LinearEncoding;
-    };
+    const preprocessor =
+      options.preprocessor ??
+      ((scene) => {
+        scene.renderer.toneMapping =
+          THREE.NoToneMapping;
+        scene.renderer.outputEncoding =
+          THREE.LinearEncoding;
+      });
 
-    const postprocessor = (scene) => {
-      scene.renderer.toneMapping =
-        this.toneMappingStore;
-      scene.renderer.outputEncoding =
-        this.outputEncodingStore;
-    };
+    const postprocessor =
+      options.postprocessor ??
+      ((scene) => {
+        scene.renderer.toneMapping =
+          this.toneMappingStore;
+        scene.renderer.outputEncoding =
+          this.outputEncodingStore;
+      });
 
     preprocessor(scene);
 
@@ -103,10 +114,19 @@ export class Capturer {
     return capturedScene;
   }
 
-  async drawScene() {
+  async drawScene(
+    options = {
+      reverse: false,
+    }
+  ) {
     const scene = this.getScene();
 
-    const capturedScene = this.captureScene(scene);
+    const capturedScene = options.reverse
+      ? this.captureScene(scene, {
+          preprocessor: () => {},
+          postprocessor: () => {},
+        })
+      : this.captureScene(scene);
 
     const ctx = this.canvas.getContext("2d");
     ctx.drawImage(
@@ -195,7 +215,7 @@ export class Capturer {
     this.isCapturing = true;
 
     this.drawVideo(options);
-    this.drawScene();
+    this.drawScene(options);
 
     this.exportAsBlob((blob) => {
       const captureMessage: CaptureMessageInterface = {
