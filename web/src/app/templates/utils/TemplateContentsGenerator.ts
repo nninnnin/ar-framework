@@ -49,7 +49,7 @@ class TemplateContentsGenerator {
       this.projectType
     );
 
-    this.addToneResetter(this.projectType);
+    this.addToneResetter();
     this.addScreenshotFixComponent();
     this.addFrustumCulled();
 
@@ -223,12 +223,10 @@ class TemplateContentsGenerator {
     );
   }
 
-  addToneResetter(projectType: ProjectType) {
-    if (projectType === "위치기반 AR") {
-      this.appendToBody(
-        `<script src="/scripts/toneReset.js"></script>`
-      );
-    }
+  addToneResetter() {
+    this.appendToBody(
+      `<script src="/scripts/toneReset.js"></script>`
+    );
   }
 
   addScreenshotFixComponent() {
