@@ -73,8 +73,13 @@ AFRAME.registerComponent("screenshot-fixed", {
         fragmentShader: SSFRAGMENT_SHADER,
         side: THREE.DoubleSide,
       });
+
+      const PlaneGeometry =
+        THREE.PlaneBufferGeometry ??
+        THREE.PlaneGeometry;
+
       self.quad = new THREE.Mesh(
-        new THREE.PlaneBufferGeometry(1, 1),
+        new PlaneGeometry(1, 1),
         self.material
       );
       self.quad.visible = false;
