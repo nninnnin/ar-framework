@@ -52,6 +52,7 @@ export const TemplateContents: Record<
     headScripts: `
       <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-aframe.prod.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
     `,
     bodyContents: `
       <a-scene
