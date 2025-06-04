@@ -284,6 +284,8 @@ export class Capturer {
 
     this.isCapturing = true;
 
+    this.appendCanvasToBody();
+
     this.drawVideo(options);
     this.drawScene(options);
 
