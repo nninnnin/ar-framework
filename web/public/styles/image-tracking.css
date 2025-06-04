@@ -20,5 +20,5 @@ video {
   width: 80vw !important;
   height: 80vw !important;
 
-  display: none;
+  display: none !important;
 }

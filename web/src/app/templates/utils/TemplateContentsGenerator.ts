@@ -275,14 +275,14 @@ class TemplateContentsGenerator {
             enableCaptureButton();
           },
           "show-scanning-guide": () => {
-            const scanningGuide = document.getElementById("mindar-ui-overlay");
+            const scanningGuide = document.querySelector(".mindar-ui-overlay");
 
             if (!scanningGuide) {
               throw Error("Scanning Guide not found!");
             }
 
             const enableScanningGuide = () => {
-              scanningGuide.style.setProperty('display', 'block');
+              scanningGuide.style.setProperty('display', 'flex', 'important');
             };
 
             enableScanningGuide();
