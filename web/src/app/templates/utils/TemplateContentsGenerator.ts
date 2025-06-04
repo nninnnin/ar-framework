@@ -275,7 +275,7 @@ class TemplateContentsGenerator {
             enableCaptureButton();
           },
           "show-scanning-guide": () => {
-            const scanningGuide = document.querySelector(".mindar-ui-overlay");
+            const scanningGuide = document.querySelector(".mindar-ui-scanning");
 
             if (!scanningGuide) {
               throw Error("Scanning Guide not found!");
