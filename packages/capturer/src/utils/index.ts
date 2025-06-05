@@ -68,14 +68,18 @@ export class Capturer {
   ) {
     this.toneMappingStore = scene.renderer.toneMapping;
     this.outputEncodingStore =
-      scene.renderer.outputEncoding;
+      scene.renderer.outputEncoding ||
+      scene.renderer.outputColorSpace;
 
     const preprocessor =
       options.preprocessor ??
       ((scene) => {
         scene.renderer.toneMapping =
           THREE.NoToneMapping;
+
         scene.renderer.outputEncoding =
+          THREE.LinearEncoding;
+        scene.renderer.outputColorSpace =
           THREE.LinearEncoding;
       });
 
@@ -84,7 +88,10 @@ export class Capturer {
       ((scene) => {
         scene.renderer.toneMapping =
           this.toneMappingStore;
+
         scene.renderer.outputEncoding =
+          this.outputEncodingStore;
+        scene.renderer.outputColorSpace =
           this.outputEncodingStore;
       });
 
