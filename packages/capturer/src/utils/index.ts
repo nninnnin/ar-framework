@@ -137,17 +137,29 @@ export class Capturer {
 
     const ctx = this.canvas.getContext("2d");
 
+    const sourceWidth = capturedScene.width;
+    const sourceHeight = capturedScene.height;
+
+    const canvasWidth = this.canvas.width;
+    const canvasHeight = this.canvas.height;
+
+    const drawHeight = this.canvas.height;
+    const drawWidth =
+      (drawHeight * canvasWidth) / canvasHeight;
+
+    const drawOffsetX =
+      Math.abs(drawWidth - this.canvas.width) / 2;
+
     ctx.drawImage(
       capturedScene,
       0,
       0,
-      capturedScene.width,
-      capturedScene.height,
+      sourceWidth,
+      sourceHeight,
+      -drawOffsetX,
       0,
-      0,
-      (this.canvas.width / capturedScene.height) *
-        this.canvas.height,
-      this.canvas.height
+      drawWidth,
+      drawHeight
     );
   }
 
@@ -216,16 +228,26 @@ export class Capturer {
     const video = this.getVideo();
     const ctx = this.canvas.getContext("2d");
 
+    const sourceWidth = video.videoWidth;
+    const sourceHeight = video.videoHeight;
+
+    const drawHeight = this.canvas.height;
+    const drawWidth =
+      drawHeight * (sourceWidth / sourceHeight);
+
+    const drawOffsetX =
+      Math.abs(drawWidth - this.canvas.width) / 2;
+
     ctx.drawImage(
       video,
       0,
       0,
-      video.videoWidth,
-      video.videoHeight,
+      sourceWidth,
+      sourceHeight,
+      -drawOffsetX,
       0,
-      0,
-      this.canvas.width,
-      this.canvas.height
+      drawWidth,
+      drawHeight
     );
   }
 

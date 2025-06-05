@@ -76,7 +76,7 @@ export const TemplateContents: Record<
     headScripts: `
       <link rel="stylesheet" href="/styles/image-tracking.css" >
 
-      <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+      <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
       <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 
@@ -99,6 +99,7 @@ export const TemplateContents: Record<
         mindar-image="imageTargetSrc: #imageTarget; filterMinCF: 0.001; filterBeta: 0.1"
         vr-mode-ui="enabled: false"
         device-orientation-permission-ui="enabled: false"
+        screenshot-fixed
       >
         <a-camera
           id="camera"
