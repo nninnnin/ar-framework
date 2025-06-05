@@ -1,6 +1,6 @@
 AFRAME.registerComponent("frustum-culled", {
   schema: {
-    cull: { default: true },
+    cull: { default: false },
   },
   init: function () {
     this.el.addEventListener("model-loaded", () => {
@@ -8,7 +8,7 @@ AFRAME.registerComponent("frustum-culled", {
 
       model.traverse((node) => {
         if (node.isMesh) {
-          node.frustumCulled = false;
+          node.frustumCulled = this.data.cull;
         }
       });
     });
