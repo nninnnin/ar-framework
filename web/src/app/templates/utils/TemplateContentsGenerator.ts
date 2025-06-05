@@ -229,6 +229,12 @@ class TemplateContentsGenerator {
         `<script src="/scripts/toneReset.js"></script>`
       );
     }
+
+    if (projectType === "이미지마커 AR") {
+      this.appendToBody(
+        `<script src="/scripts/toneReset.js"></script>`
+      );
+    }
   }
 
   addScreenshotFixComponent() {
