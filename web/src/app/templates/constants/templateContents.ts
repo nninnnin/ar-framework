@@ -99,7 +99,6 @@ export const TemplateContents: Record<
         mindar-image="imageTargetSrc: #imageTarget; filterMinCF: 0.001; filterBeta: 0.1"
         vr-mode-ui="enabled: false"
         device-orientation-permission-ui="enabled: false"
-        screenshot-fixed
       >
         <a-camera
           id="camera"

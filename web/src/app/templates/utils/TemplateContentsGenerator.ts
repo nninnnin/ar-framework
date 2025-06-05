@@ -185,7 +185,7 @@ class TemplateContentsGenerator {
 
         if (projectType === "이미지마커 AR") {
           return `<a-entity id="imageTarget" mindar-image-target="targetIndex: 0">
-            <a-gltf-model data-model-name="${modelName}" src="#${modelUid}" ${scale} ${position} ${rotation} animation-mixer frustum-culled="cull: false" gltf-tone-mapped></a-gltf-model>
+            <a-gltf-model data-model-name="${modelName}" src="#${modelUid}" ${scale} ${position} ${rotation} animation-mixer frustum-culled="cull: false"></a-gltf-model>
           </a-entity>`;
         }
 
@@ -225,12 +225,6 @@ class TemplateContentsGenerator {
 
   addToneResetter(projectType: ProjectType) {
     if (projectType === "위치기반 AR") {
-      this.appendToBody(
-        `<script src="/scripts/toneReset.js"></script>`
-      );
-    }
-
-    if (projectType === "이미지마커 AR") {
       this.appendToBody(
         `<script src="/scripts/toneReset.js"></script>`
       );
