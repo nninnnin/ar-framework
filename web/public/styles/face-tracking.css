@@ -12,7 +12,7 @@ body {
 
 video {
   width: 100vw !important;
-  height: 100vw !important;
+  height: 100dvh !important;
 
   position: fixed;
   left: 0 !important;
