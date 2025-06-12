@@ -1,0 +1,11 @@
+video {
+  width: 100vw !important;
+
+  position: fixed;
+  left: 0 !important;
+  bottom: 0;
+
+  transform: scale(-1, 1) !important;
+
+  object-fit: cover;
+}
