@@ -184,9 +184,11 @@ const ProjectModelEditingDialog = ({
           );
         }
 
-        const imageTargetId = projectItem!.imageTarget
-          ? projectItem!.imageTarget[0].uid
-          : undefined;
+        const imageTargetId =
+          projectItem!.imageTarget &&
+          projectItem!.imageTarget[0]
+            ? projectItem!.imageTarget[0].uid
+            : undefined;
 
         const projectBody = createProjectBody({
           projectName: projectItem!.name,
