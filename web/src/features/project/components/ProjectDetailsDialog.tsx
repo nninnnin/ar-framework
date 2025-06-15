@@ -18,7 +18,8 @@ import { OverlayCloseContext } from "@/features/project/components/ProjectSectio
 import { ProjectType } from "@/features/project/types/project";
 
 interface Props {
-  projectUid: string;
+  projectId: string;
+  templateId: string;
   groupName: string;
 }
 
@@ -34,7 +35,8 @@ const templateModeStore = create<{
 }));
 
 const ProjectDetailsDialog = ({
-  projectUid,
+  projectId,
+  templateId,
   groupName,
 }: Props) => {
   const [templateUrl, setTemplateUrl] = useState("");
@@ -42,12 +44,12 @@ const ProjectDetailsDialog = ({
 
   useEffect(() => {
     setTemplateUrl(
-      generateTemplateUrl(projectUid, templateMode)
+      generateTemplateUrl(templateId, templateMode)
     );
-  }, [projectUid, templateMode]);
+  }, [templateId, templateMode]);
 
   const { projectItem } = useProjectItem(
-    projectUid,
+    projectId,
     groupName
   );
 
@@ -401,14 +403,16 @@ ProjectDetailsDialog.CopyButton = ({
 };
 
 const generateTemplateUrl = (
-  projectUid: string,
+  templateId: string,
   templateMode: TemplateMode
 ) => {
-  if (templateMode === "editor") {
-    return `${process.env.NEXT_URL}/templates/api?projectUid=${projectUid}&glbControls=1`;
+  const templateUrl = `${process.env.NEXT_URL}/templates/${templateId}`;
+
+  if (templateMode !== "editor") {
+    return templateUrl;
   }
 
-  return `${process.env.NEXT_URL}/templates/api?projectUid=${projectUid}`;
+  return templateUrl + "?glbControls=1";
 };
 
 export default ProjectDetailsDialog;

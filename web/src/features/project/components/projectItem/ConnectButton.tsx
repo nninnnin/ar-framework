@@ -25,7 +25,13 @@ const ConnectButton = () => {
   const overlay = useOverlay();
   const { selectedGroup } = useSelectedGroup();
 
-  const onClick = (projectUid: string) => {
+  const onClick = ({
+    projectId,
+    templateId,
+  }: {
+    projectId: string;
+    templateId: string;
+  }) => {
     overlay.open(({ close, isOpen }) => {
       return (
         <Overlay isOpen={isOpen}>
@@ -33,7 +39,8 @@ const ConnectButton = () => {
             value={{ close }}
           >
             <ProjectDetailsDialog
-              projectUid={projectUid}
+              projectId={projectId}
+              templateId={templateId}
               groupName={selectedGroup?.name ?? ""}
             />
           </OverlayCloseContext.Provider>
@@ -58,7 +65,12 @@ const ConnectButton = () => {
           background-color: #f1f1f1;
         }
       `}
-      onClick={() => onClick(projectItem.uid)}
+      onClick={() =>
+        onClick({
+          projectId: projectItem.uid,
+          templateId: projectItem.templateId,
+        })
+      }
     >
       접속
     </div>
