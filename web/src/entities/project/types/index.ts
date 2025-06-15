@@ -1,3 +1,4 @@
 export interface ProjectFilter {
-  groupName: string;
+  groupName?: string;
+  templateId?: string;
 }

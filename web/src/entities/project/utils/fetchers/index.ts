@@ -44,15 +44,27 @@ export const getProjects = async (
     {
       page: 0,
       size: 1000,
-      searchConds: [
-        {
-          componentType: "RELATION",
-          devKey: "groupName",
-          condition: `{ "type": "SAME", "language": "KO", "keyword": "${decodeURIComponent(
-            filter.groupName
-          )}" }`,
-        },
-      ],
+      searchConds: filter.groupName
+        ? [
+            {
+              componentType: "RELATION",
+              devKey: "groupName",
+              condition: `{ "type": "SAME", "language": "KO", "keyword": "${decodeURIComponent(
+                filter.groupName
+              )}" }`,
+            },
+          ]
+        : filter.templateId
+        ? [
+            {
+              componentType: "SINGLE_LINE_TEXT_MONO",
+              devKey: "templateId",
+              condition: `{ "type": "SAME", "keyword": "${decodeURIComponent(
+                filter.templateId
+              )}" }`,
+            },
+          ]
+        : [],
     }
   );
 };

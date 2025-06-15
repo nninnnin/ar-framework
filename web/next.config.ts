@@ -11,6 +11,14 @@ const nextConfig: NextConfig = {
     NEXT_URL: process.env.NEXT_URL,
   },
   reactStrictMode: false,
+  async rewrites() {
+    return [
+      {
+        source: "/templates/:slug",
+        destination: "/templates/:slug/api",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
