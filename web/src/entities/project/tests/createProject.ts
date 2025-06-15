@@ -7,6 +7,7 @@ import { getProjectTypes } from "@/entities/project/utils/fetchers";
 import { getGroups } from "@/features/group/fetchers/group";
 import { formatGroup } from "@/features/group/hooks/useGroups";
 import { formatProjectTypes } from "@/entities/project/utils/formatters";
+import { createTemplateId } from "@/features/projectCreation/utils/imageTarget/createTemplateId";
 
 const isString = z.string();
 
@@ -40,6 +41,7 @@ export const createProject = {
       projectTypeId: projectTypeId,
       postedModelIds: [],
       groupId: groups[0].uid,
+      templateId: createTemplateId(),
     });
 
     const createRes =

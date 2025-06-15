@@ -26,6 +26,7 @@ import { useEditableGlbModels } from "@/features/glbModel/store/editableGlbModel
 import MarkerRegisterDialog from "@/features/projectCreation/components/funnelSteps/markerRegister/Dialog";
 import { uploadImageTargetFile } from "@/features/projectCreation/utils/imageTarget/uploadImageTargetFile";
 import { postImageTarget } from "@/features/projectCreation/utils/imageTarget/postImageTarget";
+import { createTemplateId } from "@/features/projectCreation/utils/imageTarget/createTemplateId";
 
 type CreationFunnelSteps = {
   프로젝트타입선택: 프로젝트타입선택;
@@ -156,6 +157,7 @@ const ProjectCreationFunnel = () => {
               postedModelIds,
               groupId: selectedGroup?.uid ?? "",
               imageTargetId: postedImageTargetId,
+              templateId: createTemplateId(),
             });
 
             const projectCreationResult =
