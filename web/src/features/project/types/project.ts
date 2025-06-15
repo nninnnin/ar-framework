@@ -44,6 +44,7 @@ export type ProjectFormatted = {
     name: string;
   }[];
   isDeleted: boolean;
+  templateId: string;
 };
 
 export type ProjectType =

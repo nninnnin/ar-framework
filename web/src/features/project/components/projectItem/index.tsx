@@ -6,6 +6,7 @@ import { ProjectItemContext } from "@/features/project/hooks/useProjectUidContex
 import ConnectButton from "@/features/project/components/projectItem/ConnectButton";
 import ProjectItemContainer from "@/features/project/components/projectItem/Container";
 import ButtonContainer from "@/features/project/components/projectItem/ButtonContainer";
+import { css } from "@emotion/react";
 
 const ProjectItem = ({
   projectItem,
@@ -25,9 +26,31 @@ const ProjectItem = ({
           {projectItem.name}
         </ProjectItem.Name>
 
-        <ProjectItemBadge
-          projectType={projectItem.projectType.name}
-        />
+        <div
+          css={css`
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            border: 0px;
+            border-bottom: 1px;
+            border-right: 1px;
+            border-style: solid;
+            border-color: black;
+
+            font-size: 0.7em;
+
+            padding-right: 0.5em;
+          `}
+        >
+          <ProjectItemBadge
+            projectType={projectItem.projectType.name}
+          />
+
+          <div>{projectItem.templateId}</div>
+        </div>
 
         <ButtonContainer>
           <EditButton />

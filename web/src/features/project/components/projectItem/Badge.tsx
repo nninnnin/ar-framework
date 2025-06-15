@@ -14,21 +14,12 @@ const ProjectItemBadge = ({
   return (
     <div
       css={css`
-        position: absolute;
-        top: 0;
-        left: 0;
-
-        border: 1px solid black;
-        border-top: none;
-        border-left: none;
-
         padding: 0.5em;
         padding-left: 0.7em;
         padding-right: 0.5em;
 
-        font-size: 0.7em;
-
         display: flex;
+        flex-direction: row-reverse;
         align-items: center;
         gap: 4px;
       `}
