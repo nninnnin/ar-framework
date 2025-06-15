@@ -63,5 +63,6 @@ export type ProjectBody = {
     glbModels: string[];
     groupName: string[];
     imageTarget: string[] | undefined;
+    templateId: string;
   };
 };

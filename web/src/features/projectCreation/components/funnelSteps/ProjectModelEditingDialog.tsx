@@ -196,6 +196,7 @@ const ProjectModelEditingDialog = ({
           postedModelIds: updatedModelIds,
           groupId: selectedGroup!.uid,
           imageTargetId,
+          templateId: projectItem!.templateId,
         });
 
         const updateBody = {

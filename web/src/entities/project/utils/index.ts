@@ -6,6 +6,7 @@ export const createProjectBody = (params: {
   postedModelIds: string[];
   groupId: string;
   imageTargetId?: string;
+  templateId: string;
 }): ProjectBody => {
   const name = { KO: params.projectName };
   const projectType = [params.projectTypeId];
@@ -15,6 +16,8 @@ export const createProjectBody = (params: {
     ? [params.imageTargetId]
     : undefined;
 
+  const templateId = params.templateId;
+
   return {
     publish: true,
     data: {
@@ -23,6 +26,7 @@ export const createProjectBody = (params: {
       glbModels,
       groupName,
       imageTarget,
+      templateId,
     },
   };
 };
