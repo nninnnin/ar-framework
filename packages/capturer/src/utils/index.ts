@@ -163,19 +163,14 @@ export class Capturer {
     );
   }
 
-  drawSceneReverse(
-    options = {
-      reverse: false,
-    }
-  ) {
+  drawSceneReverse() {
     const scene = this.getScene();
 
-    const capturedScene = options.reverse
-      ? this.captureScene(scene, {
-          preprocessor: () => {},
-          postprocessor: () => {},
-        })
-      : this.captureScene(scene);
+    const capturedScene =
+      // @ts-ignore
+      scene.components.screenshot.getCanvas(
+        "perspective"
+      );
 
     const ctx = this.canvas.getContext("2d");
 

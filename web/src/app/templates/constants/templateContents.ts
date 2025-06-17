@@ -59,7 +59,6 @@ export const TemplateContents: Record<
       <a-scene
         mindar-face
         embedded
-        color-space="sRGB"
         renderer="colorManagement: true, physicallyCorrectLights"
         vr-mode-ui="enabled: false"
         device-orientation-permission-ui="enabled: false"
