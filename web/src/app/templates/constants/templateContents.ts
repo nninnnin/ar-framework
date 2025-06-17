@@ -84,21 +84,17 @@ export const TemplateContents: Record<
 
       <script>
         window.addEventListener("targetFound", () => {
-          const scanningGuide = document.querySelector(".mindar-ui-scanning");
-
-          scanningGuide?.style.setProperty("display", "none", "important");
+          window.postMessage({ type: "target-found" }, "*");
         });
 
         window.addEventListener("targetLost", () => {
-          const scanningGuide = document.querySelector(".mindar-ui-scanning");
-
-          scanningGuide?.style.setProperty("display", "flex", "important");
+          window.postMessage({ type: "target-lost" }, "*");
         });
       </script>
     `,
     bodyContents: `
       <a-scene
-        mindar-image="imageTargetSrc: #imageTarget; filterMinCF: 0.001; filterBeta: 0.1"
+        mindar-image="imageTargetSrc: #imageTarget; filterMinCF: 0.001; filterBeta: 0.1; uiScanning: no"
         vr-mode-ui="enabled: false"
         device-orientation-permission-ui="enabled: false"
         screenshot-fixed
