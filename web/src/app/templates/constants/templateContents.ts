@@ -84,11 +84,11 @@ export const TemplateContents: Record<
 
       <script>
         window.addEventListener("targetFound", () => {
-          window.postMessage({ type: "target-found" }, "*");
+          window.parent.postMessage({ type: "target-found" }, "*");
         });
 
         window.addEventListener("targetLost", () => {
-          window.postMessage({ type: "target-lost" }, "*");
+          window.parent.postMessage({ type: "target-lost" }, "*");
         });
       </script>
     `,
