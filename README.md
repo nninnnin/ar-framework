@@ -1,6 +1,31 @@
 # AR Framework
 
-### 개발환경 세팅 시 참고사항
+## 사용 기술
+
+해당 프로젝트는 3개 종류의 AR 컨텐츠를 생성하고 에디팅 할 수 있는 기능을 가지고 있습니다.
+
+- 위치 기반(GPS) AR은 [`AR.js`](https://ar-js-org.github.io/AR.js-Docs/) 를 사용,
+- 얼굴 인식 AR은 [`Mind.AR`](https://hiukim.github.io/mind-ar-js-doc/) 을 사용,
+- 이미지 마커 인식 AR은 [`Mind.AR`](https://hiukim.github.io/mind-ar-js-doc/) 을 사용합니다.
+
+## 주요 기능
+
+크게 세 가지의 기능이 있으며, 이들을 각각의 서브패키지로 나누어 작성했습니다.
+
+각 서브패키지와 관련된 내용은 각 서브패키지 디렉터리의 `readme.md` 를 참고하세요.
+
+- AR 종류를 골라 컨텐츠를 생성
+
+  - `/web`
+
+- 모바일 화면에서 프로젝트에 탑재된 GLB 모델의 위치와 크기 등을 조정
+
+  - `/packages/controls`
+
+- AR 컨텐츠 캡쳐 로직 제공
+  - `/packages/capturer`
+
+## 개발환경 세팅
 
 #### 1. 환경변수 설정
 
