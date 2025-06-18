@@ -300,7 +300,9 @@ export class Capturer {
     );
   }
 
-  capture(options = { reverse: false }) {
+  capture(
+    options = { reverse: false, appendCanvas: false }
+  ) {
     if (this.isCapturing) {
       console.log("캡쳐가 진행중입니다");
       return;
@@ -308,7 +310,9 @@ export class Capturer {
 
     this.isCapturing = true;
 
-    this.appendCanvasToBody();
+    if (options.appendCanvas) {
+      this.appendCanvasToBody();
+    }
 
     this.drawVideo(options);
     this.drawScene(options);

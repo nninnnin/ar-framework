@@ -11,14 +11,21 @@ window.addEventListener("message", async (event) => {
       message.payload &&
       message.payload.captureType === "face";
 
+    const appendCanvas =
+      message.payload.appendCanvas || false;
+
     if (isFaceCapture) {
       capturer.capture({
         reverse: true,
+        appendCanvas,
       });
 
       return;
     }
 
-    capturer.capture();
+    capturer.capture({
+      reverse: false,
+      appendCanvas,
+    });
   }
 });
