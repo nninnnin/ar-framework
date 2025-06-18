@@ -14,8 +14,7 @@ const ButtonContainer = ({
         bottom: 0;
         right: 0;
 
-        width: 80%;
-        margin: 0 auto;
+        width: 100%;
 
         display: flex;
         justify-content: space-between;
@@ -25,7 +24,6 @@ const ButtonContainer = ({
         background-color: #000000;
 
         border-top: 1px solid #000000;
-        border-left: 1px solid #000000;
 
         visibility: hidden;
         pointer-events: none;

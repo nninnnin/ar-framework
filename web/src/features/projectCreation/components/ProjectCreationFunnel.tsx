@@ -158,6 +158,7 @@ const ProjectCreationFunnel = () => {
               groupId: selectedGroup?.uid ?? "",
               imageTargetId: postedImageTargetId,
               templateId: createTemplateId(),
+              isLocked: false,
             });
 
             const projectCreationResult =

@@ -21,6 +21,7 @@ export interface Project {
     projectType: CategoryInterface[];
     glbModels: RelationInterface[];
     groupName: RelationInterface[];
+    isLocked: boolean;
   };
 }
 
@@ -31,7 +32,7 @@ export type ProjectFormatted = {
     id: number;
     name: ProjectType;
   };
-  group: {
+  groupName: {
     id: number;
     name: string;
   };
@@ -45,6 +46,7 @@ export type ProjectFormatted = {
   }[];
   isDeleted: boolean;
   templateId: string;
+  isLocked: boolean;
 };
 
 export type ProjectType =
@@ -64,5 +66,6 @@ export type ProjectBody = {
     groupName: string[];
     imageTarget: string[] | undefined;
     templateId: string;
+    isLocked: string;
   };
 };

@@ -49,7 +49,7 @@ const ConnectButton = () => {
     });
   };
 
-  if (!projectItem) return;
+  if (!projectItem) return <></>;
 
   return (
     <div

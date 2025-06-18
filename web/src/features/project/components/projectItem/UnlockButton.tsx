@@ -1,0 +1,153 @@
+import React from "react";
+import { css } from "@emotion/react";
+import { useOverlay } from "@toss/use-overlay";
+
+import Dialog from "@/shared/components/Dialog";
+import createNextApiFetcher from "@/shared/utils/nextApiFetcher";
+import useProjectUidContext from "@/features/project/hooks/useProjectUidContext";
+import Overlay from "@/shared/components/Overlay";
+import { createProjectBody } from "@/entities/project/utils";
+import { getProjectTypeId } from "@/features/project/utils";
+import useProjectTypes from "@/features/project/hooks/useProjectTypes";
+import { useQueryClient } from "@tanstack/react-query";
+import { QueryKeys } from "@/shared/constants/queryKeys";
+
+const projectApiFetcher = createNextApiFetcher({
+  entity: "project",
+});
+
+const UnlockButton = () => {
+  const queryClient = useQueryClient();
+  const { projectItem } = useProjectUidContext();
+
+  const { data: projectTypes } = useProjectTypes();
+
+  const overlay = useOverlay();
+
+  if (!projectItem) return <></>;
+
+  const unlockProject = async () => {
+    const projectId = projectItem.uid;
+
+    const projectTypeId = getProjectTypeId(
+      projectItem!.projectType.name,
+      projectTypes
+    );
+
+    if (!projectTypeId) {
+      throw new Error(
+        "프로젝트 타입이 존재하지 않습니다."
+      );
+    }
+
+    const imageTargetId =
+      projectItem!.imageTarget &&
+      projectItem!.imageTarget[0]
+        ? projectItem!.imageTarget[0].uid
+        : undefined;
+
+    const projectBody = createProjectBody({
+      projectName: projectItem.name,
+      projectTypeId,
+      postedModelIds: projectItem.glbModels.map(
+        (el) => el.uid
+      ),
+      groupId: projectItem.groupName.id.toString(),
+      imageTargetId,
+      templateId: projectItem.templateId,
+      isLocked: false,
+    });
+
+    const updateBody = {
+      uid: projectId,
+      ...projectBody,
+    };
+
+    await projectApiFetcher.updateItem(
+      projectId,
+      updateBody
+    );
+
+    await queryClient.invalidateQueries({
+      queryKey: [QueryKeys.Projects],
+    });
+  };
+
+  const handleClick = () => {
+    overlay.open(({ close: closeOverlay, isOpen }) => {
+      return (
+        <Overlay isOpen={isOpen}>
+          <Dialog size="small">
+            <Dialog.Header
+              handleCloseClick={() => closeOverlay()}
+            >
+              <Dialog.HeaderLabel>
+                프로젝트 잠금
+              </Dialog.HeaderLabel>
+            </Dialog.Header>
+
+            <Dialog.ContentsContainer>
+              <p
+                css={css`
+                  font-size: 0.75em;
+                  line-height: 1.5em;
+                `}
+              >
+                프로젝트 잠금을 해제할까요?
+              </p>
+            </Dialog.ContentsContainer>
+
+            <Dialog.ButtonContainer>
+              <Dialog.Button
+                onClick={async () => {
+                  const password = prompt(
+                    "관리자 비밀번호를 입력하세요."
+                  );
+
+                  if (password !== "admin") {
+                    alert("비밀번호가 틀렸습니다.");
+                    return;
+                  }
+
+                  await unlockProject();
+                  closeOverlay();
+                }}
+                cssOverlap={css`
+                  font-size: 0.8em;
+                  font-weight: 500;
+                `}
+              >
+                해제
+              </Dialog.Button>
+            </Dialog.ButtonContainer>
+          </Dialog>
+        </Overlay>
+      );
+    });
+  };
+
+  return (
+    <div
+      css={css`
+        flex: 1;
+        background-color: #fff;
+
+        padding: 0.7em;
+
+        color: black;
+        font-size: 0.8em;
+
+        cursor: pointer;
+
+        &:hover {
+          background-color: #f1f1f1;
+        }
+      `}
+      onClick={handleClick}
+    >
+      잠금 해제
+    </div>
+  );
+};
+
+export default UnlockButton;

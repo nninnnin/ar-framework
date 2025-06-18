@@ -22,7 +22,7 @@ const EditButton = () => {
     ));
   };
 
-  if (!projectItem) return;
+  if (!projectItem) return <></>;
 
   return (
     <div

@@ -7,6 +7,8 @@ import ConnectButton from "@/features/project/components/projectItem/ConnectButt
 import ProjectItemContainer from "@/features/project/components/projectItem/Container";
 import ButtonContainer from "@/features/project/components/projectItem/ButtonContainer";
 import { css } from "@emotion/react";
+import LockButton from "@/features/project/components/projectItem/LockButton";
+import UnlockButton from "@/features/project/components/projectItem/UnlockButton";
 
 const ProjectItem = ({
   projectItem,
@@ -15,12 +17,32 @@ const ProjectItem = ({
   projectItem: ProjectFormatted;
   onClick?: () => void;
 }) => {
+  const isLocked = projectItem.isLocked;
+
   return (
     <ProjectItemContext.Provider
       value={{ projectItem }}
     >
-      <ProjectItemContainer onClick={onClick}>
-        <RemoveButton />
+      <ProjectItemContainer
+        onClick={onClick}
+        cssOverlap={css`
+          ${isLocked && "background-color: #c7c7c7;"}
+        `}
+      >
+        {!isLocked && <RemoveButton />}
+        {isLocked && (
+          <div
+            css={css`
+              position: absolute;
+              top: 4px;
+              right: 7px;
+
+              font-size: 1.2em;
+            `}
+          >
+            🔒
+          </div>
+        )}
 
         <ProjectItem.Name>
           {projectItem.name}
@@ -33,6 +55,8 @@ const ProjectItem = ({
             position: absolute;
             top: 0;
             left: 0;
+
+            background-color: #fff;
 
             border: 0px;
             border-bottom: 1px;
@@ -53,7 +77,15 @@ const ProjectItem = ({
         </div>
 
         <ButtonContainer>
-          <EditButton />
+          {!isLocked && (
+            <>
+              <LockButton />
+              <EditButton />
+            </>
+          )}
+
+          {isLocked && <UnlockButton />}
+
           <ConnectButton />
         </ButtonContainer>
       </ProjectItemContainer>

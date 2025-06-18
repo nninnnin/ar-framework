@@ -42,6 +42,7 @@ export const createProject = {
       postedModelIds: [],
       groupId: groups[0].uid,
       templateId: createTemplateId(),
+      isLocked: false,
     });
 
     const createRes =

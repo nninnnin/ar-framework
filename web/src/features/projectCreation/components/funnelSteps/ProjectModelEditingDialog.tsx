@@ -197,6 +197,7 @@ const ProjectModelEditingDialog = ({
           groupId: selectedGroup!.uid,
           imageTargetId,
           templateId: projectItem!.templateId,
+          isLocked: projectItem!.isLocked,
         });
 
         const updateBody = {

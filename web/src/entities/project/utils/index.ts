@@ -7,6 +7,7 @@ export const createProjectBody = (params: {
   groupId: string;
   imageTargetId?: string;
   templateId: string;
+  isLocked: boolean;
 }): ProjectBody => {
   const name = { KO: params.projectName };
   const projectType = [params.projectTypeId];
@@ -17,6 +18,7 @@ export const createProjectBody = (params: {
     : undefined;
 
   const templateId = params.templateId;
+  const isLocked = String(params.isLocked);
 
   return {
     publish: true,
@@ -27,6 +29,7 @@ export const createProjectBody = (params: {
       groupName,
       imageTarget,
       templateId,
+      isLocked,
     },
   };
 };
