@@ -12,7 +12,7 @@ window.addEventListener("message", async (event) => {
       message.payload.captureType === "face";
 
     const appendCanvas =
-      message.payload.appendCanvas || false;
+      message.payload?.appendCanvas || false;
 
     if (isFaceCapture) {
       capturer.capture({
