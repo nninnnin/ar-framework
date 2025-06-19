@@ -43,6 +43,7 @@ Dialog.HeaderLabel = ({
       css={css`
         padding-left: 10px;
         font-size: 0.8em;
+        color: black;
       `}
     >
       {children}

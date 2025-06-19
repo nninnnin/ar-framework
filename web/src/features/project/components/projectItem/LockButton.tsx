@@ -11,6 +11,7 @@ import { getProjectTypeId } from "@/features/project/utils";
 import useProjectTypes from "@/features/project/hooks/useProjectTypes";
 import { useQueryClient } from "@tanstack/react-query";
 import { QueryKeys } from "@/shared/constants/queryKeys";
+import useAdminPassword from "@/features/lock/hooks/useAdminPassword";
 
 const projectApiFetcher = createNextApiFetcher({
   entity: "project",
@@ -19,6 +20,8 @@ const projectApiFetcher = createNextApiFetcher({
 const LockButton = () => {
   const queryClient = useQueryClient();
   const { projectItem } = useProjectUidContext();
+  const { password: adminPassword } =
+    useAdminPassword();
 
   const { data: projectTypes } = useProjectTypes();
 
@@ -91,6 +94,7 @@ const LockButton = () => {
                 css={css`
                   font-size: 0.75em;
                   line-height: 1.5em;
+                  color: black;
                 `}
               >
                 프로젝트 잠금은 프로젝트 삭제를
@@ -103,11 +107,21 @@ const LockButton = () => {
             <Dialog.ButtonContainer>
               <Dialog.Button
                 onClick={async () => {
-                  const password = prompt(
+                  if (!adminPassword) {
+                    alert(
+                      "관리자 비밀번호가 설정되어 있지 않습니다. 관리자에게 문의하세요."
+                    );
+
+                    return;
+                  }
+
+                  const passwordInput = prompt(
                     "관리자 비밀번호를 입력하세요."
                   );
 
-                  if (password !== "admin") {
+                  if (
+                    passwordInput !== adminPassword
+                  ) {
                     alert("비밀번호가 틀렸습니다.");
                     return;
                   }
