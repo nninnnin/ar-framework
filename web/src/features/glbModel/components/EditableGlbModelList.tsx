@@ -191,7 +191,10 @@ EditableGlbModelList.Item = ({
         background-color: ${isSelected
           ? "black"
           : "white"};
-        color: ${isSelected ? "white" : "black"};
+
+        & * {
+          color: ${isSelected ? "white" : "black"};
+        }
 
         font-size: 1.5em;
         padding: 1em;
