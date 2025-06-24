@@ -227,11 +227,7 @@ export class Capturer {
     const sourceHeight = video.videoHeight;
 
     const drawHeight = this.canvas.height;
-    const drawWidth =
-      drawHeight * (sourceWidth / sourceHeight);
-
-    const drawOffsetX =
-      Math.abs(drawWidth - this.canvas.width) / 2;
+    const drawWidth = this.canvas.width;
 
     ctx.drawImage(
       video,
@@ -239,7 +235,7 @@ export class Capturer {
       0,
       sourceWidth,
       sourceHeight,
-      -drawOffsetX,
+      0,
       0,
       drawWidth,
       drawHeight
