@@ -11,7 +11,6 @@ import { useControlStore } from "./stores/controls";
 import { ControllingSubject } from "./types";
 import LocationSelector from "./components/locationSelector";
 import useSyncModelControlValues from "./hooks/useSyncModelControlValues";
-import useTestModel from "./hooks/useTestModel";
 
 const App = () => {
   const { isOpen: isMenuOpen } = useMenuStore();
@@ -20,17 +19,17 @@ const App = () => {
   useSetModelsFromTemplate();
   useSyncModelControlValues();
 
-  useTestModel(); // For development
-
   return (
     <>
       <MenuToggler />
 
       {Boolean(controllingSubject) && <StatusPanel />}
 
-      {Boolean(controllingSubject) && (
-        <ValueController />
-      )}
+      {Boolean(controllingSubject) &&
+        controllingSubject !==
+          ControllingSubject.LocationCoordinate && (
+          <ValueController />
+        )}
 
       {controllingSubject ===
         ControllingSubject.LocationCoordinate && (

@@ -24,6 +24,7 @@
 }
 
 .mapboxgl-ctrl-logo,
-.mapboxgl-ctrl-icon {
-  display: none;
+.mapboxgl-ctrl-icon,
+.mapboxgl-ctrl-attrib-button {
+  display: none !important;
 }
