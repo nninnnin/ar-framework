@@ -393,7 +393,11 @@ ProjectDetailsDialog.CopyButton = ({
         }, 1800);
       }}
     >
-      <span>
+      <span
+        css={css`
+          color: white !important;
+        `}
+      >
         {isCopied
           ? "복사되었습니다!"
           : "링크 복사하기"}

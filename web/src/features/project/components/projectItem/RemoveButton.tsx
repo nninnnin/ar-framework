@@ -44,7 +44,8 @@ const RemoveButton = () => {
             <Overlay isOpen={isOpen}>
               <div
                 css={css`
-                  color: white;
+                  color: black !important;
+                  background-color: white !important;
                   font-weight: bold;
 
                   padding: 1em;
