@@ -1,15 +1,6 @@
 # AR Framework
 
-<div style='display: flex;'>
-  <img style='width: 45%' src='./main.png'>
-  <img style='width: 45%' src='./list.png'>
-</div>
-
-<div style='display: flex; align-items: center'>
-  <img style='width: 50%' src='./model.png'>
-  <img style='width: 18%; margin: 2%' src='./qr.jpeg'>
-  <img style='width: 18%; margin: 2%' src='./ar.jpeg'>
-</div>
+<img src='./2.png'>
 
 ## 사용 기술
 
@@ -25,16 +16,22 @@
 
 각 서브패키지와 관련된 내용은 각 서브패키지 디렉터리의 `readme.md` 를 참고하세요.
 
-- AR 종류를 골라 컨텐츠를 생성
+#### AR 종류를 골라 컨텐츠를 생성하고 수정하기 (`/web`)
 
-  - `/web`
+메인화면과 컨텐츠 리스트
+<img src='./docs/images/1.png'>
 
-- 모바일 화면에서 프로젝트에 탑재된 GLB 모델의 위치와 크기 등을 조정
+컨텐츠 생성하기 (1, 2단계)
+<img src='./docs/images/2.png'>
 
-  - `/packages/controls`
+컨텐츠 생성 (3단계로 완료), 컨텐츠 수정하기 (3D 모델 추가/제거)
+<img src='./docs/images/3.png'>
 
-- AR 컨텐츠 캡쳐 로직 제공
-  - `/packages/capturer`
+#### 모바일 화면에서 프로젝트에 탑재된 3D 모델의 위치와 크기 회전을 조정 (`/packages/controls`)
+
+<img src='./docs/images/4.png'>
+
+#### AR 컨텐츠 캡쳐 로직 제공 (`/packages/capturer`)
 
 ## 개발환경 세팅
 
