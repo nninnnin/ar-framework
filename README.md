@@ -1,11 +1,11 @@
 # AR Framework
 
 <div style='display: flex;'>
-  <img style='width: 50%' src='./main.png'>
-  <img style='width: 50%' src='./list.png'>
+  <img style='width: 45%' src='./main.png'>
+  <img style='width: 45%' src='./list.png'>
 </div>
 
-<div style='display: flex;'>
+<div style='display: flex; align-items: center'>
   <img style='width: 50%' src='./model.png'>
   <img style='width: 18%; margin: 2%' src='./qr.jpeg'>
   <img style='width: 18%; margin: 2%' src='./ar.jpeg'>
