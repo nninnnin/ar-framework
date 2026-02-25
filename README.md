@@ -1,19 +1,21 @@
 # AR Framework
 
+<img width="730" height="374" alt="arframework-title" src="https://github.com/user-attachments/assets/9c2995cd-6c5b-432e-ab52-370e6ed79887" />
+
 ## 1. 개발 배경
+
+<p style='work-break: keep-all;'>
+저는 2024년부터 2025년까지 크리에이티브 스튜디오 [레벨나인(Rebel9)](https://rebel9.co.kr)에서 Web AR 기술을 기반으로 한 인터랙티브 프로젝트들을 개발해왔습니다.  
+AR Framework는 반복적인 AR 컨텐츠 개발을 경험하며 쌓은 AR 컨텐츠 제작의 노하우를 하나의 템플릿에 모으고, UI 인터페이스를 통해 노코드 환경에서 AR 컨텐츠를 효율적으로 생산하고 편집하며, 완성된 컨텐츠와 외부 개발 환경의 연동을 간편하게 만들기 위한 인터페이스와 도구들의 묶음으로 만들어진 <b>컨텐츠 제작 프레임워크</b> 입니다.
+</p>
 
 ### 1.1 Web AR 컨텐츠?
 
-저는 크리에이티브 스튜디오 [레벨나인(Rebel9)](https://rebel9.co.kr)에서 Web AR 기술을 기반으로 한 인터랙티브 프로젝트들을 개발해왔습니다.
+| 기능 A | 기능 B | 기능 C |
+| :---: | :---: | :---: |
+| <video src="https://github.com/user-attachments/assets/fc3eb4b0-7d76-4a40-9017-1e3a4bdd54aa" width="220" muted autoplay loop></video> | <video src="https://github.com/user-attachments/assets/3185a634-29e0-4138-b606-74a2494dc15b" width="220" muted autoplay loop></video> | <video src="https://github.com/user-attachments/assets/b94d14c0-444e-45f2-bcbc-c331f92d1fc1" width="220" muted autoplay loop></video> |
+| 위치(좌표)기반 증강 | 얼굴 랜드마크 인식 증강 | 마커 인식 증강 |
 
-![video](https://justin-blog-contents.s3.ap-northeast-2.amazonaws.com/videos/location-based-example.mp4)
-
-<video
-src="https://justin-blog-contents.s3.ap-northeast-2.amazonaws.com/videos/location-based-example.mp4"
-autoPlay
-loop
-muted
-width="100%"> </video>
 
 이 AR 컨텐츠들은 주로 `AR.js` 나 `Mind.AR`이 제공하는 위치기반, 얼굴인식, 마커기반 3D모델 증강 기능들을 사용해 개발됩니다. 위치기반 AR은 ~, 얼굴인식 AR은 ~, 마커기반 AR은 ~ 입니다.
 
