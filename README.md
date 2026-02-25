@@ -6,7 +6,12 @@
 
 저는 크리에이티브 스튜디오 [레벨나인(Rebel9)](https://rebel9.co.kr)에서 Web AR 기술을 기반으로 한 인터랙티브 프로젝트들을 개발해왔습니다.
 
-(사진들)
+<video
+src="https://justin-blog-contents.s3.ap-northeast-2.amazonaws.com/videos/location-based-example.mp4"
+autoPlay
+loop
+muted
+playsInline> </video>
 
 이 AR 컨텐츠들은 주로 `AR.js` 나 `Mind.AR`이 제공하는 위치기반, 얼굴인식, 마커기반 3D모델 증강 기능들을 사용해 개발됩니다. 위치기반 AR은 ~, 얼굴인식 AR은 ~, 마커기반 AR은 ~ 입니다.
 
