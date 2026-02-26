@@ -16,10 +16,10 @@
 
 <img src='./docs/images/4.png'>
 
-### 메시지 인터페이스 설계
+### 메시지 인터페이스
 
 AR Framework에서 제작된 컨텐츠는 서버사이드 렌더링되는 HTML 문서로서, 각각의 URI로 제공됩니다.
-React등으로 개발된 별개의 클라이언트에서 iframe을 이용해 AR 컨텐츠를 런타임에서 통합할 수 있도록 메시지 인터페이스를 설계하여 라이브러리로 제공합니다.
+React등으로 개발된 별개의 클라이언트에서 iframe을 이용해 AR 컨텐츠를 런타임에서 통합할 수 있도록 메시지 인터페이스를 설계하여 라이브러리([**@ar-framework/utils**](https://www.npmjs.com/package/@ar-framework/utils))로 제공합니다.
 
 ```javascript
 const showGlbModels = () => {
