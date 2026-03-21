@@ -1,6 +1,7 @@
 import React from "react";
-import { useMenuStore } from "../stores";
 import clsx from "clsx";
+import { glass } from "@ar-framework/ui";
+import { useMenuStore } from "../stores";
 
 const MenuToggler = () => {
   const { isOpen, toggle } = useMenuStore();
@@ -8,17 +9,25 @@ const MenuToggler = () => {
   return (
     <div
       className={clsx(
-        "fixed top-0 left-0 z-[200]",
-        "w-[56px] h-[56px]",
-        "bg-white",
+        "fixed bottom-6 right-6 z-[200]",
+        "w-[56px] h-[56px] rounded-[16px]",
         "flex justify-center items-center",
-        "border-r-[1px] border-b-[1px] border-solid border-black",
-        "text-[2em]",
-        "select-none"
+        "cursor-pointer select-none",
+        "transition-colors duration-150 active:scale-95",
+        glass.base,
+        glass.variants.surface
       )}
       onClick={() => toggle()}
     >
-      {isOpen ? "🥹" : "😌"}
+      {isOpen ? (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M18 6L6 18M6 6l12 12" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      ) : (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      )}
     </div>
   );
 };
