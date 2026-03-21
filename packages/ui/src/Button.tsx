@@ -4,7 +4,7 @@ import * as styles from "./Button.css";
 type ButtonProps = {
   onClick?: () => void;
   children: React.ReactNode;
-  variant?: "primary" | "secondary";
+  variant?: "blue" | "green" | "violet" | "surface";
   disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;
@@ -13,7 +13,7 @@ type ButtonProps = {
 const Button = ({
   onClick,
   children,
-  variant = "primary",
+  variant = "surface",
   disabled = false,
   loading = false,
   fullWidth = false,

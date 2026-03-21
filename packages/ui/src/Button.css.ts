@@ -7,10 +7,12 @@ export const base = style({
   alignItems: "center",
 
   height: vars.space.touchTarget,
-  padding: "0 12px",
+  padding: "0 14px",
+  borderRadius: vars.borderRadius.button,
 
   fontSize: vars.fontSize.button,
   fontWeight: 600,
+  letterSpacing: "0.01em",
 
   cursor: "pointer",
   userSelect: "none",
@@ -18,31 +20,40 @@ export const base = style({
   outline: "none",
   background: "none",
 
-  transition: "opacity 0.15s ease",
+  backdropFilter: "blur(12px)",
+  WebkitBackdropFilter: "blur(12px)",
+
+  transition: "opacity 0.15s ease, transform 0.1s ease",
 
   selectors: {
     "&:active": {
       opacity: 0.7,
+      transform: "scale(0.98)",
     },
   },
 });
 
 export const variants = styleVariants({
-  primary: {
-    backgroundColor: vars.color.primary,
-    color: vars.color.onPrimary,
+  blue: {
+    backgroundColor: vars.color.blue,
+    color: vars.color.onBlue,
   },
-  secondary: {
+  green: {
+    backgroundColor: vars.color.green,
+    color: vars.color.onGreen,
+  },
+  violet: {
+    backgroundColor: vars.color.violet,
+    color: vars.color.onViolet,
+  },
+  surface: {
     backgroundColor: vars.color.surface,
     color: vars.color.onSurface,
-    border: `1px solid ${vars.color.border}`,
   },
 });
 
 export const disabled = style({
-  backgroundColor: vars.color.disabled,
-  color: vars.color.onDisabled,
-  borderColor: vars.color.disabled,
+  opacity: 0.35,
   cursor: "not-allowed",
   pointerEvents: "none",
 });
