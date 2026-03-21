@@ -169,6 +169,7 @@ const ProjectCreationFunnel = () => {
               projectCreationResult
             );
 
+            resetProjectFunnelStates();
             closeOverlay && closeOverlay();
           }}
         />
