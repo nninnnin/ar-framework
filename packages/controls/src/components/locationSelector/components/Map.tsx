@@ -82,21 +82,22 @@ const Map = () => {
       );
 
     if (currentCoordinate) {
-      const { latitude, longitude } =
-        currentCoordinate as unknown as {
-          latitude: number;
-          longitude: number;
-        };
+      const { latitude, longitude } = currentCoordinate as unknown as {
+        latitude: number;
+        longitude: number;
+      };
 
-      new mapboxgl.Marker(marker)
-        .setLngLat([longitude, latitude])
-        .addTo(mapRef.current);
+      if (latitude != null && longitude != null) {
+        new mapboxgl.Marker(marker)
+          .setLngLat([longitude, latitude])
+          .addTo(mapRef.current);
 
-      setCoordinate(latitude, longitude);
-      setModelCoordinate(selectedModelName, {
-        lat: latitude,
-        lng: longitude,
-      });
+        setCoordinate(latitude, longitude);
+        setModelCoordinate(selectedModelName, {
+          lat: latitude,
+          lng: longitude,
+        });
+      }
     }
   }, [modelElement]);
 

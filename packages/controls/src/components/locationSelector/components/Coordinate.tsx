@@ -6,8 +6,8 @@ import { useCoordinateStore } from "../store";
 const Coordinate = () => {
   const { coordinate } = useCoordinateStore();
 
-  const lat = coordinate?.lat.toFixed(6) ?? 0;
-  const lng = coordinate?.lng.toFixed(6) ?? 0;
+  const lat = coordinate?.lat?.toFixed(6) ?? 0;
+  const lng = coordinate?.lng?.toFixed(6) ?? 0;
 
   return (
     <div

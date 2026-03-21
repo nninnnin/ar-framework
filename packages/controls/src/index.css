@@ -3,6 +3,7 @@
 
 * {
   touch-action: manipulation;
+  user-select: none;
 }
 
 .mapboxgl-ctrl-attrib-inner {
