@@ -10,6 +10,8 @@ export const vars = createGlobalTheme(":root", {
     onViolet: "rgba(46, 16, 101, 0.9)",
     surface: "rgba(255, 255, 255, 0.12)",
     onSurface: "rgba(255, 255, 255, 0.88)",
+    surfaceActive: "rgba(255, 255, 255, 0.32)",
+    onSurfaceActive: "rgba(255, 255, 255, 0.95)",
   },
   space: {
     touchTarget: "44px",
