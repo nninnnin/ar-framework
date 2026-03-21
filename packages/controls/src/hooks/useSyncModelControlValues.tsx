@@ -3,11 +3,7 @@ import { useModelStore } from "../stores";
 import { useControlStore } from "../stores/controls";
 import { useCoordinateStore } from "../components/locationSelector/store";
 
-const IS_DEV = process.env.NODE_ENV === "DEV";
-
-const API_URL = IS_DEV
-  ? process.env.API_URL
-  : "https://ar-framework-web.vercel.app";
+const API_URL = process.env.API_URL;
 
 const useSyncModelControlValues = () => {
   const { models, selectedModelName } =

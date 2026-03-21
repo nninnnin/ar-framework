@@ -3,9 +3,7 @@ import { useModelStore } from "../stores";
 import { useControlStore } from "../stores/controls";
 import { useCoordinateStore } from "../components/locationSelector/store";
 
-const API_URL =
-  process.env.API_URL ??
-  "https://ar-framework-web.vercel.app";
+const API_URL = process.env.API_URL;
 
 const useUpdateModel = () => {
   const { controls } = useControlStore();
