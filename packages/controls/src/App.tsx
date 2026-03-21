@@ -11,6 +11,8 @@ import { useControlStore } from "./stores/controls";
 import { ControllingSubject } from "./types";
 import LocationSelector from "./components/locationSelector";
 import LocationButton from "./components/LocationButton";
+import SelectModel from "./components/SelectModel";
+import VisibilityButton from "./components/VisibilityButton";
 import useSyncModelControlValues from "./hooks/useSyncModelControlValues";
 
 const App = () => {
@@ -24,6 +26,10 @@ const App = () => {
     <>
       <MenuToggler />
       <LocationButton />
+      <div className="fixed top-4 left-[72px] right-4 z-[200] flex gap-2">
+        <VisibilityButton />
+        <SelectModel />
+      </div>
 
       {Boolean(controllingSubject) && <StatusPanel />}
 
