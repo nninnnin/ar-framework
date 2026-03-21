@@ -16,10 +16,8 @@ import Plus from "@/shared/components/icons/Plus";
 
 const ProjectCreationFunnel = dynamic(
   () =>
-    import(
-      "@/features/projectCreation/components/ProjectCreationFunnel"
-    ),
-  { ssr: false }
+    import("@/features/projectCreation/components/ProjectCreationFunnel"),
+  { ssr: false },
 );
 
 export const OverlayCloseContext = createContext<{
@@ -90,14 +88,17 @@ const ProjectSection = () => {
                     }
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    transition={{
+                      duration: 0.94,
+                      ease: "anticipate",
+                    }}
                   >
                     <ProjectItem
                       projectItem={projectItem}
                     />
                   </motion.div>
                 );
-              }
+              },
             )}
         </AnimatePresence>
       </ProjectList>
