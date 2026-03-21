@@ -10,6 +10,7 @@ import ValueController from "./components/valueController";
 import { useControlStore } from "./stores/controls";
 import { ControllingSubject } from "./types";
 import LocationSelector from "./components/locationSelector";
+import LocationButton from "./components/LocationButton";
 import useSyncModelControlValues from "./hooks/useSyncModelControlValues";
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
   return (
     <>
       <MenuToggler />
+      <LocationButton />
 
       {Boolean(controllingSubject) && <StatusPanel />}
 

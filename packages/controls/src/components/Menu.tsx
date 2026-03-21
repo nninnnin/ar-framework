@@ -151,20 +151,6 @@ const Menu = () => {
         ))}
 
         <Item
-          variant="green"
-          disabled={!selectedModelName}
-          onClick={handleItemClick(
-            ControllingSubject.LocationCoordinate
-          )}
-        >
-          {
-            uxWrite.menuItem[
-              ControllingSubject.LocationCoordinate
-            ]
-          }
-        </Item>
-
-        <Item
           onClick={handleCloseClick}
         >
           닫기

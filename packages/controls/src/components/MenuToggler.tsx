@@ -13,7 +13,8 @@ const MenuToggler = () => {
         "bg-white",
         "flex justify-center items-center",
         "border-r-[1px] border-b-[1px] border-solid border-black",
-        "text-[2em]"
+        "text-[2em]",
+        "select-none"
       )}
       onClick={() => toggle()}
     >
