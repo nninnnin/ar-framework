@@ -149,6 +149,12 @@ Dialog.Button = ({
         cursor: pointer;
         user-select: none;
 
+        transition: opacity 0.15s ease;
+
+        &:hover {
+          opacity: 0.7;
+        }
+
         ${cssOverlap}
 
         ${disabled &&
@@ -158,6 +164,7 @@ Dialog.Button = ({
           background-color: #f0f0f0 !important;
           color: #bebebe !important;
           border-color: #bebebe !important;
+          opacity: 1 !important;
         `}
       `}
       onClick={onClick}

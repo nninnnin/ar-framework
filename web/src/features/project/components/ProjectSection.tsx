@@ -2,8 +2,10 @@ import dynamic from "next/dynamic";
 import { css } from "@emotion/react";
 import React, { createContext } from "react";
 import { useOverlay } from "@toss/use-overlay";
+import { AnimatePresence, motion } from "motion/react";
 
 import { useSelectedGroup } from "@/features/group/hooks/useSelectedGroup";
+import useInitialProjectUids from "@/features/project/hooks/useInitialProjectUids";
 import ProjectItem from "@/features/project/components/projectItem";
 import useProjects from "@/features/project/hooks/useProjects";
 import ProjectList from "@/features/project/components/ProjectList";
@@ -30,6 +32,8 @@ const ProjectSection = () => {
   const { data: projects } = useProjects({
     groupName: selectedGroup?.name ?? "",
   });
+
+  const initialUids = useInitialProjectUids(projects);
 
   const overlay = useOverlay();
 
@@ -72,17 +76,30 @@ const ProjectSection = () => {
           <Plus />
         </ProjectItemContainer>
 
-        {projects &&
-          projects.map(
-            (projectItem: ProjectFormatted) => {
-              return (
-                <ProjectItem
-                  key={projectItem.uid}
-                  projectItem={projectItem}
-                />
-              );
-            }
-          )}
+        <AnimatePresence>
+          {projects &&
+            projects.map(
+              (projectItem: ProjectFormatted) => {
+                return (
+                  <motion.div
+                    key={projectItem.uid}
+                    initial={
+                      initialUids.current?.has(projectItem.uid)
+                        ? false
+                        : { opacity: 0, scale: 0.85 }
+                    }
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.85 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                  >
+                    <ProjectItem
+                      projectItem={projectItem}
+                    />
+                  </motion.div>
+                );
+              }
+            )}
+        </AnimatePresence>
       </ProjectList>
     </div>
   );

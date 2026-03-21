@@ -38,7 +38,8 @@ const useSyncModelControlValues = () => {
       );
 
       const scale = initControlValues(
-        glbModelData.scale
+        glbModelData.scale,
+        { x: 1, y: 1, z: 1 }
       );
 
       const visibility = glbModelData.visibility;
@@ -63,11 +64,10 @@ const useSyncModelControlValues = () => {
 };
 
 export const initControlValues = (
-  strValue: string
+  strValue: string,
+  fallback = { x: 0, y: 0, z: 0 }
 ) => {
-  return strValue
-    ? JSON.parse(strValue)
-    : { x: 0, y: 0, z: 0 };
+  return strValue ? JSON.parse(strValue) : fallback;
 };
 
 const initCoordinate = (lat: string, lng: string) => {

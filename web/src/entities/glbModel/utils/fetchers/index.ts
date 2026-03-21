@@ -69,7 +69,7 @@ export const postGlbModels = async (
             visibility: "true",
             latitude: "",
             longitude: "",
-            scale: "",
+            scale: JSON.stringify({ x: 1, y: 1, z: 1 }),
             position: "",
             rotation: "",
             interactions: "",
