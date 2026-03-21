@@ -63,11 +63,12 @@ const Menu = () => {
   return (
     <div
       className={clsx(
-        "bg-white p-[20px]",
-        "w-[300px] h-[400px] rounded-[10px]",
+        "p-[20px]",
+        "w-[300px] h-[400px] rounded-[16px]",
         "flex flex-col",
-        "border-[1px] border-solid border-black",
-        "overflow-auto"
+                "overflow-auto [&::-webkit-scrollbar]:hidden",
+        "bg-white/10 backdrop-blur-xl",
+        "shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
       )}
     >
       {isUpdating && (
@@ -93,6 +94,7 @@ const Menu = () => {
         {Boolean(models.length) && <SelectModel />}
 
         <Item
+          variant="violet"
           disabled={
             !selectedModelName ||
             currentModelVisible === null
@@ -140,7 +142,7 @@ const Menu = () => {
         ].map((subject) => (
           <Item
             key={subject}
-            className="bg-green-300"
+            variant="blue"
             disabled={!selectedModelName}
             onClick={handleItemClick(subject)}
           >
@@ -149,6 +151,7 @@ const Menu = () => {
         ))}
 
         <Item
+          variant="green"
           disabled={!selectedModelName}
           onClick={handleItemClick(
             ControllingSubject.LocationCoordinate
@@ -162,14 +165,12 @@ const Menu = () => {
         </Item>
 
         <Item
-          className={"!bg-[#00ceff] mt-auto"}
           onClick={handleCloseClick}
         >
           닫기
         </Item>
 
         <Item
-          className={"!bg-yellow-400"}
           onClick={() => {
             if (navigator.share) {
               const memo = prompt(

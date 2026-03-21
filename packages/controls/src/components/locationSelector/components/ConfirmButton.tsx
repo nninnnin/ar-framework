@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import React from "react";
+import { Button } from "@ar-framework/ui";
 import { useCoordinateStore } from "../store";
 import useModelElement from "../../../hooks/useModelElement";
 import { useControlStore } from "../../../stores/controls";
@@ -40,22 +40,16 @@ const ConfirmButton = () => {
   };
 
   return (
-    <div
-      className={clsx(
-        selectedCoordinate
-          ? "bg-black text-white"
-          : "bg-gray-200 text-gray-300",
-        "font-semibold text-[14px]",
-        "absolute bottom-0 left-0",
-        "translate-y-[100%]",
-        "w-full h-[44px]",
-        "flex justify-center items-center"
-      )}
-      onClick={handleClick}
-    >
-      {isUpdating
-        ? "저장중.."
-        : "새로운 좌표 저장하기"}
+    <div className="absolute bottom-0 left-0 translate-y-[100%] w-full">
+      <Button
+        variant="primary"
+        onClick={handleClick}
+        disabled={!selectedCoordinate}
+        loading={isUpdating}
+        fullWidth
+      >
+        {isUpdating ? "저장중.." : "새로운 좌표 저장하기"}
+      </Button>
     </div>
   );
 };

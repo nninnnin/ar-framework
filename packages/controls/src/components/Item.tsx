@@ -1,34 +1,21 @@
-import clsx from "clsx";
 import React from "react";
-
-import { styles } from "../styles";
+import { Button } from "@ar-framework/ui";
 
 const Item = ({
   children,
-  className = "",
   disabled = false,
+  variant = "surface",
   onClick,
 }: {
   children: React.ReactNode;
-  className?: string;
   disabled?: boolean;
+  variant?: "blue" | "green" | "violet" | "surface";
   onClick: () => void;
 }) => {
-  const IS_DEV = process.env.NODE_ENV === "DEV";
-
   return (
-    <div
-      className={clsx(
-        styles.item,
-        !IS_DEV &&
-          disabled &&
-          "!bg-gray-200 !text-gray-300 pointer-events-none",
-        className
-      )}
-      onClick={onClick}
-    >
+    <Button variant={variant} disabled={disabled} onClick={onClick} fullWidth>
       {children}
-    </div>
+    </Button>
   );
 };
 

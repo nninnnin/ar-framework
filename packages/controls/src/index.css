@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "mapbox-gl/dist/mapbox-gl.css";
+@import "@ar-framework/ui/dist/index.css";
 
 * {
   touch-action: manipulation;
