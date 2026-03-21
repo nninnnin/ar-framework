@@ -2,6 +2,7 @@
   "name": "@ar-framework/controls",
   "packageManager": "yarn@4.6.0",
   "dependencies": {
+    "@ar-framework/ui": "workspace:^",
     "@ar-framework/utils": "workspace:^",
     "clsx": "*",
     "dotenv": "*",
