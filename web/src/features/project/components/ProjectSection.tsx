@@ -84,12 +84,12 @@ const ProjectSection = () => {
                   <motion.div
                     key={projectItem.uid}
                     initial={
-                      initialUids.current?.has(projectItem.uid)
-                        ? false
-                        : { opacity: 0, scale: 0.85 }
+                      initialUids.current
+                        ? { opacity: 0, scale: 0.85 }
+                        : false
                     }
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.85 }}
+                    exit={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4, ease: "easeOut" }}
                   >
                     <ProjectItem

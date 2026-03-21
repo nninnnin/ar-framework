@@ -4,17 +4,15 @@ import { ProjectFormatted } from "@/features/project/types/project";
 const useInitialProjectUids = (
   projects: ProjectFormatted[] | undefined
 ) => {
-  const initialUids = useRef<Set<string> | null>(null);
+  const isInitialized = useRef(false);
 
   useEffect(() => {
-    if (projects && initialUids.current === null) {
-      initialUids.current = new Set(
-        projects.map((p) => p.uid)
-      );
+    if (projects !== undefined && !isInitialized.current) {
+      isInitialized.current = true;
     }
   }, [projects]);
 
-  return initialUids;
+  return isInitialized;
 };
 
 export default useInitialProjectUids;
