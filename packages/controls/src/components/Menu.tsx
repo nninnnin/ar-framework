@@ -170,35 +170,6 @@ const Menu = () => {
           닫기
         </Item>
 
-        <Item
-          onClick={() => {
-            if (navigator.share) {
-              const memo = prompt(
-                "메모와 함께 공유됩니다."
-              );
-              const controlValues = JSON.stringify({
-                ...controls,
-                memo: memo,
-              });
-
-              navigator
-                .share({
-                  title: memo,
-                  text: controlValues, // JSON 데이터를 문자열로 변환하여 공유
-                })
-                .then(() => console.log("공유 성공!"))
-                .catch((error) =>
-                  console.error("공유 실패:", error)
-                );
-            } else {
-              alert(
-                "Web Share API를 지원하지 않는 브라우저입니다."
-              );
-            }
-          }}
-        >
-          설정값 공유하기
-        </Item>
       </div>
     </div>
   );
