@@ -12,11 +12,11 @@
 
 ### 컨텐츠 생성과 3D 모델 탑재
 
-<img src='./docs/images/2.png'>
+<img src='./docs/readme/images/2.png'>
 
 ### 3D 모델 관련 수치 편집 및 저장
 
-<img src='./docs/images/4.png'>
+<img src='./docs/readme/images/4.png'>
 
 ### 메시지 인터페이스
 
