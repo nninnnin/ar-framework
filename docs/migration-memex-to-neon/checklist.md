@@ -2,10 +2,10 @@
 
 ## 1단계: DB 연결 설정
 
-- [ ] `@neondatabase/serverless` 패키지 설치
-- [ ] `web/src/shared/lib/db.ts` 생성 (NEON 연결 인스턴스)
-- [ ] `web/.env.local`에 `DATABASE_URL` 추가
-- [ ] `web/.env.example`에 `DATABASE_URL` 항목 추가
+- [x] `@neondatabase/serverless` 패키지 설치
+- [x] `web/src/shared/lib/db.ts` 생성 (NEON 연결 인스턴스)
+- [x] `web/.env.local`에 `DATABASE_URL` 추가
+- [x] `web/.env.example`에 `DATABASE_URL` 항목 추가
 
 ## 2단계: 엔티티별 fetcher 교체
 
@@ -26,11 +26,10 @@
 - [ ] `updateItem` → `UPDATE glbModels SET ... WHERE uid = $1`
 
 ### 2-4. imageTargets
-- [ ] `getItem` → `SELECT * FROM imageTargets WHERE uid = $1`
-- [ ] `updateItem` → `UPDATE imageTargets SET ... WHERE uid = $1`
+- [x] ~~독립 테이블 없음~~ — `arProjects.imageTarget` jsonb 컬럼에 내장, 별도 교체 불필요
 
 ### 2-5. adminPassword
-- [ ] `getList` → `SELECT * FROM adminPassword LIMIT 1`
+- [x] ~~`getList` → `SELECT * FROM adminPassword LIMIT 1`~~ — 환경변수(`NEXT_PUBLIC_ADMIN_PASSWORD`)로 교체
 
 ## 3단계: 파일 업로드 처리
 
