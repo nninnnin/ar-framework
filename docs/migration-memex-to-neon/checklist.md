@@ -76,8 +76,8 @@
 - [x] `POST /glbModels/api` — GLB 모델 생성 후 uid 반환 확인
 
 ### 4-5-2. S3 업로드 통합 테스트 (Playwright API)
-- [ ] `POST /upload/api` — presigned URL 발급 확인 (key, fileUrl 포함)
-- [ ] presigned URL로 파일 PUT → S3 저장 확인
+- [x] `POST /upload/api` — presigned URL 발급 확인 (key, fileUrl 포함)
+- [x] presigned URL로 파일 PUT → S3 저장 확인
 
 ### 4-5-3. E2E 테스트 (Playwright 브라우저)
 - [ ] 위치기반 AR 프로젝트 생성 (GLB 파일 업로드 포함)
