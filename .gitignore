@@ -25,3 +25,4 @@ web/public/features/controls/index.css
 .playwright-mcp/
 .vscode/
 web/test-results/
+web/tsconfig.tsbuildinfo
