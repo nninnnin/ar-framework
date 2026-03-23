@@ -27,11 +27,17 @@
 
 ## 3단계: 파일 업로드 교체
 
+### 3-1. S3 설정
 - [ ] S3 버킷 및 IAM 설정
 - [ ] `@aws-sdk/client-s3` 패키지 설치
-- [ ] `uploadImageTargetFile.ts` 교체
-- [ ] 업로드 URL을 DB에 저장하는 방식으로 통일
-- [ ] GLB 모델 파일 업로드 경로 동일하게 처리
+- [ ] S3 관련 환경변수 추가 (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `S3_BUCKET_NAME`)
+
+### 3-2. uploadToS3 구현
+- [ ] `web/src/shared/utils/uploadToS3.ts` 생성 — `postMedia` 대체 함수 (파일 받아서 S3에 업로드 후 URL 반환)
+
+### 3-3. 교체 대상
+- [ ] `web/src/features/projectCreation/utils/imageTarget/uploadImageTargetFile.ts` — `postMedia` → `uploadToS3`
+- [ ] `web/src/entities/glbModel/utils/fetchers/index.ts` — `postMedia` → `uploadToS3`
 
 ## 4단계: 일괄 스왑
 
