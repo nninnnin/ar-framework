@@ -35,24 +35,54 @@
 ### 3-2. uploadToS3 구현
 - [x] `web/src/shared/utils/uploadToS3.ts` 생성 — `postMedia` 대체 함수 (파일 받아서 S3에 업로드 후 URL 반환)
 
-### 3-3. 교체 대상
-- [ ] `web/src/features/projectCreation/utils/imageTarget/uploadImageTargetFile.ts` — `postMedia` → `uploadToS3`
-- [ ] `web/src/entities/glbModel/utils/fetchers/index.ts` — `postMedia` → `uploadToS3`
-
 ## 4단계: 일괄 스왑
 
-### 4-1. API 라우트 교체
-- [ ] `web/src/app/groups/api/route.ts` — memex → neon (이미 neon)
-- [ ] `web/src/app/projects/api/route.ts` — memex → neon
-- [ ] `web/src/app/glbModels/api/route.ts` — memex → neon
+### 4-1. postMedia → uploadToS3 교체
+- [x] `web/src/features/projectCreation/utils/imageTarget/uploadImageTargetFile.ts`
+- [x] `web/src/entities/glbModel/utils/fetchers/index.ts`
 
-### 4-2. 기존 fetcher 교체
-- [ ] `web/src/features/group/fetchers/group.ts`
-- [ ] `web/src/features/group/hooks/useGroups.tsx`
-- [ ] `web/src/features/group/types/group.ts`
-- [ ] `web/src/entities/project/utils/fetchers/index.ts`
-- [ ] `web/src/entities/glbModel/utils/fetchers/index.ts`
-- [ ] `web/src/entities/project/tests/createProject.ts`
+### 4-2. API 라우트 교체
+- [x] `web/src/app/groups/api/route.ts` — 이미 neon
+- [x] `web/src/app/projects/api/route.ts` — memex → neon
+- [x] `web/src/app/glbModels/api/route.ts` — memex → neon
+
+### 4-3. 기존 fetcher 교체
+- [x] `web/src/features/group/fetchers/group.ts`
+- [x] `web/src/features/group/hooks/useGroups.tsx`
+- [x] `web/src/features/group/types/group.ts`
+- [x] `web/src/entities/project/utils/fetchers/index.ts`
+- [x] `web/src/entities/glbModel/utils/fetchers/index.ts`
+- [x] `web/src/entities/project/tests/createProject.ts`
+
+## 4.5단계: 테스트
+
+### 테스트 전략
+
+| 대상 | 방식 | 이유 |
+|---|---|---|
+| API 라우트 CRUD | **Playwright (API 모드)** | DB 실연결 필요, 브라우저 불필요 |
+| S3 업로드 전체 흐름 | **Playwright (API 모드)** | presigned URL → S3 PUT 실연결 필요 |
+| 프로젝트 생성 E2E | **Playwright (브라우저)** | 파일 업로드 포함 전체 UI 플로우 검증 |
+
+> 유닛 테스트는 순수 함수(포맷터, 트랜스폼)에만 적합하고, 이번 마이그레이션의 핵심 리스크는 DB·S3 연동이므로 통합/E2E 위주로 테스트.
+
+### 4-5-1. API 통합 테스트 (Playwright API)
+- [ ] `GET /groups/api` — 그룹 목록 반환 확인
+- [ ] `POST /groups/api` — 그룹 생성 후 DB 저장 확인
+- [ ] `GET /projects/api?groupName=X` — 프로젝트 목록 반환 확인
+- [ ] `POST /projects/api` — 프로젝트 생성 후 uid 반환 확인
+- [ ] `PUT /projects/api?projectId=X` — 프로젝트 수정 확인
+- [ ] `GET /glbModels/api` — GLB 모델 목록 반환 확인
+- [ ] `POST /glbModels/api` — GLB 모델 생성 후 uid 반환 확인
+
+### 4-5-2. S3 업로드 통합 테스트 (Playwright API)
+- [ ] `POST /upload/api` — presigned URL 발급 확인 (key, fileUrl 포함)
+- [ ] presigned URL로 파일 PUT → S3 저장 확인
+
+### 4-5-3. E2E 테스트 (Playwright 브라우저)
+- [ ] 위치기반 AR 프로젝트 생성 (GLB 파일 업로드 포함)
+- [ ] 이미지마커 AR 프로젝트 생성 (이미지 타겟 + GLB 업로드 포함)
+- [ ] 그룹 생성 및 목록 노출 확인
 
 ## 5단계: 타입 및 의존성 정리
 
