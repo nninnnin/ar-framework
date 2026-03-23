@@ -22,9 +22,7 @@ const createNextApiFetcher = ({
       if (entity === "project") {
         return await axiosInstance.get<T>("", {
           params: {
-            groupName: encodeURIComponent(
-              filter?.groupName ?? ""
-            ),
+            groupName: filter?.groupName ?? "",
           },
         });
       }

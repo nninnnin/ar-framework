@@ -13,6 +13,7 @@ const useProjects = (filter: {
 }) => {
   return useQuery<ProjectFormatted[], null>({
     queryKey: [QueryKeys.Projects, filter.groupName],
+    enabled: !!filter.groupName,
     queryFn: async () => {
       const { data } = await apiFetcher.getItems<
         ProjectFormatted[]

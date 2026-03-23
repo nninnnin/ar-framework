@@ -75,7 +75,7 @@ export const formatProjectItem = (
           data,
           ["glbModels", "imageTarget"],
           (glbModels: RelationInterface[]) => {
-            return glbModels.map((glbModel) => ({
+            return (glbModels ?? []).map((glbModel) => ({
               uid: glbModel.uid,
               name: deconstructLanguageMap(
                 glbModel,

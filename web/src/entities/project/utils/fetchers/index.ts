@@ -32,15 +32,9 @@ export const getProjects = async (
 ): Promise<ProjectFormatted[]> => {
   const params = new URLSearchParams();
   if (filter.groupName)
-    params.set(
-      "groupName",
-      encodeURIComponent(filter.groupName)
-    );
+    params.set("groupName", filter.groupName);
   if (filter.templateId)
-    params.set(
-      "templateId",
-      encodeURIComponent(filter.templateId)
-    );
+    params.set("templateId", filter.templateId);
   const res = await fetch(`${BASE_URL()}?${params}`);
   return res.json();
 };
