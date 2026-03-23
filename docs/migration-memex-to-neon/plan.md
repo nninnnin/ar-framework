@@ -45,13 +45,15 @@ After:  NEON PostgreSQL → DB 쿼리 → Next.js API Routes → React Frontend
 
 #### 2-2. arProjects
 
-- `web/src/app/projects/api/route.ts` 교체
-- GET(list), GET(item), POST, PUT
+- `web/src/app/projects/api/handlers/neon.ts` 작성 (GET list, GET item, POST, PUT)
+- `web/src/app/projects/api/handlers/memex.ts` — 기존 로직 보존
+- `web/src/app/projects/api/route.ts` — import 교체로 스왑
 
 #### 2-3. glbModels
 
-- `web/src/app/glbModels/api/route.ts` 교체
-- GET(list), GET(item), POST, PUT
+- `web/src/app/glbModels/api/handlers/neon.ts` 작성 (GET list, GET item, POST, PUT)
+- `web/src/app/glbModels/api/handlers/memex.ts` — 기존 로직 보존
+- `web/src/app/glbModels/api/route.ts` — import 교체로 스왑
 
 ### 3단계: 파일 업로드 교체
 

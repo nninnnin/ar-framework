@@ -3,20 +3,27 @@
 ## 1단계: DB 연결 설정
 
 - [x] `@neondatabase/serverless` 패키지 설치
-- [x] `web/src/shared/lib/db.ts` 생성 (NEON 연결 인스턴스)
+- [x] `drizzle-orm` 패키지 설치
+- [x] `web/src/shared/lib/db.ts` 생성 (NEON + Drizzle 연결)
+- [x] `web/src/shared/lib/schema.ts` 생성 (Drizzle 스키마)
 - [x] `web/.env.local`에 `DATABASE_URL` 추가
 - [x] `web/.env.example`에 `DATABASE_URL` 항목 추가
 
-## 2단계: 엔티티별 API 라우트 작성
+## 2단계: 엔티티별 핸들러 작성
 
 ### 2-1. projectGroups
-- [x] `web/src/app/groups/api/route.ts` 생성 (GET, POST)
+- [x] `web/src/app/groups/api/handlers/queries/` 작성
+- [x] `web/src/app/groups/api/handlers/neon.ts` 작성
 
 ### 2-2. arProjects
-- [ ] `web/src/app/projects/api/route.ts` 교체 (GET list, GET item, POST, PUT)
+- [x] `web/src/app/projects/api/handlers/queries/` 작성
+- [x] `web/src/app/projects/api/handlers/neon.ts` 작성
+- [x] `web/src/app/projects/api/handlers/memex.ts` 기존 로직 분리
 
 ### 2-3. glbModels
-- [ ] `web/src/app/glbModels/api/route.ts` 교체 (GET list, GET item, POST, PUT)
+- [x] `web/src/app/glbModels/api/handlers/queries/` 작성
+- [x] `web/src/app/glbModels/api/handlers/neon.ts` 작성
+- [x] `web/src/app/glbModels/api/handlers/memex.ts` 기존 로직 분리
 
 ## 3단계: 파일 업로드 교체
 
@@ -26,8 +33,14 @@
 - [ ] 업로드 URL을 DB에 저장하는 방식으로 통일
 - [ ] GLB 모델 파일 업로드 경로 동일하게 처리
 
-## 4단계: 기존 fetcher 일괄 교체
+## 4단계: 일괄 스왑
 
+### 4-1. API 라우트 교체
+- [ ] `web/src/app/groups/api/route.ts` — memex → neon (이미 neon)
+- [ ] `web/src/app/projects/api/route.ts` — memex → neon
+- [ ] `web/src/app/glbModels/api/route.ts` — memex → neon
+
+### 4-2. 기존 fetcher 교체
 - [ ] `web/src/features/group/fetchers/group.ts`
 - [ ] `web/src/features/group/hooks/useGroups.tsx`
 - [ ] `web/src/features/group/types/group.ts`
