@@ -1,87 +1,80 @@
-import { createMemexFetcher } from "@rebel9/memex-fetcher";
-
-import {
-  Project,
-  ProjectBody,
-} from "@/features/project/types/project";
 import { ProjectFilter } from "@/entities/project/types";
+import {
+  ProjectBody,
+  ProjectFormatted,
+} from "@/features/project/types/project";
 import { UpdateBody } from "@/shared/types";
 
-const memexFetcher = createMemexFetcher(
-  process.env.MEMEX_TOKEN ?? ""
-);
+const BASE_URL = () =>
+  `${process.env.NEXT_URL}/projects/api`;
 
 export const getProjectItem = async (
   projectItemUid: string
-): Promise<Project> => {
-  const res = await memexFetcher.getItem(
-    process.env.MEMEX_PROJECT_ID ?? "",
-    "arProjects",
-    projectItemUid
+): Promise<ProjectFormatted> => {
+  const res = await fetch(
+    `${BASE_URL()}?projectId=${projectItemUid}`
   );
-
-  const result = await res.json();
-
-  return result;
+  return res.json();
 };
 
 export const createProject = async (
   projectBody: ProjectBody
 ) => {
-  return await memexFetcher.postItem(
-    process.env.MEMEX_PROJECT_ID ?? "",
-    "arProjects",
-    projectBody
-  );
+  return fetch(BASE_URL(), {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(projectBody),
+  });
 };
 
 export const getProjects = async (
   filter: ProjectFilter
-) => {
-  return await memexFetcher.getList(
-    process.env.MEMEX_PROJECT_ID ?? "",
-    "arProjects",
-    {
-      page: 0,
-      size: 1000,
-      searchConds: filter.groupName
-        ? [
-            {
-              componentType: "RELATION",
-              devKey: "groupName",
-              condition: `{ "type": "SAME", "language": "KO", "keyword": "${decodeURIComponent(
-                filter.groupName
-              )}" }`,
-            },
-          ]
-        : filter.templateId
-        ? [
-            {
-              componentType: "SINGLE_LINE_TEXT_MONO",
-              devKey: "templateId",
-              condition: `{ "type": "SAME", "keyword": "${decodeURIComponent(
-                filter.templateId
-              )}" }`,
-            },
-          ]
-        : [],
-    }
-  );
+): Promise<ProjectFormatted[]> => {
+  const params = new URLSearchParams();
+  if (filter.groupName)
+    params.set(
+      "groupName",
+      encodeURIComponent(filter.groupName)
+    );
+  if (filter.templateId)
+    params.set(
+      "templateId",
+      encodeURIComponent(filter.templateId)
+    );
+  const res = await fetch(`${BASE_URL()}?${params}`);
+  return res.json();
 };
 
 export const getProjectTypes = async () => {
-  return await memexFetcher.getCategories(
-    process.env.MEMEX_PROJECT_ID ?? "",
-    "arProjects"
-  );
+  return {
+    list: [
+      {
+        categories: [
+          {
+            id: 4682,
+            order: 1,
+            languageMap: { KO: "위치기반 AR" },
+          },
+          {
+            id: 4683,
+            order: 2,
+            languageMap: { KO: "얼굴인식 AR" },
+          },
+          {
+            id: 4684,
+            order: 3,
+            languageMap: { KO: "이미지마커 AR" },
+          },
+        ],
+      },
+    ],
+  };
 };
 
-export const updateProject = async (
-  body: UpdateBody
-) => {
-  return await memexFetcher.updateItem(
-    process.env.MEMEX_PROJECT_ID ?? "",
-    "arProjects",
-    body
-  );
+export const updateProject = async (body: UpdateBody) => {
+  return fetch(`${BASE_URL()}?projectId=${body.uid}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
 };

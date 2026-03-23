@@ -1,49 +1,42 @@
-import { pipe } from "@rebel9/memex-fetcher";
-
 import { ProjectFilter } from "@/entities/project/types";
+import {
+  ProjectBody,
+  ProjectFormatted,
+} from "@/features/project/types/project";
+import { UpdateBody } from "@/shared/types";
 import {
   getProjectItem,
   getProjects,
   updateProject,
   createProject as fetchCreateProject,
 } from "@/entities/project/utils/fetchers";
-import {
-  Project,
-  ProjectBody,
-  ProjectFormatted,
-} from "@/features/project/types/project";
-import { UpdateBody } from "@/shared/types";
-import { formatProjectList } from "@/entities/project/utils/formatters";
 
 class ProjectService {
   constructor() {}
 
   async createProject(body: ProjectBody) {
-    return await fetchCreateProject(body);
+    return fetchCreateProject(body);
   }
 
   async getProject({
     projectId,
   }: {
     projectId: string;
-  }): Promise<Project> {
-    return pipe(projectId, getProjectItem);
+  }): Promise<ProjectFormatted> {
+    return getProjectItem(projectId);
   }
 
   async getProjects(
     filter: ProjectFilter
   ): Promise<ProjectFormatted[]> {
-    const res = await getProjects(filter);
-    const result = await res.json();
-
-    return pipe(result, formatProjectList);
+    return getProjects(filter);
   }
 
   async updateProject(body: UpdateBody) {
-    return await updateProject(body);
+    return updateProject(body);
   }
 
-  async removeProject(uid: string) {}
+  async removeProject(_uid: string) {}
 }
 
 export default ProjectService;

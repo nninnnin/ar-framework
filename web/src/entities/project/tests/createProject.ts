@@ -15,9 +15,7 @@ export const createProject = {
   code: async () => {
     const projectService = new ProjectService();
 
-    const res = await getProjectTypes();
-    const projectTypes = await res.json();
-
+    const projectTypes = await getProjectTypes();
     const formatted = formatProjectTypes(projectTypes);
 
     const projectTypeId = await getProjectTypeId(
@@ -31,8 +29,7 @@ export const createProject = {
       );
     }
 
-    const groupRes = await getGroups();
-    const groups = groupRes.data;
+    const groups = await getGroups();
 
     const body = createProjectBody({
       projectName: "새로운 프로젝트",

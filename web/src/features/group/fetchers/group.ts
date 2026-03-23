@@ -1,34 +1,14 @@
-import { createMemexFetcher } from "@rebel9/memex-fetcher";
+import createNextApiFetcher from "@/shared/utils/nextApiFetcher";
 
-const memexFetcher = createMemexFetcher(
-  process.env.MEMEX_TOKEN ?? ""
-);
+import { GroupFormatted } from "@/features/group/types/group";
 
-export const createGroup = async (
-  groupName: string
-) => {
-  return await memexFetcher.postItem(
-    process.env.MEMEX_PROJECT_ID ?? "",
-    "projectGroups",
-    {
-      publish: true,
-      data: {
-        name: {
-          KO: groupName,
-        },
-        projects: [],
-      },
-    }
-  );
+const groupFetcher = createNextApiFetcher({ entity: "group" });
+
+export const createGroup = async (groupName: string) => {
+  return groupFetcher.createItem({ name: groupName });
 };
 
-export const getGroups = async () => {
-  return await memexFetcher.getList(
-    process.env.MEMEX_PROJECT_ID ?? "",
-    "projectGroups",
-    {
-      page: 0,
-      size: 1000,
-    }
-  );
+export const getGroups = async (): Promise<GroupFormatted[]> => {
+  const res = await groupFetcher.getItems<GroupFormatted[]>();
+  return res.data;
 };

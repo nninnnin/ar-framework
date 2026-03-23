@@ -1,13 +1,8 @@
-import { createMemexFetcher } from "@rebel9/memex-fetcher";
-
 import { UpdateBody } from "@/shared/types";
 import { uploadToS3 } from "@/shared/utils/uploadToS3";
 
-const TOKEN = process.env.MEMEX_TOKEN ?? "";
-const PROJECT_ID = process.env.MEMEX_PROJECT_ID ?? "";
-const MODEL_NAME = "glbModels";
-
-const memexFetcher = createMemexFetcher(TOKEN);
+const BASE_URL = () =>
+  `${process.env.NEXT_URL}/glbModels/api`;
 
 export type GlbModelUploadResult = {
   url: string;
@@ -26,29 +21,15 @@ export const uploadGlbModels = (
 };
 
 export const getGlbModel = async (uid: string) => {
-  return await memexFetcher.getItem(
-    PROJECT_ID,
-    MODEL_NAME,
-    uid
+  const res = await fetch(
+    `${BASE_URL()}?glbModelId=${uid}`
   );
+  return res.json();
 };
 
 export const getGlbModels = async () => {
-  return await memexFetcher.getList(
-    PROJECT_ID,
-    MODEL_NAME,
-    {
-      page: 0,
-      size: 1000,
-      searchConds: [
-        {
-          componentType: "BOOLEAN",
-          devKey: "isDeleted",
-          condition: "{ value: false }",
-        },
-      ],
-    }
-  );
+  const res = await fetch(BASE_URL());
+  return res.json();
 };
 
 export const postGlbModels = async (
@@ -56,42 +37,28 @@ export const postGlbModels = async (
 ) => {
   return Promise.all(
     uploadedResult.map(async (item) => {
-      const res = await memexFetcher.postItem(
-        PROJECT_ID,
-        MODEL_NAME,
-        {
-          publish: true,
+      const res = await fetch(BASE_URL(), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           data: {
-            name: {
-              KO: item.name,
-            },
+            name: { KO: item.name },
             mediaPath: item.url,
-            isDeleted: "false",
-            visibility: "true",
-            latitude: "",
-            longitude: "",
-            scale: JSON.stringify({ x: 1, y: 1, z: 1 }),
-            position: "",
-            rotation: "",
-            interactions: "",
           },
-        },
-        {
-          "Content-Type": "application/json",
-        }
-      );
-
-      return await res.text();
+        }),
+      });
+      return res.text();
     })
   );
 };
 
-export const updateGlbModel = async (
-  body: UpdateBody
-) => {
-  return await memexFetcher.updateItem(
-    PROJECT_ID,
-    MODEL_NAME,
-    body
+export const updateGlbModel = async (body: UpdateBody) => {
+  return fetch(
+    `${BASE_URL()}?glbModelId=${body.uid}`,
+    {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    }
   );
 };
