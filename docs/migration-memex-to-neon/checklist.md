@@ -67,13 +67,13 @@
 > 유닛 테스트는 순수 함수(포맷터, 트랜스폼)에만 적합하고, 이번 마이그레이션의 핵심 리스크는 DB·S3 연동이므로 통합/E2E 위주로 테스트.
 
 ### 4-5-1. API 통합 테스트 (Playwright API)
-- [ ] `GET /groups/api` — 그룹 목록 반환 확인
-- [ ] `POST /groups/api` — 그룹 생성 후 DB 저장 확인
-- [ ] `GET /projects/api?groupName=X` — 프로젝트 목록 반환 확인
-- [ ] `POST /projects/api` — 프로젝트 생성 후 uid 반환 확인
-- [ ] `PUT /projects/api?projectId=X` — 프로젝트 수정 확인
-- [ ] `GET /glbModels/api` — GLB 모델 목록 반환 확인
-- [ ] `POST /glbModels/api` — GLB 모델 생성 후 uid 반환 확인
+- [x] `GET /groups/api` — 그룹 목록 반환 확인
+- [x] `POST /groups/api` — 그룹 생성 후 DB 저장 확인
+- [x] `GET /projects/api?groupName=X` — 프로젝트 목록 반환 확인
+- [x] `POST /projects/api` — 프로젝트 생성 후 uid 반환 확인
+- [x] `PUT /projects/api?projectId=X` — 프로젝트 수정 확인
+- [x] `GET /glbModels/api` — GLB 모델 목록 반환 확인
+- [x] `POST /glbModels/api` — GLB 모델 생성 후 uid 반환 확인
 
 ### 4-5-2. S3 업로드 통합 테스트 (Playwright API)
 - [ ] `POST /upload/api` — presigned URL 발급 확인 (key, fileUrl 포함)
