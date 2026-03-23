@@ -33,7 +33,7 @@
 - [x] S3 관련 환경변수 추가 (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `S3_BUCKET_NAME`)
 
 ### 3-2. uploadToS3 구현
-- [ ] `web/src/shared/utils/uploadToS3.ts` 생성 — `postMedia` 대체 함수 (파일 받아서 S3에 업로드 후 URL 반환)
+- [x] `web/src/shared/utils/uploadToS3.ts` 생성 — `postMedia` 대체 함수 (파일 받아서 S3에 업로드 후 URL 반환)
 
 ### 3-3. 교체 대상
 - [ ] `web/src/features/projectCreation/utils/imageTarget/uploadImageTargetFile.ts` — `postMedia` → `uploadToS3`
