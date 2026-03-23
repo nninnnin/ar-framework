@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@ar-framework/utils": "*",
@@ -41,6 +42,7 @@
   "devDependencies": {
     "@babel/preset-react": "^7.26.3",
     "@emotion/babel-plugin": "^11.13.5",
+    "@playwright/test": "^1.58.2",
     "@types/lodash": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
