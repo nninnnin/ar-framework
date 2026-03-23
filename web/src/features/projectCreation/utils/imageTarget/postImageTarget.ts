@@ -1,4 +1,3 @@
-import { MediaUploadResult } from "@/shared/types";
 import { createMemexFetcher } from "@rebel9/memex-fetcher";
 
 const TOKEN = process.env.MEMEX_TOKEN ?? "";
@@ -8,21 +7,17 @@ const MODEL_NAME = "imageTargets";
 const memexFetcher = createMemexFetcher(TOKEN);
 
 export const postImageTarget = async (
-  mediaUploadResult: MediaUploadResult
+  fileUrl: string,
+  fileName: string
 ) => {
-  const name = {
-    KO: mediaUploadResult.file.name,
-  };
-  const path = mediaUploadResult.file.path;
-
   const response = await memexFetcher.postItem(
     PROJECT_ID,
     MODEL_NAME,
     {
       publish: true,
       data: {
-        name,
-        path,
+        name: { KO: fileName },
+        path: fileUrl,
       },
     },
     {

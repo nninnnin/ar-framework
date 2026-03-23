@@ -1,9 +1,7 @@
-import {
-  MediaUploadResult,
-  UpdateBody,
-} from "@/shared/types";
-
 import { createMemexFetcher } from "@rebel9/memex-fetcher";
+
+import { UpdateBody } from "@/shared/types";
+import { uploadToS3 } from "@/shared/utils/uploadToS3";
 
 const TOKEN = process.env.MEMEX_TOKEN ?? "";
 const PROJECT_ID = process.env.MEMEX_PROJECT_ID ?? "";
@@ -11,16 +9,19 @@ const MODEL_NAME = "glbModels";
 
 const memexFetcher = createMemexFetcher(TOKEN);
 
+export type GlbModelUploadResult = {
+  url: string;
+  name: string;
+};
+
 export const uploadGlbModels = (
   models: Array<File>
-) => {
+): Promise<GlbModelUploadResult[]> => {
   return Promise.all(
-    models.map(async (file) => {
-      return await memexFetcher.postMedia(
-        PROJECT_ID,
-        file
-      );
-    })
+    models.map(async (file) => ({
+      url: await uploadToS3(file),
+      name: file.name,
+    }))
   );
 };
 
@@ -51,7 +52,7 @@ export const getGlbModels = async () => {
 };
 
 export const postGlbModels = async (
-  uploadedResult: MediaUploadResult[]
+  uploadedResult: GlbModelUploadResult[]
 ) => {
   return Promise.all(
     uploadedResult.map(async (item) => {
@@ -62,9 +63,9 @@ export const postGlbModels = async (
           publish: true,
           data: {
             name: {
-              KO: item.value,
+              KO: item.name,
             },
-            mediaPath: item.file.path,
+            mediaPath: item.url,
             isDeleted: "false",
             visibility: "true",
             latitude: "",

@@ -118,14 +118,15 @@ const ProjectCreationFunnel = () => {
             let postedImageTargetId = null;
 
             if (context.imageTargetFile) {
-              const imageTargetUploadResult =
+              const imageTargetUrl =
                 await uploadImageTargetFile(
                   context.imageTargetFile
                 );
 
               postedImageTargetId =
                 await postImageTarget(
-                  imageTargetUploadResult
+                  imageTargetUrl,
+                  context.imageTargetFile.name
                 );
             }
 
