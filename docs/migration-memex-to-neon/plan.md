@@ -10,18 +10,19 @@ BFF 내부의 Memex fetcher 호출부만 DB 쿼리로 교체한다.
 
 ```
 Before: Memex CMS → memexFetcher → Next.js API Routes → React Frontend
+
 After:  NEON PostgreSQL → DB 쿼리 → Next.js API Routes → React Frontend
 ```
 
 ## 데이터 모델
 
-| 테이블 | 설명 |
-|--------|------|
-| `arProjects` | 메인 프로젝트 |
-| `glbModels` | 3D 모델 |
-| `imageTargets` | 이미지 타겟 마커 |
-| `projectGroups` | 프로젝트 그룹 |
-| `adminPassword` | 관리자 인증 |
+| 테이블          | 설명             |
+| --------------- | ---------------- |
+| `arProjects`    | 메인 프로젝트    |
+| `glbModels`     | 3D 모델          |
+| `imageTargets`  | 이미지 타겟 마커 |
+| `projectGroups` | 프로젝트 그룹    |
+| `adminPassword` | 관리자 인증      |
 
 ## 단계별 플랜
 
