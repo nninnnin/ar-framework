@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm";
+import { desc, sql } from "drizzle-orm";
 
 import { db } from "@/shared/lib/db";
 import { arProjects } from "@/shared/lib/schema";
@@ -12,5 +12,6 @@ export async function findProjectsByGroup(
     .where(
       sql`${arProjects.isDeleted} IS NOT TRUE
     AND ${arProjects.groupName}::text LIKE ${"%" + groupName + "%"}`,
-    );
+    )
+    .orderBy(desc(arProjects.createdAt));
 }

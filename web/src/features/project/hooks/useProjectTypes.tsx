@@ -18,9 +18,7 @@ const useProjectTypes = () => {
   >({
     queryKey: [QueryKeys.ProjectTypes],
     queryFn: async () => {
-      const res = await getProjectTypes();
-
-      return await res.json();
+      return await getProjectTypes();
     },
     select: formatProjectTypes,
   });

@@ -6,9 +6,9 @@ type PresignedUpload = {
 
 const getPresignedUpload = async (
   fileName: string,
-  contentType: string
+  contentType: string,
 ): Promise<PresignedUpload> => {
-  const res = await fetch("/api/upload", {
+  const res = await fetch("/upload/api", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ fileName, contentType }),
@@ -18,7 +18,7 @@ const getPresignedUpload = async (
 
 const uploadFileWithPresignedUrl = async (
   presignedUrl: string,
-  file: File
+  file: File,
 ): Promise<void> => {
   await fetch(presignedUrl, {
     method: "PUT",
@@ -27,11 +27,11 @@ const uploadFileWithPresignedUrl = async (
   });
 };
 
-export const uploadToS3 = async (file: File): Promise<string> => {
-  const { presignedUrl, fileUrl } = await getPresignedUpload(
-    file.name,
-    file.type
-  );
+export const uploadToS3 = async (
+  file: File,
+): Promise<string> => {
+  const { presignedUrl, fileUrl } =
+    await getPresignedUpload(file.name, file.type);
   await uploadFileWithPresignedUrl(presignedUrl, file);
   return fileUrl;
 };

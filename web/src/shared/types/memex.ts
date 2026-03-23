@@ -58,9 +58,9 @@ export interface CategoryInterface {
 export interface CategoryItemInterface {
   id: number;
   order: number;
-  parentId: null | number;
+  parentId?: null | number;
   languageMap: LanguageMap;
-  childList: Array<number>;
+  childList?: Array<number>;
 }
 
 export interface RelationInterface {
