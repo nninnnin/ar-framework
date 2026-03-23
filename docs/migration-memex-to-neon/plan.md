@@ -33,53 +33,50 @@ After:  NEON PostgreSQL → DB 쿼리 → Next.js API Routes → React Frontend
 - `web/.env.local`에 `DATABASE_URL` 추가
 - `web/.env.example`에 `DATABASE_URL` 항목 추가
 
-### 2단계: 엔티티별 fetcher 교체
+### 2단계: 엔티티별 API 라우트 작성
 
-각 엔티티의 fetcher를 Memex API 호출에서 SQL 쿼리로 교체한다.
-기존 formatter 로직은 최대한 재사용하되, DB 응답 구조에 맞게 조정한다.
+각 엔티티에 대한 NEON 기반 API 라우트를 새로 작성한다.
+기존 Memex fetcher 코드는 이 단계에서 건드리지 않는다.
 
 #### 2-1. projectGroups
 
-- 파일: `web/src/features/group/fetchers/group.ts`
-- 교체 대상: `getList` → `SELECT`, `postItem` → `INSERT`
+- `web/src/app/groups/api/route.ts` 생성
+- GET: `SELECT`, POST: `INSERT`
 
 #### 2-2. arProjects
 
-- 파일: `web/src/entities/project/utils/fetchers/index.ts`
-- 교체 대상: `getList`, `getItem`, `postItem`, `updateItem`
+- `web/src/app/projects/api/route.ts` 교체
+- GET(list), GET(item), POST, PUT
 
 #### 2-3. glbModels
 
-- 파일: `web/src/entities/glbModel/utils/fetchers/index.ts`
-- 교체 대상: `getList`, `getItem`, `postItem`, `updateItem`
+- `web/src/app/glbModels/api/route.ts` 교체
+- GET(list), GET(item), POST, PUT
 
-#### 2-4. imageTargets
-
-- 파일: `web/src/entities/imageTarget/utils/getImageTarget.ts`
-- 파일: `web/src/entities/imageTarget/utils/updateImageTarget.ts`
-- 교체 대상: `getItem`, `updateItem`
-
-#### 2-5. adminPassword
-
-- 파일: `web/src/features/lock/hooks/useAdminPassword.tsx`
-- 교체 대상: `getList`
-
-### 3단계: 파일 업로드 처리
+### 3단계: 파일 업로드 교체
 
 현재 Memex `postMedia()`로 업로드하던 파일을 별도 스토리지로 교체한다.
 
-- 스토리지 선택 (S3 / Vercel Blob / R2 등)
+- 스토리지: S3
 - `web/src/features/projectCreation/utils/imageTarget/uploadImageTargetFile.ts` 교체
 - 업로드 후 반환된 URL을 DB에 저장하는 방식으로 통일
 
-### 4단계: 타입 정리
+### 4단계: 기존 fetcher 일괄 교체
 
-- `web/src/shared/types/memex.ts` — Memex 래퍼 타입 제거 또는 단순화
+2단계 API 라우트와 3단계 파일 업로드가 모두 준비된 후, 기존 Memex fetcher 호출부를 한꺼번에 교체한다.
+
+- `web/src/features/group/fetchers/group.ts`
+- `web/src/features/group/hooks/useGroups.tsx`
+- `web/src/features/group/types/group.ts`
+- `web/src/entities/project/utils/fetchers/index.ts`
+- `web/src/entities/glbModel/utils/fetchers/index.ts`
+- `web/src/entities/project/tests/createProject.ts`
+
+### 5단계: 타입 및 의존성 정리
+
+- `web/src/shared/types/memex.ts` — Memex 래퍼 타입 제거
 - `MemexModelItem<T>`, `MemexListResult<T>` 등을 직접 타입으로 교체
 - 각 엔티티 타입을 DB 스키마 기반으로 재정의
-
-### 5단계: 의존성 정리
-
 - `@rebel9/memex-fetcher` 패키지 제거
 - `MEMEX_TOKEN`, `MEMEX_PROJECT_ID` 환경변수 제거
 - `.env.example` 업데이트

@@ -6,6 +6,8 @@
 - 상세 플랜: [docs/migration-memex-to-neon/plan.md](./migration-memex-to-neon/plan.md)
 - 체크리스트: [docs/migration-memex-to-neon/checklist.md](./migration-memex-to-neon/checklist.md)
 
+파일 업로드 스토리지: **S3**
+
 **상태:** 진행 중
 
 ---
