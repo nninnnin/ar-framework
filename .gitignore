@@ -26,3 +26,4 @@ web/public/features/controls/index.css
 .vscode/
 web/test-results/
 web/tsconfig.tsbuildinfo
+.claude/
