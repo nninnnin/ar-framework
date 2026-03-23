@@ -178,6 +178,7 @@ const RAW_RUNTIME_STATE =
           ["@fxts/core", "npm:1.5.0"],\
           ["@google/model-viewer", "virtual:60286fc9680d883f368f47a419f749645547cddc939bda6b5c005b9b039ae91df1d09d17e219c23b9ca0c5636f81309cc56117d698d714e4354cd244bef41e39#npm:4.0.0"],\
           ["@neondatabase/serverless", "npm:1.0.2"],\
+          ["@playwright/test", "npm:1.58.2"],\
           ["@rebel9/memex-fetcher", "npm:1.5.2"],\
           ["@tanstack/react-query", "virtual:60286fc9680d883f368f47a419f749645547cddc939bda6b5c005b9b039ae91df1d09d17e219c23b9ca0c5636f81309cc56117d698d714e4354cd244bef41e39#npm:5.67.3"],\
           ["@toss/use-overlay", "virtual:60286fc9680d883f368f47a419f749645547cddc939bda6b5c005b9b039ae91df1d09d17e219c23b9ca0c5636f81309cc56117d698d714e4354cd244bef41e39#npm:1.4.2"],\
@@ -4263,6 +4264,16 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../.yarn/berry/cache/@pkgjs-parseargs-npm-0.11.0-cd2a3fe948-10c0.zip/node_modules/@pkgjs/parseargs/",\
         "packageDependencies": [\
           ["@pkgjs/parseargs", "npm:0.11.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@playwright/test", [\
+      ["npm:1.58.2", {\
+        "packageLocation": "../../../.yarn/berry/cache/@playwright-test-npm-1.58.2-03a96deb3c-10c0.zip/node_modules/@playwright/test/",\
+        "packageDependencies": [\
+          ["@playwright/test", "npm:1.58.2"],\
+          ["playwright", "npm:1.58.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -9200,6 +9211,14 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["fsevents", [\
+      ["patch:fsevents@npm%3A2.3.2#optional!builtin<compat/fsevents>::version=2.3.2&hash=df0bf1", {\
+        "packageLocation": "./.yarn/unplugged/fsevents-patch-19706e7e35/node_modules/fsevents/",\
+        "packageDependencies": [\
+          ["fsevents", "patch:fsevents@npm%3A2.3.2#optional!builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"],\
+          ["node-gyp", "npm:11.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["patch:fsevents@npm%3A2.3.3#optional!builtin<compat/fsevents>::version=2.3.3&hash=df0bf1", {\
         "packageLocation": "./.yarn/unplugged/fsevents-patch-6b67494872/node_modules/fsevents/",\
         "packageDependencies": [\
@@ -10597,7 +10616,7 @@ const RAW_RUNTIME_STATE =
           ["@next/swc-win32-arm64-msvc", "npm:15.2.2"],\
           ["@next/swc-win32-x64-msvc", "npm:15.2.2"],\
           ["@opentelemetry/api", null],\
-          ["@playwright/test", null],\
+          ["@playwright/test", "npm:1.58.2"],\
           ["@swc/counter", "npm:0.1.3"],\
           ["@swc/helpers", "npm:0.5.15"],\
           ["@types/babel-plugin-react-compiler", null],\
@@ -11053,6 +11072,26 @@ const RAW_RUNTIME_STATE =
           ["confbox", "npm:0.1.8"],\
           ["mlly", "npm:1.8.2"],\
           ["pathe", "npm:2.0.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["playwright", [\
+      ["npm:1.58.2", {\
+        "packageLocation": "../../../.yarn/berry/cache/playwright-npm-1.58.2-0c12daad27-10c0.zip/node_modules/playwright/",\
+        "packageDependencies": [\
+          ["playwright", "npm:1.58.2"],\
+          ["fsevents", "patch:fsevents@npm%3A2.3.2#optional!builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"],\
+          ["playwright-core", "npm:1.58.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["playwright-core", [\
+      ["npm:1.58.2", {\
+        "packageLocation": "../../../.yarn/berry/cache/playwright-core-npm-1.58.2-7d85ddc78a-10c0.zip/node_modules/playwright-core/",\
+        "packageDependencies": [\
+          ["playwright-core", "npm:1.58.2"]\
         ],\
         "linkType": "HARD"\
       }]\
