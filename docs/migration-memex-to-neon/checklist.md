@@ -112,15 +112,15 @@
   - [x] `features/projectCreation/utils/imageTarget/postImageTarget.ts` (현재 Memex `postItem` 사용)
   - [x] `entities/imageTarget/utils/getImageTarget.ts` (현재 Memex `getItem` 사용)
   - [x] `entities/imageTarget/utils/updateImageTarget.ts` (현재 Memex `updateItem` 사용)
-- [ ] **템플릿 데이터 Neon 마이그레이션** — 아래 파일 Neon API 호출로 교체:
-  - [ ] `app/templates/utils/fetchers/glbModels.ts` (현재 Memex `getList` 사용)
-  - [ ] `app/templates/utils/fetchers/targetImage.ts` (현재 Memex `getItem` 사용)
-  - [ ] `app/templates/[templateId]/api/route.ts` — `templateId` 검색 Neon 처리 추가
-- [ ] `@rebel9/memex-fetcher` 패키지 제거 (`yarn remove`) — 위 마이그레이션 완료 후
-- [ ] `MEMEX_TOKEN` 환경변수 제거 — 위 마이그레이션 완료 후
-- [ ] `MEMEX_PROJECT_ID` 환경변수 제거 — 위 마이그레이션 완료 후
-- [ ] `web/.env.example`에서 Memex 관련 항목 제거 — 위 마이그레이션 완료 후
-- [ ] `web/src/shared/types/memex.ts` 파일 삭제 — 위 마이그레이션 완료 후
+- [x] **템플릿 데이터 Neon 마이그레이션** — 아래 파일 Neon API 호출로 교체:
+  - [x] `app/templates/utils/fetchers/glbModels.ts` (현재 Memex `getList` 사용)
+  - [x] `app/templates/utils/fetchers/targetImage.ts` (현재 Memex `getItem` 사용)
+  - [x] `app/templates/[templateId]/api/route.ts` — `templateId` 검색 Neon 처리 추가
+- [x] `@rebel9/memex-fetcher` 패키지 제거 (`yarn remove`) — 위 마이그레이션 완료 후
+- [x] `MEMEX_TOKEN` 환경변수 제거 — 위 마이그레이션 완료 후
+- [x] `MEMEX_PROJECT_ID` 환경변수 제거 — 위 마이그레이션 완료 후
+- [x] `web/.env.example`에서 Memex 관련 항목 제거 — 위 마이그레이션 완료 후
+- [x] `web/src/shared/types/memex.ts` 파일 삭제 — 위 마이그레이션 완료 후
 
 ## 6단계: Drizzle Kit 마이그레이션 설정
 
