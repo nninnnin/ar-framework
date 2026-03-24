@@ -19,25 +19,6 @@ const CORS_HEADERS = {
     "X-CSRF-Token, X-Requested-With, Accept, Content-Type, Authorization",
 };
 
-function toFormatted(
-  row: Awaited<ReturnType<typeof findGlbModelById>>,
-) {
-  if (!row) return null;
-  return {
-    uid: row.uid,
-    name: row.name?.KO ?? null,
-    mediaPath: row.mediaPath,
-    isDeleted: row.isDeleted,
-    latitude: row.latitude,
-    longitude: row.longitude,
-    scale: row.scale,
-    rotation: row.rotation,
-    position: row.position,
-    interactions: row.interactions,
-    visibility: row.visibility,
-  };
-}
-
 const corsJson = (data: unknown) =>
   new NextResponse(JSON.stringify(data), {
     status: 200,
@@ -56,11 +37,11 @@ export async function GET(request: Request) {
       return new Response("Not found", {
         status: 404,
       });
-    return corsJson(toFormatted(row));
+    return corsJson(row);
   }
 
   const rows = await findAllGlbModels();
-  return corsJson(rows.map(toFormatted));
+  return corsJson(rows);
 }
 
 export async function POST(request: Request) {
