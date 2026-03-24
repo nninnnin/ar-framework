@@ -40,7 +40,12 @@ const ModelViewer = ({
       return;
     }
 
-    const mv = new ModelViewerElement();
+    let mv: ModelViewerElement;
+    try {
+      mv = new ModelViewerElement();
+    } catch {
+      return;
+    }
 
     mv.src = modelSource;
     mv.setAttribute("camera-controls", "");
