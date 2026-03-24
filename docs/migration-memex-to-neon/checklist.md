@@ -108,10 +108,10 @@
 
 ### 5-2. 아직 Memex API 직접 사용 중 (마이그레이션 필요)
 
-- [ ] **imageTarget Neon 마이그레이션** — `imageTargets` 테이블 추가 또는 arProjects jsonb 활용으로 아래 파일 교체:
-  - [ ] `features/projectCreation/utils/imageTarget/postImageTarget.ts` (현재 Memex `postItem` 사용)
-  - [ ] `entities/imageTarget/utils/getImageTarget.ts` (현재 Memex `getItem` 사용)
-  - [ ] `entities/imageTarget/utils/updateImageTarget.ts` (현재 Memex `updateItem` 사용)
+- [x] **imageTarget Neon 마이그레이션** — `imageTargets` 테이블 추가 또는 arProjects jsonb 활용으로 아래 파일 교체:
+  - [x] `features/projectCreation/utils/imageTarget/postImageTarget.ts` (현재 Memex `postItem` 사용)
+  - [x] `entities/imageTarget/utils/getImageTarget.ts` (현재 Memex `getItem` 사용)
+  - [x] `entities/imageTarget/utils/updateImageTarget.ts` (현재 Memex `updateItem` 사용)
 - [ ] **템플릿 데이터 Neon 마이그레이션** — 아래 파일 Neon API 호출로 교체:
   - [ ] `app/templates/utils/fetchers/glbModels.ts` (현재 Memex `getList` 사용)
   - [ ] `app/templates/utils/fetchers/targetImage.ts` (현재 Memex `getItem` 사용)
