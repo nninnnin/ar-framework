@@ -1,7 +1,5 @@
 import { getSearchParam } from "@/features/project/utils/index";
 import { generateUid } from "@/shared/utils/generateUid";
-import { arProjects } from "@/shared/lib/schema";
-import { ProjectFormatted } from "@/entities/project/types";
 import {
   findProjectById,
   findProjectsByGroup,
@@ -10,39 +8,6 @@ import {
 } from "./queries/index";
 import { toProjectValues } from "./transform";
 
-type ProjectRow = typeof arProjects.$inferSelect;
-
-function rowToFormatted(row: ProjectRow): ProjectFormatted {
-  const projectType = row.projectType?.[0];
-  const groupName = row.groupName?.[0];
-  const glbModels = row.glbModels ?? [];
-  const imageTarget = row.imageTarget;
-
-  return {
-    uid: row.uid,
-    name: row.name?.KO ?? "",
-    projectType: {
-      id: projectType?._id ?? 0,
-      name: projectType?.languageMap?.KO ?? "",
-    },
-    groupName: {
-      id: groupName?.uid ?? "",
-      name: groupName?.languageMap?.KO ?? "",
-    },
-    glbModels: glbModels.map((m) => ({
-      uid: m.uid,
-      name: m.languageMap?.KO ?? "",
-    })),
-    imageTarget: imageTarget?.map((t) => ({
-      uid: t.uid,
-      name: t.languageMap?.KO ?? "",
-    })),
-    isDeleted: row.isDeleted ?? false,
-    templateId: row.templateId ?? "",
-    isLocked: row.isLocked ?? false,
-  };
-}
-
 export async function GET(request: Request) {
   const projectId = getSearchParam(request, "projectId");
 
@@ -50,7 +15,7 @@ export async function GET(request: Request) {
     const row = await findProjectById(projectId);
     if (!row)
       return new Response("Not found", { status: 404 });
-    return Response.json(rowToFormatted(row));
+    return Response.json(row);
   }
 
   const groupName = getSearchParam(request, "groupName");
@@ -58,7 +23,7 @@ export async function GET(request: Request) {
     return new Response("groupName is required", { status: 400 });
 
   const rows = await findProjectsByGroup(groupName);
-  return Response.json(rows.map(rowToFormatted));
+  return Response.json(rows);
 }
 
 export async function POST(request: Request) {

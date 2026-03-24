@@ -1,8 +1,10 @@
 import { ProjectFilter } from "@/entities/project/types";
 import {
+  Project,
   ProjectBody,
   ProjectFormatted,
 } from "@/entities/project/types";
+import { formatProject } from "@/entities/project/utils/formatters";
 import { UpdateBody } from "@/shared/types";
 
 const BASE_URL = () =>
@@ -14,7 +16,8 @@ export const getProjectItem = async (
   const res = await fetch(
     `${BASE_URL()}?projectId=${projectItemUid}`
   );
-  return res.json();
+  const data: Project = await res.json();
+  return formatProject(data);
 };
 
 export const createProject = async (
@@ -36,7 +39,8 @@ export const getProjects = async (
   if (filter.templateId)
     params.set("templateId", filter.templateId);
   const res = await fetch(`${BASE_URL()}?${params}`);
-  return res.json();
+  const data: Project[] = await res.json();
+  return data.map(formatProject);
 };
 
 export const getProjectTypes = async () => {
