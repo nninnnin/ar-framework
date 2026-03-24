@@ -6,14 +6,17 @@ const ProjectItemContainer = ({
   onClick = () => {},
   type = "item",
   cssOverlap = css``,
+  testId,
 }: {
   children: React.ReactNode;
   onClick?: () => void;
   type?: "item" | "creation";
   cssOverlap?: SerializedStyles;
+  testId?: string;
 }) => {
   return (
     <div
+      data-testid={testId}
       css={css`
         position: relative;
 

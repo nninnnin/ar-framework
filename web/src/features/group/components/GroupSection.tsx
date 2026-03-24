@@ -87,7 +87,7 @@ const GroupSection = () => {
           );
         })}
 
-      <GroupItem onClick={handleCreateGroupClick}>
+      <GroupItem onClick={handleCreateGroupClick} testId="add-group-btn">
         <Plus />
       </GroupItem>
     </div>

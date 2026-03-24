@@ -1,8 +1,12 @@
-import { defineConfig } from "@playwright/test";
+import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
   testDir: "./tests",
   use: {
     baseURL: "http://localhost:3000",
+    ...devices["Desktop Chrome"],
+    launchOptions: {
+      args: ["--enable-webgl", "--use-gl=swiftshader"],
+    },
   },
 });

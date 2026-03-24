@@ -70,6 +70,7 @@ const ProjectSection = () => {
         <ProjectItemContainer
           type="creation"
           onClick={handleCreationClick}
+          testId="add-project-btn"
         >
           <Plus />
         </ProjectItemContainer>

@@ -5,13 +5,16 @@ const GroupItem = ({
   children,
   onClick,
   cssOverlap,
+  testId,
 }: {
   children: React.ReactNode;
   onClick: () => void;
   cssOverlap?: SerializedStyles;
+  testId?: string;
 }) => {
   return (
     <div
+      data-testid={testId}
       css={css`
         background-color: white;
         color: black;
