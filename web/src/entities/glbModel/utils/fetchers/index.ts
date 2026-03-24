@@ -1,5 +1,8 @@
+import { z } from "zod";
 import { UpdateBody } from "@/shared/types";
 import { uploadToS3 } from "@/shared/utils/uploadToS3";
+import { glbModelSchema } from "@/entities/glbModel/schema";
+import { formatGlbModel } from "@/entities/glbModel/utils/formatter";
 
 const BASE_URL = () =>
   `${process.env.NEXT_URL}/glbModels/api`;
@@ -24,12 +27,14 @@ export const getGlbModel = async (uid: string) => {
   const res = await fetch(
     `${BASE_URL()}?glbModelId=${uid}`
   );
-  return res.json();
+  const data = glbModelSchema.parse(await res.json());
+  return formatGlbModel(data);
 };
 
 export const getGlbModels = async () => {
   const res = await fetch(BASE_URL());
-  return res.json();
+  const data = z.array(glbModelSchema).parse(await res.json());
+  return data.map(formatGlbModel);
 };
 
 export const postGlbModels = async (
