@@ -1,44 +1,20 @@
-import {
-  GlbModelItemFormatted,
-  GlbModelItemResult,
-  GlbModelListResult,
-} from "@/entities/glbModel/types";
+import { GlbModelItemFormatted } from "@/entities/glbModel/types";
+import { GlbModel } from "@/entities/glbModel/schema";
 
-export const formatGLBModelItems = (
-  result: GlbModelListResult
-): GlbModelItemFormatted[] => {
-  return result.list.map(({ uid, data }) => ({
-    uid,
-    name: (data.name as { KO?: string })?.KO ?? "",
-    mediaPath: data.mediaPath,
-    isDeleted: data.isDeleted,
-    latitude: data.latitude,
-    longitude: data.longitude,
-    scale: data.scale,
-    rotation: data.rotation,
-    position: data.position,
-    interactions: data.interactions,
-    visibility: data.visibility,
-  }));
-};
+export const formatGlbModel = (row: GlbModel): GlbModelItemFormatted => ({
+  uid: row.uid,
+  name: row.name?.KO ?? null,
+  mediaPath: row.mediaPath,
+  isDeleted: row.isDeleted,
+  latitude: row.latitude,
+  longitude: row.longitude,
+  scale: row.scale,
+  rotation: row.rotation,
+  position: row.position,
+  interactions: row.interactions,
+  visibility: row.visibility,
+});
 
-export const formatGLBModelItem = (
-  result: GlbModelItemResult
-): GlbModelItemFormatted => {
-  return {
-    uid: result.uid,
-    name: (result.data.name as { KO?: string })?.KO ?? "",
-    mediaPath: result.data.mediaPath,
-    isDeleted: result.data.isDeleted,
-    latitude: result.data.latitude,
-    longitude: result.data.longitude,
-    scale: result.data.scale,
-    rotation: result.data.rotation,
-    position: result.data.position,
-    interactions: result.data.interactions,
-    visibility: result.data.visibility,
-  };
-};
 
 export const createGlbPostBody = (
   glbModelItemFormatted: GlbModelItemFormatted
