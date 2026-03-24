@@ -5,7 +5,7 @@ import {
 
 import { QueryKeys } from "@/shared/constants/queryKeys";
 import { createProject } from "@/entities/project/utils/fetchers";
-import { ProjectBody } from "@/features/project/types/project";
+import { ProjectBody } from "@/entities/project/types";
 
 const useCreateProject = () => {
   const queryClient = useQueryClient();

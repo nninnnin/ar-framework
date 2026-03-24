@@ -1,5 +1,5 @@
 import ProjectService from "@/entities/project/service";
-import { ProjectFormatted } from "@/features/project/types/project";
+import { ProjectFormatted } from "@/entities/project/types";
 import { z } from "zod";
 
 const ProjectValidator = z.object({

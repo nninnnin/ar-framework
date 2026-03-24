@@ -1,4 +1,4 @@
-import { ProjectType } from "@/features/project/types/project";
+import { ProjectType } from "@/entities/project/types";
 
 export type 프로젝트타입선택 = {
   projectType?: ProjectType;

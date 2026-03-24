@@ -2,7 +2,7 @@ import { ProjectFilter } from "@/entities/project/types";
 import {
   ProjectBody,
   ProjectFormatted,
-} from "@/features/project/types/project";
+} from "@/entities/project/types";
 import { UpdateBody } from "@/shared/types";
 import {
   getProjectItem,

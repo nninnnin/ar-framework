@@ -15,7 +15,7 @@ import Dialog from "@/shared/components/Dialog";
 import { designTokens } from "@/shared/styles/tokens";
 import useProjectItem from "@/features/project/hooks/useProjectItem";
 import { OverlayCloseContext } from "@/features/project/components/ProjectSection";
-import { ProjectType } from "@/features/project/types/project";
+import { ProjectType } from "@/entities/project/types";
 
 interface Props {
   projectId: string;

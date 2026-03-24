@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { ProjectFormatted } from "@/features/project/types/project";
+import { ProjectFormatted } from "@/entities/project/types";
 
 const useInitialProjectUids = (
   projects: ProjectFormatted[] | undefined

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { QueryKeys } from "@/shared/constants/queryKeys";
-import { ProjectFormatted } from "@/features/project/types/project";
+import { ProjectFormatted } from "@/entities/project/types";
 import createNextApiFetcher from "@/shared/utils/nextApiFetcher";
 
 const apiFetcher = createNextApiFetcher({

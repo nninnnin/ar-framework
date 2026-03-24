@@ -1,7 +1,7 @@
 import parse, { HTMLElement } from "node-html-parser";
 
 import { TemplateContents } from "@/app/templates/constants/templateContents";
-import { ProjectType } from "@/features/project/types/project";
+import { ProjectType } from "@/entities/project/types";
 import { GlbModelFormatted } from "@/features/glbModel/types/glbModel";
 
 class TemplateContentsGenerator {

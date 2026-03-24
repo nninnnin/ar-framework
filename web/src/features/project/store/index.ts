@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { ProjectType } from "@/features/project/types/project";
+import { ProjectType } from "@/entities/project/types";
 
 export const useSelectedProjectType = create<{
   selectedProjectType: ProjectType | null;

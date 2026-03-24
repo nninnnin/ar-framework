@@ -16,7 +16,7 @@ import usePostGlbModel from "@/features/glbModel/hooks/usePostGlbModel";
 import useProjectTypes from "@/features/project/hooks/useProjectTypes";
 import useCreateProject from "@/features/projectCreation/hooks/useCreateProject";
 import ProjectTypeSelectionDialog from "@/features/projectCreation/components/funnelSteps/projectTypeSelection/Dialog";
-import { ProjectType } from "@/features/project/types/project";
+import { ProjectType } from "@/entities/project/types";
 import ProjectModelSelectionDialog from "@/features/projectCreation/components/funnelSteps/ProjectModelSelectionDialog";
 import ProjectRegisterDialog from "@/features/projectCreation/components/funnelSteps/ProjectRegisterDialog";
 import { getProjectTypeId } from "@/features/project/utils";

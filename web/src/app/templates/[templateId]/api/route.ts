@@ -2,7 +2,7 @@
 // - templateId 검색을 Neon 핸들러에서 처리하도록 추가
 // - templates/utils/fetchers/glbModels.ts, targetImage.ts Neon으로 교체
 import { generateArTemplate } from "@/app/templates/utils";
-import { ProjectFormatted } from "@/features/project/types/project";
+import { ProjectFormatted } from "@/entities/project/types";
 import { getSearchParam } from "@/features/project/utils";
 
 export async function GET(

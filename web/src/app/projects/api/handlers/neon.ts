@@ -1,7 +1,7 @@
 import { getSearchParam } from "@/features/project/utils/index";
 import { generateUid } from "@/shared/utils/generateUid";
 import { arProjects } from "@/shared/lib/schema";
-import { ProjectFormatted } from "@/features/project/types/project";
+import { ProjectFormatted } from "@/entities/project/types";
 import {
   findProjectById,
   findProjectsByGroup,

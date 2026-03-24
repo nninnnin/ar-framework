@@ -1,4 +1,4 @@
-import { ProjectFormatted } from "@/features/project/types/project";
+import { ProjectFormatted } from "@/entities/project/types";
 import EditButton from "@/features/project/components/projectItem/EditButton";
 import ProjectItemBadge from "@/features/project/components/projectItem/Badge";
 import RemoveButton from "@/features/project/components/projectItem/RemoveButton";

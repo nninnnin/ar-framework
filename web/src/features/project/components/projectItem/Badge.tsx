@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "@emotion/react";
-import { ProjectType } from "@/features/project/types/project";
+import { ProjectType } from "@/entities/project/types";
 import { designTokens } from "@/shared/styles/tokens";
 
 const ProjectItemBadge = ({

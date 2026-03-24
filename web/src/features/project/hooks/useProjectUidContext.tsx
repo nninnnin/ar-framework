@@ -1,4 +1,4 @@
-import { ProjectFormatted } from "@/features/project/types/project";
+import { ProjectFormatted } from "@/entities/project/types";
 import { createContext, useContext } from "react";
 
 export const ProjectItemContext = createContext<{

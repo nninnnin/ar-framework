@@ -1,5 +1,5 @@
 import { generateArTemplate } from "@/app/templates/utils";
-import { ProjectFormatted } from "@/features/project/types/project";
+import { ProjectFormatted } from "@/entities/project/types";
 import { getSearchParam } from "@/features/project/utils";
 import createNextApiFetcher from "@/shared/utils/nextApiFetcher";
 

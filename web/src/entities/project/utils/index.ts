@@ -1,4 +1,4 @@
-import { ProjectBody } from "@/features/project/types/project";
+import { ProjectBody } from "@/entities/project/types";
 
 export const createProjectBody = (params: {
   projectName: string;

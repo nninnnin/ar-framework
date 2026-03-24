@@ -4,7 +4,7 @@ import { promises as fs } from "fs";
 import {
   ProjectFormatted,
   ProjectType,
-} from "@/features/project/types/project";
+} from "@/entities/project/types";
 import TemplateContentsGenerator from "@/app/templates/utils/TemplateContentsGenerator";
 import { getGlbModels } from "@/app/templates/utils/fetchers/glbModels";
 import { getTargetImage } from "@/app/templates/utils/fetchers/targetImage";

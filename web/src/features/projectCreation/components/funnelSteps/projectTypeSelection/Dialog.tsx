@@ -4,7 +4,7 @@ import React from "react";
 
 import Dialog from "@/shared/components/Dialog";
 
-import { ProjectType } from "@/features/project/types/project";
+import { ProjectType } from "@/entities/project/types";
 import { useSelectedProjectType } from "@/features/project/store";
 import ProjectTypes from "@/features/projectCreation/components/funnelSteps/projectTypeSelection/ProjectTypeSelection";
 

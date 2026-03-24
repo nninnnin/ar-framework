@@ -10,7 +10,7 @@ import ProjectItem from "@/features/project/components/projectItem";
 import useProjects from "@/features/project/hooks/useProjects";
 import ProjectList from "@/features/project/components/ProjectList";
 import ProjectItemContainer from "@/features/project/components/projectItem/Container";
-import { ProjectFormatted } from "@/features/project/types/project";
+import { ProjectFormatted } from "@/entities/project/types";
 import Overlay from "@/shared/components/Overlay";
 import Plus from "@/shared/components/icons/Plus";
 
