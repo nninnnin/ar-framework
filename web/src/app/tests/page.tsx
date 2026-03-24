@@ -5,6 +5,7 @@ import { css } from "@emotion/react";
 
 import projectTestSuite from "@/entities/project/tests";
 import glbModelTestSuite from "@/entities/glbModel/tests";
+import imageTargetTestSuite from "@/entities/imageTarget/tests";
 import TestInput from "@/features/test/components/TestBlock/TestInput";
 import TestBlock from "@/features/test/components/TestBlock";
 
@@ -12,6 +13,7 @@ const TestPage = () => {
   const testSuites = [
     ...projectTestSuite,
     ...glbModelTestSuite,
+    ...imageTargetTestSuite,
   ];
 
   return (

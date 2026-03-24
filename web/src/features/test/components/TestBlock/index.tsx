@@ -53,7 +53,7 @@ const TestBlock = ({
 
     if (cleanup) await cleanup(result);
 
-    setCodeResult(String(result));
+    setCodeResult(JSON.stringify(result, null, 2));
     setIsTestPassed(matched);
 
     setShowDetails(true);
@@ -95,7 +95,11 @@ const TestBlock = ({
             gap: 0.5em;
           `}
         >
-          <div>result: {String(codeResult) ?? ""}</div>
+          <pre css={css`
+            white-space: pre-wrap;
+            word-break: break-all;
+            margin: 0;
+          `}>result: {codeResult ?? ""}</pre>
           <div>tester: {tester.toString()}</div>
         </div>
       )}
