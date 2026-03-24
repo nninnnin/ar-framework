@@ -1,17 +1,11 @@
-import { createMemexFetcher } from "@rebel9/memex-fetcher";
-
 import { UpdateBody } from "@/shared/types";
 
-const memexFetcher = createMemexFetcher(
-  process.env.MEMEX_TOKEN ?? ""
-);
+const BASE_URL = () => `${process.env.NEXT_URL}/imageTargets/api`;
 
-export const updateImageTarget = async (
-  body: UpdateBody
-) => {
-  return await memexFetcher.updateItem(
-    process.env.MEMEX_PROJECT_ID ?? "",
-    "imageTargets",
-    body
-  );
+export const updateImageTarget = async (body: UpdateBody) => {
+  return fetch(`${BASE_URL()}?imageTargetId=${body.uid}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
 };

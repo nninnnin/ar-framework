@@ -34,6 +34,15 @@ export const glbModels = pgTable("glbModels", {
   interactions: text("interactions"),
 });
 
+export const imageTargets = pgTable("imageTargets", {
+  uid: text("uid").primaryKey(),
+  createdAt: text("created_at"),
+  updatedAt: text("updated_at"),
+  name: jsonb("name").$type<LanguageMap>(),
+  path: text("path"),
+  isDeleted: boolean("isDeleted"),
+});
+
 export const projectGroups = pgTable("projectGroups", {
   uid: text("uid").primaryKey(),
   createdAt: text("created_at"),

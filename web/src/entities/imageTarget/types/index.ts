@@ -1,8 +1,4 @@
-export interface ImageTargetItem {
-  name: { KO?: string };
-  path: string;
-  isDeleted: boolean;
-}
+export type { ImageTarget } from "@/entities/imageTarget/schema";
 
 export interface ImageTargetFormatted {
   uid: string;
@@ -10,12 +6,3 @@ export interface ImageTargetFormatted {
   path: string;
   isDeleted: boolean;
 }
-
-export type ImageTargetListResult = {
-  list: { uid: string; data: ImageTargetItem }[];
-};
-
-export type ImageTargetItemResult = {
-  uid: string;
-  data: ImageTargetItem;
-};

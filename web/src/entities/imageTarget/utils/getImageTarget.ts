@@ -1,16 +1,10 @@
-import { createMemexFetcher } from "@rebel9/memex-fetcher";
+import { imageTargetSchema } from "@/entities/imageTarget/schema";
+import { formatImageTarget } from "@/entities/imageTarget/utils/formatters";
 
-const TOKEN = process.env.MEMEX_TOKEN ?? "";
-const PROJECT_ID = process.env.MEMEX_PROJECT_ID ?? "";
+const BASE_URL = () => `${process.env.NEXT_URL}/imageTargets/api`;
 
-const memexFetcher = createMemexFetcher(TOKEN);
-
-export const getImageTargetItem = async (
-  uid: string
-) => {
-  return await memexFetcher.getItem(
-    PROJECT_ID,
-    "imageTargets",
-    uid
-  );
+export const getImageTargetItem = async (uid: string) => {
+  const res = await fetch(`${BASE_URL()}?imageTargetId=${uid}`);
+  const data = imageTargetSchema.parse(await res.json());
+  return formatImageTarget(data);
 };
