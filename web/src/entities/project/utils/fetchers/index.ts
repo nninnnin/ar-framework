@@ -1,9 +1,10 @@
+import { z } from "zod";
+
 import { ProjectFilter } from "@/entities/project/types";
 import {
   ProjectBody,
   ProjectFormatted,
 } from "@/entities/project/types";
-import { z } from "zod";
 import { projectSchema } from "@/entities/project/schema";
 import { formatProject } from "@/entities/project/utils/formatters";
 import { UpdateBody } from "@/shared/types";
@@ -12,17 +13,19 @@ const BASE_URL = () =>
   `${process.env.NEXT_URL}/projects/api`;
 
 export const getProjectItem = async (
-  projectItemUid: string
+  projectItemUid: string,
 ): Promise<ProjectFormatted> => {
   const res = await fetch(
-    `${BASE_URL()}?projectId=${projectItemUid}`
+    `${BASE_URL()}?projectId=${projectItemUid}`,
   );
-  const data = projectSchema.parse(await res.json());
+  const result = await res.json();
+
+  const data = projectSchema.parse(result);
   return formatProject(data);
 };
 
 export const createProject = async (
-  projectBody: ProjectBody
+  projectBody: ProjectBody,
 ) => {
   return fetch(BASE_URL(), {
     method: "POST",
@@ -32,7 +35,7 @@ export const createProject = async (
 };
 
 export const getProjects = async (
-  filter: ProjectFilter
+  filter: ProjectFilter,
 ): Promise<ProjectFormatted[]> => {
   const params = new URLSearchParams();
   if (filter.groupName)
@@ -40,8 +43,14 @@ export const getProjects = async (
   if (filter.templateId)
     params.set("templateId", filter.templateId);
   const res = await fetch(`${BASE_URL()}?${params}`);
-  const data = z.array(projectSchema).parse(await res.json());
-  return data.map(formatProject);
+  const result = await res.json();
+
+  const parsed = z.array(projectSchema).safeParse(result);
+  if (!parsed.success) {
+    console.error("projectSchema parse error:", parsed.error.issues);
+    throw parsed.error;
+  }
+  return parsed.data.map(formatProject);
 };
 
 export const getProjectTypes = async () => {
@@ -70,7 +79,9 @@ export const getProjectTypes = async () => {
   };
 };
 
-export const updateProject = async (body: UpdateBody) => {
+export const updateProject = async (
+  body: UpdateBody,
+) => {
   return fetch(`${BASE_URL()}?projectId=${body.uid}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
