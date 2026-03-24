@@ -1,9 +1,10 @@
 import { ProjectFilter } from "@/entities/project/types";
 import {
-  Project,
   ProjectBody,
   ProjectFormatted,
 } from "@/entities/project/types";
+import { z } from "zod";
+import { projectSchema } from "@/entities/project/schema";
 import { formatProject } from "@/entities/project/utils/formatters";
 import { UpdateBody } from "@/shared/types";
 
@@ -16,7 +17,7 @@ export const getProjectItem = async (
   const res = await fetch(
     `${BASE_URL()}?projectId=${projectItemUid}`
   );
-  const data: Project = await res.json();
+  const data = projectSchema.parse(await res.json());
   return formatProject(data);
 };
 
@@ -39,7 +40,7 @@ export const getProjects = async (
   if (filter.templateId)
     params.set("templateId", filter.templateId);
   const res = await fetch(`${BASE_URL()}?${params}`);
-  const data: Project[] = await res.json();
+  const data = z.array(projectSchema).parse(await res.json());
   return data.map(formatProject);
 };
 
