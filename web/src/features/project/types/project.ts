@@ -1,26 +1,20 @@
-import {
-  CategoryInterface,
-  LanguageMap,
-  RelationInterface,
-} from "@/shared/types/memex";
-
 export interface ProjectResult {
   list: Project[];
 }
 
 export interface ProjectData {
-  name: LanguageMap;
-  projects: RelationInterface[];
+  name: { KO?: string };
+  projects: { _id: number; uid: string; languageMap: { KO?: string } }[];
 }
 
 export interface Project {
   uid: string;
   order: number;
   data: {
-    name: LanguageMap;
-    projectType: CategoryInterface[];
-    glbModels: RelationInterface[];
-    groupName: RelationInterface[];
+    name: { KO?: string };
+    projectType: { _id: number; order?: number; languageMap: { KO?: string } }[];
+    glbModels: { _id?: number; uid: string; languageMap: { KO?: string } }[];
+    groupName: { _id?: number; uid: string; languageMap: { KO?: string } }[];
     isLocked: boolean;
   };
 }
@@ -33,7 +27,7 @@ export type ProjectFormatted = {
     name: ProjectType;
   };
   groupName: {
-    id: number;
+    id: string;
     name: string;
   };
   glbModels: {

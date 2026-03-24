@@ -1,4 +1,4 @@
-type MemexDataType =
+type DataType =
   | "title"
   | "singletext"
   | "longtext"
@@ -9,7 +9,7 @@ type MemexDataType =
   | "relation";
 
 const formatDataValue = (
-  type: MemexDataType,
+  type: DataType,
   value: unknown
 ) => {
   switch (type) {
@@ -40,7 +40,7 @@ export const createUpdateBody = <
   FormattedData extends Record<string, unknown>
 >(
   formattedData: FormattedData,
-  dataTypes: Record<keyof FormattedData, MemexDataType>
+  dataTypes: Record<keyof FormattedData, DataType>
 ) => {
   const converted = Object.entries(
     formattedData

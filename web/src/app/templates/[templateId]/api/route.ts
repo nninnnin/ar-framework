@@ -1,7 +1,7 @@
+// TODO: 5-2 템플릿 데이터 Neon 마이그레이션 필요
+// - templateId 검색을 Neon 핸들러에서 처리하도록 추가
+// - templates/utils/fetchers/glbModels.ts, targetImage.ts Neon으로 교체
 import { generateArTemplate } from "@/app/templates/utils";
-import { getProjects } from "@/entities/project/utils/fetchers";
-
-import { formatProjectList } from "@/entities/project/utils/formatters";
 import { ProjectFormatted } from "@/features/project/types/project";
 import { getSearchParam } from "@/features/project/utils";
 
@@ -21,31 +21,11 @@ export async function GET(
     });
   }
 
-  const templateResponse = await getProjects({
-    templateId,
-  });
-
-  const templateResult = await templateResponse.json();
-
-  if (templateResult.list.length === 0) {
-    return new Response(
-      `Template not found with id: ${templateId}`,
-      {
-        status: 404,
-      }
-    );
-  }
-
-  const templateData = formatProjectList(
-    templateResult
-  )[0] as ProjectFormatted;
-
-  console.log(templateData);
+  // TODO: templateId로 Neon에서 프로젝트 조회
+  const templateData = null as unknown as ProjectFormatted;
 
   const hasControls =
-    getSearchParam(request, "glbControls") === "1"
-      ? true
-      : false;
+    getSearchParam(request, "glbControls") === "1";
 
   const templateFile = await generateArTemplate(
     templateData,

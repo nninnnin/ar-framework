@@ -1,12 +1,4 @@
 import {
-  flattenListItem,
-  mapListItems,
-  pipe,
-  pluckList,
-  extractStringValues,
-} from "@rebel9/memex-fetcher";
-
-import {
   GlbModelItemFormatted,
   GlbModelItemResult,
   GlbModelListResult,
@@ -14,23 +6,38 @@ import {
 
 export const formatGLBModelItems = (
   result: GlbModelListResult
-) => {
-  return pipe(
-    result,
-    pluckList,
-    mapListItems(flattenListItem),
-    mapListItems(extractStringValues(["name"], "KO"))
-  );
+): GlbModelItemFormatted[] => {
+  return result.list.map(({ uid, data }) => ({
+    uid,
+    name: (data.name as { KO?: string })?.KO ?? "",
+    mediaPath: data.mediaPath,
+    isDeleted: data.isDeleted,
+    latitude: data.latitude,
+    longitude: data.longitude,
+    scale: data.scale,
+    rotation: data.rotation,
+    position: data.position,
+    interactions: data.interactions,
+    visibility: data.visibility,
+  }));
 };
 
 export const formatGLBModelItem = (
   result: GlbModelItemResult
-) => {
-  return pipe(
-    result,
-    flattenListItem,
-    extractStringValues(["name"], "KO")
-  );
+): GlbModelItemFormatted => {
+  return {
+    uid: result.uid,
+    name: (result.data.name as { KO?: string })?.KO ?? "",
+    mediaPath: result.data.mediaPath,
+    isDeleted: result.data.isDeleted,
+    latitude: result.data.latitude,
+    longitude: result.data.longitude,
+    scale: result.data.scale,
+    rotation: result.data.rotation,
+    position: result.data.position,
+    interactions: result.data.interactions,
+    visibility: result.data.visibility,
+  };
 };
 
 export const createGlbPostBody = (

@@ -1,30 +1,17 @@
-import {
-  mapObjectProps,
-  pipe,
-  pluckData,
-} from "@rebel9/memex-fetcher";
-import {
-  LanguageMap,
-  MemexModelItem,
-} from "@/shared/types/memex";
 import { ImageTargetItem } from "@/entities/imageTarget/types";
 
+type ImageTargetModelItem = {
+  uid: string;
+  data: ImageTargetItem;
+};
+
 export const formatImageTargetItem = (
-  imageTargetItem: ImageTargetItem
+  imageTargetItem: ImageTargetModelItem
 ) => {
-  return pipe(
-    imageTargetItem,
-    (item: MemexModelItem<ImageTargetItem>) => ({
-      uid: item.uid,
-      ...pluckData(item),
-    }),
-    (item: ImageTargetItem) =>
-      mapObjectProps(
-        item,
-        ["name"],
-        (value: LanguageMap) => {
-          return value["KO"];
-        }
-      )
-  );
+  return {
+    uid: imageTargetItem.uid,
+    name: (imageTargetItem.data.name as { KO?: string })?.KO ?? "",
+    path: imageTargetItem.data.path,
+    isDeleted: imageTargetItem.data.isDeleted,
+  };
 };

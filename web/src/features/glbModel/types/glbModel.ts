@@ -1,8 +1,7 @@
 import { InteractionItem } from "@/features/interactionEditor/types";
-import { LanguageMap } from "@/shared/types/memex";
 
 export interface GlbModelData {
-  name: LanguageMap;
+  name: { KO?: string };
   mediaPath: string;
   isDeleted: boolean;
   latitude: string;

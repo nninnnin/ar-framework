@@ -83,6 +83,28 @@ After:  NEON PostgreSQL → DB 쿼리 → Next.js API Routes → React Frontend
 - `MEMEX_TOKEN`, `MEMEX_PROJECT_ID` 환경변수 제거
 - `.env.example` 업데이트
 
+### 6단계: Drizzle Kit 마이그레이션 설정
+
+5단계 완료 후 `schema.ts`를 코드 원천으로 확립한다. 현재 Neon 테이블은 직접 생성된 상태이므로 `drizzle-kit introspect`로 초기 스냅샷을 캡처하고, 이후 스키마 변경은 `generate → migrate` 워크플로로 관리한다.
+
+## 아키텍처 원칙 (향후 변경 대비)
+
+백엔드 레이어는 또 바뀔 수 있다. 교체 비용을 최소화하기 위해 아래 레이어 경계를 유지한다.
+
+```
+DB (Drizzle)       — 저장 무결성만 담당, $inferSelect 타입은 이 레이어 밖으로 노출 금지
+    ↓ raw data
+Zod schema         — 앱 데이터 계약의 원천. TypeScript 타입은 z.infer<>로 파생
+    ↓ z.infer<>
+fetcher            — 데이터 가져오기 + Zod parse, 도메인 타입 반환
+    ↓
+컴포넌트 / 훅      — 항상 같은 도메인 타입을 받음, 백엔드 변경에 무관
+```
+
+- TypeScript 타입을 손으로 따로 정의하지 않는다 → Zod에서 `z.infer<>`로 파생
+- Drizzle `$inferSelect` 타입은 API 핸들러 안에서만 쓰고 밖으로 노출하지 않는다
+- 백엔드가 바뀌면 fetcher + Zod parse 위만 수정하면 된다
+
 ## 참고 파일
 
 - DB 스키마: `backups/20260323.sql`

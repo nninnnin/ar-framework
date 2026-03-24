@@ -25,16 +25,16 @@ function toFormatted(
   if (!row) return null;
   return {
     uid: row.uid,
-    name: (row.name as { KO?: string })?.KO ?? "",
+    name: row.name?.KO ?? null,
     mediaPath: row.mediaPath,
-    isDeleted: row.isDeleted ?? false,
-    latitude: row.latitude ?? "",
-    longitude: row.longitude ?? "",
-    scale: row.scale ?? "",
-    rotation: row.rotation ?? "",
-    position: row.position ?? "",
-    interactions: row.interactions ?? "",
-    visibility: row.visibility ?? true,
+    isDeleted: row.isDeleted,
+    latitude: row.latitude,
+    longitude: row.longitude,
+    scale: row.scale,
+    rotation: row.rotation,
+    position: row.position,
+    interactions: row.interactions,
+    visibility: row.visibility,
   };
 }
 

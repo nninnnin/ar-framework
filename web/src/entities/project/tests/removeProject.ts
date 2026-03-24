@@ -1,14 +1,5 @@
 import ProjectService from "@/entities/project/service";
 
-import { formatProjectItem } from "@/entities/project/utils/formatters";
-import {
-  ProjectFormatted,
-  ProjectType,
-} from "@/features/project/types/project";
-
-import { createUpdateBody } from "@/shared/utils/createUpdateBody";
-import { mapObjectProps } from "@rebel9/memex-fetcher";
-
 export const removeProject = {
   name: "프로젝트 삭제하기",
   code: async ({
@@ -20,38 +11,22 @@ export const removeProject = {
       projectId,
     });
 
-    const projectData = formatProjectItem(
-      projectToDelete
-    );
-
-    const updateBody = createUpdateBody(
-      mapObjectProps(
-        projectData,
-        ["projectType"],
-        (value: { id: number; name: ProjectType }) => {
-          return [value.id];
-        }
-      ),
-      {
-        name: "title",
-        projectType: "category",
-        glbModels: "relation",
-        imageTarget: "relation",
-      }
-    );
-
-    console.log("updateBody", updateBody);
-
-    const result = await service.updateProject({
-      publish: true,
+    await service.updateProject({
       uid: projectId,
+      publish: true,
       data: {
-        ...projectToDelete.data,
+        name: { KO: projectToDelete.name },
+        projectType: [projectToDelete.projectType.id],
+        glbModels: projectToDelete.glbModels.map(
+          (m) => m.uid,
+        ),
+        groupName: [projectToDelete.groupName.id],
+        imageTarget: projectToDelete.imageTarget?.map(
+          (t) => t.uid,
+        ),
         isDeleted: true,
       },
     });
-
-    console.log("삭제 결과", result);
 
     return projectToDelete;
   },

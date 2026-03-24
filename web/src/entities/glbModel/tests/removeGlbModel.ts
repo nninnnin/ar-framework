@@ -1,11 +1,6 @@
-import { pipe } from "@rebel9/memex-fetcher";
-
 import { TestItem } from "@/shared/types/test";
 import GlbModelService from "@/entities/glbModel/service";
-import {
-  createGlbPostBody,
-  formatGLBModelItem,
-} from "@/entities/glbModel/utils/formatter";
+import { createGlbPostBody } from "@/entities/glbModel/utils/formatter";
 import { validateGlbModelItemFormatted } from "@/entities/glbModel/utils/validator";
 
 export const removeGlbModel: TestItem = {
@@ -16,24 +11,16 @@ export const removeGlbModel: TestItem = {
   },
   code: async ({ glbModelUid }) => {
     const service = new GlbModelService();
-
-    const res = await service.getGlbModel(glbModelUid);
-    const result = await res.json();
-
-    const glbItem = pipe(
-      result,
-      formatGLBModelItem,
-      validateGlbModelItemFormatted
+    const glbItem = validateGlbModelItemFormatted(
+      await service.getGlbModel(glbModelUid),
     );
-
-    console.log("이것을 삭제할 것", glbItem);
 
     const updateRes = await service.updateGlbModel(
       glbModelUid,
       {
         ...createGlbPostBody(glbItem),
         isDeleted: "true",
-      }
+      },
     );
 
     console.log("Update Response", updateRes);
@@ -42,7 +29,6 @@ export const removeGlbModel: TestItem = {
   },
   tester: (result) => {
     console.log("test result: ", result);
-
     return true;
   },
 };

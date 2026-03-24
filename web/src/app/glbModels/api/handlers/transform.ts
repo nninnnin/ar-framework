@@ -1,9 +1,11 @@
+import { type LanguageMap } from "@/shared/lib/schema";
+
 const str = (v: unknown): string => (v as string) ?? "";
 const bool = (v: unknown): boolean => v === "true" || v === true;
 
 export function toGlbModelValues(data: Record<string, unknown>) {
   return {
-    name: data.name,
+    name: data.name as LanguageMap | null,
     mediaPath: str(data.mediaPath),
     isDeleted: bool(data.isDeleted),
     visibility: bool(data.visibility),

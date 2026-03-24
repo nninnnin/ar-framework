@@ -4,27 +4,14 @@ import {
   getProjectItem,
   updateProject,
 } from "@/entities/project/utils/fetchers";
-import { formatProjectItem } from "@/entities/project/utils/formatters";
-import { ProjectFormatted } from "@/features/project/types/project";
-import { createUpdateBody } from "@/shared/utils/createUpdateBody";
-import {
-  createMemexFetcher,
-  mapObjectProps,
-  pipe,
-} from "@rebel9/memex-fetcher";
-
-const TOKEN = process.env.MEMEX_TOKEN ?? "";
 
 export const removeProject = async (
   projectItemUid: string
 ) => {
   // 1. 프로젝트 아이템을 가져온다
-  const projectItem = await getProjectItem(
+  const formattedProjectItem = await getProjectItem(
     projectItemUid
   );
-
-  const formattedProjectItem =
-    formatProjectItem(projectItem);
 
   // 2. 관련된 GLB를 모두 제거한다
   const glbModelIds =
@@ -50,48 +37,15 @@ export const removeProject = async (
   }
 
   // 4. 프로젝트 아이템을 지운다
-  const updateBody = createUpdateBody(
-    {
-      ...pipe(
-        formattedProjectItem,
-        (item: ProjectFormatted) =>
-          mapObjectProps(
-            item,
-            ["glbModels", "imageTarget"],
-            (
-              value: { name: string; uid: string }[]
-            ) => {
-              return value.map((item) => item.uid);
-            }
-          ),
-        (item: ProjectFormatted) =>
-          mapObjectProps(
-            item,
-            ["projectType"],
-            (value: { name: string; id: string }) => {
-              return [value.id];
-            }
-          ),
-        (item: ProjectFormatted) =>
-          mapObjectProps(
-            item,
-            ["groupName"],
-            (value: { name: string; id: string }) => {
-              return [value.id];
-            }
-          )
-      ),
-      isDeleted: true,
-    },
-    {
-      uid: "singletext",
-      name: "title",
-      projectType: "category",
-      glbModels: "relation",
-      imageTarget: "relation",
-      isDeleted: "boolean",
-    }
-  );
+  const updateBody = {
+    uid: formattedProjectItem.uid,
+    name: { KO: formattedProjectItem.name },
+    projectType: [formattedProjectItem.projectType.id],
+    glbModels: formattedProjectItem.glbModels.map((m) => m.uid),
+    imageTarget: formattedProjectItem.imageTarget?.map((t) => t.uid),
+    groupName: [formattedProjectItem.groupName.id],
+    isDeleted: true,
+  };
 
   console.log(
     "project item update body: ",
@@ -108,8 +62,6 @@ export const removeProject = async (
     "프로젝트 업데이트 결과",
     projectUpdateResult
   );
-
-  // 5. 그룹에서 프로젝트 아이템을 지운다
 
   return;
 };

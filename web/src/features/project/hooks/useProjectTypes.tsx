@@ -2,9 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 
 import { FormattedCategory } from "@/shared/types";
 import { QueryKeys } from "@/shared/constants/queryKeys";
-import { CategoryItemInterface } from "@/shared/types/memex";
 import { getProjectTypes } from "@/entities/project/utils/fetchers";
 import { formatProjectTypes } from "@/entities/project/utils/formatters";
+
+type CategoryItemInterface = {
+  id: number;
+  order: number;
+  languageMap: { KO?: string };
+};
 
 const useProjectTypes = () => {
   return useQuery<

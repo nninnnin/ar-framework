@@ -1,11 +1,5 @@
-import {
-  LanguageMap,
-  MemexItemResult,
-  MemexListResult,
-} from "@/shared/types/memex";
-
 export interface ImageTargetItem {
-  name: LanguageMap;
+  name: { KO?: string };
   path: string;
   isDeleted: boolean;
 }
@@ -17,8 +11,11 @@ export interface ImageTargetFormatted {
   isDeleted: boolean;
 }
 
-export type GlbModelListResult =
-  MemexListResult<ImageTargetItem>;
+export type ImageTargetListResult = {
+  list: { uid: string; data: ImageTargetItem }[];
+};
 
-export type GlbModelItemResult =
-  MemexItemResult<ImageTargetItem>;
+export type ImageTargetItemResult = {
+  uid: string;
+  data: ImageTargetItem;
+};

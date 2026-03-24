@@ -1,11 +1,5 @@
-import {
-  LanguageMap,
-  MemexItemResult,
-  MemexListResult,
-} from "@/shared/types/memex";
-
 export interface GlbModelItem {
-  name: LanguageMap;
+  name: { KO?: string };
   mediaPath: string;
   isDeleted: boolean;
   latitude: string;
@@ -19,20 +13,23 @@ export interface GlbModelItem {
 
 export interface GlbModelItemFormatted {
   uid: string;
-  name: string;
-  mediaPath: string;
-  isDeleted: boolean;
-  latitude: string;
-  longitude: string;
-  scale: string;
-  rotation: string;
-  position: string;
-  interactions: string;
-  visibility: boolean;
+  name: string | null;
+  mediaPath: string | null;
+  isDeleted: boolean | null;
+  latitude: string | null;
+  longitude: string | null;
+  scale: string | null;
+  rotation: string | null;
+  position: string | null;
+  interactions: string | null;
+  visibility: boolean | null;
 }
 
-export type GlbModelListResult =
-  MemexListResult<GlbModelItem>;
+export type GlbModelListResult = {
+  list: { uid: string; data: GlbModelItem }[];
+};
 
-export type GlbModelItemResult =
-  MemexItemResult<GlbModelItem>;
+export type GlbModelItemResult = {
+  uid: string;
+  data: GlbModelItem;
+};
