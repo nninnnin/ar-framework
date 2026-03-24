@@ -44,8 +44,6 @@ const ActionItem = ({
 
   const handleOptionClick =
     (option: Actions) => () => {
-      console.log(option);
-
       if (option === selectedAction) {
         return;
       }
@@ -72,14 +70,11 @@ const ActionItem = ({
           })
         );
 
-      console.log(newInteractions);
-
       const updateBody = createGlbItemUpdateBody({
         ...updateItem,
         interactions: newInteractions,
       });
 
-      console.log(updateBody);
     };
 
   const handleItemClick = (e: MouseEvent) => {

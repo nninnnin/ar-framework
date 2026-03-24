@@ -18,7 +18,6 @@ const ProjectItem = ({
   onClick?: () => void;
 }) => {
   const isLocked = projectItem.isLocked;
-
   return (
     <ProjectItemContext.Provider
       value={{ projectItem }}

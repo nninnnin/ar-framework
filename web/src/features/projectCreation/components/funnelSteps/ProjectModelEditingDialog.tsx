@@ -16,22 +16,18 @@ import ModelEditor from "@/features/project/components/ModelEditor";
 import { createProjectBody } from "@/entities/project/utils";
 import createNextApiFetcher from "@/shared/utils/nextApiFetcher";
 import {
+  getGlbModel,
   postGlbModels,
   uploadGlbModels,
 } from "@/entities/glbModel/utils/fetchers";
 import { QueryKeys } from "@/shared/constants/queryKeys";
 import { useQueryClient } from "@tanstack/react-query";
 import { createUpdateBody } from "@/shared/utils/createUpdateBody";
-import { GlbModelItemFormatted } from "@/entities/glbModel/types";
 import { useEditableGlbModels } from "@/features/glbModel/store/editableGlbModels";
 
-const apiFetcher = createNextApiFetcher({
-  entity: "project",
-});
+const apiFetcher = createNextApiFetcher({ entity: "project" });
+const glbModelApiFetcher = createNextApiFetcher({ entity: "glbModel" });
 
-const glbModelApiFetcher = createNextApiFetcher({
-  entity: "glbModel",
-});
 
 const ProjectModelEditingDialog = ({
   projectId,
@@ -120,12 +116,7 @@ const ProjectModelEditingDialog = ({
     if (removedModels && removedModels.length) {
       await Promise.all(
         removedModels.map(async (model) => {
-          const res = await glbModelApiFetcher.getItem(
-            model.uid
-          );
-
-          const originalBody =
-            res.data as GlbModelItemFormatted;
+          const originalBody = await getGlbModel(model.uid);
 
           const updateBody = createUpdateBody<{
             isDeleted: boolean;

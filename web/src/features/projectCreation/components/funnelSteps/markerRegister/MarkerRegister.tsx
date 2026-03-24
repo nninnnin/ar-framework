@@ -19,8 +19,6 @@ const MarkerRegister = ({
         .files?.[0];
 
       if (file) {
-        console.log("File selected:", file);
-
         handleChange(file);
       }
     };

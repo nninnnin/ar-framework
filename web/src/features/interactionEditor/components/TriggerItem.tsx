@@ -84,8 +84,6 @@ const TriggerItem = ({
         updateBody
       );
 
-      console.log(updateResult);
-
       setUpdateStatus("updated");
 
       setTimeout(() => {

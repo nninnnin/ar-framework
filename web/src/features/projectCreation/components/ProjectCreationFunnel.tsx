@@ -162,13 +162,7 @@ const ProjectCreationFunnel = () => {
               isLocked: false,
             });
 
-            const projectCreationResult =
-              await createProject(projectBody);
-
-            console.log(
-              "프로젝트 생성 결과",
-              projectCreationResult
-            );
+            await createProject(projectBody);
 
             resetProjectFunnelStates();
             closeOverlay && closeOverlay();

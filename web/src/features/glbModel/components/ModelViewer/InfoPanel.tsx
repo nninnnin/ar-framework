@@ -7,8 +7,6 @@ const InfoPanel = ({
 }: {
   glbModel: GlbModelEditable;
 }) => {
-  console.log(glbModel);
-
   return (
     <div
       css={css`
