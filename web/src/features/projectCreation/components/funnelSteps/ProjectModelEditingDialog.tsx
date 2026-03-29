@@ -120,8 +120,8 @@ const ProjectModelEditingDialog = ({
 
           const updateBody = createUpdateBody<{
             isDeleted: boolean;
-            mediaPath: string;
-            name: string;
+            mediaPath: string | null;
+            name: string | null;
             uid: string;
           }>(
             { ...originalBody, isDeleted: true },
