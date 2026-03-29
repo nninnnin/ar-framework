@@ -23,7 +23,7 @@ export const formatProject = (project: Project): ProjectFormatted => {
       id: groupName?.uid ?? "",
       name: groupName?.languageMap.KO ?? "",
     },
-    glbModels: project.glbModels.map(toNamedEntry),
+    glbModels: project.glbModels?.map(toNamedEntry) ?? [],
     imageTarget: project.imageTarget?.map(toNamedEntry),
     isDeleted: project.isDeleted,
     templateId: project.templateId,
