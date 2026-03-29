@@ -24,6 +24,6 @@ export const createGlbPostBody = (
       KO: glbModelItemFormatted.name,
     },
     mediaPath: glbModelItemFormatted.mediaPath,
-    isDeleted: String(glbModelItemFormatted.isDeleted),
+    isDeleted: String(glbModelItemFormatted.isDeleted ?? false),
   };
 };
