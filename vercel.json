@@ -1,6 +1,6 @@
 {
   "buildCommand": "yarn workspace @ar-framework/web build",
   "outputDirectory": "web/.next",
-  "installCommand": "yarn install",
+  "installCommand": "npm install -g yarn@4.6.0 && yarn install",
   "framework": "nextjs"
 }
