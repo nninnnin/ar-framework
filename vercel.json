@@ -1,3 +1,0 @@
-{
-  "buildCommand": "yarn workspace @ar-framework/web build"
-}
