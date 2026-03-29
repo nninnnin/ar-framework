@@ -14,7 +14,7 @@
   "packageManager": "yarn@4.6.0",
   "dependencies": {
     "@vanilla-extract/css": "^1.20.0",
-    "react": "*"
+    "react": "^19.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.13.13",
@@ -22,7 +22,7 @@
     "@vanilla-extract/babel-plugin": "^1.2.0",
     "@vanilla-extract/esbuild-plugin": "^2.3.22",
     "tsup": "^8.5.1",
-    "typescript": "*"
+    "typescript": "^5.8.3"
   },
   "scripts": {
     "build": "tsup"
