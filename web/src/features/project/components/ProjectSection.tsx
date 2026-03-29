@@ -31,8 +31,6 @@ const ProjectSection = () => {
     groupName: selectedGroup?.name ?? "",
   });
 
-  console.log(projects);
-
   const initialUids = useInitialProjectUids(projects);
 
   const overlay = useOverlay();

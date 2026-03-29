@@ -47,21 +47,11 @@ export const removeProject = async (
     isDeleted: true,
   };
 
-  console.log(
-    "project item update body: ",
-    updateBody
-  );
-
   const projectUpdateResult = await updateProject({
     uid: projectItemUid,
     data: updateBody,
     publish: true,
   });
-
-  console.log(
-    "프로젝트 업데이트 결과",
-    projectUpdateResult
-  );
 
   return;
 };
