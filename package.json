@@ -11,9 +11,7 @@
   "license": "ISC",
   "packageManager": "yarn@4.6.0",
   "workspaces": [
-    "packages/utils",
-    "packages/ui",
-    "packages/capturer",
+    "packages/*",
     "web"
   ],
   "dependencies": {

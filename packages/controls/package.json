@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "packageManager": "yarn@4.6.0",
   "dependencies": {
-    "@ar-framework/ui": "workspace:^",
-    "@ar-framework/utils": "workspace:^",
+    "@ar-framework/ui": "file:../ui",
+    "@ar-framework/utils": "file:../utils",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
     "dotenv-cli": "^8.0.0",
