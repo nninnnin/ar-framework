@@ -1,0 +1,6 @@
+{
+  "buildCommand": "yarn workspace @ar-framework/web build",
+  "outputDirectory": "web/.next",
+  "installCommand": "corepack enable && yarn install",
+  "framework": "nextjs"
+}
