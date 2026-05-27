@@ -60,3 +60,9 @@ AR Framework는 위에서 소개된 것과 같이 여러 기능을 하나의 프
 - `@ar-framework/controls`: 3D 모델의 위치, 크기, 회전, 좌표와 관련된 수치를 UI를 통해 편집하고 저장할 수 있도록하는 React.js 기반의 서비스 패키지입니다. parcel로 빌드되어 웹 프로젝트의 퍼블릭 폴더에 주입되는 형태로 배포됩니다.
 - `@ar-framework/utils`: AR Framework로 서빙되는 AR 컨텐츠의 런타임 통합을 위해 iframe과 메시지 인터페이스를 제공하는 리액트 훅입니다. parcel로 빌드되며 npm package로 배포됩니다.
 - `@ar-framework/capturer`: 3D scene과 비디오 피드를 하나의 canvas로 캡쳐해 blob으로 제공하는 유틸리티 함수입니다. parcel로 빌드되며 웹 프로젝트의 퍼블릭 폴더에 주입됩니다.
+
+<br />
+
+## 사용된 기술
+
+- 위치(좌표)기반 증강, 얼굴 랜드마크 인식 증강, 이미지 랜드마크 인식 증강의 세 가지 방식으로 3D 모델을 증강시키기 위해 `AR.js`, `MindAR` 두 가지 Web AR 프레임워크를 사용했습니다.
